@@ -7,8 +7,8 @@ export default function Navbar() {
     <nav>
       <div className="nav-links">
         <NavLink to="/" className="navlink-dashboard">Dashboard</NavLink>
-        <NavLink to="/Expenses" className="navlink-expenses">Expenses</NavLink>
-        <NavLink to="/Contact" className="navlink-contact">Dashboard</NavLink>
+        <NavLink to="Expenses" className="navlink-expenses">Expenses</NavLink>
+        <NavLink to="Contact" className="navlink-contact">Dashboard</NavLink>
       </div>
     </nav>
   );
