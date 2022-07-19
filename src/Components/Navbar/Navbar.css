@@ -1,8 +1,10 @@
 nav {
     width: 250px;
+    height: 100vh;
     display: flex;
     justify-content: center;
     padding-top: 115.5px;
+    background: #FAFAFA;
 }
 
 .nav-links {
