@@ -8,14 +8,14 @@ import './style.css'
 export default function Signup() {
   return (
     <div className='intro-container'>
-        <div>
+        <div className='form-container'>
             <img src={Logo} className='logo'/>
             <h1>Create a new account</h1>
-            <p>Welcome back! Please enter your details</p>
+            <p className='details'>Welcome back! Please enter your details</p>
             <form>
                 <label className='name-label'>Full Name</label>
                 <input 
-                    className='name-input' 
+                    className='details-input' 
                     type="text" 
                     name="text" 
                     // onChange={handleChange} 
@@ -23,7 +23,7 @@ export default function Signup() {
                 />
                 <label className='email-label'>Email</label>
                 <input 
-                    className='email-input' 
+                    className='details-input' 
                     type="email" 
                     name="email" 
                     // onChange={handleChange} 
@@ -31,7 +31,7 @@ export default function Signup() {
                 />
                 <label className='password-label'>Password</label>
                 <input 
-                    className='password-input' 
+                    className='details-input' 
                     type="password" 
                     name="password" 
                     // onChange={handleChange}
