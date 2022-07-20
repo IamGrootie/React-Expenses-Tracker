@@ -1,11 +1,10 @@
-nav {
+.nav-container {
+  display: flex;
+  flex-direction: column;
   width: 250px;
   height: 100vh;
   background: #fafafa;
   padding: 2rem;
-}
-
-.logo {
 }
 
 .nav-links {
@@ -34,4 +33,23 @@ nav {
   border-radius: 0.5rem;
   color: #1b212d;
   font-weight: 700;
+}
+
+.logout-button {
+  display: flex;
+  align-items: center;
+  border: none;
+  background: #fafafa;
+  color: #929eae;
+  gap: 0.5rem;
+  margin-top: auto;
+  margin-left: 1rem;
+  font-size: 1rem;
+  width: fit-content;
+}
+
+.logout-button:hover {
+  color: #1b212d;
+  font-weight: 700;
+  cursor: pointer;
 }
