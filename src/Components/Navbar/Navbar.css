@@ -32,6 +32,6 @@ nav {
 .nav-links a:focus-visible {
   background: #c8ee44;
   border-radius: 0.5rem;
-  color: #1B212D;
+  color: #1b212d;
   font-weight: 700;
 }
