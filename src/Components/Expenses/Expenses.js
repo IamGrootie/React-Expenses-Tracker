@@ -1,5 +1,7 @@
 import React from "react";
 import searchIcon from "../Images/search-icon.svg";
+import createExpenseIcon from "../Images/create-expense-icon.svg";
+import filterIcon from "../Images/filter-icon.svg";
 import "./Expenses.css";
 
 export default function Expenses() {
@@ -7,13 +9,35 @@ export default function Expenses() {
     <div container="expenses-container">
       <div className="expenses-content">
         <h2 className="expenses-title">Expenses</h2>
-        <div className="search-bar-container">
-          <img src={searchIcon} />
-          <input
-            className="search-input"
-            type="text"
-            placeholder="Search for specific transactions"
-          ></input>
+        <div className="search-container">
+          <div className="search-bar">
+            <img src={searchIcon} />
+            <input
+              className="search-input"
+              type="text"
+              placeholder="Search for specific transactions"
+            ></input>
+          </div>
+          <div className="expense-buttons">
+            <button className="create-expense">
+              <img src={createExpenseIcon} />
+              Create Expense
+            </button>
+            <button className="filter-expenses">
+              <img src={filterIcon} />
+              Filters
+            </button>
+          </div>
+        </div>
+        <div className="expenses-table">
+          <div className="input-titles">
+            <p>NAME/BUSINESS</p>
+            <p>TYPE</p>
+            <p>AMOUNT</p>
+            <p>DATA</p>
+            <p>INVOICE ID</p>
+            <p>ACTION</p>
+          </div>
         </div>
       </div>
     </div>

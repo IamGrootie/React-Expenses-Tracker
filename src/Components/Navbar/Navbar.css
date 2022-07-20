@@ -53,3 +53,20 @@
   font-weight: 700;
   cursor: pointer;
 }
+
+.expenses-table {
+  margin-top: 25px;
+  grid-template-rows: 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr;
+  border-top: 1px solid #F5F5F5;
+}
+
+.input-titles {
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 0.5fr;
+  gap: 30px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #929EAE;
+  
+}
