@@ -1,0 +1,40 @@
+.expenses-container {
+  display: flex;
+  width: fit-content;
+}
+
+.expenses-content {
+  margin: 2.5rem;
+}
+.expenses-container {
+    font-size: 1.563rem;
+    font-weight: 600;
+    
+}
+.search-bar-container {
+  display: flex;
+  align-items: center;
+  width: 335px;
+  gap: 15px;
+  background: #f8f8f8;
+  border: 1px solid #f5f5f5;
+  border-radius: 15px;
+  padding: 12px 70px 12px 15px;
+}
+
+.search-input {
+  width: 100%;
+  border: none;
+  background: #f8f8f8;
+  color: #929EAE;
+  font-size: 14px;
+  border-radius: 15px;
+}
+
+
+
+.search-input:focus-visible,
+.search-input::placeholder {
+  outline: none;
+  color: #929EAE;
+}
