@@ -1,0 +1,123 @@
+body{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Kumbh Sans', sans-serif;
+}
+
+h1{
+    font-size: 2rem;
+    font-weight: 600;
+    color: #1B212D;
+    line-height: 37px;
+}
+
+.intro-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 135px;
+}
+
+.logo{
+    width: 122px;
+    height: 30px;
+    margin-top: 40px;
+    margin-bottom: 130px;
+}
+
+.details {
+    color: #78778B;
+    font-weight: 400;
+    font-size: 1rem;
+    margin-top: 8px;
+    margin-bottom: 25px;
+    line-height: 20px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    color: #1B212D;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+label{
+    margin-bottom: 10px;
+}
+
+.details-input {
+    border: 1px solid #F2F2F2;
+    border-radius: 10px;
+    height: 50px;
+    padding-left: 20px;
+    width: 400px;
+    margin-bottom: 14px;
+}
+
+.options-section {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 6px;
+    margin-bottom: 10px;
+}
+
+.remember-label {
+    margin-left: 9px;
+}
+
+a {
+    text-decoration: none;
+    color: #1B212D;
+    font-weight: 500;
+}
+
+.sign-btn {
+    background-color: #C8EE44;
+    border: none;
+    border-radius: 10px;
+    color: #1B212D;
+    font-size: 1.2rem;
+    font-weight: 600;
+    font-size: 1rem;
+    height: 48px;
+    width: 400px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.google-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border: 1px solid #F5F5F5;
+    border-radius: 10px;
+    height: 48px;
+    margin-bottom: 25px;
+    gap: 10px;
+    font-weight: 600;
+    color: #78778B;
+}
+
+.question {
+    text-align: center;
+    color: #929EA3;
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+.vector {
+    width: 96px;
+    align-self: flex-end;
+    margin-top: 10px;
+    margin-right: 70px;
+}
+
