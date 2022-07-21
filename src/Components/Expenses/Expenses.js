@@ -19,10 +19,12 @@ export default function Expenses() {
             ></input>
           </div>
           <div className="expense-buttons">
+            {/* ADD FUNCTIONALITY SO ON CLICK IT OPENS CREATE EXPENSE*/}
             <button className="create-expense">
               <img src={createExpenseIcon} />
               Create Expense
             </button>
+            {/* ADD FUNCTIONALITY SO IT COMES UP WITH FILTERS */}
             <button className="filter-expenses">
               <img src={filterIcon} />
               Filters
@@ -37,6 +39,8 @@ export default function Expenses() {
             <p>DATA</p>
             <p>INVOICE ID</p>
             <p>ACTION</p>
+          </div>
+          <div className="expense">
           </div>
         </div>
       </div>
