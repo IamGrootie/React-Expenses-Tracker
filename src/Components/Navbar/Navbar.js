@@ -23,11 +23,11 @@ export default function Navbar() {
           <img src={dashboardIcon} />
           Dashboard
         </NavLink>
-        <NavLink to="Expenses" className="navlink-expenses">
+        <NavLink to="expenses" className="navlink-expenses">
           <img src={expensesIcon} />
           Expenses
         </NavLink>
-        <NavLink to="Settings" className="navlink-settings">
+        <NavLink to="settings" className="navlink-settings">
           <img src={settingsIcon} /> Settings
         </NavLink>
       </div>
