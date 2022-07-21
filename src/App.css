@@ -11,6 +11,10 @@ body {
 .App {
   display: flex;
   height: 100vh;
+<<<<<<< HEAD
   width: 100%;
 }
 
+=======
+  width: 100vw;
+>>>>>>> a136c34549d1a2dcf6776efec30667c931ab1a78

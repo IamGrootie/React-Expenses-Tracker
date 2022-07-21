@@ -3,16 +3,16 @@ import Logo from '../../images/Logo.svg'
 import google from '../../images/Google.svg'
 import vector from '../../images/Vector.svg'
 import Main from '../../images/Intro_img.svg'
-import './style.css'
+import './signup.css'
 
 export default function Signup() {
   return (
     <div className='intro-container'>
         <div className='form-container'>
-            <img src={Logo} className='logo'/>
-            <h1>Create a new account</h1>
+            <img src={Logo} className='logo' alt=''/>
+            <h1 className='title-sign'>Create a new account</h1>
             <p className='details'>Welcome back! Please enter your details</p>
-            <form>
+            <form className='form-signup'>
                 <label className='name-label'>Full Name</label>
                 <input 
                     className='details-input' 
@@ -39,14 +39,14 @@ export default function Signup() {
                 />
                 <button className='sign-btn'>Sign in</button>
                 <button className='google-btn'>
-                    <img src={google}/>
+                    <img src={google} alt=''/>
                     Sign in with google
                 </button>
-                <p className='question'>Don't have an account? <Link to="/signup">Sign up for free</Link></p>
-                <img src={vector}/>
+                <p className='question'>Don't have an account? <Link to="/signin">Sign up for free</Link></p>
+                <img className='vector' src={vector} alt=''/>
             </form>
         </div>
-        <img src={Main}/>
+        <img src={Main} alt=''/>
     </div>
   )
 }
