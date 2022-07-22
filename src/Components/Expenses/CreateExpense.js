@@ -8,33 +8,51 @@ export default function CreateExpense() {
     amount: "",
     type: "",
     date: "",
-    recurring: "",
-    image: ""
-  })
+    recurring: false,
+    image: "",
+  });
 
   //figure out recurring checkbox event handler and type
 
   function handleChange(event) {
-    const {name, value} = event.target;
-    setExpense((prevExpense) => ({
+    const { name, value } = event.target;
+    setExpense(prevExpense => ({
       ...prevExpense,
-      [name]: value
-    }))
+      [name]: value,
+    }));
   }
 
-  console.log(expense)
+  console.log(expense);
   return (
     <div className="create-expense-container">
       <form>
         <div className="create-expense-form-container">
           <div className="form-element span-two">
-            <input type="text" name="title" placeholder="Title" onChange={handleChange}></input>
+            <input
+              type="text"
+              name="title"
+              value={expense.title}
+              placeholder="Title"
+              onChange={handleChange}
+            ></input>
           </div>
           <div className="form-element span-two">
-            <input type="text" name="amount" placeholder="Amount" onChange={handleChange}></input>
+            <input
+              type="text"
+              name="amount"
+              value={expense.amount}
+              placeholder="Amount"
+              onChange={handleChange}
+            ></input>
           </div>
           <div className="form-element span-two">
-            <select className="select-type" required >
+            <select
+              className="select-type"
+              name="type"
+              value={expense.type}
+              onChange={handleChange}
+              required
+            >
               <option>Type</option>
               <option>Debt</option>
               <option>Entertainment</option>
@@ -61,6 +79,7 @@ export default function CreateExpense() {
               className="form-date-input"
               type="date"
               name="date"
+              value={expense.date}
               min="2021-01-01"
               max="2030-01-01"
               onChange={handleChange}
@@ -73,7 +92,9 @@ export default function CreateExpense() {
                 className="checkbox-input"
                 type="checkbox"
                 name="recurring"
-                
+                value={expense.recurring}
+                // checked={checked}
+                onChange={handleChange}
                 required
               ></input>
               Recurring
