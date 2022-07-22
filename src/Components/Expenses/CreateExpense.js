@@ -71,8 +71,6 @@ export default function CreateExpense() {
               <option>Utilities</option>
               <option>Withdraw</option>
             </select>
-            {/* <button className="type-button" type="dropdown" name="type"></button> */}
-            <p></p>
           </div>
           <div className="form-element">
             <input
