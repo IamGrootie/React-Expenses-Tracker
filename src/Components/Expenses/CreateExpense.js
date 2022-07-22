@@ -22,7 +22,17 @@ export default function CreateExpense() {
     }));
   }
 
-  function handleSubmit(event) {}
+  function handleSubmit(event) {
+    event.preventDefault();
+    setExpense({
+      title: "",
+      amount: "",
+      type: "",
+      date: "",
+      recurring: false,
+      image: "",
+    });
+  }
 
   console.log(expense);
   return (
@@ -53,7 +63,6 @@ export default function CreateExpense() {
               name="type"
               value={expense.type}
               onChange={handleChange}
-              checked={expense.type}
               required
             >
               <option>Type</option>
@@ -93,8 +102,7 @@ export default function CreateExpense() {
                 className="checkbox-input"
                 type="checkbox"
                 name="recurring"
-                value={expense.recurring}
-                // checked={checked}
+                checked={expense.recurring}
                 onChange={handleChange}
                 required
               ></input>
@@ -109,7 +117,7 @@ export default function CreateExpense() {
               onChange={handleChange}
             ></input>
           </label>
-          <button className="add-expense span-two">Add</button>
+          <button className="add-expense span-two" onSubmit={handleSubmit}>Add</button>
         </div>
       </form>
     </div>
