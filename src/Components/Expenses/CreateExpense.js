@@ -15,12 +15,14 @@ export default function CreateExpense() {
   //figure out recurring checkbox event handler and type
 
   function handleChange(event) {
-    const { name, value } = event.target;
+    const { name, value, type, checked } = event.target;
     setExpense(prevExpense => ({
       ...prevExpense,
-      [name]: value,
+      [name]: type === "checkbox" ? checked : value,
     }));
   }
+
+  function handleSubmit(event) {}
 
   console.log(expense);
   return (
@@ -51,6 +53,7 @@ export default function CreateExpense() {
               name="type"
               value={expense.type}
               onChange={handleChange}
+              checked={expense.type}
               required
             >
               <option>Type</option>
@@ -98,9 +101,14 @@ export default function CreateExpense() {
               Recurring
             </label>
           </div>
-          <button className="add-image" onChange={handleChange}>
+          <label className="add-image-container">
             <img src={addImage} />
-          </button>
+            <input
+              type="file"
+              className="add-image"
+              onChange={handleChange}
+            ></input>
+          </label>
           <button className="add-expense span-two">Add</button>
         </div>
       </form>
