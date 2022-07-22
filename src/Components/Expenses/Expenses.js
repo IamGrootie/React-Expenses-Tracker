@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import searchIcon from "../../images/search-icon.svg";
 import createExpenseIcon from "../../images/create-expense-icon.svg";
 import filterIcon from "../../images/filter-icon.svg";

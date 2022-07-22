@@ -1,20 +1,40 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./CreateExpense.css";
 import addImage from "../../images/add-image.svg";
 
 export default function CreateExpense() {
+  const [expense, setExpense] = useState({
+    title: "",
+    amount: "",
+    type: "",
+    date: "",
+    recurring: "",
+    image: ""
+  })
+
+  //figure out recurring checkbox event handler and type
+
+  function handleChange(event) {
+    const {name, value} = event.target;
+    setExpense((prevExpense) => ({
+      ...prevExpense,
+      [name]: value
+    }))
+  }
+
+  console.log(expense)
   return (
     <div className="create-expense-container">
       <form>
         <div className="create-expense-form-container">
           <div className="form-element span-two">
-            <input type="text" name="title" placeholder="Title"></input>
+            <input type="text" name="title" placeholder="Title" onChange={handleChange}></input>
           </div>
           <div className="form-element span-two">
-            <input type="text" name="amount" placeholder="Amount"></input>
+            <input type="text" name="amount" placeholder="Amount" onChange={handleChange}></input>
           </div>
           <div className="form-element span-two">
-            <select className="select-type">
+            <select className="select-type" required >
               <option>Type</option>
               <option>Debt</option>
               <option>Entertainment</option>
@@ -43,6 +63,8 @@ export default function CreateExpense() {
               name="date"
               min="2021-01-01"
               max="2030-01-01"
+              onChange={handleChange}
+              required
             ></input>
           </div>
           <div className="form-element checkbox">
@@ -51,11 +73,13 @@ export default function CreateExpense() {
                 className="checkbox-input"
                 type="checkbox"
                 name="recurring"
+                
+                required
               ></input>
               Recurring
             </label>
           </div>
-          <button className="add-image">
+          <button className="add-image" onChange={handleChange}>
             <img src={addImage} />
           </button>
           <button className="add-expense span-two">Add</button>
