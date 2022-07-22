@@ -8,9 +8,7 @@ export default function CreateExpense() {
       <form>
         <div className="create-expense-form-container">
           <div className="form-element span-two">
-            
             <input type="text" name="title" placeholder="Title"></input>
-            
           </div>
           <div className="form-element span-two">
             <input type="text" name="amount" placeholder="Amount"></input>
@@ -20,7 +18,7 @@ export default function CreateExpense() {
               <option>Type</option>
               <option>Debt</option>
               <option>Entertainment</option>
-              <option>Food</option>f
+              <option>Food</option>
               <option>Healthcare</option>
               <option>Household</option>
               <option>Housing</option>
@@ -39,11 +37,16 @@ export default function CreateExpense() {
             <p></p>
           </div>
           <div className="form-element">
-            <input className="form-date-input" type="date" name="date" min="2021-01-01" max="2030-01-01"></input>
+            <input
+              className="form-date-input"
+              type="date"
+              name="date"
+              min="2021-01-01"
+              max="2030-01-01"
+            ></input>
           </div>
           <div className="form-element checkbox">
             <label className="checkbox-input-text">
-                
               <input
                 className="checkbox-input"
                 type="checkbox"
