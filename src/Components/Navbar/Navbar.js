@@ -1,10 +1,10 @@
 import React from "react";
 import { Navigate, NavLink } from "react-router-dom";
-import dashboardIcon from "../Images/dashboard-icon.svg";
-import expensesIcon from "../Images/expenses-icon.svg";
-import settingsIcon from "../Images/settings-icon.svg";
-import Logo from "../Images/Logo.svg";
-import logoutIcon from '../Images/logout-icon.svg';
+import dashboardIcon from "../../images/dashboard-icon.svg";
+import expensesIcon from "../../images/expenses-icon.svg";
+import settingsIcon from "../../images/settings-icon.svg";
+import Logo from "../../images/Logo.svg";
+import logoutIcon from '../../images/logout-icon.svg';
 import "./Navbar.css";
 import { useNavigate } from "react-router-dom";
 

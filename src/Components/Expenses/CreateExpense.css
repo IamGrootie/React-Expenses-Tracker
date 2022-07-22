@@ -1,0 +1,131 @@
+.create-expense-container {
+  margin: auto;
+}
+
+.create-expense-form-container {
+  width: 580px !important;
+  height: 642px;
+  border-radius: 20px;
+  padding: 82px 40px 27px;
+  box-shadow: 3px -5px 35px rgba(205, 205, 212, 1);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 20px;
+}
+
+/* .form-element {
+ 
+} */
+
+.form-element input,
+.form-element select {
+  border: 1.5px solid rgba(78, 93, 120, 0.2);
+  border-radius: 10px;
+  padding: 15px 21px;
+  color: #4e5d78;
+  font-family: "Roboto";
+  font-weight: 500;
+  opacity: 0.6;
+}
+
+.span-two {
+  grid-column: span 2;
+}
+
+.span-two > input {
+  width: 100%;
+  font-size: 14px;
+  font-family: "Roboto";
+  font-weight: 500;
+}
+
+.type-button {
+  width: 100%;
+  padding: 15px 21px;
+}
+
+.form-element input:focus-visible {
+  border: 1.5px solid rgba(78, 93, 120, 0.2);
+  outline: none;
+}
+
+/* .form-date-input {
+} */
+
+.select-type {
+  grid-column: span 2;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 15px !important;
+  padding: 15px;
+}
+
+.select-type option {
+  font-family: "Roboto";
+  font-weight: 500;
+  color: #4e5d78;
+  opacity: 0.6;
+  cursor: pointer;
+  border-radius: 15px !important;
+}
+
+/* TARGETS OPTION BOX BUT DOESN'T LET STYLE FULLY
+#root > div > div.create-expense-container > form > div > div:nth-child(3) > select > option {
+  background-color: rgb(33, 88, 26);
+
+} */
+
+.checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox label {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-input {
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  accent-color: #4e5d78;
+}
+
+.checkbox-input-text {
+  font-family: "Roboto";
+  font-size: 14px;
+  font-weight: 500;
+  color: #4e5d78;
+  opacity: 0.6;
+  gap: 5px;
+}
+
+.add-image {
+  background: linear-gradient(
+    180deg,
+    rgba(119, 119, 119, 0.4) 0%,
+    rgba(35, 35, 35, 0.1) 100%
+  );
+  border-radius: 50px;
+  border: none;
+  height: 50px;
+  width: 50px;
+  display: grid;
+  place-items: center;
+  margin-top: 37px;
+  margin-bottom: 77px;
+  cursor: pointer;
+}
+
+.add-expense {
+  background: #c8ee44;
+  border-radius: 10px;
+  border: none;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 500;
+  color: #1b212d;
+  height: 52px;
+  cursor: pointer;
+}
