@@ -1,12 +1,12 @@
-import React from "react";
-import searchIcon from "../Images/search-icon.svg";
-import createExpenseIcon from "../Images/create-expense-icon.svg";
-import filterIcon from "../Images/filter-icon.svg";
+import React, { useState, useEffect } from "react";
+import searchIcon from "../../images/search-icon.svg";
+import createExpenseIcon from "../../images/create-expense-icon.svg";
+import filterIcon from "../../images/filter-icon.svg";
 import "./Expenses.css";
 
 export default function Expenses() {
   return (
-    <div container="expenses-container">
+    <div className="expenses-container">
       <div className="expenses-content">
         <h2 className="expenses-title">Expenses</h2>
         <div className="search-container">
@@ -19,10 +19,12 @@ export default function Expenses() {
             ></input>
           </div>
           <div className="expense-buttons">
+            {/* ADD FUNCTIONALITY SO ON CLICK IT OPENS CREATE EXPENSE*/}
             <button className="create-expense">
               <img src={createExpenseIcon} />
               Create Expense
             </button>
+            {/* ADD FUNCTIONALITY SO IT COMES UP WITH FILTERS */}
             <button className="filter-expenses">
               <img src={filterIcon} />
               Filters
@@ -38,6 +40,7 @@ export default function Expenses() {
             <p>INVOICE ID</p>
             <p>ACTION</p>
           </div>
+          <div className="expense"></div>
         </div>
       </div>
     </div>
