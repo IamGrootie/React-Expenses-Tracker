@@ -4,7 +4,6 @@ import createExpenseIcon from "../../images/create-expense-icon.svg";
 import filterIcon from "../../images/filter-icon.svg";
 import "./Expenses.css";
 
-
 export default function Expenses() {
   return (
     <div className="expenses-container">
@@ -23,7 +22,7 @@ export default function Expenses() {
             {/* ADD FUNCTIONALITY SO ON CLICK IT OPENS CREATE EXPENSE*/}
             <button className="create-expense">
               <img src={createExpenseIcon} />
-              Create Expfense
+              Create Expense
             </button>
             {/* ADD FUNCTIONALITY SO IT COMES UP WITH FILTERS */}
             <button className="filter-expenses">
@@ -41,8 +40,7 @@ export default function Expenses() {
             <p>INVOICE ID</p>
             <p>ACTION</p>
           </div>
-          <div className="expense">
-          </div>
+          <div className="expense"></div>
         </div>
       </div>
     </div>
