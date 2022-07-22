@@ -1,11 +1,6 @@
-/* .expenses-container {
+.expenses-container {
   display: block;
-  margin: auto;
-  width: 100vw;
-} */
-
-#root > div > div:nth-child(2) {
-  width: 100vw;
+  width: 100%;
 }
 
 .expenses-content {
@@ -16,9 +11,6 @@
 .search-container {
   display: flex;
   justify-content: space-between;
-  width: 100%;
-  
-  margin: auto;
 }
 
 .search-bar {
