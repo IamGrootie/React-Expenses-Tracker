@@ -101,21 +101,25 @@
   gap: 5px;
 }
 
-.add-image {
+.add-image-container {
   background: linear-gradient(
     180deg,
     rgba(119, 119, 119, 0.4) 0%,
     rgba(35, 35, 35, 0.1) 100%
   );
   border-radius: 50px;
-  border: none;
   height: 50px;
   width: 50px;
   display: grid;
   place-items: center;
   margin-top: 37px;
   margin-bottom: 77px;
-  cursor: pointer;
+  
+}
+
+.add-image {
+  width: 22px;
+  height: 22px;
 }
 
 .add-expense {

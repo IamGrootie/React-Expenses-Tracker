@@ -1,17 +1,15 @@
-
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "@firebase/firestore";
 import { GoogleAuthProvider } from "firebase/auth";
 import {getAuth} from "firebase/auth"
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDqz_jtMS1iGk9UhE_ld99RDVfbb73eOdQ",
-  authDomain: "dbest-note-app-3eee6.firebaseapp.com",
-  projectId: "dbest-note-app-3eee6",
-  storageBucket: "dbest-note-app-3eee6.appspot.com",
-  messagingSenderId: "575116228337",
-  appId: "1:575116228337:web:8bd75929e67ba542bf5b50",
-  measurementId: "G-R6P526PLMF"
+  apiKey: "AIzaSyCX2m4C5w2UbfXiq4QEGeCdYHpLmTl7qrI",
+  authDomain: "expenses-tracker-1aa19.firebaseapp.com",
+  projectId: "expenses-tracker-1aa19",
+  storageBucket: "expenses-tracker-1aa19.appspot.com",
+  messagingSenderId: "193626556002",
+  appId: "1:193626556002:web:8af47e5bd39ae99a68333b"
 };
 
 const app = initializeApp(firebaseConfig);
