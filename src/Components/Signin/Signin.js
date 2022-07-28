@@ -1,4 +1,7 @@
-import {Link} from 'react-router-dom';
+import React from 'react';
+import {useNavigate, Link} from 'react-router-dom';
+import {signInWithEmailAndPassword} from 'firebase/auth';
+import { auth } from "../../firebase-config";
 import Logo from '../../images/Logo.svg'
 import google from '../../images/Google.svg'
 import vector from '../../images/Vector.svg'
@@ -6,6 +9,28 @@ import Main from '../../images/Intro_img.svg'
 import './signin.css'
 
 export default function Signin() {
+    const navigate = useNavigate();
+
+    const [userLogin, setUserLogin] = React.useState({
+        email: '',
+        password: ''
+    });
+
+    function handleSubmit(e) {
+        e.preventDefault();
+                console.log(userLogin.email,userLogin.password)
+        signInWithEmailAndPassword(auth, userLogin.email, userLogin.password)
+          .then((cred)=>{console.log("user logined:"+cred.user)
+          navigate("/")} )
+          .catch((err) => { console.log(err) })
+    }
+
+    function handleChange(e) {
+        console.log("change")
+        const { type, value } = e.target;
+        setUserLogin((prev) => ({ ...prev, [type]: value }))
+      }
+
   return (
     <div className='intro-container'>
         <div className='form-container'>
@@ -18,7 +43,7 @@ export default function Signin() {
                     className='details-input' 
                     type="email" 
                     name="email" 
-                    // onChange={handleChange} 
+                    onChange={handleChange} 
                     placeholder='Enter your email address'
                 />
                 <label className='password-label'>Password</label>
@@ -26,7 +51,7 @@ export default function Signin() {
                     className='details-input' 
                     type="password" 
                     name="password" 
-                    // onChange={handleChange}
+                    onChange={handleChange}
                     placeholder='·······'/>
                 <section className='options-section'>
                     <div>
@@ -35,7 +60,11 @@ export default function Signin() {
                     </div>
                     <Link to="/forgot-password">Forgot password</Link>
                 </section>
-                <button className='sign-btn'>Sign in</button>
+                <button 
+                    onClick={handleSubmit}
+                    className='sign-btn'>
+                        Sign in
+                </button>
                 <button className='google-btn'>
                     <img src={google} alt=''/>
                     Sign in with google

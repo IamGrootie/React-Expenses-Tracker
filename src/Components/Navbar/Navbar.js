@@ -1,19 +1,30 @@
 import React from "react";
-import { Navigate, NavLink } from "react-router-dom";
+import {NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import {useAuth} from '../auth'
 import dashboardIcon from "../../images/dashboard-icon.svg";
 import expensesIcon from "../../images/expenses-icon.svg";
 import settingsIcon from "../../images/settings-icon.svg";
 import Logo from "../../images/Logo.svg";
 import logoutIcon from '../../images/logout-icon.svg';
 import "./Navbar.css";
-import { useNavigate } from "react-router-dom";
+
 
 export default function Navbar() {
   const navigate = useNavigate();
 
-  const logout = () => {
-    navigate('/login')
+  const {currentUser, logout} = useAuth();
+  const [error, setError] = React.useState('');
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate('/login');
+    } catch {
+      setError('Logout failed');
+    }
   }
+
   return (
     <div className="nav-container">
     <nav>
@@ -33,8 +44,12 @@ export default function Navbar() {
       </div>
       
     </nav>
-    <button className="logout-button" onClick={logout}><img src={logoutIcon}/>
-    Log out</button>
+    <button 
+      className="logout-button" 
+      onClick={handleLogout}>
+      <img src={logoutIcon}/>
+      Log out
+    </button>
     </div>
   );
 }
