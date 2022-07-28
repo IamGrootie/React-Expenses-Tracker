@@ -114,11 +114,12 @@
   place-items: center;
   margin-top: 37px;
   margin-bottom: 77px;
-  cursor: pointer;
+  
 }
 
 .add-image {
-  display: none;
+  width: 22px;
+  height: 22px;
 }
 
 .add-expense {
