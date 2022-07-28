@@ -1,6 +1,6 @@
 import React from 'react';
 import {useNavigate, Link} from 'react-router-dom';
-import {signInWithEmailAndPassword} from 'firebase/auth';
+import {signInWithEmailAndPassword, setPersistence, browserSessionPersistence} from 'firebase/auth';
 import { auth } from "../../firebase-config";
 import Logo from '../../images/Logo.svg'
 import google from '../../images/Google.svg'
@@ -31,6 +31,19 @@ export default function Signin() {
         setUserLogin((prev) => ({ ...prev, [type]: value }))
       }
 
+
+    function handlePersistance(e){
+        setPersistence(auth, browserSessionPersistence)
+        .then((email, password) => {
+            return signInWithEmailAndPassword(auth, email, password);
+        })
+        .catch((error) => {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+        });
+    }
+
   return (
     <div className='intro-container'>
         <div className='form-container'>
@@ -55,7 +68,7 @@ export default function Signin() {
                     placeholder='·······'/>
                 <section className='options-section'>
                     <div>
-                        <input className='remember-input' type='checkbox'/>
+                        <input className='remember-input' type='checkbox' onChange={handlePersistance} />
                         <label className='remember-label'>Remember for 30 Days</label>
                     </div>
                     <Link to="/forgot-password">Forgot password</Link>

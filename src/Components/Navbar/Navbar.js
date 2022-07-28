@@ -19,7 +19,7 @@ export default function Navbar() {
   const handleLogout = async () => {
     try {
       await logout();
-      navigate('/login');
+      navigate('/signin');
     } catch {
       setError('Logout failed');
     }
