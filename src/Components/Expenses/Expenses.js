@@ -5,15 +5,23 @@ import createExpenseIcon from "../../images/create-expense-icon.svg";
 import filterIcon from "../../images/filter-icon.svg";
 import "./Expenses.css";
 import CreateExpense from "./CreateExpense";
+import Filters from "./Filters";
 
 export default function Expenses() {
   const [displayCreateExpense, setDisplayCreateExpense] = useState(false);
+  const [displayFilters, setDisplayFilters] = useState(false);
   const navigate = useNavigate();
 
   function handleCreateExpenseModal() {
     setDisplayCreateExpense(true);
     navigate("create-expense");
   }
+
+  function handleDisplayFilters() {
+    setDisplayFilters(displayFilters => !displayFilters);
+    // navigate("filters")
+  }
+
 
 
   console.log(displayCreateExpense);
@@ -23,6 +31,8 @@ export default function Expenses() {
         {displayCreateExpense && (
           <CreateExpense displayCreateExpenseState={setDisplayCreateExpense} />
         )}
+
+        {displayFilters && <Filters displayFiltersState={setDisplayFilters} />}
 
         <div className="expenses-content">
           <h2 className="expenses-title">Expenses</h2>
@@ -45,7 +55,10 @@ export default function Expenses() {
                 Create Expense
               </button>
               {/* ADD FUNCTIONALITY SO IT COMES UP WITH FILTERS */}
-              <button className="filter-expenses">
+              <button
+                className="filter-expenses"
+                onClick={handleDisplayFilters}
+              >
                 <img src={filterIcon} />
                 Filters
               </button>
