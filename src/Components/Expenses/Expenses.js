@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import searchIcon from "../../images/search-icon.svg";
 import createExpenseIcon from "../../images/create-expense-icon.svg";
 import filterIcon from "../../images/filter-icon.svg";
@@ -7,13 +8,20 @@ import CreateExpense from "./CreateExpense";
 
 export default function Expenses() {
   const [displayCreateExpense, setDisplayCreateExpense] = useState(false);
+  const navigate = useNavigate();
+
+  function handleCreateExpenseModal() {
+    setDisplayCreateExpense(true);
+    navigate("create-expense");
+  }
+
 
   console.log(displayCreateExpense);
   return (
     <>
       <section className="expenses-container">
         {displayCreateExpense && (
-          <CreateExpense closeDisplayCreateExpense={setDisplayCreateExpense} />
+          <CreateExpense displayCreateExpenseState={setDisplayCreateExpense} />
         )}
 
         <div className="expenses-content">
@@ -31,7 +39,7 @@ export default function Expenses() {
               {/* ADD FUNCTIONALITY SO ON CLICK IT OPENS CREATE EXPENSE*/}
               <button
                 className="create-expense"
-                onClick={() => setDisplayCreateExpense(true)}
+                onClick={handleCreateExpenseModal}
               >
                 <img src={createExpenseIcon} />
                 Create Expense

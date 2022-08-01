@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom'
 import "./CreateExpense.css";
 import addImage from "../../images/add-image.svg";
 import { db } from "../../firebase-config";
@@ -31,6 +32,7 @@ export default function CreateExpense(props) {
   });
 
   const [categoryImage, setCategoryImage] = useState(addImage);
+  const navigate = useNavigate();
 
   const expenseRef = collection(db, "expense");
 
@@ -93,6 +95,10 @@ export default function CreateExpense(props) {
     });
   };
 
+  function handleCreateExpenseModalClose() {
+    props.displayCreateExpenseState(false);
+    navigate("/expenses")
+  }
 
   return (
     <section className="create-expense-background">
@@ -100,7 +106,7 @@ export default function CreateExpense(props) {
         <div className="create-expense-form-container">
           <button
             className="close-btn"
-            onClick={() => props.closeDisplayCreateExpense(false)}
+            onClick={handleCreateExpenseModalClose}
           >
             X
           </button>
