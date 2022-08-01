@@ -18,8 +18,9 @@ import savingsIcon from "../../images/type_icons/savings.svg";
 import subscriptionsIcon from "../../images/type_icons/subscriptions.svg";
 import transportIcon from "../../images/type_icons/transport.svg";
 import withdrawIcon from "../../images/type_icons/withdraw.svg";
+import Expenses from "./Expenses";
 
-export default function CreateExpense() {
+export default function CreateExpense(props) {
   const [expense, setExpense] = useState({
     title: "",
     amount: "",
@@ -92,13 +93,17 @@ export default function CreateExpense() {
     });
   };
 
-  console.log(expense);
-  console.log(expense.image);
 
   return (
-    <div className="create-expense-container">
+    <section className="create-expense-background">
       <form onSubmit={event => handleSubmit(event)}>
         <div className="create-expense-form-container">
+          <button
+            className="close-btn"
+            onClick={() => props.closeDisplayCreateExpense(false)}
+          >
+            X
+          </button>
           <div className="form-element span-two">
             <input
               type="text"
@@ -212,6 +217,6 @@ export default function CreateExpense() {
           </button>
         </div>
       </form>
-    </div>
+    </section>
   );
 }
