@@ -1,11 +1,14 @@
 .expenses-container {
-  display: block;
-  width: 100%;
+  width: 100vw;
+  height: 100vh;
+}
+
+.create-expense-modal.hidden {
+  display: none;
 }
 
 .expenses-content {
   margin: 2.5rem;
-  display: block;
 }
 
 .search-container {
@@ -96,5 +99,3 @@
   font-weight: 600;
   color: #929eae;
 }
-
-

@@ -1,5 +1,11 @@
-.create-expense-container {
-  margin: auto;
+.create-expense-background {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  background-color: rgba(200, 200, 200, 0.3);
 }
 
 .create-expense-form-container {
@@ -11,6 +17,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin: 20px;
+  background-color: white;
 }
 
 /* .form-element {
@@ -28,6 +35,20 @@
   opacity: 0.6;
 }
 
+.close-btn {
+  width: 25px;
+  height: 25px;
+  display: grid;
+  place-items: center;
+  color: #4e5d78;
+  border-radius: 50px;
+  border: 1.5px solid rgba(78, 93, 120, 0.2);
+  font-weight: 600;
+  position: relative;
+  left: 524px;
+  top: -91px;
+  cursor: pointer;
+}
 .span-two {
   grid-column: span 2;
 }
@@ -114,7 +135,6 @@
   place-items: center;
   margin-top: 37px;
   margin-bottom: 77px;
-  
 }
 
 .add-image {
