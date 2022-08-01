@@ -1,0 +1,53 @@
+.expense-card-container {
+  margin-top: 25px;
+  /* display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 0.5fr; */
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #929eae;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 0.5fr;
+}
+
+.name-business-containe, .date-container {
+  display: flex;
+  flex-direction: column;
+}
+.type-image-container {
+    display: flex;
+}
+
+
+.type-image-container {
+  background: linear-gradient(
+    180deg,
+    rgba(119, 119, 119, 0.4) 0%,
+    rgba(35, 35, 35, 0.1) 100%
+  );
+  border-radius: 5px;
+  height: 25px;
+  width: 25px;
+  display: grid;
+  place-items: center;
+}
+
+.edit-button {
+  background: #c8ee44;
+  height: 40px;
+  width: 67px;
+  border: none;
+  text-decoration: none;
+  border-radius: 0.625rem;
+  padding: 16px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1b212d;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}

@@ -6,6 +6,7 @@ import filterIcon from "../../images/filter-icon.svg";
 import "./Expenses.css";
 import CreateExpense from "./CreateExpense";
 import Filters from "./Filters";
+import ExpenseCard from "./ExpenseCard";
 
 export default function Expenses() {
   const [displayCreateExpense, setDisplayCreateExpense] = useState(false);
@@ -22,8 +23,6 @@ export default function Expenses() {
     // navigate("filters")
   }
 
-
-
   console.log(displayCreateExpense);
   return (
     <>
@@ -31,8 +30,6 @@ export default function Expenses() {
         {displayCreateExpense && (
           <CreateExpense displayCreateExpenseState={setDisplayCreateExpense} />
         )}
-
-        {displayFilters && <Filters displayFiltersState={setDisplayFilters} />}
 
         <div className="expenses-content">
           <h2 className="expenses-title">Expenses</h2>
@@ -65,6 +62,9 @@ export default function Expenses() {
             </div>
           </div>
           <div className="expenses-table">
+            {displayFilters && (
+              <Filters displayFiltersState={setDisplayFilters} />
+            )}
             <div className="input-titles">
               <p>NAME/BUSINESS</p>
               <p>TYPE</p>
@@ -74,6 +74,9 @@ export default function Expenses() {
               <p>ACTION</p>
             </div>
             <div className="expense"></div>
+            <div className="expense-card">
+              <ExpenseCard />
+            </div>
           </div>
         </div>
       </section>
