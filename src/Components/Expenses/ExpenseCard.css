@@ -1,25 +1,56 @@
 .expense-card-container {
   margin-top: 25px;
-  /* display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 0.5fr; */
-  display: flex;
-  justify-content: space-between;
-  gap: 30px;
-  font-size: 12px;
-  font-weight: 600;
-  color: #929eae;
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 0.5fr;
+  grid-template-columns: 1.5fr 1.5fr 1fr 1fr 1fr 0.5fr;
+  grid-template-rows: 40px;
+  width: 100%;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f5f5f5;
+}
+ 
+/* resolve responsiveness so inline with input titles from Expense component */
+.card-element {
+ display: flex;
+ align-items: center;
+ gap: 5px;
+ 
 }
 
-.name-business-containe, .date-container {
+.expense-card-text {
+  font-family: "Kumbh Sans";
+  font-weight: 500;
+  font-size: 14px;
+  color: #1b212d;
+  margin: 0;
+}
+
+.expense-card-subtext {
+  font-family: "Kumbh Sans";
+  font-weight: 400;
+  font-size: 13px;
+  color: #78778b;
+  margin: 0;
+}
+
+.name-business-container,
+.date-container {  
   display: flex;
   flex-direction: column;
-}
-.type-image-container {
-    display: flex;
+  align-items: flex-start;
+   
 }
 
+.type, .invoice {
+  color: #78778b;
+}
+
+.type, .amount, .invoice {
+  align-items: center;
+}
+
+.type {
+  gap: 10px;
+}
 
 .type-image-container {
   background: linear-gradient(
@@ -28,11 +59,17 @@
     rgba(35, 35, 35, 0.1) 100%
   );
   border-radius: 5px;
-  height: 25px;
-  width: 25px;
+  height: 35px !important;
+  width: 35px !important;
   display: grid;
-  place-items: center;
+  place-items: center;  
+  
 }
+
+.amount {
+  font-weight: 600;
+}
+
 
 .edit-button {
   background: #c8ee44;
@@ -46,7 +83,7 @@
   font-weight: 600;
   color: #1b212d;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   gap: 10px;
   cursor: pointer;

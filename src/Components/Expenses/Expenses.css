@@ -84,17 +84,14 @@
 
 .expenses-table {
   margin-top: 25px;
-  grid-template-rows: 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr;
   border-top: 1px solid #f5f5f5;
+ 
 }
 
 .input-titles {
   margin-top: 25px;
   display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 0.5fr;
-  /* display: flex;
-  justify-content: space-between; */
-  gap: 30px;
+  grid-template-columns: 1.5fr 1.5fr 1fr 1fr 1fr 0.5fr;
   font-size: 12px;
   font-weight: 600;
   color: #929eae;
