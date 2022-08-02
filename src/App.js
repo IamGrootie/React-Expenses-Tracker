@@ -1,5 +1,5 @@
 import "./App.css";
-import AuthProvider from "./Components/auth";
+import AuthProvider from "./Contexts/auth";
 import Navbar from "./Components/Navbar/Navbar";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import Expenses from "./Components/Expenses/Expenses";

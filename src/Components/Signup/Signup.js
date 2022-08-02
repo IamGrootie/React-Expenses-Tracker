@@ -82,7 +82,7 @@ export default function Signup() {
                     onClick={handleGoogle}
                     className='google-btn'>
                     <img src={google} alt=''/>
-                    Sign in with google
+                    Sign up with google
                 </button>
                 <p className='question'>Already have an account? <Link to="/signin">Sign in</Link></p>
                 <img className='vector' src={vector} alt=''/>
