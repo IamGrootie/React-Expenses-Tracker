@@ -73,8 +73,29 @@ export default function Expenses() {
               <p>INVOICE ID</p>
               <p>ACTION</p>
             </div>
-            <div className="expense"></div>
+            <div className="expense-cards">
             <ExpenseCard />
+            <ExpenseCard />
+            <ExpenseCard />
+            <ExpenseCard />
+            <ExpenseCard />
+            <ExpenseCard />
+            <ExpenseCard />
+            <ExpenseCard />
+            <ExpenseCard />
+            <ExpenseCard />
+            <ExpenseCard />
+            <ExpenseCard />
+            <ExpenseCard />
+            <ExpenseCard />
+            <ExpenseCard />
+            <ExpenseCard />
+            <ExpenseCard />
+            <ExpenseCard />
+            <ExpenseCard />
+            <ExpenseCard />
+            <ExpenseCard />
+            </div>
           </div>
         </div>
       </section>
