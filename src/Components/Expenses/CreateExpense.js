@@ -86,7 +86,8 @@ export default function CreateExpense(props) {
     props.displayCreateExpenseState(false);
     navigate("/expenses");
   }
-
+  
+console.log(addExpense.amount)
   return (
     <section className="create-expense-background">
       <form onSubmit={event => handleSubmit(event)}>
@@ -107,7 +108,7 @@ export default function CreateExpense(props) {
             <input
               type="text"
               name="amount"
-              value={addExpense.amount}
+              defaultValue={`£${addExpense.amount}`}
               placeholder="Amount"
               onChange={handleChange}
             ></input>

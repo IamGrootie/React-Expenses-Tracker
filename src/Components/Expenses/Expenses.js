@@ -32,11 +32,6 @@ export default function Expenses() {
     });
   }, []);
   
-  
-  
-  
-  // 
-  // 
   const [displayCreateExpense, setDisplayCreateExpense] = useState(false);
   const [displayFilters, setDisplayFilters] = useState(false);
   const navigate = useNavigate();
