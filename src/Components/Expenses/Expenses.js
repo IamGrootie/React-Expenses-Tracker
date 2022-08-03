@@ -67,34 +67,14 @@ export default function Expenses() {
             )}
             <div className="input-titles">
               <p>NAME/BUSINESS</p>
-              <p>TYPE</p>
+              <p>CATEGORY</p>
               <p>AMOUNT</p>
-              <p>DATA</p>
+              <p>DATE</p>
               <p>INVOICE ID</p>
               <p>ACTION</p>
             </div>
             <div className="expense-cards">
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
+            <ExpenseCard/>
             </div>
           </div>
         </div>

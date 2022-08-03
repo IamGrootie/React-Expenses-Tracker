@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import "./CreateExpense.css";
 import addImage from "../../images/add-image.svg";
+import { nanoid, customAlphabet } from "nanoid";
 import { db } from "../../firebase-config";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import entertainmentIcon from "../../images/type_icons/entertainment.svg";
 import foodIcon from "../../images/type_icons/food.svg";
 import generalIcon from "../../images/type_icons/general.svg";
@@ -19,10 +20,10 @@ import savingsIcon from "../../images/type_icons/savings.svg";
 import subscriptionsIcon from "../../images/type_icons/subscriptions.svg";
 import transportIcon from "../../images/type_icons/transport.svg";
 import withdrawIcon from "../../images/type_icons/withdraw.svg";
-import Expenses from "./Expenses";
 
 export default function CreateExpense(props) {
-  const [expense, setExpense] = useState({
+  const [addExpense, setAddExpense] = useState({
+    id: nanoid(),
     title: "",
     amount: "",
     category: "",
@@ -30,63 +31,39 @@ export default function CreateExpense(props) {
     recurring: false,
     image: "",
   });
-
+  // Create a function that generated an ID number and adds 1 to it.
+  // Regex for max character lengths
   const [categoryImage, setCategoryImage] = useState(addImage);
   const navigate = useNavigate();
-
   const expenseRef = collection(db, "expense");
+  const nanoid = customAlphabet("1234567890MGL", 11);
 
-  //FIGURE THIS OUT
-  function iconSelector(event) {
-    switch (expense.category) {
-      case expense.category === "Entertainment":
-        return setExpense(prevExpense => ({
-          ...prevExpense,
-          image: entertainmentIcon,
-        }));
-    }
-  }
+  function generateInvoiceId() {}
+
+  //FIGURE THIS OUT FOR SWITCH STATEMENT INSTEAD OF INLINE
+  // function iconSelector(event) {
+  //   switch (expense.category) {
+  //     case expense.category === "Entertainment":
+  //       return setExpense(prevExpense => ({
+  //         ...prevExpense,
+  //         image: entertainmentIcon,
+  //       }));
+  //   }
+  // }
 
   function handleChange(event) {
     const { name, value, type, checked, image } = event.target;
-    setExpense(prevExpense => ({
-      ...prevExpense,
+    setAddExpense(prevAddExpense => ({
+      ...prevAddExpense,
       [name]: type === "checkbox" ? checked : value,
     }));
-
-    // if (expense.category == "Entertainment") {
-    //   setExpense(() => {
-    //     image: entertainmentIcon,
-    //   });
-    // }
-    if (expense.category == "Entertainment") {
-      setExpense(prevExpense => ({
-        ...prevExpense,
-        image: entertainmentIcon,
-      }));
-    }
   }
-
-  console.log(expense.category);
-
-  // const handlePreview = e => {
-  //   let file = e.target.files[0];
-  //   let reader = new FileReader();
-  //   if (e.target.files.length === 0) {
-  //     return;
-  //   }
-  //   reader.onloadend = e => {
-  //     setExpense({
-  //       image: [reader.result],
-  //     });
-  //   };
-  //   reader.readAsDataURL(file);
-  // };
 
   const handleSubmit = async event => {
     event.preventDefault();
-    await addDoc(expenseRef, expense);
-    setExpense({
+    await addDoc(expenseRef, addExpense);
+    setAddExpense({
+      id: nanoid(),
       title: "",
       amount: "",
       category: "",
@@ -95,26 +72,24 @@ export default function CreateExpense(props) {
     });
   };
 
+  // add REGEX for Submit button that closes the modal
   function handleCreateExpenseModalClose() {
     props.displayCreateExpenseState(false);
-    navigate("/expenses")
+    navigate("/expenses");
   }
 
   return (
     <section className="create-expense-background">
       <form onSubmit={event => handleSubmit(event)}>
         <div className="create-expense-form-container">
-          <button
-            className="close-btn"
-            onClick={handleCreateExpenseModalClose}
-          >
+          <button className="close-btn" onClick={handleCreateExpenseModalClose}>
             X
           </button>
           <div className="form-element span-two">
             <input
               type="text"
               name="title"
-              value={expense.title}
+              value={addExpense.title}
               placeholder="Title"
               onChange={handleChange}
             ></input>
@@ -123,7 +98,7 @@ export default function CreateExpense(props) {
             <input
               type="text"
               name="amount"
-              value={expense.amount}
+              value={addExpense.amount}
               placeholder="Amount"
               onChange={handleChange}
             ></input>
@@ -132,7 +107,7 @@ export default function CreateExpense(props) {
             <select
               className="select-type"
               name="category"
-              value={expense.category}
+              value={addExpense.category}
               onChange={handleChange}
               required
             >
@@ -159,7 +134,7 @@ export default function CreateExpense(props) {
               className="form-date-input"
               type="date"
               name="date"
-              value={expense.date}
+              value={addExpense.date}
               min="2021-01-01"
               max="2030-01-01"
               onChange={handleChange}
@@ -172,42 +147,42 @@ export default function CreateExpense(props) {
                 className="checkbox-input"
                 type="checkbox"
                 name="recurring"
-                checked={expense.recurring}
+                checked={addExpense.recurring}
                 onChange={handleChange}
               ></input>
               Recurring
             </label>
           </div>
           <label className="add-image-container">
-            {expense.category === "Entertainment" ? (
+            {addExpense.category === "Entertainment" ? (
               <img src={entertainmentIcon} className="add-image" />
-            ) : expense.category === "Food" ? (
+            ) : addExpense.category === "Food" ? (
               <img src={foodIcon} className="add-image" />
-            ) : expense.category === "General" ? (
+            ) : addExpense.category === "General" ? (
               <img src={generalIcon} className="add-image" />
-            ) : expense.category === "Healthcare" ? (
+            ) : addExpense.category === "Healthcare" ? (
               <img src={healthcareIcon} className="add-image" />
-            ) : expense.category === "Household" ? (
+            ) : addExpense.category === "Household" ? (
               <img src={householdIcon} className="add-image" />
-            ) : expense.category === "Housing" ? (
+            ) : addExpense.category === "Housing" ? (
               <img src={housingIcon} className="add-image" />
-            ) : expense.category === "Insurance" ? (
+            ) : addExpense.category === "Insurance" ? (
               <img src={insuranceIcon} className="add-image" />
-            ) : expense.category === "Investing" ? (
+            ) : addExpense.category === "Investing" ? (
               <img src={investingIcon} className="add-image" />
-            ) : expense.category === "Mobile" ? (
+            ) : addExpense.category === "Mobile" ? (
               <img src={mobileIcon} className="add-image" />
-            ) : expense.category === "Payment" ? (
+            ) : addExpense.category === "Payment" ? (
               <img src={paymentIcon} className="add-image" />
-            ) : expense.category === "Personal" ? (
+            ) : addExpense.category === "Personal" ? (
               <img src={personalIcon} className="add-image" />
-            ) : expense.category === "Savings" ? (
+            ) : addExpense.category === "Savings" ? (
               <img src={savingsIcon} className="add-image" />
-            ) : expense.category === "Subscriptions" ? (
+            ) : addExpense.category === "Subscriptions" ? (
               <img src={subscriptionsIcon} className="add-image" />
-            ) : expense.category === "Transport" ? (
+            ) : addExpense.category === "Transport" ? (
               <img src={transportIcon} className="add-image" />
-            ) : expense.category === "Withdraw" ? (
+            ) : addExpense.category === "Withdraw" ? (
               <img src={withdrawIcon} className="add-image" />
             ) : (
               <img src={addImage} />
