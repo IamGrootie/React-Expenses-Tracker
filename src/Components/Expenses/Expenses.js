@@ -7,8 +7,36 @@ import "./Expenses.css";
 import CreateExpense from "./CreateExpense";
 import Filters from "./Filters";
 import ExpenseCard from "./ExpenseCard";
+import { db } from "../../firebase-config";
+import {
+  collection,
+  doc,
+  getDocs,
+  updateDoc,
+  setDoc,
+  onSnapshot,
+  query,
+  orderBy,
+  getDoc,
+} from "firebase/firestore";
 
 export default function Expenses() {
+  const expenseRef = collection(db, "expense");
+  const [expense, setExpense] = useState(() => []);
+
+  useEffect(() => {
+    onSnapshot(expenseRef, async () => {
+      const data = await getDocs(expenseRef);
+      const expenseArray = data.docs.map(doc => doc.data());
+      setExpense(expenseArray);
+    });
+  }, []);
+  
+  
+  
+  
+  // 
+  // 
   const [displayCreateExpense, setDisplayCreateExpense] = useState(false);
   const [displayFilters, setDisplayFilters] = useState(false);
   const navigate = useNavigate();
@@ -23,12 +51,11 @@ export default function Expenses() {
     // navigate("filters")
   }
 
-  console.log(displayCreateExpense);
   return (
     <>
       <section className="expenses-container">
         {displayCreateExpense && (
-          <CreateExpense displayCreateExpenseState={setDisplayCreateExpense} />
+          <CreateExpense displayCreateExpenseState={setDisplayCreateExpense} expense={expense}/>
         )}
 
         <div className="expenses-content">
@@ -67,34 +94,14 @@ export default function Expenses() {
             )}
             <div className="input-titles">
               <p>NAME/BUSINESS</p>
-              <p>TYPE</p>
+              <p>CATEGORY</p>
               <p>AMOUNT</p>
-              <p>DATA</p>
+              <p>DATE</p>
               <p>INVOICE ID</p>
               <p>ACTION</p>
             </div>
             <div className="expense-cards">
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
-            <ExpenseCard />
+            <ExpenseCard expense={expense}/>
             </div>
           </div>
         </div>

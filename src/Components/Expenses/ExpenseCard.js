@@ -1,35 +1,39 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./ExpenseCard.css";
 import addImage from "../../images/add-image.svg";
 
-function ExpenseCard() {
-  return (
-    <div className="expense-card-container">
+function ExpenseCard(props) {
+ 
+  const expenseElements = props.expense.map((expenseData, index) => (
+    <div className="expense-card-container" key={expenseData.id}>
       <div className="card-element name-business-container">
-        <h5 className="expense-card-text">Iphone 13 Pro MAX</h5>
+        <h5 className="expense-card-text">{expenseData.title}</h5>
         <h6 className="expense-card-subtext">Apple. Inc</h6>
       </div>
       <div className="card-element type">
-      <div className="type-image-container">
-        <img src={addImage} />
+        <div className="type-image-container">
+          <img src={addImage} />
         </div>
-        <h5 className="expense-card-text type">Subscriptions</h5>
+        <h5 className="expense-card-text type">{expenseData.category}</h5>
       </div>
       <div className="card-element">
-      <h5 className="expense-card-text amount">£1000.00</h5>
+        <h5 className="expense-card-text amount">{expenseData.amount}</h5>
       </div>
       <div className="card-element date-container">
-        <h5 className="expense-card-text">02/08/2022</h5>
-        <h6 className="expense-card-subtext">at 8:00 PM</h6>
+        {/* FIX THIS SO THAT DATE AND TIME ARE RENDERED */}
+        <h5 className="expense-card-text">{expenseData.date}</h5>
+        <h6 className="expense-card-subtext">{expenseData.date}</h6>
       </div>
       <div className="card-element">
-      <h5 className="expense-card-text invoice">MGL0124877</h5>
+        <h5 className="expense-card-text invoice">{expenseData.id}</h5>
       </div>
       <div className="card-element">
-      <button className="edit-button">Edit</button>
+        <button className="edit-button">Edit</button>
       </div>
     </div>
-  );
+  ));
+
+  return <>{expenseElements}</>;
 }
 
 export default ExpenseCard;

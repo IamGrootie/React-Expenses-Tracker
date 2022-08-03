@@ -92,14 +92,20 @@
   margin-top: 25px;
   display: grid;
   grid-template-columns: 1.5fr 1.5fr 1fr 1fr 1fr 0.5fr;
+  column-gap: 5px;
   font-size: 12px;
   font-weight: 600;
   color: #929eae;
+  padding-right: 25px;
+}
+.input-titles p {
+  min-width: 125px;
 }
 
 .expense-cards {
   overflow-y: auto;
-  max-height: 620px;
+  max-height: 650px;
+  min-width: 100%;
 }
 
 .expense-cards::-webkit-scrollbar {
