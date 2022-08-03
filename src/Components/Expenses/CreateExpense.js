@@ -37,6 +37,7 @@ export default function CreateExpense(props) {
   const expenseRef = collection(db, "expense");
 
   // Compares UID being generated in state with UIDs in FireStore and generates a new one if they match
+  // DOES IT CHECK AGAINST USERS DATA OR WHOLE COLLECTION?
   useEffect(() => {
     props.expense.map((expenseData) => {
       if (expenseData.id === addExpense.id) {
