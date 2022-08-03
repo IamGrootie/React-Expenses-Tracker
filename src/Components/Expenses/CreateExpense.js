@@ -23,7 +23,7 @@ import withdrawIcon from "../../images/type_icons/withdraw.svg";
 
 export default function CreateExpense(props) {
   const [addExpense, setAddExpense] = useState({
-    id: nanoid(),
+    id: `MGL${nanoid(7)}`,
     title: "",
     amount: "",
     category: "",
@@ -31,14 +31,22 @@ export default function CreateExpense(props) {
     recurring: false,
     image: "",
   });
-  // Create a function that generated an ID number and adds 1 to it.
-  // Regex for max character lengths
+  // Create Regex for max character lengths
   const [categoryImage, setCategoryImage] = useState(addImage);
   const navigate = useNavigate();
   const expenseRef = collection(db, "expense");
-  const nanoid = customAlphabet("1234567890MGL", 11);
 
-  function generateInvoiceId() {}
+  // Compares UID being generated in state with UIDs in FireStore and generates a new one if they match
+  useEffect(() => {
+    props.expense.map((expenseData) => {
+      if (expenseData.id === addExpense.id) {
+        addExpense.id = `MGL${nanoid(7)}`
+        // console.log("Duplicate ID")
+        // console.log(addExpense.id)
+      }
+    })
+  }, [addExpense.id])
+
 
   //FIGURE THIS OUT FOR SWITCH STATEMENT INSTEAD OF INLINE
   // function iconSelector(event) {
@@ -63,7 +71,7 @@ export default function CreateExpense(props) {
     event.preventDefault();
     await addDoc(expenseRef, addExpense);
     setAddExpense({
-      id: nanoid(),
+      id: `MGL${nanoid(7)}`,
       title: "",
       amount: "",
       category: "",
