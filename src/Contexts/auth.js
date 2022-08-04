@@ -7,6 +7,7 @@ import {
 	signInWithEmailAndPassword,
 	signOut, onAuthStateChanged,
 	sendPasswordResetEmail,
+	updateProfile, updateEmail, updatePassword
 } from 'firebase/auth';
 import { auth } from '../firebase-config';
 
@@ -17,7 +18,14 @@ export function useAuth() {
 }
 
 export default function AuthProvider({ children }) {
-	const [currentUser, setCurrentUser] = useState();
+	const [currentUser, setCurrentUser] = useState({
+		displayName: '',
+        email: '',
+        photoURL: '',
+        phoneNumber: '',
+	});
+
+	const [loading, setLoading] = useState(true);
 
 	const signup = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password)
@@ -44,6 +52,7 @@ export default function AuthProvider({ children }) {
 
 	const value = {
 		currentUser,
+		loading,
 		signup,
 		login,
 		logout,
