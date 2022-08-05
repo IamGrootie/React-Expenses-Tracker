@@ -1,7 +1,7 @@
 import React from "react";
 import "./Filters.css";
 
-export default function Filters() {
+export default function Filters({expense}) {
   return (
     <div className="filter-form-container">
       <form className="filter-form">

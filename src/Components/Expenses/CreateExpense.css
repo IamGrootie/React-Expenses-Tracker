@@ -10,12 +10,13 @@
 
 .create-expense-form-container {
   width: 580px !important;
-  height: 642px;
+  
   border-radius: 20px;
   padding: 82px 40px 27px;
   box-shadow: 3px -5px 35px rgba(205, 205, 212, 1);
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: 8px;
   margin: 20px;
   background-color: white;
 }
@@ -33,6 +34,7 @@
   font-family: "Roboto";
   font-weight: 500;
   opacity: 0.6;
+
 }
 
 .close-btn {
@@ -73,6 +75,11 @@
 /* .form-date-input {
 } */
 
+.select-currency {
+  cursor: pointer;
+  padding-left: 15px;
+}
+
 .select-type {
   grid-column: span 2;
   width: 100%;
@@ -81,7 +88,8 @@
   padding: 15px;
 }
 
-.select-type option {
+.select-type option,
+.select-currency option {
   font-family: "Roboto";
   font-weight: 500;
   color: #4e5d78;
