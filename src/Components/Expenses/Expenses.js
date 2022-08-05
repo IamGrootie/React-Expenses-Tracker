@@ -22,16 +22,17 @@ import {
 
 export default function Expenses() {
   const expenseRef = collection(db, "expense");
+  const q = query(expenseRef, orderBy("date", "desc"));
   const [expense, setExpense] = useState(() => []);
 
   useEffect(() => {
     onSnapshot(expenseRef, async () => {
-      const data = await getDocs(expenseRef);
+      const data = await getDocs(q);
       const expenseArray = data.docs.map(doc => doc.data());
       setExpense(expenseArray);
     });
   }, []);
-  
+
   const [displayCreateExpense, setDisplayCreateExpense] = useState(false);
   const [displayFilters, setDisplayFilters] = useState(false);
   const navigate = useNavigate();
@@ -50,7 +51,10 @@ export default function Expenses() {
     <>
       <section className="expenses-container">
         {displayCreateExpense && (
-          <CreateExpense displayCreateExpenseState={setDisplayCreateExpense} expense={expense}/>
+          <CreateExpense
+            displayCreateExpenseState={setDisplayCreateExpense}
+            expense={expense}
+          />
         )}
 
         <div className="expenses-content">
@@ -85,7 +89,7 @@ export default function Expenses() {
           </div>
           <div className="expenses-table">
             {displayFilters && (
-              <Filters displayFiltersState={setDisplayFilters} />
+              <Filters displayFiltersState={setDisplayFilters} expense={expense} />
             )}
             <div className="input-titles">
               <p>NAME/BUSINESS</p>
@@ -96,7 +100,7 @@ export default function Expenses() {
               <p>ACTION</p>
             </div>
             <div className="expense-cards">
-            <ExpenseCard expense={expense}/>
+              <ExpenseCard expense={expense} />
             </div>
           </div>
         </div>

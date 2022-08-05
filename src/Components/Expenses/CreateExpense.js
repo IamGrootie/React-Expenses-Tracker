@@ -1,64 +1,75 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./CreateExpense.css";
-import addImage from "../../images/add-image.svg";
-import { nanoid, customAlphabet } from "nanoid";
+import { nanoid } from "nanoid";
 import { db } from "../../firebase-config";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import entertainmentIcon from "../../images/type_icons/entertainment.svg";
-import foodIcon from "../../images/type_icons/food.svg";
-import generalIcon from "../../images/type_icons/general.svg";
-import healthcareIcon from "../../images/type_icons/healthcare.svg";
-import householdIcon from "../../images/type_icons/household.svg";
-import housingIcon from "../../images/type_icons/housing.svg";
-import insuranceIcon from "../../images/type_icons/insurance.svg";
-import investingIcon from "../../images/type_icons/investing.svg";
-import mobileIcon from "../../images/type_icons/mobile.svg";
-import paymentIcon from "../../images/type_icons/payment.svg";
-import personalIcon from "../../images/type_icons/personal.svg";
-import savingsIcon from "../../images/type_icons/savings.svg";
-import subscriptionsIcon from "../../images/type_icons/subscriptions.svg";
-import transportIcon from "../../images/type_icons/transport.svg";
-import withdrawIcon from "../../images/type_icons/withdraw.svg";
+import CategoryImage from "./CategoryImage";
 
 export default function CreateExpense(props) {
   const [addExpense, setAddExpense] = useState({
     id: `MGL${nanoid(7)}`,
     title: "",
+    company: "",
+    currency: "£",
     amount: "",
     category: "",
     date: "",
+    createdAt: serverTimestamp(),
     recurring: false,
     image: "",
   });
-  // Create Regex for max character lengths
-  const [categoryImage, setCategoryImage] = useState(addImage);
+  console.log(serverTimestamp)
+  //FIGURE AT CREATED AT TIME & DATE THEN ORGANISE ORDERBY
+  console.log(addExpense.createdAt);
+  const [addExpenseError, setAddExpenseError] = useState({
+    title: false,
+    amount: false,
+  });
+  
   const navigate = useNavigate();
   const expenseRef = collection(db, "expense");
 
   // Compares UID being generated in state with UIDs in FireStore and generates a new one if they match
   // DOES IT CHECK AGAINST USERS DATA OR WHOLE COLLECTION?
   useEffect(() => {
-    props.expense.map((expenseData) => {
-      if (expenseData.id === addExpense.id) {
-        addExpense.id = `MGL${nanoid(7)}`
+    props.expense.map(expense => {
+      if (expense.id === addExpense.id) {
+        addExpense.id = `MGL${nanoid(7)}`;
         // console.log("Duplicate ID")
         // console.log(addExpense.id)
       }
-    })
-  }, [addExpense.id])
+    });
+  }, [addExpense.id]);
 
+  // Allows lower case, uppercase, numbers and underscores
+  function titleChecker() {
+    if (addExpense.title !== "")
+      setAddExpenseError(prevError => ({
+        ...prevError,
+        title: !/^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]$/i.test(
+          addExpense.title
+        ),
+      }));
+  }
 
-  //FIGURE THIS OUT FOR SWITCH STATEMENT INSTEAD OF INLINE
-  // function iconSelector(event) {
-  //   switch (expense.category) {
-  //     case expense.category === "Entertainment":
-  //       return setExpense(prevExpense => ({
-  //         ...prevExpense,
-  //         image: entertainmentIcon,
-  //       }));
-  //   }
-  // }
+  // Checks the amount is a valid input (requires numbers, thousands separators, two digit fraction, cents/pence optional)
+  function amountChecker() {
+    if (addExpense.amount !== "")
+      setAddExpenseError(prevError => ({
+        ...prevError,
+        amount:
+          !/^[+-]?[0-9]{1,3}(?:[0-9]*(?:[.,][0-9]{2})?|(?:,[0-9]{3})*(?:\.[0-9]{2})?|(?:\.[0-9]{3})*(?:,[0-9]{2})?)$/.test(
+            addExpense.amount
+          ),
+      }));
+  }
+
+  useEffect(() => {
+    titleChecker();
+    amountChecker();
+   
+  }, [addExpense]);
 
   function handleChange(event) {
     const { name, value, type, checked, image } = event.target;
@@ -70,24 +81,28 @@ export default function CreateExpense(props) {
 
   const handleSubmit = async event => {
     event.preventDefault();
-    await addDoc(expenseRef, addExpense);
-    setAddExpense({
-      id: `MGL${nanoid(7)}`,
-      title: "",
-      amount: "",
-      category: "",
-      date: "",
-      recurring: false,
-    });
+    if (!addExpenseError.title && !addExpenseError.amount) {
+      await addDoc(expenseRef, addExpense);
+      setAddExpense({
+        id: `MGL${nanoid(7)}`,
+        title: "",
+        company: "",
+        currency: "£",
+        amount: "",
+        category: "",
+        date: "",
+        recurring: false,
+        image: "",
+      });
+    }
+    handleCreateExpenseModalClose();
   };
 
-  // add REGEX for Submit button that closes the modal
   function handleCreateExpenseModalClose() {
     props.displayCreateExpenseState(false);
     navigate("/expenses");
   }
-  
-console.log(addExpense.amount)
+
   return (
     <section className="create-expense-background">
       <form onSubmit={event => handleSubmit(event)}>
@@ -100,28 +115,54 @@ console.log(addExpense.amount)
               type="text"
               name="title"
               value={addExpense.title}
-              placeholder="Title"
+              placeholder="Name of expense"
+              maxlength="20"
               onChange={handleChange}
             ></input>
           </div>
           <div className="form-element span-two">
             <input
               type="text"
+              name="company"
+              value={addExpense.company}
+              placeholder="Company"
+              maxlength="20"
+              onChange={handleChange}
+            ></input>
+          </div>
+          <div className="form-element">
+            <select
+              className="select-currency"
+              name="currency"
+              value={addExpense.currency}
+              onChange={handleChange}
+            >
+              <option>£</option>
+              <option>$</option>
+              <option>€</option>
+            </select>
+          </div>
+          <div className="form-element span-two">
+            <input
+              type="text"
               name="amount"
-              defaultValue={`£${addExpense.amount}`}
+              value={addExpense.amount}
               placeholder="Amount"
               onChange={handleChange}
+              required
             ></input>
           </div>
           <div className="form-element span-two">
             <select
               className="select-type"
               name="category"
-              value={addExpense.category}
+              defaultValue={addExpense.category}
               onChange={handleChange}
               required
             >
-              <option>Category</option>
+              <option value="" disbaled selected hidden>
+                Category
+              </option>
               <option>Entertainment</option>
               <option>Food</option>
               <option>General</option>
@@ -146,7 +187,7 @@ console.log(addExpense.amount)
               name="date"
               value={addExpense.date}
               min="2021-01-01"
-              max="2030-01-01"
+              max="2023-01-01"
               onChange={handleChange}
               required
             ></input>
@@ -164,45 +205,13 @@ console.log(addExpense.amount)
             </label>
           </div>
           <label className="add-image-container">
-            {addExpense.category === "Entertainment" ? (
-              <img src={entertainmentIcon} className="add-image" />
-            ) : addExpense.category === "Food" ? (
-              <img src={foodIcon} className="add-image" />
-            ) : addExpense.category === "General" ? (
-              <img src={generalIcon} className="add-image" />
-            ) : addExpense.category === "Healthcare" ? (
-              <img src={healthcareIcon} className="add-image" />
-            ) : addExpense.category === "Household" ? (
-              <img src={householdIcon} className="add-image" />
-            ) : addExpense.category === "Housing" ? (
-              <img src={housingIcon} className="add-image" />
-            ) : addExpense.category === "Insurance" ? (
-              <img src={insuranceIcon} className="add-image" />
-            ) : addExpense.category === "Investing" ? (
-              <img src={investingIcon} className="add-image" />
-            ) : addExpense.category === "Mobile" ? (
-              <img src={mobileIcon} className="add-image" />
-            ) : addExpense.category === "Payment" ? (
-              <img src={paymentIcon} className="add-image" />
-            ) : addExpense.category === "Personal" ? (
-              <img src={personalIcon} className="add-image" />
-            ) : addExpense.category === "Savings" ? (
-              <img src={savingsIcon} className="add-image" />
-            ) : addExpense.category === "Subscriptions" ? (
-              <img src={subscriptionsIcon} className="add-image" />
-            ) : addExpense.category === "Transport" ? (
-              <img src={transportIcon} className="add-image" />
-            ) : addExpense.category === "Withdraw" ? (
-              <img src={withdrawIcon} className="add-image" />
-            ) : (
-              <img src={addImage} />
-            )}
-          </label>
-          {/* KEEP BELOW FOR USE TO UPLOAD THEIR OWN IMAGE(s) TO FIREBASE AND PULL FROM THERE  */}
-          {/* <label className="add-image-container">
+            <CategoryImage key={addExpense.id} addExpense={addExpense} />
+            {/* KEEP BELOW FOR USE TO UPLOAD THEIR OWN IMAGE(s) TO FIREBASE AND PULL FROM THERE  */}
+            {/* <label className="add-image-container">
             <img src={addImage} />
             <input type="file" className="add-image"></input>
           </label> */}
+          </label>
           <button className="add-expense span-two" type="submit">
             Add
           </button>
