@@ -5,26 +5,24 @@ import Mail from '../../images/Email_icon.svg'
 import Lock from '../../images/Lock_icon.svg'
 import Eye from '../../images/Eye_icon.svg'
 import './settings.css'
+import { updateProfile, updateEmail,
+         updatePassword, EmailAuthProvider , 
+         reauthenticateWithCredential} from 'firebase/auth';
 
 export default function Settings() {
 
   const {
     currentUser,
-    updateUser,
-    updateEmail,
-    UpdatePassword,
-    updatePhoneNumber
   } = useAuth();
-
-  // const firstName = currentUser.displayName.split(' ')[0];
-  // const lastName = currentUser.displayName.split(' ')[1];
 
   const [userData, setUserData] = React.useState({
     name: currentUser.displayName,
     email: currentUser.email || '',
     phoneNumber: currentUser.phoneNumber || '',
+    photo: currentUser.photoUrl || '',
     password: '',
-    passwordConfirmation: ''
+    passwordConfirmation: '',
+
   });
 
   console.log(currentUser)
@@ -38,70 +36,80 @@ export default function Settings() {
   });
 
   const [edit, setEdit] = React.useState(false);
-  const [loading, setLoading] = React.useState(false);
 
-  const handleChange = (e) => {
-    const {name, value} = e.target;
-    console.log(e.target)
-    setUserData(prev => {
-      return {
-        ...prev,
-        [name]: value,
-      }
-    })
-  };
+  const [firstName, setFirstName] = React.useState(
+    userData.name.substring(0, userData.name.indexOf(' ')));
+  
+  const [lastName, setLastName] = React.useState(
+    userData.name.substring(userData.name.indexOf(' ') + 1));
+
+  const [userBirth, setUserBirth] = React.useState();
+
+  const [userEmail, setUserEmail] = React.useState(currentUser.email);
+  const [userPhone, setUserPhone] = React.useState(currentUser.phoneNumber);
+  const [userPassword, setUserPassword] = React.useState();
+
+  const [passwordShown, setPasswordShown] = React.useState(false);
+
+
+  // const handleChange = (e) => {
+  //   const {name, value} = e.target;
+  //   console.log(e.target)
+  //   setUserData(prev => {
+  //     return {
+  //       ...prev,
+  //       [name]: value,
+  //     }
+  //   })
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const {name, email, phone, password, passwordConfirmation} = userData;
-    
-    let information = [];
+    const {name, email, phoneNumber, photo, password, passwordConfirmation} = userData;
 
-    console.log(userData);
+    const credentials = EmailAuthProvider.credential(
+      email,
+      passwordConfirmation,
+      userData.uid
+    )
 
-    if (name !== currentUser.displayName && name !== '') {
-      information.push( updateUser(currentUser, { displayName: name }) );
-    }
+    if (currentUser.email !== email ) {
+      
+      console.log(userData);
 
-    if (email!== currentUser.email && email!== '') {
-      information.push( updateEmail(currentUser, { email: email }) );
-    }
+      // console.log(credentials); 
 
-    if (password!== currentUser.password && password!== '') {
-      information.push( UpdatePassword(currentUser, { password: password }) );
-    }
-
-    if (passwordConfirmation !== password) {
-      setError((prev) => {
-        return {
-          ...prev,
-          password: 'Passwords are different'
-        }
+      reauthenticateWithCredential(email, credentials).then(()=> {
+        updateEmail(currentUser, { email })
+          .then(()=> {
+            alert('Email updated successfully')
+            })
+          .catch((error)=> {
+            console.log(error);
+            });
       })
-      return;
     }
 
-    try {
-      setLoading(true);
-      setEdit(true)
-      await Promise.all(information);
+    if (currentUser.displayName !== `${firstName} ${lastName}`) {
+      updateProfile(currentUser, {
+        displayName: `${firstName} ${lastName}`,
+      })
+      .then(()=> { alert('Name updated successfully') })
+      .catch((error)=> { console.log(error) });
     }
-    catch(error){
-      setEdit(false);
-      console.log(error);
-      if(error.message === 'auth/weak-password' ) {
-        setError((prev) => {
-          return {
-            ...prev,
-            password: 'Password is too weak'
-          }
-        })
-      }
-    }
-    setLoading(false);
+
+    if (userPassword){
+      console.log(credentials)
+
+      reauthenticateWithCredential(currentUser, credentials).then(()=> {
+        updatePassword(currentUser, { userPassword })
+        .then(()=> {
+          alert('Password updated successfully')
+          })
+        .catch((error)=> { console.log(error) })
+      })
+    } 
   }
-
-
 
   return (
     <div className='settings-container'>
@@ -137,9 +145,8 @@ export default function Settings() {
                 className='input input-fname' 
                 type="text" 
                 name="firstname" 
-                onChange={handleChange} 
-                value={userData.name}
-                placeholder='First Name'
+                onChange={(event) => {setFirstName(event.target.value)}}
+                placeholder={firstName}
               />
             </div>
 
@@ -150,9 +157,8 @@ export default function Settings() {
               className='input input-lname' 
               type="text"
               name="lastName" 
-              onChange={handleChange}
-              value={userData.name}
-              placeholder='Last Name'
+              onChange={(event) => {setLastName(event.target.value)}}
+              placeholder={lastName}
             />
             </div>
 
@@ -163,8 +169,8 @@ export default function Settings() {
               className='input input-date'
               type="date"
               name="dob"
-              onChange={handleChange}
-              placeholder='Date of birth'
+              onChange={(event) => {setUserBirth(event.target.value)}}
+              placeholder={userBirth}
             />
             </div>
 
@@ -175,9 +181,8 @@ export default function Settings() {
               className='input input-phone'
               type="number"
               name="phone"
-              onChange={handleChange}
-              value={userData.phoneNumber}
-              placeholder='Mobile Number'
+              onChange={(event) => {setUserPhone(event.target.value)}}
+              placeholder={userData.phoneNumber}
             />
             </div>
           </section>
@@ -190,8 +195,7 @@ export default function Settings() {
               className='input-mail'
               type="email"
               name="email"
-              onChange={handleChange}
-              value={userData.email} 
+              onChange={(event) => {setUserEmail(event.target.value)}}
               placeholder={userData.email}
             />
           </div>
@@ -204,13 +208,16 @@ export default function Settings() {
                 <input 
                   disabled={!edit}
                   className='pass-input' 
-                  type="password" 
+                  type={passwordShown ? "text" : "password"} 
                   name="password" 
-                  onChange={handleChange}
+                  onChange={(event) => {
+                    event.preventDefault();
+                    setUserPassword(event.target.value)}}
                   placeholder='·······'
-                  value={userData.password}
                 />
-                <img src={Eye} className='eye-icon' alt=''/>
+                <button onClick={() => setPasswordShown(true)}>
+                  <img src={Eye} className='eye-icon' alt=''/>
+                </button>
               </div>
             </div>
 
@@ -221,20 +228,23 @@ export default function Settings() {
                 <input 
                   disabled={!edit}
                   className='pass-input' 
-                  type="password" 
+                  type={passwordShown ? "text" : "password"}
                   name="password" 
-                  onChange={handleChange}
+                  onChange={(event) => {
+                    event.preventDefault();
+                    setUserPassword(event.target.value)}}
                   placeholder='·······'
-                  value={userData.passwordConfirmation}
                 />
-                <img src={Eye} className='eye-icon' alt=''/>
+                <button onClick={() => setPasswordShown(true)}>
+                  <img src={Eye} className='eye-icon' alt=''/>
+                </button>
               </div>
               <p>{error.password}</p>
             </div>
           </section>
 
           <button 
-            disabled={edit}
+            disabled={!edit}
             onClick={handleSubmit}
             className='update-btn'>Update</button>
         </form>
