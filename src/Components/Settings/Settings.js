@@ -112,16 +112,18 @@ export default function Settings() {
   }
 
   return (
-    <div className='settings-container'>
-
-      <nav className='navbar-container'>
-        <h1 className='title'>Settings</h1>
-        <button className='profile-btn'>
-           {/* // <img src=PROFILE PIC/>  */}
+    <div className="settings-container">
+      <nav className="navbar-container">
+        <h1 className="title">Settings</h1>
+        <button className="profile-btn">
+          {/* // <img src=PROFILE PIC/>  */}
           <h3>NAME OF PROFILE-CHANGE</h3>
         </button>
       </nav>
 
+      <div className="main-container">
+        <h2 className="subtitle-acc">Account Information</h2>
+        <p className="subtitle-details">Update your account information</p>
 
       <div className='main-container'>
         <h2 className='subtitle-acc'>Account Information</h2>
@@ -187,9 +189,9 @@ export default function Settings() {
             </div>
           </section>
 
-          <label className='label-email'>Email</label>
-          <div className='mail-container'>
-            <img src={Mail} className='mail-icon' alt=''/>
+          <label className="label-email">Email</label>
+          <div className="mail-container">
+            <img src={Mail} className="mail-icon" alt="" />
             <input
               disabled={!edit}
               className='input-mail'
@@ -250,5 +252,5 @@ export default function Settings() {
         </form>
       </div>
     </div>
-  )
+  );
 }
