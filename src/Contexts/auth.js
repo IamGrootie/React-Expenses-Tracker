@@ -17,7 +17,14 @@ export function useAuth() {
 }
 
 export default function AuthProvider({ children }) {
-	const [currentUser, setCurrentUser] = useState();
+	const [currentUser, setCurrentUser] = useState({
+		displayName: '',
+        email: '',
+        photoURL: '',
+        phoneNumber: '',
+	});
+
+	const [loading, setLoading] = useState(true);
 
 	const signup = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password)
@@ -34,6 +41,7 @@ export default function AuthProvider({ children }) {
 	const forgotPassword = (email) => {
 		return sendPasswordResetEmail(auth, email);
 	  };
+    
 
 	useEffect(() => {
 		const unsubscribe = onAuthStateChanged(auth, (user) => [
@@ -44,6 +52,7 @@ export default function AuthProvider({ children }) {
 
 	const value = {
 		currentUser,
+		loading,
 		signup,
 		login,
 		logout,
