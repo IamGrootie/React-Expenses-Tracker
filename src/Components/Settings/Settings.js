@@ -45,47 +45,34 @@ export default function Settings() {
 
   const [userBirth, setUserBirth] = React.useState();
 
-  const [userEmail, setUserEmail] = React.useState(currentUser.email);
+  const [userEmail, setUserEmail] = React.useState(userData.email);
   const [userPhone, setUserPhone] = React.useState(currentUser.phoneNumber);
   const [userPassword, setUserPassword] = React.useState();
 
   const [passwordShown, setPasswordShown] = React.useState(false);
 
 
-  // const handleChange = (e) => {
-  //   const {name, value} = e.target;
-  //   console.log(e.target)
-  //   setUserData(prev => {
-  //     return {
-  //       ...prev,
-  //       [name]: value,
-  //     }
-  //   })
-  // };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const {name, email, phoneNumber, photo, password, passwordConfirmation} = userData;
+    const {passwordConfirmation} = userData;
 
     const credentials = EmailAuthProvider.credential(
-      email,
+      userEmail,
       passwordConfirmation,
-      userData.uid
+      currentUser.providerData.tenantId
     )
 
-    if (currentUser.email !== email ) {
+    if (currentUser.email !== userEmail ) {
       
-      console.log(userData);
+      console.log(credentials);
 
-      // console.log(credentials); 
-
-      reauthenticateWithCredential(email, credentials).then(()=> {
-        updateEmail(currentUser, { email })
+      reauthenticateWithCredential(currentUser, credentials).then(()=> {
+        updateEmail(currentUser, { userEmail })
           .then(()=> {
             alert('Email updated successfully')
             })
           .catch((error)=> {
-            console.log(error);
+            alert(error)
             });
       })
     }
@@ -99,8 +86,6 @@ export default function Settings() {
     }
 
     if (userPassword){
-      console.log(credentials)
-
       reauthenticateWithCredential(currentUser, credentials).then(()=> {
         updatePassword(currentUser, { userPassword })
         .then(()=> {
@@ -179,7 +164,6 @@ export default function Settings() {
             <input
               disabled={!edit} 
               className='input input-phone'
-              type="number"
               name="phone"
               onChange={(event) => {setUserPhone(event.target.value)}}
               placeholder={userData.phoneNumber}
@@ -196,7 +180,7 @@ export default function Settings() {
               type="email"
               name="email"
               onChange={(event) => {setUserEmail(event.target.value)}}
-              placeholder={userData.email}
+              placeholder={userEmail}
             />
           </div>
 
