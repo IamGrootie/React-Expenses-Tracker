@@ -19,14 +19,14 @@ export default function CreateExpense(props) {
     recurring: false,
     image: "",
   });
-  console.log(serverTimestamp)
+  console.log(serverTimestamp);
   //FIGURE AT CREATED AT TIME & DATE THEN ORGANISE ORDERBY
   console.log(addExpense.createdAt);
   const [addExpenseError, setAddExpenseError] = useState({
     title: false,
     amount: false,
   });
-  
+
   const navigate = useNavigate();
   const expenseRef = collection(db, "expense");
 
@@ -68,7 +68,6 @@ export default function CreateExpense(props) {
   useEffect(() => {
     titleChecker();
     amountChecker();
-   
   }, [addExpense]);
 
   function handleChange(event) {
