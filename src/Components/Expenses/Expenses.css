@@ -86,6 +86,8 @@
 .expenses-table {
   margin-top: 25px;
   border-top: 1px solid #f5f5f5;
+  max-width: 100%;
+
 }
 
 .input-titles {
@@ -96,17 +98,16 @@
   font-size: 12px;
   font-weight: 600;
   color: #929eae;
-  padding-right: 15px;
-  
 }
+
 .input-titles p {
-  min-width: 125px;
+  min-width: 100px;
 }
 
 .expense-cards {
   overflow-y: auto;
   max-height: 650px;
-  min-width: 100%;
+  max-width: 100%;
 }
 
 .expense-cards::-webkit-scrollbar {

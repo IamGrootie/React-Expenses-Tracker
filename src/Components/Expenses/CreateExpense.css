@@ -10,7 +10,6 @@
 
 .create-expense-form-container {
   width: 580px !important;
-  
   border-radius: 20px;
   padding: 82px 40px 27px;
   box-shadow: 3px -5px 35px rgba(205, 205, 212, 1);
@@ -34,7 +33,6 @@
   font-family: "Roboto";
   font-weight: 500;
   opacity: 0.6;
-
 }
 
 .close-btn {

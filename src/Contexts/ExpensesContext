@@ -1,0 +1,27 @@
+import {
+	getDocs,
+	doc,
+	setDoc,
+	onSnapshot,
+	collection,
+	deleteDoc,
+	updateDoc,
+} from 'firebase/firestore';
+
+import { createContext, useContext, useState, useEffect } from 'react';
+
+import { db } from "../../firebase-config";
+
+import { useAuth } from './auth';
+
+const ExpensesContext = createContext();
+
+export function useExpenses() {
+    return useContext(ExpensesContext);
+}
+
+export default function ExpensesProvider({children}) {
+    const {currentUser = useAuth();
+    const uid = currentUser && currentUser.uid;
+    const [expenses, setExpenses] = useState([])
+}
