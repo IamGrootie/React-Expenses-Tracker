@@ -18,70 +18,69 @@ import withdrawIcon from "../../images/type_icons/withdraw.svg";
 import "./CreateExpense.css";
 
 export default function CategoryImage(props) {
-// FIX IMAGE RENDERING!
   return (
     <>
-      {props.category === "Entertainment" && (
+      {props.expenseCategory === "Entertainment" && (
         <img src={Entertainment} className="add-image" />
       )}
 
-      {props.category === "Food" && (
+      {props.expenseCategory === "Food" && (
         <img src={Food} className="add-image" />
       )}
 
-      {props.category === "General" && (
+      {props.expenseCategory === "General" && (
         <img src={generalIcon} className="add-image" />
       )}
 
-      {props.category === "Healthcare" && (
+      {props.expenseCategory === "Healthcare" && (
         <img src={healthcareIcon} className="add-image" />
       )}
 
-      {props.category === "Household" && (
+      {props.expenseCategory === "Household" && (
         <img src={householdIcon} className="add-image" />
       )}
 
-      {props.category === "Housing" && (
+      {props.expenseCategory === "Housing" && (
         <img src={housingIcon} className="add-image" />
       )}
 
-      {props.category === "Insurance" && (
+      {props.expenseCategory === "Insurance" && (
         <img src={insuranceIcon} className="add-image" />
       )}
 
-      {props.category === "Investing" && (
+      {props.expenseCategory === "Investing" && (
         <img src={investingIcon} className="add-image" />
       )}
 
-      {props.category === "Mobile" && (
+      {props.expenseCategory === "Mobile" && (
         <img src={mobileIcon} className="add-image" />
       )}
 
-      {props.category === "Payment" && (
+      {props.expenseCategory === "Payment" && (
         <img src={paymentIcon} className="add-image" />
       )}
 
-      {props.category === "Personal" && (
+      {props.expenseCategory === "Personal" && (
         <img src={personalIcon} className="add-image" />
       )}
 
-      {props.category === "Savings" && (
+      {props.expenseCategory === "Savings" && (
         <img src={savingsIcon} className="add-image" />
       )}
 
-      {props.category === "Subscriptions" && (
+      {props.expenseCategory === "Subscriptions" && (
         <img src={subscriptionsIcon} className="add-image" />
       )}
 
-      {props.category === "Transport" && (
+      {props.expenseCategory === "Transport" && (
         <img src={transportIcon} className="add-image" />
       )}
 
-      {props.category === "Withdraw" && (
+      {props.expenseCategory === "Withdraw" && (
         <img src={withdrawIcon} className="add-image" />
       )}
 
-      {!props.category && <img src={addImage} />}
+      {!props.expenseCategory && <img src={addImage} />}
     </>
   );
 }

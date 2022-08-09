@@ -77,7 +77,7 @@ export default function CreateExpense(props) {
       [name]: type === "checkbox" ? checked : value,
     }));
   }
-console.log(data)
+  console.log(data);
   // const handleSubmit = async event => {
   //   event.preventDefault();
   //   if (!addExpenseError.title && !addExpenseError.amount) {
@@ -102,7 +102,7 @@ console.log(data)
 
     // setAddExpenseError("");
     // const isError = checkForErrors();
-    // if (!addExpenseError) 
+    // if (!addExpenseError)
     props.handleClick(data);
     // handleCreateExpenseModalClose();
   }
@@ -224,7 +224,7 @@ console.log(data)
             </label>
           </div>
           <label className="add-image-container">
-            <CategoryImage key={data.id} addExpense={data} />
+            <CategoryImage key={data.id} expenseCategory={data.category} />
             {/* KEEP BELOW FOR USE TO UPLOAD THEIR OWN IMAGE(s) TO FIREBASE AND PULL FROM THERE  */}
             {/* <label className="add-image-container">
             <img src={addImage} />
