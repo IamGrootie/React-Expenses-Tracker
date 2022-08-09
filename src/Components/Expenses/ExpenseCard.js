@@ -17,15 +17,17 @@ import {
 function ExpenseCard(props) {
   const [edit, setEdit] = useState(false);
 
+	const currentDate = new Date().toISOString().substring(0, 10);
+
   const [expenseData, setExpenseData] = useState({
-    title: props.expense.recurring,
-    company: props.expense.company,
-    currency: props.expense.currency,
-    amount: props.expense.amount,
-    category: props.expense.category,
-    date: props.expense.date,
-    createdAt: serverTimestamp(),
-    recurring: props.expense.recurring,
+  //   title: title || "",
+  //   company: company || "",
+  //   currency: currency || "",
+  //   amount: amount || "",
+  //   category: category || "",
+  //   date: date || currentDate,
+  //   createdAt: serverTimestamp(),
+  //   recurring: reccuring || "false"
   });
 
   const [addExpenseError, setAddExpenseError] = useState({
@@ -49,32 +51,11 @@ function ExpenseCard(props) {
   // }, [addExpense.id]);
 
   // Allows lower case, uppercase, numbers and underscores
-  function titleChecker() {
-    if (expenseData.title !== "")
-      setAddExpenseError(prevError => ({
-        ...prevError,
-        title: !/^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]$/i.test(
-          expenseData.title
-        ),
-      }));
-  }
+
 
   // Checks the amount is a valid input (requires numbers, thousands separators, two digit fraction, cents/pence optional)
-  function amountChecker() {
-    if (expenseData.amount !== "")
-      setAddExpenseError(prevError => ({
-        ...prevError,
-        amount:
-          !/^[+-]?[0-9]{1,3}(?:[0-9]*(?:[.,][0-9]{2})?|(?:,[0-9]{3})*(?:\.[0-9]{2})?|(?:\.[0-9]{3})*(?:,[0-9]{2})?)$/.test(
-            expenseData.amount
-          ),
-      }));
-  }
 
-  useEffect(() => {
-    titleChecker();
-    amountChecker();
-  }, [expenseData]);
+
 
   //CREATE FUNCTION THAT SELECTS SPECIFIC CARD DEPENDING ON INVOICE ID FOR THE EDIT BUTTON BEING CLICKED
   function handleChange(event) {
@@ -105,12 +86,10 @@ function ExpenseCard(props) {
     setEdit(false);
   };
   
-  console.log(`expensedata.title ${expenseData.title}`)
-  console.log(addExpenseError);
-  console.log(props.expense);
+  
 
-  const expenseElements = props.expense.map(expense => (
-    <div key={expense.id}>
+  return (
+    <div key={props.invoice}>
       <form
         className={!edit ? "expense-card-container" : "edit-selected"}
         onSubmit={event => handleSubmit(event)}
@@ -119,7 +98,7 @@ function ExpenseCard(props) {
           <input
             className={!edit ? "expense-card-text" : "expense-card-text edit"}
             disabled={!edit}
-            placeholder={expense.title}
+            value={props.title}
             onChange={handleChange}
           ></input>
           <input
@@ -127,20 +106,20 @@ function ExpenseCard(props) {
               !edit ? "expense-card-subtext" : "expense-card-subtext edit"
             }
             disabled={!edit}
-            placeholder={expense.company}
+            placeholder={props.company}
             onChange={handleChange}
           ></input>
         </div>
         <div className="card-element type">
           <div className="type-image-container">
-            <CategoryImage key={expense.id} addExpense={expense} />
+            <CategoryImage key={props.id} expenseCategory={props.category} />
           </div>
           <input
             className={
               !edit ? "expense-card-text type" : "expense-card-text edit type"
             }
             disabled={!edit}
-            placeholder={expense.category}
+            placeholder={props.category}
             onChange={handleChange}
           ></input>
         </div>
@@ -152,7 +131,7 @@ function ExpenseCard(props) {
                 : "expense-card-text edit amount"
             }
             disabled={!edit}
-            placeholder={`${expense.currency}${expense.amount}`}
+            placeholder={`${props.currency}${props.amount}`}
             onChange={handleChange}
           ></input>
         </div>
@@ -160,7 +139,7 @@ function ExpenseCard(props) {
           <input
             className={!edit ? "expense-card-text" : "expense-card-text edit"}
             disabled={!edit}
-            placeholder={expense.date}
+            placeholder={props.date}
             onChange={handleChange}
           ></input>
         </div>
@@ -172,7 +151,7 @@ function ExpenseCard(props) {
                 : "expense-card-text edit invoice"
             }
             disabled
-            value={expense.id}
+            value={props.invoice}
             onChange={handleChange}
           ></input>
         </div>
@@ -192,9 +171,7 @@ function ExpenseCard(props) {
         </div>
       </form>
     </div>
-  ));
-
-  return <>{expenseElements}</>;
+  );
 }
 
 export default ExpenseCard;

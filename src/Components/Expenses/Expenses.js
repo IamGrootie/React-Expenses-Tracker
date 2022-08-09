@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { nanoid } from "nanoid";
 import searchIcon from "../../images/search-icon.svg";
 import createExpenseIcon from "../../images/create-expense-icon.svg";
 import filterIcon from "../../images/filter-icon.svg";
@@ -7,6 +8,7 @@ import "./Expenses.css";
 import CreateExpense from "./CreateExpense";
 import Filters from "./Filters";
 import ExpenseCard from "./ExpenseCard";
+import { useExpenses } from "../../Contexts/ExpensesContext";
 import { db } from "../../firebase-config";
 import {
   collection,
@@ -18,20 +20,97 @@ import {
   query,
   orderBy,
   getDoc,
+  serverTimestamp,
 } from "firebase/firestore";
 
 export default function Expenses() {
-  const expenseRef = collection(db, "expense");
-  const q = query(expenseRef, orderBy("date", "desc"));
-  const [expense, setExpense] = useState(() => []);
+  const { expenses, createExpense, updateExpense, deleteExpense } =
+    useExpenses();
+  const [search, setSearch] = useState();
+  const [currentExpenseId, setcurrentExpenseId] = useState("");
+  const [filteredExpenses, setFilteredExpenses] = useState([]);
+  const [currentExpense, setCurrentExpense] = useState("");
 
+  function handleInput(event) {
+    const { value } = event.target;
+    setSearch(value);
+    if (value) {
+      setFilteredExpenses(
+        expenses.filter(item => item.title.includes(value))
+      );
+    } else setFilteredExpenses(expenses);
+  }
+
+  
   useEffect(() => {
-    onSnapshot(expenseRef, async () => {
-      const data = await getDocs(q);
-      const expenseArray = data.docs.map(doc => doc.data());
-      setExpense(expenseArray);
-    });
-  }, []);
+    setFilteredExpenses(expenses);
+  }, [expenses]);
+
+  const expensesArr = filteredExpenses.map(expense => (
+    <ExpenseCard
+      category={expense.category}
+      key={expense.invoice}
+      title={expense.title}
+      company={expense.company}
+      currency={expense.currency}
+      amount={expense.amount}
+      date={expense.date}
+      invoice={expense.invoice}
+      edit={edit}
+      class="transaction-transactions"
+    />
+  ));
+  
+  console.log(expensesArr)
+
+  async function edit(event, id) {
+    event.stopPropagation();
+    setcurrentExpenseId(id);
+    setCurrentExpense(expenses.find(expense => expense.invoice === id));
+  }
+
+  async function handleSubmit(data) {
+    const id = `MGL${nanoid(7)}`
+    const invoice = {
+      invoice: id,
+    };
+     console.log(invoice)
+    const expenseData = {
+      title: data.title,
+      company: data.company,
+      currency: data.currency,
+      amount: data.amount,
+      category: data.category,
+      date: data.date,
+      recurring: data.recurring,
+    };
+    // if (!currentExpenseId) {
+      await createExpense(id, { ...expenseData, ...invoice });
+    // } else {
+    //   await updateExpense(currentExpenseId, expenseData);
+    //   setCurrentExpense("");
+    //   setcurrentExpenseId("");
+    // }
+  }
+
+ 
+  // async function handleDelete() {
+  //   await deleteExpense(currentExpenseId);
+  //   setCurrentExpense("");
+  //   setcurrentExpenseId("");
+  // }
+
+  // OLD CODE
+  // const expenseRef = collection(db, "expense");
+  // const q = query(expenseRef, orderBy("date", "desc"));
+
+  // useEffect(() => {
+  //   onSnapshot(expenseRef, async () => {
+  //     const data = await getDocs(q);
+  //     const expenseArray = data.docs.map(doc => doc.data());
+  //     setExpense(expenseArray);
+  //   });
+  // }, []);
 
   const [displayCreateExpense, setDisplayCreateExpense] = useState(false);
   const [displayFilters, setDisplayFilters] = useState(false);
@@ -52,8 +131,11 @@ export default function Expenses() {
       <section className="expenses-container">
         {displayCreateExpense && (
           <CreateExpense
+            handleClick={handleSubmit}
+            // handleInput={handleInput}
             displayCreateExpenseState={setDisplayCreateExpense}
-            expense={expense}
+            currentExpense={currentExpense}
+            setCurrentExpense={setCurrentExpense}
           />
         )}
 
@@ -89,7 +171,10 @@ export default function Expenses() {
           </div>
           <div className="expenses-table">
             {displayFilters && (
-              <Filters displayFiltersState={setDisplayFilters} expense={expense} />
+              <Filters
+                displayFiltersState={setDisplayFilters}
+                expenses={expenses}
+              />
             )}
             <div className="input-titles">
               <p>NAME/BUSINESS</p>
@@ -100,7 +185,14 @@ export default function Expenses() {
               <p>ACTION</p>
             </div>
             <div className="expense-cards">
-              <ExpenseCard expense={expense} />
+              {/* <ExpenseCard
+                currentExpense={currentExpense}
+                setCurrentExpense={currentExpense}
+                currentExpenseId={currentExpenseId}
+                setcurrentExpenseId={setcurrentExpenseId}
+                key={expenses.id}
+              /> */}
+              {expensesArr}
             </div>
           </div>
         </div>

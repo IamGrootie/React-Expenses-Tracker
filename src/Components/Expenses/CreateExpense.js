@@ -7,96 +7,115 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import CategoryImage from "./CategoryImage";
 
 export default function CreateExpense(props) {
-  const [addExpense, setAddExpense] = useState({
-    id: `MGL${nanoid(7)}`,
+  const [data, setData] = useState({
     title: "",
     company: "",
-    currency: "£",
+    currency: "",
     amount: "",
     category: "",
     date: "",
-    createdAt: serverTimestamp(),
+    // createdAt: serverTimestamp(),
     recurring: false,
     image: "",
   });
-  
+
   //FIGURE AT CREATED AT TIME & DATE THEN ORGANISE ORDERBY
-  
-  const [addExpenseError, setAddExpenseError] = useState({
-    title: false,
-    amount: false,
-  });
-  
+
+  // const [addExpenseError, setAddExpenseError] = useState({
+  //   title: false,
+  //   amount: false,
+  // });
+
   const navigate = useNavigate();
-  const expenseRef = collection(db, "expense");
+  // const expenseRef = collection(db, "expense");
 
   // Compares UID being generated in state with UIDs in FireStore and generates a new one if they match
   // DOES IT CHECK AGAINST USERS DATA OR WHOLE COLLECTION?
-  useEffect(() => {
-    props.expense.map(expense => {
-      if (expense.id === addExpense.id) {
-        addExpense.id = `MGL${nanoid(7)}`;
-        // console.log("Duplicate ID")
-        // console.log(addExpense.id)
-      }
-    });
-  }, [addExpense.id]);
+  // useEffect(() => {
+  //   props.expense.map(expense => {
+  //     if (expense.id === addExpense.id) {
+  //       addExpense.id = `MGL${nanoid(7)}`;
+  //       // console.log("Duplicate ID")
+  //       // console.log(addExpense.id)
+  //     }
+  //   });
+  // }, [addExpense.id]);
 
   // Allows lower case, uppercase, numbers and underscores
-  function titleChecker() {
-    if (addExpense.title !== "")
-      setAddExpenseError(prevError => ({
-        ...prevError,
-        title: !/^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]$/i.test(
-          addExpense.title
-        ),
-      }));
-  }
+  // function titleChecker() {
+  //   if (addExpense.title !== "")
+  //     setAddExpenseError(prevError => ({
+  //       ...prevError,
+  //       title: !/^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]$/i.test(
+  //         addExpense.title
+  //       ),
+  //     }));
+  // }
 
   // Checks the amount is a valid input (requires numbers, thousands separators, two digit fraction, cents/pence optional)
-  function amountChecker() {
-    if (addExpense.amount !== "")
-      setAddExpenseError(prevError => ({
-        ...prevError,
-        amount:
-          !/^[+-]?[0-9]{1,3}(?:[0-9]*(?:[.,][0-9]{2})?|(?:,[0-9]{3})*(?:\.[0-9]{2})?|(?:\.[0-9]{3})*(?:,[0-9]{2})?)$/.test(
-            addExpense.amount
-          ),
-      }));
-  }
+  // function amountChecker() {
+  //   if (addExpense.amount !== "")
+  //     setAddExpenseError(prevError => ({
+  //       ...prevError,
+  //       amount:
+  //         !/^[+-]?[0-9]{1,3}(?:[0-9]*(?:[.,][0-9]{2})?|(?:,[0-9]{3})*(?:\.[0-9]{2})?|(?:\.[0-9]{3})*(?:,[0-9]{2})?)$/.test(
+  //           addExpense.amount
+  //         ),
+  //     }));
+  // }
 
-  useEffect(() => {
-    titleChecker();
-    amountChecker();
-   
-  }, [addExpense]);
+  // useEffect(() => {
+  //   titleChecker();
+  //   amountChecker();
+
+  // }, [addExpense]);
 
   function handleChange(event) {
-    const { name, value, type, checked, image } = event.target;
-    setAddExpense(prevAddExpense => ({
-      ...prevAddExpense,
+    const { name, value, type, checked } = event.target;
+    setData(prevData => ({
+      ...prevData,
       [name]: type === "checkbox" ? checked : value,
     }));
   }
+console.log(data)
+  // const handleSubmit = async event => {
+  //   event.preventDefault();
+  //   if (!addExpenseError.title && !addExpenseError.amount) {
+  //     await addDoc(expenseRef, addExpense);
+  //     setAddExpense({
+  //       id: `MGL${nanoid(7)}`,
+  //       title: "",
+  //       company: "",
+  //       currency: "£",
+  //       amount: "",
+  //       category: "",
+  //       date: "",
+  //       recurring: false,
+  //       image: "",
+  //     });
+  //   }
+  //   handleCreateExpenseModalClose();
+  // };
 
-  const handleSubmit = async event => {
+  function handleSubmit(event) {
     event.preventDefault();
-    if (!addExpenseError.title && !addExpenseError.amount) {
-      await addDoc(expenseRef, addExpense);
-      setAddExpense({
-        id: `MGL${nanoid(7)}`,
-        title: "",
-        company: "",
-        currency: "£",
-        amount: "",
-        category: "",
-        date: "",
-        recurring: false,
-        image: "",
-      });
-    }
-    handleCreateExpenseModalClose();
-  };
+
+    // setAddExpenseError("");
+    // const isError = checkForErrors();
+    // if (!addExpenseError) 
+    props.handleClick(data);
+    // handleCreateExpenseModalClose();
+  }
+
+  // function checkForErrors() {
+  //   for (let item in addExpense) {
+  //     if (addExpense[item] === "") {
+  //       setAddExpenseError("You need to fill all of the information");
+  //       return true;
+  //     }
+  //   }
+  //   return false;
+  // }
 
   function handleCreateExpenseModalClose() {
     props.displayCreateExpenseState(false);
@@ -114,9 +133,9 @@ export default function CreateExpense(props) {
             <input
               type="text"
               name="title"
-              value={addExpense.title}
+              value={data.title}
               placeholder="Name of expense"
-              maxlength="20"
+              maxLength="20"
               onChange={handleChange}
             ></input>
           </div>
@@ -124,9 +143,9 @@ export default function CreateExpense(props) {
             <input
               type="text"
               name="company"
-              value={addExpense.company}
+              value={data.company}
               placeholder="Company"
-              maxlength="20"
+              maxLength="20"
               onChange={handleChange}
             ></input>
           </div>
@@ -134,7 +153,7 @@ export default function CreateExpense(props) {
             <select
               className="select-currency"
               name="currency"
-              value={addExpense.currency}
+              value={data.currency}
               onChange={handleChange}
             >
               <option>£</option>
@@ -146,7 +165,7 @@ export default function CreateExpense(props) {
             <input
               type="text"
               name="amount"
-              value={addExpense.amount}
+              value={data.amount}
               placeholder="Amount"
               onChange={handleChange}
               required
@@ -156,11 +175,11 @@ export default function CreateExpense(props) {
             <select
               className="select-type"
               name="category"
-              defaultValue={addExpense.category}
+              defaultValue={data.category}
               onChange={handleChange}
               required
             >
-              <option value="" disbaled selected hidden>
+              <option defaultValue="" hidden>
                 Category
               </option>
               <option>Entertainment</option>
@@ -185,7 +204,7 @@ export default function CreateExpense(props) {
               className="form-date-input"
               type="date"
               name="date"
-              value={addExpense.date}
+              value={data.date}
               min="2021-01-01"
               max="2023-01-01"
               onChange={handleChange}
@@ -198,14 +217,14 @@ export default function CreateExpense(props) {
                 className="checkbox-input"
                 type="checkbox"
                 name="recurring"
-                checked={addExpense.recurring}
+                checked={data.recurring}
                 onChange={handleChange}
               ></input>
               Recurring
             </label>
           </div>
           <label className="add-image-container">
-            <CategoryImage key={addExpense.id} addExpense={addExpense} />
+            <CategoryImage key={data.id} addExpense={data} />
             {/* KEEP BELOW FOR USE TO UPLOAD THEIR OWN IMAGE(s) TO FIREBASE AND PULL FROM THERE  */}
             {/* <label className="add-image-container">
             <img src={addImage} />
