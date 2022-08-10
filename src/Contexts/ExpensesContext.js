@@ -16,7 +16,7 @@ import { createContext, useContext, useState, useEffect } from "react";
 
 import { db } from "../firebase-config";
 
-import { useAuth } from "./auth";
+import { useAuth } from "./RequireAuth";
 
 const ExpensesContext = createContext();
 
