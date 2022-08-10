@@ -2,7 +2,9 @@ import React from 'react';
 import {useNavigate, Link} from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { signInWithPopup } from "firebase/auth";
-import { auth, provider } from "../../firebase-config";
+import { auth, provider, db } from "../../firebase-config";
+import { collection, addDoc } from "firebase/firestore";
+import { nanoid } from "nanoid";
 import Logo from '../../images/Logo.svg'
 import google from '../../images/Google.svg'
 import vector from '../../images/Vector.svg'
@@ -17,12 +19,25 @@ export default function Signup() {
         password: ''
     });
 
+    const userDatab = collection(db, 'userData');
+    const [registerFName, setRegisterFName] = React.useState('');
+
     function handleSubmit(e) {
         e.preventDefault();
                 console.log(userSign.email,userSign.password)
           createUserWithEmailAndPassword(auth, userSign.email, userSign.password)
-          .then((cred)=>{console.log("user created:"+cred.user)
-          navigate("/")} )
+          .then((cred)=>{
+            addDoc(userDatab, {
+                fullName: registerFName,
+                email: auth.currentUser.email,
+                key: nanoid(),
+                uid: auth.currentUser.uid,
+            });
+            sessionStorage.setItem("Auth Token", auth.currentUser.accessToken);
+            sessionStorage.setItem("uid", auth.currentUser.uid);
+            sessionStorage.setItem("email", auth.currentUser.email);
+            console.log("user created:"+cred.user)
+            navigate("/")} )
           .catch((err) => { console.log(err) })
     }
 

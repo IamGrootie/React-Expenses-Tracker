@@ -11,9 +11,7 @@ import { updateProfile, updateEmail,
 
 export default function Settings() {
 
-  const {
-    currentUser,
-  } = useAuth();
+  const { currentUser } = useAuth();
 
   const [userData, setUserData] = React.useState({
     name: currentUser.displayName,
@@ -49,7 +47,7 @@ export default function Settings() {
   const [userPhone, setUserPhone] = React.useState(currentUser.phoneNumber);
   const [userPassword, setUserPassword] = React.useState();
 
-  const [passwordShown, setPasswordShown] = React.useState(false);
+  const [passwordShown, setPasswordShown] = React.useState('password');
 
 
   const handleSubmit = async (e) => {
@@ -192,14 +190,18 @@ export default function Settings() {
                 <input 
                   disabled={!edit}
                   className='pass-input' 
-                  type={passwordShown ? "text" : "password"} 
+                  type={passwordShown} 
                   name="password" 
                   onChange={(event) => {
                     event.preventDefault();
                     setUserPassword(event.target.value)}}
                   placeholder='·······'
                 />
-                <button onClick={() => setPasswordShown(true)}>
+                <button onClick={(e) => {
+                  e.preventDefault();
+                  setPasswordShown((prev) =>
+								  prev === 'password' ? 'text' : 'password');
+                  }}>
                   <img src={Eye} className='eye-icon' alt=''/>
                 </button>
               </div>
@@ -212,14 +214,19 @@ export default function Settings() {
                 <input 
                   disabled={!edit}
                   className='pass-input' 
-                  type={passwordShown ? "text" : "password"}
+                  type={passwordShown}
                   name="password" 
                   onChange={(event) => {
                     event.preventDefault();
                     setUserPassword(event.target.value)}}
                   placeholder='·······'
                 />
-                <button onClick={() => setPasswordShown(true)}>
+                <button 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setPasswordShown((prev) =>
+                    prev === 'password' ? 'text' : 'password')
+                    }}>
                   <img src={Eye} className='eye-icon' alt=''/>
                 </button>
               </div>
