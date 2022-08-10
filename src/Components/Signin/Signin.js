@@ -1,6 +1,6 @@
 import React from 'react';
 import {useNavigate, Link} from 'react-router-dom';
-import {signInWithEmailAndPassword, setPersistence, browserSessionPersistence} from 'firebase/auth';
+import {signInWithEmailAndPassword, setPersistence, browserSessionPersistence, onAuthStateChanged} from 'firebase/auth';
 import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../../firebase-config";
 import {useAuth} from "../../Contexts/auth";
@@ -11,6 +11,7 @@ import Main from '../../images/Intro_img.svg'
 import './signin.css'
 
 export default function Signin() {
+    const [user, setUser] = React.useState({});
     const navigate = useNavigate();
 
     const [userLogin, setUserLogin] = React.useState({
@@ -18,12 +19,21 @@ export default function Signin() {
         password: ''
     });
 
+    React.useEffect(() => {
+        onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser);
+        });
+    }, []);
+
     function handleSubmit(e) {
         e.preventDefault();
                 console.log(userLogin.email,userLogin.password) //Attention change this
                 
         signInWithEmailAndPassword(auth, userLogin.email, userLogin.password)
           .then((cred)=>{console.log("user logined:"+cred.user)
+          sessionStorage.setItem("Auth Token", auth.currentUser.accessToken);
+          sessionStorage.setItem("uid", auth.currentUser.uid);
+          sessionStorage.setItem("email", auth.currentUser.email);
           navigate("/")} )
           .catch((err) => { console.log(err) })
     }
@@ -53,6 +63,10 @@ export default function Signin() {
         signInWithPopup(auth, provider)
         .then((cred)=>{
             console.log(cred);
+            sessionStorage.setItem("Auth Token", auth.currentUser.accessToken);
+            sessionStorage.setItem("uid", auth.currentUser.uid);
+            sessionStorage.setItem("email", auth.currentUser.email);
+            navigate("/")
         })
         .catch((err) => { console.log(err) })
     }
