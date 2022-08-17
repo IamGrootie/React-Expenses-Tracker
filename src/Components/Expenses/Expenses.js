@@ -134,9 +134,15 @@ export default function Expenses() {
 						setCurrentExpense={setCurrentExpense}
 					/>
 				)}
+				<nav className="navbar-container">
+					<h1 className="title">Expenses</h1>
+					<button className="profile-btn">
+						{/* // <img src=PROFILE PIC/>  */}
+						<h3>NAME OF PROFILE-CHANGE</h3>
+					</button>
+				</nav>
 
 				<div className="expenses-content">
-					<h2 className="expenses-title">Expenses</h2>
 					<div className="search-container">
 						<div className="search-bar">
 							<img src={searchIcon} />

@@ -1,5 +1,6 @@
 .settings-container {
-	width: 100% !important;
+	width: 100vw;
+	height: 100vh;
 	color: #1b212d;
 }
 
@@ -12,7 +13,8 @@
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	margin: 20px 40px;
+	margin: 5px 40px !important;
+	height: 70px;
 }
 
 .title {

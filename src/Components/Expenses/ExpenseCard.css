@@ -6,9 +6,6 @@
 	column-gap: 5px;
 	padding-bottom: 15px;
 	border-bottom: 1px solid #f5f5f5;
-
-	min-width: fit-content;
-	border: 1px solid black;
 }
 
 /* WHEN EDIT HAS BEEN CLICKED, SHOW THIS THROUGH COLOUR CHANGE */
@@ -23,10 +20,8 @@ input.edit {
 
 /* resolve responsiveness so inline with input titles from Expense component */
 .card-element {
-	flex-shrink: 1;
 	display: flex;
 	align-items: center;
-	width: fit-content;
 	background-color: white;
 	border: none;
 	outline: none;
