@@ -1,7 +1,6 @@
-
-.settings-container{
-    width: 100% !important;
-    color: #1B212D;
+.settings-container {
+	width: 100% !important;
+	color: #1b212d;
 }
 
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
@@ -9,22 +8,28 @@
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
 
 .navbar-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 2.38rem 2.5rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin: 20px 40px;
 }
 
 .title {
-    font-size: 1.56rem;
-    line-height: 1.875rem;
-    font-weight: 600;
+	font-size: 1.56rem;
+	line-height: 1.875rem;
+	font-weight: 600;
 }
 
 .profile-btn {
-    border-radius: 3rem;
-    background-color: #FAFAFA;
-    border: none;
+	border-radius: 3rem;
+	background-color: #fafafa;
+	border: none;
+	height: 48px;
+	border: 1px solid black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
@@ -32,50 +37,50 @@
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
 
 .main-container {
-    margin: 4.375rem 10.8rem 9.2rem 5rem;
-    padding-bottom: 2.75rem;
+	margin: 4.375rem 10.8rem 9.2rem 5rem;
+	padding-bottom: 2.75rem;
 }
 
 .subtitle-acc {
-    font-size: 1.25rem;
-    line-height: 1.56rem;
-    font-weight: 600;
+	font-size: 1.25rem;
+	line-height: 1.56rem;
+	font-weight: 600;
 }
 
 .subtitle-details {
-    font-size: 0.875rem;
-    color: #929EAE;
-    line-height: 1rem;
+	font-size: 0.875rem;
+	color: #929eae;
+	line-height: 1rem;
 }
 
-.personal-info{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 2.5rem;
-    margin-bottom: 2.5rem;
+.personal-info {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 2.5rem;
+	margin-bottom: 2.5rem;
 }
 
 .subtitle-pers {
-    font-size: 1.125rem;
-    line-height: 1.375rem;
-    font-weight: 600;
+	font-size: 1.125rem;
+	line-height: 1.375rem;
+	font-weight: 600;
 }
 
 .edit-btn {
-    border: none;
-    background-color: white;
-    color: #29A073;
-    font-size: 1.125rem;
-    font-weight: 600;
-    line-height: 1.375rem;
+	border: none;
+	background-color: white;
+	color: #29a073;
+	font-size: 1.125rem;
+	font-weight: 600;
+	line-height: 1.375rem;
 }
 
 .pen-icon {
-    width: 1.25rem;
-    height: 1.25rem;
-    margin-right: 0.625rem;
+	width: 1.25rem;
+	height: 1.25rem;
+	margin-right: 0.625rem;
 }
 
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
@@ -83,27 +88,27 @@
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
 
 .form-wrap {
-    display: flex;
-    flex-wrap: wrap;
-    column-gap: 2.5rem;
+	display: flex;
+	flex-wrap: wrap;
+	column-gap: 2.5rem;
 }
-.form-column{
-    display: flex;
-    flex-direction: column;
+.form-column {
+	display: flex;
+	flex-direction: column;
 }
 .label {
-    font-size: 0.875rem;
-    font-weight: 500;
-    line-height: 1.06rem;
+	font-size: 0.875rem;
+	font-weight: 500;
+	line-height: 1.06rem;
 }
 
 .input {
-    width: 25rem;
-    border: 1px solid #F5F5F5;
-    height: 3rem;
-    border-radius: 0.625rem;
-    margin-bottom: 1.25rem;
-    padding-left: 1.6rem;
+	width: 25rem;
+	border: 1px solid #f5f5f5;
+	height: 3rem;
+	border-radius: 0.625rem;
+	margin-bottom: 1.25rem;
+	padding-left: 1.6rem;
 }
 
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
@@ -111,42 +116,40 @@
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
 
 .mail-container {
-    width: 52.5rem;
-    border: 1px solid #F1F1F3;
-    height: 2.75rem;
-    border-radius: 0.625rem;
-    padding: 0.75rem 1.563rem;
-    display: flex;
-    align-items: center;
-    margin-bottom: 1.563rem;
+	width: 52.5rem;
+	border: 1px solid #f1f1f3;
+	height: 2.75rem;
+	border-radius: 0.625rem;
+	padding: 0.75rem 1.563rem;
+	display: flex;
+	align-items: center;
+	margin-bottom: 1.563rem;
 }
 
 .input-mail {
-    border: none;
-    width: 100% !important;
-    padding-left: 1.25rem;
-
+	border: none;
+	width: 100% !important;
+	padding-left: 1.25rem;
 }
-
 
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
 /* §§§§§§ Pass form §§§§§§ */
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
 
 .pass-container {
-    width: 25rem;
-    border: 1px solid #F1F1F3;
-    height: 2.75rem;
-    border-radius: 0.625rem;
-    display: flex;
-    align-items: center;
-    padding: 0.75rem 1.563rem;
+	width: 25rem;
+	border: 1px solid #f1f1f3;
+	height: 2.75rem;
+	border-radius: 0.625rem;
+	display: flex;
+	align-items: center;
+	padding: 0.75rem 1.563rem;
 }
 
 .pass-input {
-    border: none;
-    width: 100% !important;
-    padding-left: 1.25rem;
+	border: none;
+	width: 100% !important;
+	padding-left: 1.25rem;
 }
 
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
@@ -154,12 +157,11 @@
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
 
 .update-btn {
-    color: #fff;
-    height: 3.25rem;
-    width: 11.875rem;
-    border: none;
-    border-radius: 0.625rem;
-    background-color: #29A073;
-    margin-top: 2.5rem;
+	color: #fff;
+	height: 3.25rem;
+	width: 11.875rem;
+	border: none;
+	border-radius: 0.625rem;
+	background-color: #29a073;
+	margin-top: 2.5rem;
 }
-
