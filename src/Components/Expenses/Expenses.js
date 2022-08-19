@@ -24,10 +24,11 @@ import {
 } from "firebase/firestore";
 
 export default function Expenses() {
-	const { expenses, createExpense, updateExpense, deleteExpense } =
+	const { expenses, createExpense, updateExpense, deleteExpense, setSort } =
 		useExpenses();
+	const [editExpense, setEditExpense] = useState(false);
 	const [search, setSearch] = useState();
-	const [currentExpenseId, setcurrentExpenseId] = useState("");
+	const [currentExpenseId, setCurrentExpenseId] = useState("");
 	const [filteredExpenses, setFilteredExpenses] = useState([]);
 	const [currentExpense, setCurrentExpense] = useState("");
 
@@ -45,6 +46,8 @@ export default function Expenses() {
 		setFilteredExpenses(expenses);
 	}, [expenses]);
 
+	console.log(currentExpense);
+
 	const expensesArr = filteredExpenses.map((expense) => (
 		<ExpenseCard
 			category={expense.category}
@@ -56,17 +59,34 @@ export default function Expenses() {
 			date={expense.date}
 			invoice={expense.invoice}
 			edit={edit}
+			currentExpense={currentExpense}
+			editExpense={editExpense}
+			updateExpense={updateExpense}
+			setCurrentExpense={setCurrentExpense}
+			handleClick={handleSubmit}
+			close={(e) => {
+				e.preventDefault();
+				setCurrentExpense("");
+				setCurrentExpenseId("");
+			}}
+			handleDelete={handleDelete}
 			class="transaction-transactions"
 		/>
 	));
 
-	async function edit(event, id) {
+	async function edit(event, invoice) {
 		event.stopPropagation();
-		setcurrentExpenseId(id);
-		setCurrentExpense(expenses.find((expense) => expense.invoice === id));
+		setCurrentExpenseId(expenses.invoice);
+		setCurrentExpense(expenses.map((expense) => expenses.invoice === invoice));
+
+		// setCurrentExpense(expenses.find((expense) => expenses.invoice === invo));
+
+		setEditExpense(true);
+		// 	setSort(["date", "asc"]);
 	}
 
 	async function handleSubmit(data) {
+		console.log("working");
 		const id = `MGL${nanoid(7)}`;
 		const invoice = {
 			invoice: id,
@@ -81,32 +101,28 @@ export default function Expenses() {
 			date: data.date,
 			recurring: data.recurring,
 		};
-		// if (!currentExpenseId) {
-		await createExpense(id, { ...expenseData, ...invoice });
-		// } else {
-		//   await updateExpense(currentExpenseId, expenseData);
-		//   setCurrentExpense("");
-		//   setcurrentExpenseId("");
-		// }
+
+		if (!currentExpenseId) {
+			await createExpense(id, { ...expenseData, ...invoice });
+			console.log("made new expense");
+		} else {
+			console.log("updating");
+			await updateExpense(currentExpenseId, expenseData);
+			console.log("updated");
+			setCurrentExpense("");
+			setCurrentExpenseId("");
+			console.log(expenseData);
+		}
 	}
+	// UNCAUGHT IN PROMISE
 
-	// async function handleDelete() {
-	//   await deleteExpense(currentExpenseId);
-	//   setCurrentExpense("");
-	//   setcurrentExpenseId("");
-	// }
+	console.log(currentExpense);
 
-	// OLD CODE
-	// const expenseRef = collection(db, "expense");
-	// const q = query(expenseRef, orderBy("date", "desc"));
-
-	// useEffect(() => {
-	//   onSnapshot(expenseRef, async () => {
-	//     const data = await getDocs(q);
-	//     const expenseArray = data.docs.map(doc => doc.data());
-	//     setExpense(expenseArray);
-	//   });
-	// }, []);
+	async function handleDelete() {
+		await deleteExpense(currentExpenseId);
+		setCurrentExpense("");
+		setCurrentExpenseId("");
+	}
 
 	const [displayCreateExpense, setDisplayCreateExpense] = useState(false);
 	const [displayFilters, setDisplayFilters] = useState(false);
@@ -128,10 +144,8 @@ export default function Expenses() {
 				{displayCreateExpense && (
 					<CreateExpense
 						handleClick={handleSubmit}
+						setDisplayCreateExpense={setDisplayCreateExpense}
 						// handleInput={handleInput}
-						displayCreateExpenseState={setDisplayCreateExpense}
-						currentExpense={currentExpense}
-						setCurrentExpense={setCurrentExpense}
 					/>
 				)}
 				<nav className="navbar-container">
@@ -191,7 +205,7 @@ export default function Expenses() {
                 currentExpense={currentExpense}
                 setCurrentExpense={currentExpense}
                 currentExpenseId={currentExpenseId}
-                setcurrentExpenseId={setcurrentExpenseId}
+                setCurrentExpenseId={setCurrentExpenseId}
                 key={expenses.id}
               /> */}
 							{expensesArr}

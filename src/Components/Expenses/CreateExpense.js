@@ -9,7 +9,7 @@ export default function CreateExpense(props) {
 	const [data, setData] = useState({
 		title: "",
 		company: "",
-		currency: "",
+		currency: "£",
 		amount: "",
 		category: "",
 		date: "",
@@ -92,7 +92,7 @@ export default function CreateExpense(props) {
 	}
 
 	function handleCreateExpenseModalClose() {
-		props.displayCreateExpenseState(false);
+		props.setDisplayCreateExpense(false);
 		navigate("/expenses");
 	}
 

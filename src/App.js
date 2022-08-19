@@ -12,24 +12,24 @@ import CreateExpense from "./Components/Expenses/CreateExpense";
 import Filters from "./Components/Expenses/Filters";
 
 export default function App() {
-  return (
-    <div className="App">
-      <AuthProvider>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
+	return (
+		<div className="App">
+			<AuthProvider>
+				<Navbar />
+				<Routes>
+					<Route path="/" element={<Dashboard />} />
 
-          {/* add ternary to hide Expense if create-expense = true and nest inside*/}
-          <Route path="expenses" element={<Expenses />}>
-            <Route path="create-expense" element={<CreateExpense />} />
-          </Route>
-          <Route path="filters" element={<Filters />} />
-          <Route path="settings" element={<Settings />} />
-          <Route path="/signin" element={<Signin />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="*" element={<div>Page not found</div>} />
-        </Routes>
-      </AuthProvider>
-    </div>
-  );
+					{/* add ternary to hide Expense if create-expense = true and nest inside*/}
+					<Route path="expenses" element={<Expenses />}>
+						<Route path="create-expense" element={<CreateExpense />} />
+					</Route>
+					<Route path="filters" element={<Filters />} />
+					<Route path="settings" element={<Settings />} />
+					<Route path="/signin" element={<Signin />} />
+					<Route path="/signup" element={<Signup />} />
+					<Route path="*" element={<div>Page not found</div>} />
+				</Routes>
+			</AuthProvider>
+		</div>
+	);
 }

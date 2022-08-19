@@ -30,6 +30,7 @@ export default function ExpensesProvider({ children }) {
 	const [expenses, setExpenses] = useState([]);
 	const expensesRef = currentUser && collection(db, "users", uid, "expense");
 	// const displayQ = query(expensesRef, orderBy("date", "desc"));
+	const [sort, setSort] = useState(["date", "asc"]);
 
 	useEffect(() => {
 		if (currentUser) {
@@ -40,6 +41,31 @@ export default function ExpensesProvider({ children }) {
 			});
 		}
 	}, [currentUser]);
+
+	useEffect(() => {
+		if (expenses) {
+			sortExpenses(sort[0], sort[1]);
+			setExpenses((prevTransactions) => [...prevTransactions]);
+		}
+	}, [sort]);
+
+	function sortExpenses(value, order) {
+		if (value === "amount") {
+			const expensePart = expenses.sort((a, b) => a.amount - b.amount);
+			setExpenses([...expensePart]);
+		} else
+			return expenses.sort((a, b) => {
+				const itemA = a[value].toUpperCase();
+				const itemB = b[value].toUpperCase();
+				if (itemA < itemB) {
+					return order === "asc" ? 1 : -1;
+				}
+				if (itemA > itemB) {
+					return order === "asc" ? -1 : 1;
+				}
+				return 0;
+			});
+	}
 
 	function createExpense(id, data) {
 		return setDoc(doc(db, "users", uid, "expense", id), data);
@@ -59,6 +85,8 @@ export default function ExpensesProvider({ children }) {
 		createExpense,
 		updateExpense,
 		deleteExpense,
+		sort,
+		setSort,
 	};
 
 	return (

@@ -6,244 +6,229 @@ import Mail from "../../images/Email_icon.svg";
 import Lock from "../../images/Lock_icon.svg";
 import Eye from "../../images/Eye_icon.svg";
 import "./settings.css";
-import {
-  updateProfile,
-  updateEmail,
-  updatePassword,
-  EmailAuthProvider,
-  reauthenticateWithCredential,
-} from "firebase/auth";
 
 export default function Settings() {
-  const { updateUser, updateUsersEmail, updateUsersPassword, userDetails } =
-    useAuth();
-  const [error, setError] = useState("");
+	const { updateUser, updateUsersEmail, updateUsersPassword, userDetails } =
+		useAuth();
+	const [error, setError] = useState("");
 
-  useEffect(() => {
-    setData({
-      firstName: userDetails.firstName,
-      lastName: userDetails.lastName,
-      dateOfBirth: userDetails.dateOfBirth,
-      mobileNumber: userDetails.mobileNumber,
-      email: userDetails.email,
-      password: "",
-      passwordConfirm: "",
-    });
-  }, [userDetails]);
+	useEffect(() => {
+		setData({
+			firstName: userDetails.firstName,
+			lastName: userDetails.lastName,
+			dateOfBirth: userDetails.dateOfBirth,
+			mobileNumber: userDetails.mobileNumber,
+			email: userDetails.email,
+			password: "",
+			passwordConfirm: "",
+		});
+	}, [userDetails]);
 
-  const [editSettings, setEditSettings] = useState(false);
+	const [editSettings, setEditSettings] = useState(false);
 
-  const [data, setData] = useState({
-    firstName: userDetails.firstName,
-    lastName: userDetails.lastName,
-    dateOfBirth: userDetails.dateOfBirth,
-    mobileNumber: userDetails.mobileNumber,
-    email: userDetails.email,
-    password: "",
-    passwordConfirm: "",
-  });
-  console.log(userDetails.email);
-  const [passwordInput, setPasswordInput] = useState("password");
+	const [data, setData] = useState({});
 
-  async function handleSubmit(e) {
-    setError("");
-    e.preventDefault();
-    const {
-      firstName,
-      lastName,
-      dateOfBirth,
-      mobileNumber,
-      email,
-      password,
-      passwordConfirm,
-    } = data;
+	const [passwordInput, setPasswordInput] = useState("password");
 
-    if (email) {
-      try {
-        await updateUsersEmail(email);
-        await updateUser({
-          firstName,
-          lastName,
-          dateOfBirth,
-          mobileNumber,
-          email,
-        });
-      } catch (err) {
-        setError("Something went wrong!");
-      }
-    }
-    if (password && password === passwordConfirm) {
-      try {
-        updateUsersPassword(password);
-      } catch {
-        setError("Something went wrong!");
-      }
-    }
-    setEditSettings(false);
-  }
+	async function handleSubmit(e) {
+		setError("");
+		e.preventDefault();
+		const {
+			firstName,
+			lastName,
+			dateOfBirth,
+			mobileNumber,
+			email,
+			password,
+			passwordConfirm,
+		} = data;
 
-  function handleInput(e) {
-    const { name, value } = e.target;
-    setData(prevData => ({
-      ...prevData,
-      [name]: value,
-    }));
-  }
+		if (email) {
+			try {
+				await updateUsersEmail(email);
+				await updateUser({
+					firstName,
+					lastName,
+					dateOfBirth,
+					mobileNumber,
+					email,
+				});
+			} catch (err) {
+				setError("Something went wrong!");
+			}
+		}
+		if (password && password === passwordConfirm) {
+			try {
+				updateUsersPassword(password);
+			} catch {
+				setError("Something went wrong!");
+			}
+		}
+		setEditSettings(false);
+	}
 
-  return (
-    <div className="settings-container">
-      <nav className="navbar-container">
-        <h1 className="title">Settings</h1>
-        <button className="profile-btn">
-          {/* // <img src=PROFILE PIC/>  */}
-          <h3>NAME OF PROFILE-CHANGE</h3>
-        </button>
-      </nav>
+	function handleInput(e) {
+		const { name, value } = e.target;
+		setData((prevData) => ({
+			...prevData,
+			[name]: value,
+		}));
+	}
 
-      <div className="main-container">
-        <h2 className="subtitle-acc">Account Information</h2>
-        <p className="subtitle-details">Update your account information</p>
+	return (
+		<div className="settings-container">
+			<nav className="navbar-container">
+				<h1 className="title">Settings</h1>
+				<button className="profile-btn">
+					{/* // <img src=PROFILE PIC/>  */}
+					<h3>NAME OF PROFILE-CHANGE</h3>
+				</button>
+			</nav>
 
-        <section className="personal-info">
-          <h2 className="subtitle-pers">Personal Information</h2>
-          <button
-            className="edit-btn"
-            onClick={e => {
-              setEditSettings(prev => !prev);
-              e.preventDefault();
-            }}
-          >
-            <img src={Pen} className="pen-icon" alt="" />
-            Edit
-          </button>
-        </section>
+			<div className="main-container">
+				<h2 className="subtitle-acc">Account Information</h2>
+				<p className="subtitle-details">Update your account information</p>
 
-        <form className="form-info">
-          <section className="form-wrap">
-            <div className="form-column">
-              <label className="label label-fname">First Name</label>
-              <input
-                disabled={!editSettings}
-                className="input input-fname"
-                type="text"
-                name="firstName"
-                onChange={handleInput}
-                value={data.firstName}
-                placeholder={data.firstName}
-              />
-            </div>
+				<section className="personal-info">
+					<h2 className="subtitle-pers">Personal Information</h2>
+					<button
+						className="edit-btn"
+						onClick={(e) => {
+							setEditSettings((prev) => !prev);
+							e.preventDefault();
+						}}
+					>
+						<img src={Pen} className="pen-icon" alt="" />
+						Edit
+					</button>
+				</section>
 
-            <div className="form-column">
-              <label className="label label-lname">Last Name</label>
-              <input
-                disabled={!editSettings}
-                className="input input-lname"
-                type="text"
-                name="lastName"
-                onChange={handleInput}
-                placeholder={data.lastName}
-              />
-            </div>
+				<form className="form-info">
+					<section className="form-wrap">
+						<div className="form-column">
+							<label className="label label-fname">First Name</label>
+							<input
+								disabled={!editSettings}
+								className="input input-fname"
+								type="text"
+								name="firstName"
+								onChange={handleInput}
+								value={data.firstName}
+								placeholder={data.firstName}
+							/>
+						</div>
 
-            <div className="form-column">
-              <label className="label label-date">Date of birth</label>
-              <input
-                disabled={!editSettings}
-                className="input input-date"
-                type="date"
-                name="dob"
-                onChange={handleInput}
-                placeholder={data.userBirth}
-              />
-            </div>
+						<div className="form-column">
+							<label className="label label-lname">Last Name</label>
+							<input
+								disabled={!editSettings}
+								className="input input-lname"
+								type="text"
+								name="lastName"
+								onChange={handleInput}
+								placeholder={data.lastName}
+							/>
+						</div>
 
-            <div className="form-column">
-              <label className="label label-phone">Mobile Number</label>
-              <input
-                disabled={!editSettings}
-                className="input input-phone"
-                name="phone"
-                onChange={handleInput}
-                placeholder={data.phoneNumber}
-              />
-            </div>
-          </section>
+						<div className="form-column">
+							<label className="label label-date">Date of birth</label>
+							<input
+								disabled={!editSettings}
+								className="input input-date"
+								type="date"
+								name="dob"
+								onChange={handleInput}
+								placeholder={data.userBirth}
+							/>
+						</div>
 
-          <label className="label-email">Email</label>
-          <div className="mail-container">
-            <img src={Mail} className="mail-icon" alt="" />
-            <input
-              disabled={!editSettings}
-              className="input-mail"
-              type="email"
-              name="email"
-              onChange={handleInput}
-              placeholder={data.userEmail}
-            />
-          </div>
+						<div className="form-column">
+							<label className="label label-phone">Mobile Number</label>
+							<input
+								disabled={!editSettings}
+								className="input input-phone"
+								name="phone"
+								onChange={handleInput}
+								placeholder={data.phoneNumber}
+							/>
+						</div>
+					</section>
 
-          <section className="form-wrap">
-            <div className="form-column">
-              <label className="label-pass">New Password</label>
-              <div className="pass-container">
-                <img src={Lock} className="lock-icon" alt="" />
-                <input
-                  disabled={!editSettings}
-                  className="pass-input"
-                  type={passwordInput}
-                  name="password"
-                  onChange={handleInput}
-                  placeholder="·······"
-                />
-                <button
-                  onClick={e => {
-                    setPasswordInput(prev =>
-                      prev === "password" ? "text" : "password"
-                    );
-                    e.preventDefault();
-                  }}
-                >
-                  <img src={Eye} className="eye-icon" alt="" />
-                </button>
-              </div>
-            </div>
+					<label className="label-email">Email</label>
+					<div className="mail-container">
+						<img src={Mail} className="mail-icon" alt="" />
+						<input
+							disabled={!editSettings}
+							className="input-mail"
+							type="email"
+							name="email"
+							onChange={handleInput}
+							placeholder={data.userEmail}
+						/>
+					</div>
 
-            <div className="form-column">
-              <label className="label-pass">Confirm Password</label>
-              <div className="pass-container">
-                <img src={Lock} className="lock-icon" alt="" />
-                <input
-                  disabled={!editSettings}
-                  className="pass-input"
-                  type={passwordInput}
-                  name="password"
-                  onChange={handleInput}
-                  placeholder="·······"
-                />
-                <button
-                 onClick={(e) => {
-                  setPasswordInput((prev) =>
-                    prev === 'password' ? 'text' : 'password'
-                  );
-                  e.preventDefault();
-                }}
-                >
-                  <img src={Eye} className="eye-icon" alt="" />
-                </button>
-              </div>
-              <p>{error.password}</p>
-            </div>
-          </section>
+					<section className="form-wrap">
+						<div className="form-column">
+							<label className="label-pass">New Password</label>
+							<div className="pass-container">
+								<img src={Lock} className="lock-icon" alt="" />
+								<input
+									disabled={!editSettings}
+									className="pass-input"
+									type={passwordInput}
+									name="password"
+									onChange={handleInput}
+									placeholder="·······"
+								/>
+								<button
+									onClick={(e) => {
+										setPasswordInput((prev) =>
+											prev === "password" ? "text" : "password"
+										);
+										e.preventDefault();
+									}}
+								>
+									<img src={Eye} className="eye-icon" alt="" />
+								</button>
+							</div>
+						</div>
 
-          <button
-            disabled={!editSettings}
-            onClick={(e) => handleSubmit(e)}
-            className="update-btn"
-          >
-            Update
-          </button>
-        </form>
-      </div>
-    </div>
-  );
+						<div className="form-column">
+							<label className="label-pass">Confirm Password</label>
+							<div className="pass-container">
+								<img src={Lock} className="lock-icon" alt="" />
+								<input
+									disabled={!editSettings}
+									className="pass-input"
+									type={passwordInput}
+									name="password"
+									onChange={handleInput}
+									placeholder="·······"
+								/>
+								<button
+									onClick={(e) => {
+										setPasswordInput((prev) =>
+											prev === "password" ? "text" : "password"
+										);
+										e.preventDefault();
+									}}
+								>
+									<img src={Eye} className="eye-icon" alt="" />
+								</button>
+							</div>
+							<p>{error.password}</p>
+						</div>
+					</section>
+
+					<button
+						disabled={!editSettings}
+						onClick={(e) => handleSubmit(e)}
+						className="update-btn"
+					>
+						Update
+					</button>
+				</form>
+			</div>
+		</div>
+	);
 }
