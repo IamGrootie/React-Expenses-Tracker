@@ -15,11 +15,9 @@ import {
 } from "firebase/firestore";
 
 function ExpenseCard(props) {
-	const { title, company, currency, amount, category, date, recurring } =
-		props.currentExpense;
-
 	const currentDate = new Date().toISOString().substring(0, 10);
-	// NOT FETCHING THE DATA FROM PROPS.CURRENTEXPENSE!!!!!!!!!!!!!!!!!!
+
+	// data.title works
 	const [data, setData] = useState({
 		title: props.title || "",
 		company: props.company || "",
@@ -66,6 +64,11 @@ function ExpenseCard(props) {
 	// 	// }
 	// 	setEdit(false);
 	// };
+
+	// function handleSubmit(event) {
+	// 	event.preventDefault();
+	// 	props.handleClick(data);
+	// }
 
 	return (
 		<div key={props.invoice}>
@@ -140,7 +143,7 @@ function ExpenseCard(props) {
 				</div>
 				<div className="card-element">
 					{!props.editExpense ? (
-						<p>{props.currency}</p>
+						<p>{data.currency}</p>
 					) : (
 						<select
 							className="select-currency"
@@ -194,17 +197,32 @@ function ExpenseCard(props) {
 						<button
 							type="button"
 							className="edit-button"
-							onClick={(event) => props.edit(event, props.invoice)}
+							onClick={(event) => props.edit(event, data.invoice)}
 						>
 							Edit
 						</button>
 					)}
 					{/* Edit = true, display submit button */}
 					{props.editExpense && (
-						<button className="edit-button" onClick={props.handleClick}>
+						<button
+							className="edit-button"
+							onClick={(e) => {
+								e.preventDefault();
+								props.handleClick(data);
+							}}
+						>
 							Submit
 						</button>
 					)}
+					<button
+						value="Delete"
+						onClick={(e) => {
+							e.preventDefault();
+							props.handleDelete();
+						}}
+					>
+						Delete
+					</button>
 				</div>
 			</form>
 		</div>

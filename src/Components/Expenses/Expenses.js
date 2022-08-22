@@ -46,8 +46,6 @@ export default function Expenses() {
 		setFilteredExpenses(expenses);
 	}, [expenses]);
 
-	console.log(currentExpense);
-
 	const expensesArr = filteredExpenses.map((expense) => (
 		<ExpenseCard
 			category={expense.category}
@@ -61,8 +59,6 @@ export default function Expenses() {
 			edit={edit}
 			currentExpense={currentExpense}
 			editExpense={editExpense}
-			updateExpense={updateExpense}
-			setCurrentExpense={setCurrentExpense}
 			handleClick={handleSubmit}
 			close={(e) => {
 				e.preventDefault();
@@ -74,16 +70,16 @@ export default function Expenses() {
 		/>
 	));
 
-	async function edit(event, invoice) {
-		event.stopPropagation();
-		setCurrentExpenseId(expenses.invoice);
-		setCurrentExpense(expenses.map((expense) => expenses.invoice === invoice));
-
-		// setCurrentExpense(expenses.find((expense) => expenses.invoice === invo));
-
+	async function edit(e, id) {
+		e.stopPropagation();
+		setCurrentExpenseId(id);
+		setCurrentExpense(expenses.find((expense) => expense.invoice === id));
 		setEditExpense(true);
-		// 	setSort(["date", "asc"]);
+		setSort(["date", "asc"]);
 	}
+
+	console.log(currentExpenseId);
+	// console.log(currentExpense);
 
 	async function handleSubmit(data) {
 		console.log("working");
@@ -101,27 +97,26 @@ export default function Expenses() {
 			date: data.date,
 			recurring: data.recurring,
 		};
-
+		console.log(expenseData);
 		if (!currentExpenseId) {
 			await createExpense(id, { ...expenseData, ...invoice });
 			console.log("made new expense");
 		} else {
 			console.log("updating");
-			await updateExpense(currentExpenseId, expenseData);
+			updateExpense(currentExpenseId, expenseData);
 			console.log("updated");
 			setCurrentExpense("");
 			setCurrentExpenseId("");
-			console.log(expenseData);
+			setEditExpense(false);
 		}
 	}
 	// UNCAUGHT IN PROMISE
-
-	console.log(currentExpense);
 
 	async function handleDelete() {
 		await deleteExpense(currentExpenseId);
 		setCurrentExpense("");
 		setCurrentExpenseId("");
+		setEditExpense(false);
 	}
 
 	const [displayCreateExpense, setDisplayCreateExpense] = useState(false);

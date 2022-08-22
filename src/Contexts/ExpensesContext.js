@@ -70,16 +70,15 @@ export default function ExpensesProvider({ children }) {
 	function createExpense(id, data) {
 		return setDoc(doc(db, "users", uid, "expense", id), data);
 	}
-	// return setDoc(doc(db, "expense", id), data);
-	// return setDoc(doc(db, "users", uid, "expense", id), data);
+
 	function updateExpense(id, data) {
 		return updateDoc(doc(db, "users", uid, "expense", id), data);
 	}
-	// return updateDoc(doc(db, "users", uid, "expense", id), data);
-	function deleteExpense(id, data) {
-		return deleteDoc(doc(db, "users", uid, "expense", id), data);
+
+	function deleteExpense(id) {
+		return deleteDoc(doc(db, "users", uid, "expense", id));
 	}
-	// return deleteDoc(doc(db, "users", uid, "expense", id), data);
+
 	const value = {
 		expenses,
 		createExpense,
