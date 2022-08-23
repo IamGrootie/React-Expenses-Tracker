@@ -101,21 +101,6 @@
 	min-width: 550px;
 }
 
-.input-titles {
-	margin-top: 25px;
-	margin-right: 25px;
-	display: grid;
-	grid-template-columns: 1.5fr 1.5fr 1fr 1fr 1fr 0.5fr;
-	column-gap: 5px;
-	font-size: 12px;
-	font-weight: 600;
-	color: #929eae;
-	max-width: 100%;
-}
-
-.input-titles p {
-}
-
 .expense-cards {
 	overflow-y: auto;
 	max-height: 520px;

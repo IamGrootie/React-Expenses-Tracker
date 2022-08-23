@@ -2,10 +2,12 @@
 .edit-selected {
 	margin-top: 15px;
 	display: grid;
-	grid-template-columns: 1.5fr 1.5fr 1fr 1fr 1fr 0.5fr;
+	grid-template-columns: 1.5fr 1.5fr 1fr 1fr 1fr 0.75fr;
 	column-gap: 5px;
 	padding-bottom: 15px;
 	border-bottom: 1px solid #f5f5f5;
+	place-items: left;
+	font-family: "Kumbh Sans";
 }
 
 /* WHEN EDIT HAS BEEN CLICKED, SHOW THIS THROUGH COLOUR CHANGE */
@@ -13,6 +15,8 @@ input.edit {
 	border: none;
 	background-color: rgba(119, 119, 119, 0.1);
 	border-radius: 5px;
+	column-gap: 5px;
+	place-items: left;
 }
 
 .edit-selected {
@@ -25,6 +29,7 @@ input.edit {
 	background-color: white;
 	border: none;
 	outline: none;
+	gap: 10px;
 }
 
 .card-element > input {
@@ -32,8 +37,22 @@ input.edit {
 	height: 100%;
 }
 
+.card-element select {
+	cursor: pointer;
+	border-radius: 5px;
+	padding: 10px;
+	background: rgba(119, 119, 119, 0.1);
+	width: 100%;
+	height: 100%;
+	border: none;
+	font-size: 14px;
+}
+
+.card-element select option {
+	font-size: 14px;
+}
+
 .expense-card-text {
-	font-family: "Kumbh Sans";
 	font-weight: 500;
 	font-size: 14px;
 	color: #1b212d;
@@ -43,7 +62,6 @@ input.edit {
 }
 
 .expense-card-subtext {
-	font-family: "Kumbh Sans";
 	font-weight: 400;
 	font-size: 13px;
 	color: #78778b;
@@ -52,6 +70,10 @@ input.edit {
 	border: none;
 }
 
+.expense-card-text,
+.expense-card-subtext {
+	padding-left: 10px;
+}
 .name-business-container {
 	display: flex;
 	flex-direction: column;
@@ -80,18 +102,30 @@ input.edit {
 		rgba(119, 119, 119, 0.4) 0%,
 		rgba(35, 35, 35, 0.1) 100%
 	);
-	border-radius: 5px;
-	height: 35px !important;
-	width: 35px !important;
+	border-radius: 150px;
+	height: 100% !important;
+	width: 50px !important;
 	display: grid;
 	place-items: center;
+}
+
+.select-currency {
+	width: 50px !important;
+	padding: 3px !important;
 }
 
 .amount {
 	font-weight: 600;
 }
 
-.edit-button {
+.card-element.button-container {
+	gap: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.action-button {
 	background: #c8ee44;
 	height: 38px;
 	width: 67px;

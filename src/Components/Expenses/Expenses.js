@@ -59,6 +59,7 @@ export default function Expenses() {
 			edit={edit}
 			currentExpense={currentExpense}
 			editExpense={editExpense}
+			setEditExpense={setEditExpense}
 			handleClick={handleSubmit}
 			close={(e) => {
 				e.preventDefault();
@@ -80,6 +81,8 @@ export default function Expenses() {
 
 	console.log(currentExpenseId);
 	// console.log(currentExpense);
+
+	// SORT OUT REGEX FOR EDITING
 
 	async function handleSubmit(data) {
 		console.log("working");
@@ -181,20 +184,11 @@ export default function Expenses() {
 						</div>
 					</div>
 					<div className="expenses-table">
-						{displayFilters && (
-							<Filters
-								displayFiltersState={setDisplayFilters}
-								expenses={expenses}
-							/>
-						)}
-						<div className="input-titles">
-							<p>NAME/BUSINESS</p>
-							<p>CATEGORY</p>
-							<p>AMOUNT</p>
-							<p>DATE</p>
-							<p>INVOICE ID</p>
-							<p>ACTION</p>
-						</div>
+						<Filters
+							displayFiltersState={setDisplayFilters}
+							expenses={expenses}
+							expensesArr={expensesArr}
+						/>
 						<div className="expense-cards">
 							{/* <ExpenseCard
                 currentExpense={currentExpense}

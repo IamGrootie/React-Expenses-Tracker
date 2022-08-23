@@ -1,14 +1,43 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
+import { useExpenses } from "../../Contexts/ExpensesContext";
 import "./Filters.css";
 
-export default function Filters({ expense }) {
+export default function Filters(props) {
+	const { sort, setSort } = useExpenses();
+	console.log(sort[1]);
+	const [nameBusinessArray, setNameBusinessArray] = useState([]);
+
+	function handleClick(event) {
+		const { name } = event.target;
+		setSort((prevSort) => {
+			return prevSort[0] !== name
+				? [name, "asc"]
+				: prevSort[1] === "asc"
+				? [name, "desc"]
+				: [name, "asc"];
+		});
+	}
+	useEffect((expensesArr) => {});
+
 	return (
-		<div className="filter-form-container">
-			<form className="filter-form">
+		<div className="input-titles">
+			<button className="category-btn">NAME/BUSINESS</button>
+			<button className="category-btn">CATEGORY</button>
+			<button className="category-btn">AMOUNT</button>
+			<button className="category-btn">DATE</button>
+			<button className="category-btn">INVOICE ID</button>
+			<button className="category-btn">ACTION</button>
+		</div>
+	);
+}
+
+{
+	/* <form className="filter-form">
 				<div className="form-element">
 					<select className="filter-select">
 						<option>Name/Business</option>
-						<option>pull data from firestore 'Title'</option>
+						<option>{props.expensesArr.title}</option>
 					</select>
 				</div>
 				<div className="form-element">
@@ -39,7 +68,5 @@ export default function Filters({ expense }) {
 						Recurring
 					</label>
 				</div>
-			</form>
-		</div>
-	);
+			</form> */
 }

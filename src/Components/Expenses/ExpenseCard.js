@@ -47,28 +47,39 @@ function ExpenseCard(props) {
 	}
 
 	useEffect(() => {}, [data]);
-	// const handleSubmit = async (event) => {
-	// 	event.preventDefault();
-	// 	// if (!addExpenseError.title && !addExpenseError.amount) {
-	// 	const expenseRef = doc(db, "expense");
 
-	// 	updateDoc(expenseRef, {
-	// 		title: data.title,
-	// 		company: data.company,
-	// 		currency: data.currency,
-	// 		amount: data.amount,
-	// 		category: data.category,
-	// 		date: data.date,
-	// 		recurring: data.recurring,
-	// 	});
-	// 	// }
-	// 	setEdit(false);
-	// };
+	// Allows lower case, uppercase, numbers and underscores
+	function titleChecker() {
+		if (data.title !== "")
+			setAddExpenseError((prevError) => ({
+				...prevError,
+				title: !/^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]$/i.test(data.title),
+			}));
+	}
 
-	// function handleSubmit(event) {
-	// 	event.preventDefault();
-	// 	props.handleClick(data);
-	// }
+	// Checks the amount is a valid input (requires numbers, thousands separators, two digit fraction, cents/pence optional)
+	function amountChecker() {
+		if (data.amount !== "")
+			setAddExpenseError((prevError) => ({
+				...prevError,
+				amount:
+					!/^[+-]?[0-9]{1,3}(?:[0-9]*(?:[.,][0-9]{2})?|(?:,[0-9]{3})*(?:\.[0-9]{2})?|(?:\.[0-9]{3})*(?:,[0-9]{2})?)$/.test(
+						data.amount
+					),
+			}));
+	}
+
+	useEffect(() => {
+		titleChecker();
+		amountChecker();
+	}, [data]);
+
+	function handleSubmit(event) {
+		event.preventDefault();
+		if (!addExpenseError.title && !addExpenseError.amount) {
+			props.handleClick(data);
+		}
+	}
 
 	return (
 		<div key={props.invoice}>
@@ -117,6 +128,7 @@ function ExpenseCard(props) {
 									: "expense-card-text edit type"
 							}
 							disabled={!props.editExpense}
+							name="category"
 							defaultValue={data.category}
 							onChange={handleChange}
 						>
@@ -182,47 +194,40 @@ function ExpenseCard(props) {
 				</div>
 				<div className="card-element">
 					<input
-						className={
-							!props.editExpense
-								? "expense-card-text invoice"
-								: "expense-card-text edit invoice"
-						}
+						className={"expense-card-text invoice"}
 						disabled
 						value={data.invoice}
 					></input>
 				</div>
-				<div className="card-element">
+				<div className="card-element button-container">
 					{/* Edit = false, display edit button */}
 					{!props.editExpense && (
 						<button
 							type="button"
-							className="edit-button"
+							className="action-button"
 							onClick={(event) => props.edit(event, data.invoice)}
 						>
 							Edit
 						</button>
 					)}
-					{/* Edit = true, display submit button */}
+
 					{props.editExpense && (
-						<button
-							className="edit-button"
-							onClick={(e) => {
-								e.preventDefault();
-								props.handleClick(data);
-							}}
-						>
+						<button className="action-button" onClick={handleSubmit}>
 							Submit
 						</button>
 					)}
-					<button
-						value="Delete"
-						onClick={(e) => {
-							e.preventDefault();
-							props.handleDelete();
-						}}
-					>
-						Delete
-					</button>
+					{props.editExpense && (
+						<button
+							className="action-button"
+							value="Delete"
+							onClick={(e) => {
+								e.preventDefault();
+								props.handleDelete();
+							}}
+						>
+							Delete
+						</button>
+					)}
 				</div>
 			</form>
 		</div>

@@ -67,6 +67,13 @@ export default function ExpensesProvider({ children }) {
 			});
 	}
 
+	useEffect(() => {
+		if (expenses) {
+			sortExpenses(sort[0], sort[1]);
+			setExpenses((prevExpenses) => [...prevExpenses]);
+		}
+	}, [sort]);
+
 	function createExpense(id, data) {
 		return setDoc(doc(db, "users", uid, "expense", id), data);
 	}
