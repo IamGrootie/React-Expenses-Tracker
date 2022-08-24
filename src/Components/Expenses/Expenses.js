@@ -53,7 +53,7 @@ export default function Expenses() {
 			handleClick={handleSubmit}
 			handleDelete={handleDelete}
 			setSort={setSort}
-			class="transaction-transactions"
+			class="expense-expenses"
 		/>
 	));
 

@@ -98,77 +98,80 @@ function ExpenseCard(props) {
 	}
 
 	return (
-		<div key={props.invoice}>
+		<div key={props.invoice} className={props.class}>
 			<form
 				className={
 					!props.editExpense ? "expense-card-container" : "edit-selected"
 				}
 				onSubmit={(event) => props.handleClick(event)}
 			>
-				<div className="card-element name-business-container">
-					<input
-						className={
-							!props.editExpense
-								? "expense-card-text"
-								: "expense-card-text edit"
-						}
-						disabled={!props.editExpense}
-						name="title"
-						value={data.title}
-						onChange={handleChange}
-					></input>
-					<input
-						className={
-							!props.editExpense
-								? "expense-card-subtext"
-								: "expense-card-subtext edit"
-						}
-						disabled={!props.editExpense}
-						name="company"
-						value={data.company}
-						onChange={handleChange}
-					></input>
-				</div>
-				<div className="card-element type">
-					<div className="type-image-container">
-						<CategoryImage key={props.id} expenseCategory={data.category} />
-					</div>
-
-					{!props.editExpense ? (
-						<p>{data.category}</p>
-					) : (
-						<select
+				{props.title && (
+					<div className="card-element name-business-container">
+						<input
 							className={
 								!props.editExpense
-									? "expense-card-text type"
-									: "expense-card-text edit type"
+									? "expense-card-text"
+									: "expense-card-text edit"
 							}
 							disabled={!props.editExpense}
-							name="category"
-							defaultValue={data.category}
+							name="title"
+							value={data.title}
 							onChange={handleChange}
-						>
-							<option defaultValue="" hidden>
-								Category
-							</option>
-							<option>Entertainment</option>
-							<option>Food</option>
-							<option>General</option>
-							<option>Healthcare</option>
-							<option>Household</option>
-							<option>Housing</option>
-							<option>Insurance</option>
-							<option>Investing</option>
-							<option>Mobile</option>
-							<option>Payment</option>
-							<option>Personal</option>
-							<option>Savings</option>
-							<option>Subscriptions</option>
-							<option>Transport</option>
-							<option>Withdraw</option>
-						</select>
-					)}
-				</div>
+						></input>
+						<input
+							className={
+								!props.editExpense
+									? "expense-card-subtext"
+									: "expense-card-subtext edit"
+							}
+							disabled={!props.editExpense}
+							name="company"
+							value={data.company}
+							onChange={handleChange}
+						></input>
+					</div>
+				)}
+				{props.category && (
+					<div className="card-element type">
+						<div className="type-image-container">
+							<CategoryImage key={props.id} expenseCategory={data.category} />
+						</div>
+						{!props.editExpense ? (
+							<p>{data.category}</p>
+						) : (
+							<select
+								className={
+									!props.editExpense
+										? "expense-card-text type"
+										: "expense-card-text edit type"
+								}
+								disabled={!props.editExpense}
+								name="category"
+								defaultValue={data.category}
+								onChange={handleChange}
+							>
+								<option defaultValue="" hidden>
+									Category
+								</option>
+								<option>Entertainment</option>
+								<option>Food</option>
+								<option>General</option>
+								<option>Healthcare</option>
+								<option>Household</option>
+								<option>Housing</option>
+								<option>Insurance</option>
+								<option>Investing</option>
+								<option>Mobile</option>
+								<option>Payment</option>
+								<option>Personal</option>
+								<option>Savings</option>
+								<option>Subscriptions</option>
+								<option>Transport</option>
+								<option>Withdraw</option>
+							</select>
+						)}
+					</div>
+				)}
 				<div className="card-element amount">
 					{!props.editExpense ? (
 						<p className="selected-currency">{data.currency}</p>
@@ -219,36 +222,38 @@ function ExpenseCard(props) {
 						value={data.invoice}
 					></input>
 				</div>
-				<div className="card-element button-container">
-					{/* Edit = false, display edit button */}
-					{!props.editExpense && (
-						<button
-							type="button"
-							className="action-button"
-							onClick={(event) => props.edit(event, data.invoice)}
-						>
-							Edit
-						</button>
-					)}
+				{props.edit && (
+					<div className="card-element button-container">
+						{/* Edit = false, display edit button */}
+						{!props.editExpense && (
+							<button
+								type="button"
+								className="action-button"
+								onClick={(event) => props.edit(event, data.invoice)}
+							>
+								Edit
+							</button>
+						)}
 
-					{props.editExpense && (
-						<button className="action-button" onClick={handleSubmit}>
-							Submit
-						</button>
-					)}
-					{props.editExpense && (
-						<button
-							className="action-button"
-							value="Delete"
-							onClick={(e) => {
-								e.preventDefault();
-								props.handleDelete();
-							}}
-						>
-							Delete
-						</button>
-					)}
-				</div>
+						{props.editExpense && (
+							<button className="action-button" onClick={handleSubmit}>
+								Submit
+							</button>
+						)}
+						{props.editExpense && (
+							<button
+								className="action-button"
+								value="Delete"
+								onClick={(e) => {
+									e.preventDefault();
+									props.handleDelete();
+								}}
+							>
+								Delete
+							</button>
+						)}
+					</div>
+				)}
 			</form>
 		</div>
 	);

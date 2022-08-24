@@ -158,24 +158,5 @@ td {
 
 .recurring-expenses-card {
 	display: flex;
-	align-items: center;
 	justify-content: space-between;
-	padding-bottom: 10px;
-	border-bottom: 1px solid #f5f5f5;
-	width: 100%;
-}
-
-.reccurring-expenses-card-expense {
-	display: flex;
-	gap: 15px;
-}
-
-.reccurring-expenses-card-expense-text {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-}
-
-.expense-card-text-amount-container {
-	float: right;
 }

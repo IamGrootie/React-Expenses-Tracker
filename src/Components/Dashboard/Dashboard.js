@@ -1,11 +1,54 @@
 import React from "react";
+import { useEffect } from "react";
 import "./dashboard.css";
 import wallet from "../Images/wallet_icon.svg";
 import greenWallet from "../../images/green_wallet_icon.svg";
 import dailyWallet from "../../images/daily_wallet_icon.svg";
 import expand from "../../images/expand_icon.svg";
+import { useExpenses } from "../../Contexts/ExpensesContext";
+import { Transaction } from "firebase/firestore";
+import ExpenseCard from "../Expenses/ExpenseCard";
+import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
+	const { expenses, setTimePeriod, expensesThroughTime, timePeriod, setSort } =
+		useExpenses();
+
+	const totalSpending = expensesThroughTime.reduce(
+		(total, item) => total + +item.amount,
+		0
+	);
+
+	const monthlySpending = expensesThroughTime.reduce(
+		(total, item) => total + +item.amount,
+		7
+	);
+
+	const dailySpending = expensesThroughTime.reduce(
+		(total, item) => total + +item.amount,
+		1
+	);
+
+	const recurringExpensesArr = expenses
+		.filter((item) => item.recurring === true)
+		.map((expense) => (
+			<ExpenseCard
+				key={expense.invoice}
+				title={expense.title}
+				company={expense.company}
+				currency={expense.currency}
+				amount={expense.amount}
+				class="expense-dashboard-recurring"
+			/>
+		));
+
+	const navigate = useNavigate();
+
+	//Sort by recent transactions on load
+	useEffect(() => {
+		setSort(["date", "asc"]);
+	}, [setSort]);
+
 	return (
 		<div className="dashboard-container">
 			<nav className="navbar-container">
@@ -23,7 +66,7 @@ export default function Dashboard() {
 							<img src={greenWallet} alt="" />
 							<div>
 								<p className="amount-title">Total spending</p>
-								<h2 className="amount-value">props.total</h2>
+								<h2 className="amount-value">{`£${totalSpending}`}</h2>
 							</div>
 						</div>
 
@@ -31,7 +74,7 @@ export default function Dashboard() {
 							<img src={wallet} alt="" />
 							<div>
 								<p className="amount-title">Monthly spending</p>
-								<h2 className="amount-value">props.monthly</h2>
+								<h2 className="amount-value">{`£${totalSpending}`}</h2>
 							</div>
 						</div>
 
@@ -39,7 +82,7 @@ export default function Dashboard() {
 							<img src={dailyWallet} alt="" />
 							<div>
 								<p className="amount-title">Daily spending</p>
-								<h2 className="amount-value">props.daily</h2>
+								<h2 className="amount-value">{`£${dailySpending}`}</h2>
 							</div>
 						</div>
 					</section>
@@ -95,14 +138,16 @@ export default function Dashboard() {
 						</button>
 					</div>
 					<div className="recurring-expenses-card">
-						<div className="reccurring-expenses-card-expense">
+						{recurringExpensesArr}
+						{/* <div className="reccurring-expenses-card-expense">
 							<img src={wallet} />
 							<div className="reccurring-expenses-card-expense-text">
+							recurringExpensesArr
 								<p className="expense-card-text">Netlfix Subscription</p>
 								<p className="expense-card-subtext">Netlfix</p>
 							</div>
 						</div>
-						<p className="expense-card-text amount">£10</p>
+						<p className="expense-card-text amount">£10</p> */}
 					</div>
 				</div>
 			</div>
