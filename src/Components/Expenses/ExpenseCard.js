@@ -13,6 +13,7 @@ import {
 	serverTimestamp,
 	updateDoc,
 } from "firebase/firestore";
+import { hasSelectionSupport } from "@testing-library/user-event/dist/utils";
 
 function ExpenseCard(props) {
 	const currentDate = new Date().toISOString().substring(0, 10);
@@ -78,6 +79,21 @@ function ExpenseCard(props) {
 		event.preventDefault();
 		if (!addExpenseError.title && !addExpenseError.amount) {
 			props.handleClick(data);
+			props.setSort([...props.prevSort]);
+		}
+	}
+
+	// function handleEdit(event) {
+	// 	event.preventDefault();
+	// 	if (data.invoice === props.currentExpenseId) {
+	// 		props.edit(event, data.invoice);
+	// 		props.setEditExpense(true)
+	// 	}
+	// }
+
+	function handleDisable() {
+		if (props.currentExpenseId !== data.invoice) {
+			return;
 		}
 	}
 
@@ -153,12 +169,12 @@ function ExpenseCard(props) {
 						</select>
 					)}
 				</div>
-				<div className="card-element">
+				<div className="card-element amount">
 					{!props.editExpense ? (
-						<p>{data.currency}</p>
+						<p className="selected-currency">{data.currency}</p>
 					) : (
 						<select
-							className="select-currency"
+							className="currency-select"
 							name="currency"
 							value={data.currency}
 							onChange={handleChange}
@@ -188,7 +204,11 @@ function ExpenseCard(props) {
 								: "expense-card-text edit"
 						}
 						disabled={!props.editExpense}
+						name="date"
+						type="date"
 						value={data.date}
+						min="2021-01-01"
+						max="2023-01-01"
 						onChange={handleChange}
 					></input>
 				</div>

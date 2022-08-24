@@ -98,12 +98,12 @@
 .expenses-table {
 	margin-top: 25px;
 	border-top: 1px solid #f5f5f5;
-	min-width: 550px;
+	min-width: 675px;
 }
 
 .expense-cards {
 	overflow-y: auto;
-	max-height: 520px;
+	max-height: 532px;
 }
 
 .expense-cards::-webkit-scrollbar {

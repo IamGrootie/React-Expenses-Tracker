@@ -29,13 +29,13 @@ export default function ExpensesProvider({ children }) {
 	const uid = currentUser && currentUser.uid;
 	const [expenses, setExpenses] = useState([]);
 	const expensesRef = currentUser && collection(db, "users", uid, "expense");
-	// const displayQ = query(expensesRef, orderBy("date", "desc"));
+	const displayQ = query(expensesRef, orderBy("date", "desc"));
 	const [sort, setSort] = useState(["date", "asc"]);
 
 	useEffect(() => {
 		if (currentUser) {
 			onSnapshot(expensesRef, async () => {
-				const data = await getDocs(expensesRef);
+				const data = await getDocs(displayQ);
 				const expensesArray = data.docs.map((doc) => doc.data());
 				setExpenses(expensesArray);
 			});
@@ -52,7 +52,9 @@ export default function ExpensesProvider({ children }) {
 	function sortExpenses(value, order) {
 		if (value === "amount") {
 			const expensePart = expenses.sort((a, b) => a.amount - b.amount);
-			setExpenses([...expensePart]);
+			setExpenses(
+				order === "asc" ? [...expensePart] : [...expensePart].reverse()
+			);
 		} else
 			return expenses.sort((a, b) => {
 				const itemA = a[value].toUpperCase();

@@ -2,14 +2,13 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useExpenses } from "../../Contexts/ExpensesContext";
 import "./Filters.css";
+import chevron from "../../images/chevron.svg";
 
 export default function Filters(props) {
 	const { sort, setSort } = useExpenses();
 	console.log(sort[1]);
-	const [nameBusinessArray, setNameBusinessArray] = useState([]);
-
-	function handleClick(event) {
-		const { name } = event.target;
+	function handleClick(e) {
+		const { name } = e.target;
 		setSort((prevSort) => {
 			return prevSort[0] !== name
 				? [name, "asc"]
@@ -18,55 +17,95 @@ export default function Filters(props) {
 				: [name, "asc"];
 		});
 	}
-	useEffect((expensesArr) => {});
+
+	// function chevronTransition() {
+	// 	if (sort === "asc")
+	// }
 
 	return (
 		<div className="input-titles">
-			<button className="category-btn">NAME/BUSINESS</button>
-			<button className="category-btn">CATEGORY</button>
-			<button className="category-btn">AMOUNT</button>
-			<button className="category-btn">DATE</button>
-			<button className="category-btn">INVOICE ID</button>
-			<button className="category-btn">ACTION</button>
+			<button
+				className={
+					props.displayFilters ? "category-btn" : "category-btn hidden"
+				}
+				name="title"
+				disabled={!props.displayFilters}
+				onClick={handleClick}
+			>
+				NAME/BUSINESS
+				{props.displayFilters && (
+					<img src={sort[0] === "title" ? chevron : null} className={sort[1]} />
+				)}
+			</button>
+			<button
+				className={
+					props.displayFilters ? "category-btn" : "category-btn hidden"
+				}
+				name="company"
+				disabled={!props.displayFilters}
+				onClick={handleClick}
+			>
+				CATEGORY
+				{props.displayFilters && (
+					<img
+						src={sort[0] === "company" ? chevron : null}
+						className={sort[1]}
+					/>
+				)}
+			</button>
+			<button
+				className={
+					props.displayFilters ? "category-btn" : "category-btn hidden"
+				}
+				name="amount"
+				disabled={!props.displayFilters}
+				onClick={handleClick}
+			>
+				AMOUNT
+				{props.displayFilters && (
+					<img
+						src={sort[0] === "amount" ? chevron : null}
+						className={sort[1]}
+					/>
+				)}
+			</button>
+			<button
+				className={
+					props.displayFilters ? "category-btn" : "category-btn hidden"
+				}
+				name="date"
+				disabled={!props.displayFilters}
+				onClick={handleClick}
+			>
+				DATE
+				{props.displayFilters && (
+					<img src={sort[0] === "date" ? chevron : null} className={sort[1]} />
+				)}
+			</button>
+			<button
+				className={
+					props.displayFilters ? "category-btn" : "category-btn hidden"
+				}
+				name="invoice"
+				disabled={!props.displayFilters}
+				onClick={handleClick}
+			>
+				INVOICE ID
+				{props.displayFilters && (
+					<img
+						src={sort[0] === "invoice" ? chevron : null}
+						className={sort[1]}
+					/>
+				)}
+			</button>
+			<button
+				className={
+					props.displayFilters ? "category-btn action" : "category-btn hidden"
+				}
+				disabled
+			>
+				ACTION
+			</button>
 		</div>
 	);
-}
-
-{
-	/* <form className="filter-form">
-				<div className="form-element">
-					<select className="filter-select">
-						<option>Name/Business</option>
-						<option>{props.expensesArr.title}</option>
-					</select>
-				</div>
-				<div className="form-element">
-					<select className="filter-select">
-						<option>Category</option>
-						<option>pull data from firestore 'Type'</option>
-					</select>
-				</div>
-				<div className="form-element">
-					<select className="filter-select">
-						<option>Amount</option>
-						<option>pull data from firestore 'Amount'</option>
-					</select>
-				</div>
-				<div className="form-element">
-					<select className="filter-select">
-						<option>Date</option>
-						<option>pull data from firestore 'Date'</option>
-					</select>
-				</div>
-				<div className="form-element">
-					<label className="checkbox-input-text">
-						<input
-							className="checkbox-input"
-							type="checkbox"
-							name="recurring"
-						></input>
-						Recurring
-					</label>
-				</div>
-			</form> */
 }

@@ -9,21 +9,10 @@ import CreateExpense from "./CreateExpense";
 import Filters from "./Filters";
 import ExpenseCard from "./ExpenseCard";
 import { useExpenses } from "../../Contexts/ExpensesContext";
-import { db } from "../../firebase-config";
-import {
-	collection,
-	doc,
-	getDocs,
-	updateDoc,
-	setDoc,
-	onSnapshot,
-	query,
-	orderBy,
-	getDoc,
-	serverTimestamp,
-} from "firebase/firestore";
+import { useAuth } from "../../Contexts/RequireAuth";
 
 export default function Expenses() {
+	const { currentUser } = useAuth();
 	const { expenses, createExpense, updateExpense, deleteExpense, setSort } =
 		useExpenses();
 	const [editExpense, setEditExpense] = useState(false);
@@ -58,29 +47,25 @@ export default function Expenses() {
 			invoice={expense.invoice}
 			edit={edit}
 			currentExpense={currentExpense}
+			currentExpenseId={currentExpenseId}
 			editExpense={editExpense}
 			setEditExpense={setEditExpense}
 			handleClick={handleSubmit}
-			close={(e) => {
-				e.preventDefault();
-				setCurrentExpense("");
-				setCurrentExpenseId("");
-			}}
 			handleDelete={handleDelete}
+			setSort={setSort}
 			class="transaction-transactions"
 		/>
 	));
 
-	async function edit(e, id) {
-		e.stopPropagation();
+	async function edit(event, id) {
+		event.stopPropagation();
 		setCurrentExpenseId(id);
 		setCurrentExpense(expenses.find((expense) => expense.invoice === id));
+		console.log(currentExpenseId);
 		setEditExpense(true);
-		setSort(["date", "asc"]);
 	}
-
+	console.log(editExpense);
 	console.log(currentExpenseId);
-	// console.log(currentExpense);
 
 	// SORT OUT REGEX FOR EDITING
 
@@ -113,13 +98,13 @@ export default function Expenses() {
 			setEditExpense(false);
 		}
 	}
-	// UNCAUGHT IN PROMISE
 
 	async function handleDelete() {
 		await deleteExpense(currentExpenseId);
 		setCurrentExpense("");
 		setCurrentExpenseId("");
 		setEditExpense(false);
+		setSort(["date", "asc"]);
 	}
 
 	const [displayCreateExpense, setDisplayCreateExpense] = useState(false);
@@ -150,7 +135,7 @@ export default function Expenses() {
 					<h1 className="title">Expenses</h1>
 					<button className="profile-btn">
 						{/* // <img src=PROFILE PIC/>  */}
-						<h3>NAME OF PROFILE-CHANGE</h3>
+						<h3>{currentUser.displayName}</h3>
 					</button>
 				</nav>
 
@@ -161,7 +146,9 @@ export default function Expenses() {
 							<input
 								className="search-input"
 								type="text"
-								placeholder="Search for specific transactions"
+								placeholder="Search by name"
+								value={search}
+								onChange={handleInput}
 							></input>
 						</div>
 						<div className="expense-buttons">
@@ -184,21 +171,8 @@ export default function Expenses() {
 						</div>
 					</div>
 					<div className="expenses-table">
-						<Filters
-							displayFiltersState={setDisplayFilters}
-							expenses={expenses}
-							expensesArr={expensesArr}
-						/>
-						<div className="expense-cards">
-							{/* <ExpenseCard
-                currentExpense={currentExpense}
-                setCurrentExpense={currentExpense}
-                currentExpenseId={currentExpenseId}
-                setCurrentExpenseId={setCurrentExpenseId}
-                key={expenses.id}
-              /> */}
-							{expensesArr}
-						</div>
+						<Filters displayFilters={displayFilters} />
+						<div className="expense-cards">{expensesArr}</div>
 					</div>
 				</div>
 			</section>
