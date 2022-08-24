@@ -157,6 +157,8 @@ td {
 }
 
 .recurring-expenses-card {
-	display: flex;
-	justify-content: space-between;
+	display: ;
+	gap: 20px;
+
+	width: fit-content;
 }

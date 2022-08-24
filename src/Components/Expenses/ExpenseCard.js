@@ -98,11 +98,9 @@ function ExpenseCard(props) {
 	}
 
 	return (
-		<div key={props.invoice} className={props.class}>
+		<div key={props.invoice}>
 			<form
-				className={
-					!props.editExpense ? "expense-card-container" : "edit-selected"
-				}
+				className={props.class}
 				onSubmit={(event) => props.handleClick(event)}
 			>
 				{props.title && (
@@ -172,49 +170,53 @@ function ExpenseCard(props) {
 						)}
 					</div>
 				)}
-				<div className="card-element amount">
-					{!props.editExpense ? (
-						<p className="selected-currency">{data.currency}</p>
-					) : (
-						<select
-							className="currency-select"
-							name="currency"
-							value={data.currency}
+				{props.amount && (
+					<div className="card-element amount">
+						{!props.editExpense ? (
+							<p className="selected-currency">{data.currency}</p>
+						) : (
+							<select
+								className="currency-select"
+								name="currency"
+								value={data.currency}
+								onChange={handleChange}
+							>
+								<option>£</option>
+								<option>$</option>
+								<option>€</option>
+							</select>
+						)}
+						<input
+							className={
+								!props.editExpense
+									? "expense-card-text amount"
+									: "expense-card-text edit amount"
+							}
+							disabled={!props.editExpense}
+							name="amount"
+							value={data.amount}
 							onChange={handleChange}
-						>
-							<option>£</option>
-							<option>$</option>
-							<option>€</option>
-						</select>
-					)}
-					<input
-						className={
-							!props.editExpense
-								? "expense-card-text amount"
-								: "expense-card-text edit amount"
-						}
-						disabled={!props.editExpense}
-						name="amount"
-						value={data.amount}
-						onChange={handleChange}
-					></input>
-				</div>
-				<div className="card-element date-container">
-					<input
-						className={
-							!props.editExpense
-								? "expense-card-text"
-								: "expense-card-text edit"
-						}
-						disabled={!props.editExpense}
-						name="date"
-						type="date"
-						value={data.date}
-						min="2021-01-01"
-						max="2023-01-01"
-						onChange={handleChange}
-					></input>
-				</div>
+						></input>
+					</div>
+				)}
+				{props.date && (
+					<div className="card-element date-container">
+						<input
+							className={
+								!props.editExpense
+									? "expense-card-text"
+									: "expense-card-text edit"
+							}
+							disabled={!props.editExpense}
+							name="date"
+							type="date"
+							value={data.date}
+							min="2021-01-01"
+							max="2023-01-01"
+							onChange={handleChange}
+						></input>
+					</div>
+				)}
 				<div className="card-element">
 					<input
 						className={"expense-card-text invoice"}

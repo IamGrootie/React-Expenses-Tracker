@@ -1,5 +1,5 @@
-.expense-card-container,
-.edit-selected {
+/* Expenses shown on Expenses Page */
+.expense-expenses {
 	margin-top: 15px;
 	display: grid;
 	grid-template-columns: 1.5fr 1.5fr 1fr 1fr 1fr 1fr;
@@ -8,6 +8,20 @@
 	border-bottom: 1px solid #f5f5f5;
 	place-items: left;
 	font-family: "Kumbh Sans";
+	min-width: %;
+}
+
+/* Reccuring expenses shown on Dashboard Page */
+.expense-dashboard-recurring {
+	display: flex;
+	justify-content: space-between;
+	min-width: fit-content;
+	margin: 0 auto;
+	padding: 0 !important;
+}
+
+.expense-dashboard-recurring > .card-element {
+	min-width: none !important;
 }
 
 /* WHEN EDIT HAS BEEN CLICKED, SHOW THIS THROUGH COLOUR CHANGE */
@@ -17,10 +31,6 @@ input.edit {
 	border-radius: 5px;
 }
 
-.edit-selected {
-}
-
-/* resolve responsiveness so inline with input titles from Expense component */
 .card-element {
 	display: flex;
 	align-items: center;
