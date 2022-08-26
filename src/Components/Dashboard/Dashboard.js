@@ -10,7 +10,7 @@ import { Transaction } from "firebase/firestore";
 import ExpenseCard from "../Expenses/ExpenseCard";
 import { useNavigate } from "react-router-dom";
 
-export default function Dashboard() {
+export default function Dashboard(props) {
 	const { expenses, setTimePeriod, expensesThroughTime, timePeriod, setSort } =
 		useExpenses();
 
@@ -21,12 +21,12 @@ export default function Dashboard() {
 
 	const monthlySpending = expensesThroughTime.reduce(
 		(total, item) => total + +item.amount,
-		7
+		0
 	);
 
 	const dailySpending = expensesThroughTime.reduce(
 		(total, item) => total + +item.amount,
-		1
+		0
 	);
 
 	const recurringExpensesArr = expenses
@@ -36,6 +36,7 @@ export default function Dashboard() {
 				key={expense.invoice}
 				title={expense.title}
 				company={expense.company}
+				category={expense.category}
 				currency={expense.currency}
 				amount={expense.amount}
 				class="expense-dashboard-recurring"
@@ -49,6 +50,19 @@ export default function Dashboard() {
 		setSort(["date", "asc"]);
 	}, [setSort]);
 
+	const expensesArr = expenses
+		.slice(0, 3)
+		.map((expense) => (
+			<ExpenseCard
+				key={expense.invoice}
+				title={expense.title}
+				company={expense.company}
+				category={expense.category}
+				amount={expense.amount}
+				date={expense.date}
+				class="expense-dashboard"
+			/>
+		));
 	return (
 		<div className="dashboard-container">
 			<nav className="navbar-container">
@@ -74,7 +88,7 @@ export default function Dashboard() {
 							<img src={wallet} alt="" />
 							<div>
 								<p className="amount-title">Monthly spending</p>
-								<h2 className="amount-value">{`£${totalSpending}`}</h2>
+								<h2 className="amount-value">{`£${monthlySpending}`}</h2>
 							</div>
 						</div>
 
@@ -91,48 +105,26 @@ export default function Dashboard() {
 						<h3 className="section-title">Working Capital</h3>
 					</section>
 
-					<section className="table-container">
-						<div className="table-title">
+					<section className="dashboard-expense-container">
+						<div className="dashboard-expense-title">
 							<h3 className="section-title">Recent Expenses</h3>
-							<button className="expand-btn">
+							<button
+								className="expand-btn"
+								onClick={() => navigate("expenses")}
+							>
 								View All
 								<img src={expand} className="expand-icon" alt="" />
 							</button>
 						</div>
 
-						<table>
-							<tr>
-								<th className="left">NAME/BUSINESS</th>
-								<th>TYPE</th>
-								<th>AMOUNT</th>
-								<th>DATE</th>
-							</tr>
-							<tr>
-								<td className="left">props.name.last</td>
-								<td>props.type</td>
-								<td>props.amount</td>
-								<td>props.date</td>
-							</tr>
-							<tr>
-								<td className="left">props.name.last</td>
-								<td>props.type</td>
-								<td>props.amount</td>
-								<td>props.date</td>
-							</tr>
-							<tr className="last-line">
-								<td className="left last-line">props.name.last</td>
-								<td className="last-line">props.type</td>
-								<td className="last-line">props.amount</td>
-								<td className="last-line">props.date</td>
-							</tr>
-						</table>
+						<div className="expense-dashboard-card">{expensesArr}</div>
 					</section>
 				</div>
 
 				<div className="recurring-expenses-container">
 					<div className="title-recurring-expenses">
 						<h3 className="section-title">Recurring Expenses</h3>
-						<button className="expand-btn">
+						<button className="expand-btn" onClick={() => navigate("expenses")}>
 							View All
 							<img src={expand} className="expand-icon" alt="" />
 						</button>

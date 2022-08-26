@@ -98,7 +98,7 @@ function ExpenseCard(props) {
 	}
 
 	return (
-		<div key={props.invoice}>
+		<div className="expense-card">
 			<form
 				className={props.class}
 				onSubmit={(event) => props.handleClick(event)}
@@ -130,18 +130,18 @@ function ExpenseCard(props) {
 					</div>
 				)}
 				{props.category && (
-					<div className="card-element type">
-						<div className="type-image-container">
+					<div className="card-element category">
+						<div className="category-image-container">
 							<CategoryImage key={props.id} expenseCategory={data.category} />
 						</div>
 						{!props.editExpense ? (
-							<p>{data.category}</p>
+							<p className="expense-card-text category">{data.category}</p>
 						) : (
 							<select
 								className={
 									!props.editExpense
-										? "expense-card-text type"
-										: "expense-card-text edit type"
+										? "expense-card-text category"
+										: "expense-card-text edit category"
 								}
 								disabled={!props.editExpense}
 								name="category"
@@ -217,13 +217,11 @@ function ExpenseCard(props) {
 						></input>
 					</div>
 				)}
-				<div className="card-element">
-					<input
-						className={"expense-card-text invoice"}
-						disabled
-						value={data.invoice}
-					></input>
-				</div>
+				{props.invoice && (
+					<div className="card-element">
+						<p className="expense-card-text invoice">{data.invoice}</p>
+					</div>
+				)}
 				{props.edit && (
 					<div className="card-element button-container">
 						{/* Edit = false, display edit button */}
