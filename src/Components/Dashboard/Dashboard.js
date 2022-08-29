@@ -8,6 +8,7 @@ import expand from "../../images/expand_icon.svg";
 import { useExpenses } from "../../Contexts/ExpensesContext";
 import { Transaction } from "firebase/firestore";
 import ExpenseCard from "../Expenses/ExpenseCard";
+import Filters from "../Expenses/Filters";
 import { useNavigate } from "react-router-dom";
 
 export default function Dashboard(props) {
@@ -58,6 +59,7 @@ export default function Dashboard(props) {
 				title={expense.title}
 				company={expense.company}
 				category={expense.category}
+				currency={expense.currency}
 				amount={expense.amount}
 				date={expense.date}
 				class="expense-dashboard"
@@ -117,7 +119,10 @@ export default function Dashboard(props) {
 							</button>
 						</div>
 
-						<div className="expense-dashboard-card">{expensesArr}</div>
+						<div className="dashboard-expense-card">
+							{/* <Filters /> */}
+							{expensesArr}
+						</div>
 					</section>
 				</div>
 

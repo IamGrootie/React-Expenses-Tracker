@@ -95,7 +95,17 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin: 1.25rem 1.563rem;
+	margin: 10px 25px;
+}
+
+.dashboard-expense-card {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	border: 1px solid green;
+	min-width: 100%;
+	height: fit-content;
 }
 
 .expand-btn {
