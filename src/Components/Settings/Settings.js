@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useAuth } from "../../Contexts/RequireAuth.js";
+import { useAuth } from "../../Contexts/AuthContext.js";
 import Pen from "../../images/Edit_icon.svg";
 import Mail from "../../images/Email_icon.svg";
 import Lock from "../../images/Lock_icon.svg";
@@ -12,6 +12,16 @@ export default function Settings() {
   const { updateUser, updateUsersEmail, updateUsersPassword, userDetails } =
     useAuth();
   const [error, setError] = useState("");
+
+  const [data, setData] = useState({
+    firstName: userDetails.firstName,
+    lastName: userDetails.lastName,
+    dateOfBirth: userDetails.dateOfBirth,
+    mobileNumber: userDetails.mobileNumber,
+    email: userDetails.email,
+    password: "",
+    passwordConfirm: "",
+  });
 
   useEffect(() => {
     setData({
@@ -27,9 +37,9 @@ export default function Settings() {
 
   const [editSettings, setEditSettings] = useState(false);
 
-  const [data, setData] = useState({});
-
   const [passwordInput, setPasswordInput] = useState("password");
+
+  console.log(data.email);
 
   async function handleSubmit(e) {
     setError("");
@@ -70,11 +80,13 @@ export default function Settings() {
 
   function handleInput(e) {
     const { name, value } = e.target;
-    setData(prevData => ({
-      ...prevData,
+    setData(prev => ({
+      ...prev,
       [name]: value,
     }));
   }
+
+  useEffect(() => {}, [data]);
 
   return (
     <div className="settings-container">
@@ -98,7 +110,7 @@ export default function Settings() {
           </button>
         </section>
 
-        <form className="form-info">
+        <form className="form-info" onSubmit={event => handleSubmit(event)}>
           <section className="form-wrap">
             <div className="form-column">
               <label className="label label-fname">First Name</label>
@@ -109,7 +121,6 @@ export default function Settings() {
                 name="firstName"
                 onChange={handleInput}
                 value={data.firstName}
-                placeholder={data.firstName}
               />
             </div>
 
@@ -121,7 +132,7 @@ export default function Settings() {
                 type="text"
                 name="lastName"
                 onChange={handleInput}
-                placeholder={data.lastName}
+                value={data.lastName}
               />
             </div>
 
@@ -131,9 +142,9 @@ export default function Settings() {
                 disabled={!editSettings}
                 className="input input-date"
                 type="date"
-                name="dob"
+                name="dateOfBirth"
                 onChange={handleInput}
-                placeholder={data.userBirth}
+                value={data.dateOfBirth}
               />
             </div>
 
@@ -142,9 +153,9 @@ export default function Settings() {
               <input
                 disabled={!editSettings}
                 className="input input-phone"
-                name="phone"
+                name="mobileNumber"
                 onChange={handleInput}
-                placeholder={data.phoneNumber}
+                value={data.mobileNumber}
               />
             </div>
           </section>
@@ -158,7 +169,7 @@ export default function Settings() {
               type="email"
               name="email"
               onChange={handleInput}
-              placeholder={data.userEmail}
+              value={data.email}
             />
           </div>
 

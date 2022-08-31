@@ -9,7 +9,7 @@ import CreateExpense from "./CreateExpense";
 import Filters from "./Filters";
 import ExpenseCard from "./ExpenseCard";
 import { useExpenses } from "../../Contexts/ExpensesContext";
-import { useAuth } from "../../Contexts/RequireAuth";
+import { useAuth } from "../../Contexts/AuthContext";
 import Header from "../Header/Header";
 
 export default function Expenses() {

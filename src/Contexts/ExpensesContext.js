@@ -17,7 +17,7 @@ import { createContext, useContext, useState, useEffect } from "react";
 
 import { db } from "../firebase-config";
 
-import { useAuth } from "./RequireAuth";
+import { useAuth } from "./AuthContext";
 
 const ExpensesContext = createContext();
 
@@ -30,14 +30,14 @@ export default function ExpensesProvider({ children }) {
   const uid = currentUser && currentUser.uid;
   const [expenses, setExpenses] = useState([]);
   const expensesRef = currentUser && collection(db, "users", uid, "expense");
-  const displayQ = query(expensesRef, orderBy("date", "desc"));
+  //   const displayQ = query(expensesRef, orderBy("date", "desc"));
   const [sort, setSort] = useState(["date", "asc"]);
   const [timePeriod, setTimePeriod] = useState(7);
 
   useEffect(() => {
     if (currentUser) {
       onSnapshot(expensesRef, async () => {
-        const data = await getDocs(displayQ);
+        const data = await getDocs(expensesRef);
         const expensesArray = data.docs.map(doc => doc.data());
         setExpenses(expensesArray);
       });

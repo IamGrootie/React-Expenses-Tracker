@@ -1,7 +1,7 @@
 import React from "react";
 import {NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import {useAuth} from '../../Contexts/RequireAuth'
+import {useAuth} from '../../Contexts/AuthContext'
 import dashboardIcon from "../../images/dashboard-icon.svg";
 import expensesIcon from "../../images/expenses-icon.svg";
 import settingsIcon from "../../images/settings-icon.svg";

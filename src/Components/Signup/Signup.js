@@ -6,7 +6,7 @@ import { signInWithPopup } from "firebase/auth";
 import { auth, provider, db } from "../../firebase-config";
 import { collection, addDoc } from "firebase/firestore";
 import { nanoid } from "nanoid";
-import { useAuth } from "../../Contexts/RequireAuth.js";
+import { useAuth } from "../../Contexts/AuthContext.js";
 import Logo from "../../images/Logo.svg";
 import google from "../../images/Google.svg";
 import vector from "../../images/Vector.svg";
