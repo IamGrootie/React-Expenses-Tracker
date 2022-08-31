@@ -10,133 +10,128 @@ import { Transaction } from "firebase/firestore";
 import ExpenseCard from "../Expenses/ExpenseCard";
 import Filters from "../Expenses/Filters";
 import { useNavigate } from "react-router-dom";
+import Header from "../Header/Header";
 
 export default function Dashboard(props) {
-	const { expenses, setTimePeriod, expensesThroughTime, timePeriod, setSort } =
-		useExpenses();
+  const { expenses, setTimePeriod, expensesThroughTime, timePeriod, setSort } =
+    useExpenses();
 
-	const totalSpending = expensesThroughTime.reduce(
-		(total, item) => total + +item.amount,
-		0
-	);
+  const totalSpending = expensesThroughTime.reduce(
+    (total, item) => total + +item.amount,
+    0
+  );
 
-	const monthlySpending = expensesThroughTime.reduce(
-		(total, item) => total + +item.amount,
-		0
-	);
+  const monthlySpending = expensesThroughTime.reduce(
+    (total, item) => total + +item.amount,
+    0
+  );
 
-	const dailySpending = expensesThroughTime.reduce(
-		(total, item) => total + +item.amount,
-		0
-	);
+  const dailySpending = expensesThroughTime.reduce(
+    (total, item) => total + +item.amount,
+    0
+  );
 
-	const recurringExpensesArr = expenses
-		.filter((item) => item.recurring === true)
-		.map((expense) => (
-			<ExpenseCard
-				key={expense.invoice}
-				title={expense.title}
-				company={expense.company}
-				category={expense.category}
-				currency={expense.currency}
-				amount={expense.amount}
-				class="expense-dashboard-recurring"
-			/>
-		));
+  const recurringExpensesArr = expenses
+    .filter(item => item.recurring === true)
+    .map(expense => (
+      <ExpenseCard
+        key={expense.invoice}
+        title={expense.title}
+        company={expense.company}
+        category={expense.category}
+        currency={expense.currency}
+        amount={expense.amount}
+        class="expense-dashboard-recurring"
+      />
+    ));
 
-	const navigate = useNavigate();
+  const navigate = useNavigate();
 
-	//Sort by recent transactions on load
-	useEffect(() => {
-		setSort(["date", "asc"]);
-	}, [setSort]);
+  //Sort by recent transactions on load
+  useEffect(() => {
+    setSort(["date", "asc"]);
+  }, [setSort]);
 
-	const expensesArr = expenses
-		.slice(0, 3)
-		.map((expense) => (
-			<ExpenseCard
-				key={expense.invoice}
-				title={expense.title}
-				company={expense.company}
-				category={expense.category}
-				currency={expense.currency}
-				amount={expense.amount}
-				date={expense.date}
-				class="expense-dashboard"
-			/>
-		));
-	return (
-		<div className="dashboard-container">
-			<nav className="navbar-container">
-				<h1 className="title">Dashboard</h1>
-				<button className="profile-btn">
-					{/* // <img src=PROFILE PIC/>  */}
-					<h3>NAME OF PROFILE-CHANGE</h3>
-				</button>
-			</nav>
+  const expensesArr = expenses
+    .slice(0, 3)
+    .map(expense => (
+      <ExpenseCard
+        key={expense.invoice}
+        title={expense.title}
+        company={expense.company}
+        category={expense.category}
+        currency={expense.currency}
+        amount={expense.amount}
+        date={expense.date}
+        class="expense-dashboard"
+      />
+    ));
+  return (
+    <div className="dashboard-container">
+      <Header />
 
-			<div className="dash-container">
-				<div className="resume-container">
-					<section className="amounts-tab">
-						<div className="amount-itm-total">
-							<img src={greenWallet} alt="" />
-							<div>
-								<p className="amount-title">Total spending</p>
-								<h2 className="amount-value">{`£${totalSpending}`}</h2>
-							</div>
-						</div>
+      <div className="dash-container">
+        <div className="resume-container">
+          <section className="amounts-tab">
+            <div className="amount-itm-total">
+              <img src={greenWallet} alt="" />
+              <div>
+                <p className="amount-title">Total spending</p>
+                <h2 className="amount-value">{`£${totalSpending}`}</h2>
+              </div>
+            </div>
 
-						<div className="amount-itm">
-							<img src={wallet} alt="" />
-							<div>
-								<p className="amount-title">Monthly spending</p>
-								<h2 className="amount-value">{`£${monthlySpending}`}</h2>
-							</div>
-						</div>
+            <div className="amount-itm">
+              <img src={wallet} alt="" />
+              <div>
+                <p className="amount-title">Monthly spending</p>
+                <h2 className="amount-value">{`£${monthlySpending}`}</h2>
+              </div>
+            </div>
 
-						<div className="amount-itm">
-							<img src={dailyWallet} alt="" />
-							<div>
-								<p className="amount-title">Daily spending</p>
-								<h2 className="amount-value">{`£${dailySpending}`}</h2>
-							</div>
-						</div>
-					</section>
+            <div className="amount-itm">
+              <img src={dailyWallet} alt="" />
+              <div>
+                <p className="amount-title">Daily spending</p>
+                <h2 className="amount-value">{`£${dailySpending}`}</h2>
+              </div>
+            </div>
+          </section>
 
-					<section className="graph-container">
-						<h3 className="section-title">Working Capital</h3>
-					</section>
+          <section className="graph-container">
+            <h3 className="section-title">Working Capital</h3>
+          </section>
 
-					<section className="dashboard-expense-container">
-						<div className="dashboard-expense-title">
-							<h3 className="section-title">Recent Expenses</h3>
-							<button
-								className="expand-btn"
-								onClick={() => navigate("expenses")}
-							>
-								View All
-								<img src={expand} className="expand-icon" alt="" />
-							</button>
-						</div>
+          <section className="dashboard-expense-container">
+            <div className="dashboard-expense-title">
+              <h3 className="section-title">Recent Expenses</h3>
+              <button
+                className="expand-btn"
+                onClick={() => navigate("expenses")}
+              >
+                View All
+                <img src={expand} className="expand-icon" alt="" />
+              </button>
+            </div>
 
-						<div className="dashboard-expense-card">
-							{/* <Filters /> */}
-							{expensesArr}
-						</div>
-					</section>
-				</div>
+            <div className="dashboard-expense-card">
+              {/* <Filters /> */}
+              {expensesArr}
+            </div>
+          </section>
+        </div>
 
-				<div className="recurring-expenses-container">
-					<div className="title-recurring-expenses">
-						<h3 className="section-title">Recurring Expenses</h3>
-						<button className="expand-btn" onClick={() => navigate("expenses")}>
-							View All
-							<img src={expand} className="expand-icon" alt="" />
-						</button>
-					</div>
-					<div className="recurring-expenses-card">
-						{recurringExpensesArr}
-						{/* <div className="reccurring-expenses-card-expense">
+        <div className="recurring-expenses-container">
+          <div className="title-recurring-expenses">
+            <h3 className="section-title">Recurring Expenses</h3>
+            <button className="expand-btn" onClick={() => navigate("expenses")}>
+              View All
+              <img src={expand} className="expand-icon" alt="" />
+            </button>
+          </div>
+          <div className="recurring-expenses-card">
+            {recurringExpensesArr}
+            {/* <div className="reccurring-expenses-card-expense">
 							<img src={wallet} />
 							<div className="reccurring-expenses-card-expense-text">
 							recurringExpensesArr
@@ -145,9 +140,9 @@ export default function Dashboard(props) {
 							</div>
 						</div>
 						<p className="expense-card-text amount">£10</p> */}
-					</div>
-				</div>
-			</div>
-		</div>
-	);
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }

@@ -182,7 +182,7 @@
 
 .expense-dashboard-recurring > .card-element > .expense-card-text.amount {
   display: flex !important;
-  justify-content: flex-end !important;
+  justify-content: flex-end !;
 }
 
 /* WHEN EDIT HAS BEEN CLICKED, SHOW THIS THROUGH COLOUR CHANGE */
