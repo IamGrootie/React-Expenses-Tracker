@@ -243,13 +243,13 @@ export default function Settings() {
             </div>
           </section>
 
-          <button
+          {editSettings && <button
             disabled={!editSettings}
             onClick={e => handleSubmit(e)}
             className="update-btn"
           >
             Update
-          </button>
+          </button>}
         </form>
       </div>
     </div>
