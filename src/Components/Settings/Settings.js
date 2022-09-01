@@ -28,6 +28,18 @@ export default function Settings() {
     passwordConfirm: "",
   });
 
+  useEffect(() => {
+    setData({
+      firstName: userDetails.firstName,
+      lastName: userDetails.lastName,
+      dateOfBirth: userDetails.dateOfBirth,
+      mobileNumber: userDetails.mobileNumber,
+      email: userDetails.email,
+      password: "",
+      passwordConfirm: "",
+    });
+  }, [userDetails]);
+  
   const [editSettings, setEditSettings] = useState(false);
 
   const [passwordInput, setPasswordInput] = useState("password");
@@ -73,7 +85,7 @@ export default function Settings() {
 
   function handleInput(e) {
     const { name, value } = e.target;
-    setData((prev) => ({
+    setData(prev => ({
       ...prev,
       [name]: value,
     }));
@@ -93,17 +105,17 @@ export default function Settings() {
           <h2 className="subtitle-pers">Personal Information</h2>
           <button
             className="edit-btn"
-            onClick={(e) => {
-              setEditSettings((prev) => !prev);
+            onClick={e => {
+              setEditSettings(prev => !prev);
               e.preventDefault();
             }}
           >
-            <img src={Pen} className="pen-icon" alt="" />
+            <img src={Pen} className="pen-icon" alt=""/>
             Edit
           </button>
         </section>
 
-        <form className="form-info" onSubmit={(event) => handleSubmit(event)}>
+        <form className="form-info" onSubmit={event => handleSubmit(event)}>
           <section className="form-wrap">
             <div className="form-column">
               <label className="label label-fname">First Name</label>
@@ -186,8 +198,8 @@ export default function Settings() {
                   placeholder="·······"
                 />
                 <button
-                  onClick={(e) => {
-                    setPasswordInput((prev) =>
+                  onClick={e => {
+                    setPasswordInput(prev =>
                       prev === "password" ? "text" : "password"
                     );
                     e.preventDefault();
@@ -216,8 +228,8 @@ export default function Settings() {
                   placeholder="·······"
                 />
                 <button
-                  onClick={(e) => {
-                    setPasswordInput((prev) =>
+                  onClick={e => {
+                    setPasswordInput(prev =>
                       prev === "password" ? "text" : "password"
                     );
                     e.preventDefault();
@@ -233,7 +245,7 @@ export default function Settings() {
 
           <button
             disabled={!editSettings}
-            onClick={(e) => handleSubmit(e)}
+            onClick={e => handleSubmit(e)}
             className="update-btn"
           >
             Update
