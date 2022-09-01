@@ -120,10 +120,10 @@
 /* §§§§§§ Mail form §§§§§§ */
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
 
-.mail-container {
+.mail-container,
+.mail-container-white {
   width: 48%;
   border: 1px solid #f1f1f3;
-  background: #f8f8f8;
   height: 2.75rem;
   border-radius: 0.625rem;
   padding: 0.75rem 1.563rem;
@@ -132,21 +132,34 @@
   margin-bottom: 1.563rem;
 }
 
-.input-mail {
+.mail-container {
+  background: #f8f8f8;
+}
+.mail-container-white {
+  background: white;
+}
+.mail-input {
   border: none;
   width: 100% !important;
   padding-left: 1.25rem;
+  background: #f8f8f8;
+}
+
+.mail-input-w {
+  border: none;
+  width: 100% !important;
+  padding-left: 1.25rem;
+  background: white;
 }
 
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
 /* §§§§§§ Pass form §§§§§§ */
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
 
-.pass-container {
+.pass-container,
+.pass-container-white {
   width: 100%;
   border: 1px solid #f1f1f3;
-  /* background: #f8f8f8; */
-  /* SAME COLOUR? */
   height: 2.75rem;
   border-radius: 0.625rem;
   display: flex;
@@ -154,10 +167,30 @@
   padding: 0.75rem 1.563rem;
 }
 
+.pass-container {
+  background: #f8f8f8;
+}
+
+.pass-container-white {
+  background: white;
+}
+
 .pass-input {
   border: none;
   width: 100% !important;
   padding-left: 1.25rem;
+  background: #f8f8f8;
+}
+.pass-input-w {
+  border: none;
+  width: 100% !important;
+  padding-left: 1.25rem;
+  background: white;
+}
+
+.eye-btn {
+  border: none;
+  background-color: rgba(250, 250, 250, 0);
 }
 
 /* §§§§§§§§§§§§§§§§§§§§§§§ */

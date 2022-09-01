@@ -73,7 +73,7 @@ export default function Settings() {
 
   function handleInput(e) {
     const { name, value } = e.target;
-    setData(prev => ({
+    setData((prev) => ({
       ...prev,
       [name]: value,
     }));
@@ -93,8 +93,8 @@ export default function Settings() {
           <h2 className="subtitle-pers">Personal Information</h2>
           <button
             className="edit-btn"
-            onClick={e => {
-              setEditSettings(prev => !prev);
+            onClick={(e) => {
+              setEditSettings((prev) => !prev);
               e.preventDefault();
             }}
           >
@@ -103,7 +103,7 @@ export default function Settings() {
           </button>
         </section>
 
-        <form className="form-info" onSubmit={event => handleSubmit(event)}>
+        <form className="form-info" onSubmit={(event) => handleSubmit(event)}>
           <section className="form-wrap">
             <div className="form-column">
               <label className="label label-fname">First Name</label>
@@ -154,11 +154,13 @@ export default function Settings() {
           </section>
 
           <label className="label-email">Email</label>
-          <div className="mail-container">
+          <div
+            className={editSettings ? "mail-container-white" : "mail-container"}
+          >
             <img src={Mail} className="mail-icon" alt="" />
             <input
               disabled={!editSettings}
-              className="input-mail"
+              className={editSettings ? "mail-input-w" : "mail-input"}
               type="email"
               name="email"
               onChange={handleInput}
@@ -169,23 +171,28 @@ export default function Settings() {
           <section className="form-wrap">
             <div className="form-column">
               <label className="label-pass">New Password</label>
-              <div className="pass-container">
+              <div
+                className={
+                  editSettings ? "pass-container-white" : "pass-container"
+                }
+              >
                 <img src={Lock} className="lock-icon" alt="" />
                 <input
                   disabled={!editSettings}
-                  className="pass-input"
+                  className={editSettings ? "pass-input-w" : "pass-input"}
                   type={passwordInput}
                   name="password"
                   onChange={handleInput}
                   placeholder="·······"
                 />
                 <button
-                  onClick={e => {
-                    setPasswordInput(prev =>
+                  onClick={(e) => {
+                    setPasswordInput((prev) =>
                       prev === "password" ? "text" : "password"
                     );
                     e.preventDefault();
                   }}
+                  className="eye-btn"
                 >
                   <img src={Eye} className="eye-icon" alt="" />
                 </button>
@@ -194,23 +201,28 @@ export default function Settings() {
 
             <div className="form-column">
               <label className="label-pass">Confirm Password</label>
-              <div className="pass-container">
+              <div
+                className={
+                  editSettings ? "pass-container-white" : "pass-container"
+                }
+              >
                 <img src={Lock} className="lock-icon" alt="" />
                 <input
                   disabled={!editSettings}
-                  className="pass-input"
+                  className={editSettings ? "pass-input-w" : "pass-input"}
                   type={passwordInput}
                   name="password"
                   onChange={handleInput}
                   placeholder="·······"
                 />
                 <button
-                  onClick={e => {
-                    setPasswordInput(prev =>
+                  onClick={(e) => {
+                    setPasswordInput((prev) =>
                       prev === "password" ? "text" : "password"
                     );
                     e.preventDefault();
                   }}
+                  className="eye-btn"
                 >
                   <img src={Eye} className="eye-icon" alt="" />
                 </button>
@@ -221,7 +233,7 @@ export default function Settings() {
 
           <button
             disabled={!editSettings}
-            onClick={e => handleSubmit(e)}
+            onClick={(e) => handleSubmit(e)}
             className="update-btn"
           >
             Update
