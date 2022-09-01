@@ -145,6 +145,11 @@ td {
   text-align: center;
 }
 
+.selected-currency {
+  display: inline-flex;
+  justify-content: flex-end;
+}
+
 /* §§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§ */
 /* §§§§§§ Recurring expenses §§§§§ */
 /* §§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§ */
