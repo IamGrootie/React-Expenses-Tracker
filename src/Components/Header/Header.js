@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 export default function Header(props) {
-  const { currentUser } = useAuth();
+  const { currentUser, userDetails } = useAuth();
   const [title, setTitle] = useState("");
   const location = useLocation();
 
@@ -29,7 +29,7 @@ export default function Header(props) {
       <h2 className="title">{title}</h2>
       <button className="profile-btn">
         {/* // <img src=PROFILE PIC/>  */}
-        <h3>{currentUser.displayName}</h3>
+        <h3>{`${userDetails.firstName} ${userDetails.lastName}`}</h3>
       </button>
     </section>
   );

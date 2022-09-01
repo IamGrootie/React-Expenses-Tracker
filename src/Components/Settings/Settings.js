@@ -9,8 +9,13 @@ import "./settings.css";
 import Header from "../Header/Header.js";
 
 export default function Settings() {
-  const { updateUser, updateUsersEmail, updateUsersPassword, userDetails } =
-    useAuth();
+  const {
+    currentUser,
+    updateUser,
+    updateUsersEmail,
+    updateUsersPassword,
+    userDetails,
+  } = useAuth();
   const [error, setError] = useState("");
 
   const [data, setData] = useState({
@@ -23,23 +28,11 @@ export default function Settings() {
     passwordConfirm: "",
   });
 
-  useEffect(() => {
-    setData({
-      firstName: userDetails.firstName,
-      lastName: userDetails.lastName,
-      dateOfBirth: userDetails.dateOfBirth,
-      mobileNumber: userDetails.mobileNumber,
-      email: userDetails.email,
-      password: "",
-      passwordConfirm: "",
-    });
-  }, [userDetails]);
-
   const [editSettings, setEditSettings] = useState(false);
 
   const [passwordInput, setPasswordInput] = useState("password");
 
-  console.log(data.email);
+  console.log(data.firstName);
 
   async function handleSubmit(e) {
     setError("");
