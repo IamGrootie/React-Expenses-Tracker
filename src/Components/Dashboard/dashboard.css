@@ -145,7 +145,7 @@ td {
   text-align: center;
 }
 
-.selected-currency {
+.expense-dashboard > .card-element > .selected-currency {
   display: inline-flex;
   justify-content: flex-end;
 }
@@ -186,6 +186,11 @@ td {
   min-width: 100%;
   height: fit-content;
 }
+
+/* .recurring-expenses-container > .card-element > .selected-currency {
+  display: inline-flex;
+  justify-content: flex-end;
+} */
 
 /* TRYING TO SORT OUT EXPENSE CARD RENDERING INTO DASHBOARD WITHOUT MESSING UP IN EXPENS */
 @media only screen and (max-width: 1280px) {
