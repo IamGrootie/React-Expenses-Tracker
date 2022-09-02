@@ -44,7 +44,7 @@ export default function Settings(props) {
 
   const [passwordInput, setPasswordInput] = useState("password");
 
-  console.log(data.firstName);
+ 
 
   async function handleSubmit(e) {
     setError("");
@@ -253,13 +253,13 @@ export default function Settings(props) {
             </div>
           </section>
 
-          <button
+          {editSettings && <button
             disabled={!editSettings}
             onClick={(e) => handleSubmit(e)}
             className="update-btn"
           >
             Update
-          </button>
+          </button>}
         </form>
       </div>
     </div>

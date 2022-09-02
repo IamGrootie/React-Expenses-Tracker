@@ -63,11 +63,11 @@ export default function Expenses(props) {
     event.stopPropagation();
     setCurrentExpenseId(id);
     setCurrentExpense(expenses.find((expense) => expense.invoice === id));
-    console.log(currentExpenseId);
+    // console.log(currentExpenseId);
     setEditExpense(true);
   }
-  console.log(editExpense);
-  console.log(currentExpenseId);
+  // console.log(editExpense);
+  // console.log(currentExpenseId);
 
   // SORT OUT REGEX FOR EDITING
 

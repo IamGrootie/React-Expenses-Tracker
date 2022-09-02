@@ -6,7 +6,7 @@ import chevron from "../../images/chevron.svg";
 
 export default function Filters(props) {
   const { sort, setSort } = useExpenses();
-  console.log(sort[1]);
+  // console.log(sort[1]);
   function handleClick(e) {
     const { name } = e.target;
     setSort((prevSort) => {
