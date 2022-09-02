@@ -101,15 +101,16 @@
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
 
 .form-wrap {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* flex-wrap: wrap; */
   column-gap: 10px;
 }
 .form-column {
   display: flex;
   flex-direction: column;
   /* remove width to make 25rem */
-  width: 48%;
+  width: 100%;
 }
 
 .label {
@@ -146,6 +147,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 1.563rem;
+  column-span: 2;
 }
 
 .mail-container {

@@ -161,7 +161,7 @@ export default function Settings() {
                 value={data.mobileNumber}
               />
             </div>
-            <div className="form-column">
+            <div className="form-column span-two">
               <label className="label label-email">Email</label>
               <div
                 className={
@@ -183,7 +183,7 @@ export default function Settings() {
 
           <section className="form-wrap">
             <div className="form-column">
-              <label className="label-pass">New Password</label>
+              <label className="label label-pass">New Password</label>
               <div
                 className={
                   editSettings ? "pass-container-white" : "pass-container"
@@ -213,7 +213,7 @@ export default function Settings() {
             </div>
 
             <div className="form-column">
-              <label className="label-pass">Confirm Password</label>
+              <label className="label label-pass">Confirm Password</label>
               <div
                 className={
                   editSettings ? "pass-container-white" : "pass-container"
