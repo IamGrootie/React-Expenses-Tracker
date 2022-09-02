@@ -1,25 +1,25 @@
 .create-expense-background {
-	position: fixed;
-	inset: 0;
-	background-color: rgba(0, 0, 0, 0.7);
-	z-index: 100;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 100;
 }
 
 .create-expense-form-container {
-	position: fixed;
-	left: 50%;
-	right: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	width: 580px !important;
-	border-radius: 20px;
-	padding: 27px 40px 27px;
-	box-shadow: 3px -5px 35px rgba(205, 205, 212, 0.5);
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 8px;
-	margin: 10px;
-	background-color: white;
+  position: fixed;
+  left: 50%;
+  right: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 580px !important;
+  border-radius: 20px;
+  padding: 27px 40px 27px;
+  box-shadow: 3px -5px 35px rgba(205, 205, 212, 0.5);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 10px;
+  background-color: white;
 }
 
 /* .form-element {
@@ -28,75 +28,75 @@
 
 .form-element input,
 .form-element select {
-	border: 1.5px solid rgba(78, 93, 120, 0.2);
-	border-radius: 10px;
-	padding: 15px 21px;
-	color: #4e5d78;
-	font-family: "Roboto";
-	font-weight: 500;
-	opacity: 0.6;
+  border: 1.5px solid rgba(78, 93, 120, 0.2);
+  border-radius: 10px;
+  padding: 15px 21px;
+  color: #4e5d78;
+  font-family: "Roboto";
+  font-weight: 500;
+  opacity: 0.6;
 }
 
 .close-btn {
-	width: 25px;
-	height: 25px;
-	display: grid;
-	place-items: center;
-	color: #4e5d78;
-	border-radius: 50px;
-	background-color: white;
-	border: 1.5px solid rgba(78, 93, 120, 0.2);
-	font-weight: 600;
-	position: relative;
-	left: 504px;
-	top: -15px;
-	cursor: pointer;
+  width: 25px;
+  height: 25px;
+  display: grid;
+  place-items: center;
+  color: #4e5d78;
+  border-radius: 50px;
+  background-color: white;
+  border: 1.5px solid rgba(78, 93, 120, 0.2);
+  font-weight: 600;
+  position: relative;
+  left: 504px;
+  top: -15px;
+  cursor: pointer;
 }
 .span-two {
-	grid-column: span 2;
+  grid-column: span 2;
 }
 
 .span-two > input {
-	width: 100%;
-	font-size: 14px;
-	font-family: "Roboto";
-	font-weight: 500;
+  width: 100%;
+  font-size: 14px;
+  font-family: "Roboto";
+  font-weight: 500;
 }
 
 .type-button {
-	width: 100%;
-	padding: 15px 21px;
+  width: 100%;
+  padding: 15px 21px;
 }
 
 .form-element input:focus-visible {
-	border: 1.5px solid rgba(78, 93, 120, 0.2);
-	outline: none;
+  border: 1.5px solid rgba(78, 93, 120, 0.2);
+  outline: none;
 }
 
 /* .form-date-input {
 } */
 
 .select-currency {
-	cursor: pointer;
-	padding-left: 15px;
+  cursor: pointer;
+  padding-left: 15px;
 }
 
 .select-type {
-	grid-column: span 2;
-	width: 100%;
-	cursor: pointer;
-	border-radius: 15px !important;
-	padding: 15px;
+  grid-column: span 2;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 15px !important;
+  padding: 15px;
 }
 
 .select-type option,
 .select-currency option {
-	font-family: "Roboto";
-	font-weight: 500;
-	color: #4e5d78;
-	opacity: 0.6;
-	cursor: pointer;
-	border-radius: 15px !important;
+  font-family: "Roboto";
+  font-weight: 500;
+  color: #4e5d78;
+  opacity: 0.6;
+  cursor: pointer;
+  border-radius: 15px !important;
 }
 
 /* TARGETS OPTION BOX BUT DOESN'T LET STYLE FULLY
@@ -106,59 +106,83 @@
 } */
 
 .checkbox {
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .checkbox label {
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .checkbox-input {
-	height: 20px;
-	width: 20px;
-	cursor: pointer;
-	accent-color: #4e5d78;
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  accent-color: #4e5d78;
 }
 
 .checkbox-input-text {
-	font-family: "Roboto";
-	font-size: 14px;
-	font-weight: 500;
-	color: #4e5d78;
-	opacity: 0.6;
-	gap: 5px;
+  font-family: "Roboto";
+  font-size: 14px;
+  font-weight: 500;
+  color: #4e5d78;
+  opacity: 0.6;
+  gap: 5px;
 }
 
 .add-image-container {
-	background: linear-gradient(
-		180deg,
-		rgba(119, 119, 119, 0.4) 0%,
-		rgba(35, 35, 35, 0.1) 100%
-	);
-	border-radius: 50px;
-	height: 50px;
-	width: 50px;
-	display: grid;
-	place-items: center;
-	margin-top: 37px;
-	margin-bottom: 77px;
+  background: linear-gradient(
+    180deg,
+    rgba(119, 119, 119, 0.4) 0%,
+    rgba(35, 35, 35, 0.1) 100%
+  );
+  border-radius: 50px;
+  height: 50px;
+  width: 50px;
+  display: grid;
+  place-items: center;
+  margin-top: 37px;
+  margin-bottom: 77px;
 }
 
 .add-image {
-	width: 22px;
-	height: 22px;
+  width: 22px;
+  height: 22px;
 }
 
 .add-expense {
-	background: #c8ee44;
-	border-radius: 10px;
-	border: none;
-	font-family: Roboto;
-	font-size: 16px;
-	font-weight: 500;
-	color: #1b212d;
-	height: 52px;
-	cursor: pointer;
+  background: #c8ee44;
+  border-radius: 10px;
+  border: none;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 500;
+  color: #1b212d;
+  height: 52px;
+  cursor: pointer;
+}
+
+/* §§§§§§§§§§§§§§§§§§§§§§§ */
+/* §§§§§§ Dark mode §§§§§§ */
+/* §§§§§§§§§§§§§§§§§§§§§§§ */
+
+.create-expense-background.dark .create-expense-form-container {
+  background-color: #282541;
+}
+
+.create-expense-background.dark .form-element input,
+.create-expense-background.dark .form-element select {
+  background-color: #2d2b3e;
+  border: 1px solid #7b798b;
+  color: white;
+}
+
+.create-expense-background.dark .form-element input::placeholder,
+.create-expense-background.dark .checkbox-input-text {
+  color: white;
+}
+
+.create-expense-background.dark {
+  background-color: rgba(69, 68, 68, 0.8);
 }

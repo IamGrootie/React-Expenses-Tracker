@@ -32,8 +32,8 @@ export default function Dashboard(props) {
   );
 
   const recurringExpensesArr = expenses
-    .filter(item => item.recurring === true)
-    .map(expense => (
+    .filter((item) => item.recurring === true)
+    .map((expense) => (
       <ExpenseCard
         key={expense.invoice}
         title={expense.title}
@@ -54,7 +54,7 @@ export default function Dashboard(props) {
 
   const expensesArr = expenses
     .slice(0, 3)
-    .map(expense => (
+    .map((expense) => (
       <ExpenseCard
         key={expense.invoice}
         title={expense.title}
@@ -67,7 +67,13 @@ export default function Dashboard(props) {
       />
     ));
   return (
-    <div className="dashboard-container">
+    <div
+      className={
+        props.toggleDarkMode
+          ? "dashboard-container dark"
+          : "dashboard-container"
+      }
+    >
       <Header />
 
       <div className="dash-container">

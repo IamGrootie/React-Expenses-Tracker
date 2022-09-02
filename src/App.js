@@ -12,15 +12,21 @@ import CreateExpense from "./Components/Expenses/CreateExpense";
 import Filters from "./Components/Expenses/Filters";
 
 export default function App() {
+  const [toggleDarkMode, setToggleDarkMode] = React.useState(false);
+  function handleDark(e) {
+    setToggleDarkMode((prev) => !prev);
+    e.preventDefault();
+  }
+
   return (
     <div className="App">
-      <Navbar />
+      <Navbar handleDark={handleDark} toggleDarkMode={toggleDarkMode} />
       <Routes>
         <Route
           path="/"
           element={
             <RequireAuth>
-              <Dashboard />
+              <Dashboard toggleDarkMode={toggleDarkMode} />
             </RequireAuth>
           }
         />
@@ -30,7 +36,7 @@ export default function App() {
           path="expenses"
           element={
             <RequireAuth>
-              <Expenses />
+              <Expenses toggleDarkMode={toggleDarkMode} />
             </RequireAuth>
           }
         >
@@ -38,7 +44,7 @@ export default function App() {
             path="create-expense"
             element={
               <RequireAuth>
-                <CreateExpense />
+                <CreateExpense toggleDarkMode={toggleDarkMode} />
               </RequireAuth>
             }
           />
@@ -47,7 +53,7 @@ export default function App() {
           path="filters"
           element={
             <RequireAuth>
-              <Filters />
+              <Filters toggleDarkMode={toggleDarkMode} />
             </RequireAuth>
           }
         />
@@ -55,7 +61,7 @@ export default function App() {
           path="settings"
           element={
             <RequireAuth>
-              <Settings />
+              <Settings toggleDarkMode={toggleDarkMode} />
             </RequireAuth>
           }
         />

@@ -187,10 +187,10 @@ td {
   height: fit-content;
 }
 
-/* .recurring-expenses-container > .card-element > .selected-currency {
+.expense-dashboard-recurring > .card-element > .selected-currency {
   display: inline-flex;
   justify-content: flex-end;
-} */
+}
 
 /* TRYING TO SORT OUT EXPENSE CARD RENDERING INTO DASHBOARD WITHOUT MESSING UP IN EXPENS */
 @media only screen and (max-width: 1280px) {
@@ -207,4 +207,37 @@ td {
     border-radius: 0.625rem;
     padding: 0px 25px;
   }
+}
+
+/* §§§§§§§§§§§§§§§§§§§§§§§ */
+/* §§§§§§ Dark mode §§§§§§ */
+/* §§§§§§§§§§§§§§§§§§§§§§§ */
+
+.dashboard-container.dark {
+  color: #ffffff;
+  background: #1e1c30;
+}
+
+.dashboard-container.dark .amount-itm-total {
+  background: #282541;
+}
+
+.dashboard-container.dark .amount-itm {
+  background: #201e34;
+}
+
+.dashboard-container.dark .graph-container,
+.dashboard-container.dark .dashboard-expense-container {
+  border: 1px solid #282541;
+  border-radius: 10px;
+}
+
+.dashboard-container.dark .expense-card-text,
+.dashboard-container.dark .expense-card-subtext,
+.dashboard-container.dark .expand-btn {
+  background: #1e1c30;
+}
+
+.dashboard-container.dark .expense-card-text {
+  color: #ffffff;
 }

@@ -12,7 +12,7 @@ import { useExpenses } from "../../Contexts/ExpensesContext";
 import { useAuth } from "../../Contexts/AuthContext";
 import Header from "../Header/Header";
 
-export default function Expenses() {
+export default function Expenses(props) {
   const { currentUser } = useAuth();
   const { expenses, createExpense, updateExpense, deleteExpense, setSort } =
     useExpenses();
@@ -26,7 +26,9 @@ export default function Expenses() {
     const { value } = event.target;
     setSearch(value);
     if (value) {
-      setFilteredExpenses(expenses.filter(item => item.title.includes(value)));
+      setFilteredExpenses(
+        expenses.filter((item) => item.title.includes(value))
+      );
     } else setFilteredExpenses(expenses);
   }
 
@@ -34,7 +36,7 @@ export default function Expenses() {
     setFilteredExpenses(expenses);
   }, [expenses]);
 
-  const expensesArr = filteredExpenses.map(expense => (
+  const expensesArr = filteredExpenses.map((expense) => (
     <ExpenseCard
       category={expense.category}
       key={expense.invoice}
@@ -53,13 +55,14 @@ export default function Expenses() {
       handleDelete={handleDelete}
       setSort={setSort}
       class="expense-expenses"
+      toggleDarkMode={props.toggleDarkMode}
     />
   ));
 
   async function edit(event, id) {
     event.stopPropagation();
     setCurrentExpenseId(id);
-    setCurrentExpense(expenses.find(expense => expense.invoice === id));
+    setCurrentExpense(expenses.find((expense) => expense.invoice === id));
     console.log(currentExpenseId);
     setEditExpense(true);
   }
@@ -116,17 +119,24 @@ export default function Expenses() {
   }
 
   function handleDisplayFilters() {
-    setDisplayFilters(displayFilters => !displayFilters);
+    setDisplayFilters((displayFilters) => !displayFilters);
     // navigate("filters")
   }
 
   return (
     <>
-      <section className="expenses-container">
+      <section
+        className={
+          props.toggleDarkMode
+            ? "expenses-container dark"
+            : "expenses-container"
+        }
+      >
         {displayCreateExpense && (
           <CreateExpense
             handleClick={handleSubmit}
             setDisplayCreateExpense={setDisplayCreateExpense}
+            toggleDarkMode={props.toggleDarkMode}
             // handleInput={handleInput}
           />
         )}
@@ -163,7 +173,10 @@ export default function Expenses() {
             </div>
           </div>
           <div className="expenses-table">
-            <Filters displayFilters={displayFilters} />
+            <Filters
+              displayFilters={displayFilters}
+              toggleDarkMode={props.toggleDarkMode}
+            />
             <div className="expense-cards">{expensesArr}</div>
           </div>
         </div>

@@ -8,18 +8,18 @@
 }
 
 .title {
-	font-size: 1.56rem;
-	line-height: 1.875rem;
-	font-weight: 600;
+  font-size: 1.56rem;
+  line-height: 1.875rem;
+  font-weight: 600;
 }
 
 .profile-btn {
-	border-radius: 3rem;
-	background-color: #fafafa;
-	border: none;
-	height: 48px;
-	border: 1px solid black;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  border-radius: 3rem;
+  background-color: #fafafa;
+  border: none;
+  height: 48px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

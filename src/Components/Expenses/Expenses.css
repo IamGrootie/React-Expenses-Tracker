@@ -128,3 +128,30 @@
   position: fixed;
   background-color: rgba(200, 200, 200, 0.3);
 }
+
+/* §§§§§§§§§§§§§§§§§§§§§§§ */
+/* §§§§§§ Dark mode §§§§§§ */
+/* §§§§§§§§§§§§§§§§§§§§§§§ */
+
+.expenses-container.dark {
+  color: #ffffff;
+}
+
+.expenses-container.dark .search-bar,
+.expenses-container.dark .search-input {
+  background: #282541;
+}
+
+.expenses-container.dark .search-bar {
+  border: 1px solid #201e34;
+}
+
+.expenses-container.dark .filter-expenses {
+  background: #c8ee44;
+  color: #1b212d;
+  border: none;
+}
+
+.expenses-container.dark .filter-expenses:active {
+  background: #89a22e;
+}
