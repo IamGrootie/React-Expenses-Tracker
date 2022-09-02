@@ -59,8 +59,8 @@ export default function ExpensesProvider({ children }) {
       );
     } else
       return expenses.sort((a, b) => {
-        const itemA = a[value].toUpperCase();
-        const itemB = b[value].toUpperCase();
+        const itemA = a[value];
+        const itemB = b[value];
         if (itemA < itemB) {
           return order === "asc" ? 1 : -1;
         }
@@ -70,6 +70,29 @@ export default function ExpensesProvider({ children }) {
         return 0;
       });
   }
+
+  // function sortExpenses(value, order) {
+  //   if (value === "amount") {
+  //     // const incomePart = income.sort((a, b) => a.amount - b.amount);
+  //     const expensePart = expenses.sort((a, b) => a.amount - b.amount);
+  //     setExpenses(
+  //       order === "asc"
+  //         ? [...expensePart.reverse()]
+  //         : [...expensePart].reverse()
+  //     );
+  //   } else
+  //     return expenses.sort((a, b) => {
+  //       const itemA = a[value];
+  //       const itemB = b[value];
+  //       if (itemA < itemB) {
+  //         return order === "asc" ? 1 : -1;
+  //       }
+  //       if (itemA > itemB) {
+  //         return order === "asc" ? -1 : 1;
+  //       }
+  //       return 0;
+  //     });
+  // }
 
   useEffect(() => {
     if (expenses) {

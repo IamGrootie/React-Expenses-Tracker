@@ -139,7 +139,7 @@
 
 .mail-container,
 .mail-container-white {
-  width: 100%;
+  /* width: 100%; */
   border: 1px solid #f1f1f3;
   height: 2.75rem;
   border-radius: 0.625rem;
@@ -176,7 +176,7 @@
 
 .pass-container,
 .pass-container-white {
-  width: 100%;
+  /* width: 100%; */
   border: 1px solid #f1f1f3;
   height: 2.75rem;
   border-radius: 0.625rem;
@@ -193,18 +193,11 @@
   background: white;
 }
 
-.pass-input {
+.pass-input, .pass-input-w {
   border: none;
   width: 100% !important;
   padding-left: 1.25rem;
   background: #f8f8f8;
-}
-
-.pass-input-w {
-  border: none;
-  width: 100% !important;
-  padding-left: 1.25rem;
-  background: white;
 }
 
 .eye-btn {

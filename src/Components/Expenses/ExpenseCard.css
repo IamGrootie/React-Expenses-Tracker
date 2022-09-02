@@ -11,7 +11,7 @@
 .expense-expenses {
   margin-top: 15px;
   display: grid;
-  grid-template-columns: 1.5fr 1.5fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1.5fr 1.1fr 0.8fr 0.7fr 0.65fr 1fr;
   column-gap: 5px;
   padding-bottom: 20px;
   border-bottom: 1px solid #f5f5f5;
@@ -97,6 +97,7 @@
 
 .expense-dashboard > .card-element.date-container {
   min-width: fit-content;
+  cursor: pointer;
 }
 
 /*  */
@@ -229,6 +230,7 @@ input.edit {
   margin: 0;
   background-color: white;
   border: none;
+  flex-wrap: wrap;
 }
 
 .expense-card-subtext {
@@ -314,11 +316,15 @@ input.edit {
   padding: 2px !important;
 }
 
+.date {
+  cursor: pointer;
+}
+
 .card-element.button-container {
   place-items: center;
-  justify-content: center;
+  justify-content: space-between;
   /* center/space between means overlap to invoice container, but space-evenly it disappears like overflow hidden  */
-  min-width: 100%;
+  min-width: fit0content%;
 }
 
 .action-button {
@@ -336,4 +342,9 @@ input.edit {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  transition: all 0.1s ease-in;
+}
+
+.action-button:active {
+  background: #89a22e;
 }

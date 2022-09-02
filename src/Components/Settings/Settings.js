@@ -179,9 +179,7 @@ export default function Settings() {
                 />
               </div>
             </div>
-          </section>
 
-          <section className="form-wrap">
             <div className="form-column">
               <label className="label label-pass">New Password</label>
               <div
@@ -213,7 +211,7 @@ export default function Settings() {
             </div>
 
             <div className="form-column">
-              <label className="label label-pass">Confirm Password</label>
+              <label className="labellabel-pass">Confirm Password</label>
               <div
                 className={
                   editSettings ? "pass-container-white" : "pass-container"

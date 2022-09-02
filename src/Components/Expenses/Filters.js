@@ -18,10 +18,7 @@ export default function Filters(props) {
     });
   }
 
-  // function chevronTransition() {
-  // 	if (sort === "asc")
-  // }
-
+console.log(sort)
   return (
     <div className="input-titles">
       <button
@@ -78,9 +75,11 @@ export default function Filters(props) {
         onClick={handleClick}
       >
         DATE
-        {props.displayFilters && (
-          <img src={sort[0] === "date" ? chevron : null} className={sort[1]} />
-        )}
+        <img
+          src={sort[0] === "date" ? chevron : null}
+          onClick={handleClick}
+          className={sort[1]}
+        />
       </button>
       <button
         className={
@@ -95,6 +94,7 @@ export default function Filters(props) {
           <img
             src={sort[0] === "invoice" ? chevron : null}
             className={sort[1]}
+            disabled
           />
         )}
       </button>
