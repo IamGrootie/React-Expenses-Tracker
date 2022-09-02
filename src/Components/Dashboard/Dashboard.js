@@ -60,17 +60,17 @@ export default function Dashboard(props) {
   // }, )
 
   const totalSpending = totalExpenses.reduce(
-    (total, item) => total - +item.amount,
+    (total, item) => total + +item.amount,
     0
   );
 
   const monthlySpending = monthlyExpenses.reduce(
-    (total, item) => total - +item.amount,
+    (total, item) => total + +item.amount,
     0
   );
 
   const weeklySpending = weeklyExpenses.reduce(
-    (total, item) => total - +item.amount,
+    (total, item) => total + +item.amount,
     0
   );
 
@@ -111,6 +111,8 @@ export default function Dashboard(props) {
     ));
   // figure a way to render these in automatically rather than just through choosing timeframes
 
+  const date = new Date().toISOString().substring(0, 10);
+
   return (
     <div className="dashboard-container">
       <Header />
@@ -121,7 +123,7 @@ export default function Dashboard(props) {
             <div className="amount-itm-total">
               <img src={greenWallet} alt="" />
               <div>
-                <p className="amount-title">Total spending</p>
+                <p className="amount-title">Total Spending</p>
                 <h2 className="amount-value">{`£${totalSpending}`}</h2>
               </div>
             </div>
@@ -129,7 +131,7 @@ export default function Dashboard(props) {
             <div className="amount-itm">
               <img src={wallet} alt="" />
               <div>
-                <p className="amount-title">Monthly spending</p>
+                <p className="amount-title">Monthly Spending</p>
                 <h2 className="amount-value">{`£${monthlySpending}`}</h2>
               </div>
             </div>
@@ -137,7 +139,7 @@ export default function Dashboard(props) {
             <div className="amount-itm">
               <img src={dailyWallet} alt="" />
               <div>
-                <p className="amount-title">Weekly spending</p>
+                <p className="amount-title">Weekly Spending</p>
                 <h2 className="amount-value">{`£${weeklySpending}`}</h2>
               </div>
             </div>
