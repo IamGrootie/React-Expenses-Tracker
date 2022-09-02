@@ -44,7 +44,7 @@ export default function Settings() {
 
   const [passwordInput, setPasswordInput] = useState("password");
 
-  console.log(data.firstName);
+ 
 
   async function handleSubmit(e) {
     setError("");

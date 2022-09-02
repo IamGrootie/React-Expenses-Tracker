@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./dashboard.css";
 import wallet from "../Images/wallet_icon.svg";
 import greenWallet from "../../images/green_wallet_icon.svg";
@@ -11,23 +11,66 @@ import ExpenseCard from "../Expenses/ExpenseCard";
 import Filters from "../Expenses/Filters";
 import { useNavigate } from "react-router-dom";
 import Header from "../Header/Header";
+import Chart from "../Chart/Chart.js";
 
 export default function Dashboard(props) {
-  const { expenses, setTimePeriod, expensesThroughTime, timePeriod, setSort } =
-    useExpenses();
+  const {
+    expenses,
+    weeklyExpenses,
+    monthlyExpenses,
+    totalExpenses,
+    timePeriod,
+    setSort,
+  } = useExpenses();
 
-  const totalSpending = expensesThroughTime.reduce(
-    (total, item) => total + +item.amount,
+  // const totalSpending = expensesThroughTime.reduce(
+  //   (total, item) => total - item.amount,
+  //   0
+  // );
+  // const [totalSpending, setTotalSpending] = useState("")
+
+  //   function calculateTotalSpending() {
+  //     const totalSpendingNum = expensesThroughTime.reduce(
+  //       (total, item) => total - item.amount,
+  //       0
+  //     );
+  //     setTimePeriod(365)
+  //   }
+
+  //   function calculateMonthlySpending() {
+  //     const totalSpendingNum = expensesThroughTime.reduce(
+  //       (total, item) => total - item.amount,
+  //       0
+  //     );
+  //     setTimePeriod(31)
+  //   }
+
+  //   function calculateWeeklySpending() {
+  //     const totalSpendingNum = expensesThroughTime.reduce(
+  //       (total, item) => total - item.amount,
+  //       0
+  //     );
+  //     setTimePeriod(7)
+  //   }
+
+  // useEffect(() => {
+  //   calculateTotalSpending();
+  //   calculateMonthlySpending();
+  //   calculateWeeklySpending();
+  // }, )
+
+  const totalSpending = totalExpenses.reduce(
+    (total, item) => total - +item.amount,
     0
   );
 
-  const monthlySpending = expensesThroughTime.reduce(
-    (total, item) => total + +item.amount,
+  const monthlySpending = monthlyExpenses.reduce(
+    (total, item) => total - +item.amount,
     0
   );
 
-  const dailySpending = expensesThroughTime.reduce(
-    (total, item) => total + +item.amount,
+  const weeklySpending = weeklyExpenses.reduce(
+    (total, item) => total - +item.amount,
     0
   );
 
@@ -66,6 +109,8 @@ export default function Dashboard(props) {
         class="expense-dashboard"
       />
     ));
+  // figure a way to render these in automatically rather than just through choosing timeframes
+
   return (
     <div className="dashboard-container">
       <Header />
@@ -92,15 +137,16 @@ export default function Dashboard(props) {
             <div className="amount-itm">
               <img src={dailyWallet} alt="" />
               <div>
-                <p className="amount-title">Daily spending</p>
-                <h2 className="amount-value">{`£${dailySpending}`}</h2>
+                <p className="amount-title">Weekly spending</p>
+                <h2 className="amount-value">{`£${weeklySpending}`}</h2>
               </div>
             </div>
           </section>
 
-          <section className="graph-container">
+          <div className="graph-container">
             <h3 className="section-title">Working Capital</h3>
-          </section>
+            <Chart />
+          </div>
 
           <section className="dashboard-expense-container">
             <div className="dashboard-expense-title">

@@ -47,7 +47,7 @@ export default function ExpensesProvider({ children }) {
   useEffect(() => {
     if (expenses) {
       sortExpenses(sort[0], sort[1]);
-      setExpenses(prevTransactions => [...prevTransactions]);
+      setExpenses(prevExpenses => [...prevExpenses]);
     }
   }, [sort]);
 
@@ -90,17 +90,32 @@ export default function ExpensesProvider({ children }) {
     return deleteDoc(doc(db, "users", uid, "expense", id));
   }
 
-  const dateArray = Array(timePeriod)
+  const weeklyTimePeriod = 7;
+  const weeklyDateArray = Array(weeklyTimePeriod)
+    .fill()
+    .map((item, index) =>
+      subDays(new Date(), index).toISOString().substring(0, 10)
+    );
+  const monthlyTimePeriod = 31;
+  const monthlyDateArray = Array(monthlyTimePeriod)
+    .fill()
+    .map((item, index) =>
+      subDays(new Date(), index).toISOString().substring(0, 10)
+    );
+  const totalTimePeriod = 365;
+  const totalDateArray = Array(totalTimePeriod)
     .fill()
     .map((item, index) =>
       subDays(new Date(), index).toISOString().substring(0, 10)
     );
 
-  const expensesThroughTime = fillAmount(dateArray, expenses);
+  const weeklyExpenses = fillAmount(weeklyDateArray, expenses);
+  const monthlyExpenses = fillAmount(monthlyDateArray, expenses);
+  const totalExpenses = fillAmount(totalDateArray, expenses);
 
-  function fillAmount(dates, transactions) {
+  function fillAmount(dates, expenses) {
     return dates.reduce((array, date) => {
-      transactions.forEach(item => {
+      expenses.forEach(item => {
         const sameDate = array.find(newObj => newObj.date === item.date);
         if (item.date === date) {
           if (sameDate) {
@@ -125,13 +140,13 @@ export default function ExpensesProvider({ children }) {
 
   const value = {
     expenses,
-    expensesThroughTime,
-    dateArray,
+    weeklyExpenses,
+    monthlyExpenses,
+    monthlyDateArray,
+    totalExpenses,
     createExpense,
     updateExpense,
     deleteExpense,
-    setTimePeriod,
-    timePeriod,
     sort,
     setSort,
   };
