@@ -39,12 +39,10 @@ export default function Settings() {
       passwordConfirm: "",
     });
   }, [userDetails]);
-  
+
   const [editSettings, setEditSettings] = useState(false);
 
   const [passwordInput, setPasswordInput] = useState("password");
-
- 
 
   async function handleSubmit(e) {
     setError("");
@@ -110,7 +108,7 @@ export default function Settings() {
               e.preventDefault();
             }}
           >
-            <img src={Pen} className="pen-icon" alt=""/>
+            <img src={Pen} className="pen-icon" alt="" />
             Edit
           </button>
         </section>
@@ -163,22 +161,25 @@ export default function Settings() {
                 value={data.mobileNumber}
               />
             </div>
+            <div className="form-column">
+              <label className="label label-email">Email</label>
+              <div
+                className={
+                  editSettings ? "mail-container-white" : "mail-container"
+                }
+              >
+                <img src={Mail} className="mail-icon" alt="" />
+                <input
+                  disabled={!editSettings}
+                  className={editSettings ? "mail-input-w" : "mail-input"}
+                  type="email"
+                  name="email"
+                  onChange={handleInput}
+                  value={data.email}
+                />
+              </div>
+            </div>
           </section>
-
-          <label className="label-email">Email</label>
-          <div
-            className={editSettings ? "mail-container-white" : "mail-container"}
-          >
-            <img src={Mail} className="mail-icon" alt="" />
-            <input
-              disabled={!editSettings}
-              className={editSettings ? "mail-input-w" : "mail-input"}
-              type="email"
-              name="email"
-              onChange={handleInput}
-              value={data.email}
-            />
-          </div>
 
           <section className="form-wrap">
             <div className="form-column">
@@ -243,13 +244,15 @@ export default function Settings() {
             </div>
           </section>
 
-          {editSettings && <button
-            disabled={!editSettings}
-            onClick={e => handleSubmit(e)}
-            className="update-btn"
-          >
-            Update
-          </button>}
+          {editSettings && (
+            <button
+              disabled={!editSettings}
+              onClick={e => handleSubmit(e)}
+              className="update-btn"
+            >
+              Update
+            </button>
+          )}
         </form>
       </div>
     </div>
