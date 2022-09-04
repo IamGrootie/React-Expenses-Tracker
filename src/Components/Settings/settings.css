@@ -153,9 +153,11 @@
 .mail-container {
   background: #f8f8f8;
 }
+
 .mail-container-white {
   background: white;
 }
+
 .mail-input {
   border: none;
   width: 100% !important;
