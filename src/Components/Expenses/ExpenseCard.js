@@ -31,10 +31,12 @@ function ExpenseCard(props) {
     recurring: props.recurring || "false",
   });
 
-  const [addExpenseError, setAddExpenseError] = useState({
-    title: false,
-    amount: false,
-  });
+  // const [addExpenseError, setAddExpenseError] = useState({
+  //   title: false,
+  //   amount: false,
+  // });
+
+  const [disableSubmit, setDisableSubmit] = useState(false);
 
   const navigate = useNavigate();
   const expenseRef = collection(db, "expense");
@@ -46,40 +48,54 @@ function ExpenseCard(props) {
       [name]: type === "checkbox" ? checked : value,
     }));
   }
-
+  console.log(disableSubmit);
   useEffect(() => {}, [data]);
 
   // Allows lower case, uppercase, numbers and underscores
-  function titleChecker() {
-    if (data.title !== "")
-      setAddExpenseError(prevError => ({
-        ...prevError,
-        title: !/^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]$/i.test(data.title),
-      }));
-  }
+  // function titleChecker() {
+  //   if (data.title !== "")
+  //     setAddExpenseError(prevError => ({
+  //       ...prevError,
+  //       title: !/^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]$/i.test(data.title),
+  //     }));
+  // }
 
   // Checks the amount is a valid input (requires numbers, thousands separators, two digit fraction, cents/pence optional)
-  function amountChecker() {
-    if (data.amount !== "")
-      setAddExpenseError(prevError => ({
-        ...prevError,
-        amount:
-          !/^[+-]?[0-9]{1,3}(?:[0-9]*(?:[.,][0-9]{2})?|(?:,[0-9]{3})*(?:\.[0-9]{2})?|(?:\.[0-9]{3})*(?:,[0-9]{2})?)$/.test(
-            data.amount
-          ),
-      }));
-  }
+  // function amountChecker() {
+  //   if (data.amount !== "")
+  //     setAddExpenseError(prevError => ({
+  //       ...prevError,
+  //       amount:
+  //         !/^[+-]?[0-9]{1,3}(?:[0-9]*(?:[.,][0-9]{2})?|(?:,[0-9]{3})*(?:\.[0-9]{2})?|(?:\.[0-9]{3})*(?:,[0-9]{2})?)$/.test(
+  //           data.amount
+  //         ),
+  //     }));
+  // }
 
   useEffect(() => {
-    titleChecker();
-    amountChecker();
+    checkForErrors();
+    //   titleChecker();
+    //   amountChecker();
   }, [data]);
 
   function handleSubmit(event) {
     event.preventDefault();
-    if (!addExpenseError.title && !addExpenseError.amount) {
-      props.handleClick(data);
-      props.setSort([...props.prevSort]);
+    // if (!addExpenseError.title && !addExpenseError.amount) {
+
+    const error = checkForErrors();
+    if (!error) props.handleClick(data);
+
+    // props.setSort([...props.prevSort]);
+  }
+
+  function checkForErrors() {
+    for (let item in data) {
+      if (data[item] === "") {
+        setDisableSubmit(true);
+        return true;
+      } else {
+        setDisableSubmit(false);
+      }
     }
   }
 
@@ -114,7 +130,10 @@ function ExpenseCard(props) {
               disabled={!props.editExpense}
               name="title"
               value={data.title}
+              maxLength="20"
+              placeholder="Name of expense"
               onChange={handleChange}
+              required
             ></input>
             <input
               className={
@@ -125,7 +144,10 @@ function ExpenseCard(props) {
               disabled={!props.editExpense}
               name="company"
               value={data.company}
+              maxLength="20"
+              placeholder="Business"
               onChange={handleChange}
+              required
             ></input>
           </div>
         )}
@@ -196,7 +218,9 @@ function ExpenseCard(props) {
               name="amount"
               maxLength="10"
               value={data.amount}
+              placeholder="Amount"
               onChange={handleChange}
+              required
             ></input>
           </div>
         )}
@@ -215,6 +239,7 @@ function ExpenseCard(props) {
               min="2021-01-01"
               max="2023-01-01"
               onChange={handleChange}
+              required
             ></input>
           </div>
         )}
@@ -236,11 +261,16 @@ function ExpenseCard(props) {
               </button>
             )}
 
-            {props.editExpense && (
+            {props.editExpense && !disableSubmit ? (
               <button className="action-button" onClick={handleSubmit}>
                 Submit
               </button>
-            )}
+            ) : props.editExpense && disableSubmit ? (
+              <button className="action-button disabled" onClick={handleSubmit}>
+                Submit
+              </button>
+            ) : null}
+
             {props.editExpense && (
               <button
                 className="action-button"

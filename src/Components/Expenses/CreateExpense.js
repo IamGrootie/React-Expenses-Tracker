@@ -19,10 +19,12 @@ export default function CreateExpense(props) {
 
   //FIGURE AT CREATED AT TIME & DATE THEN ORGANISE ORDERBY
 
-  const [addExpenseError, setAddExpenseError] = useState({
-    title: false,
-    amount: false,
-  });
+  // const [addExpenseError, setAddExpenseError] = useState({
+  //   title: false,
+  //   amount: false,
+  // });
+
+  const [disableSubmit, setDisableSubmit] = useState(false);
 
   // Compares UID being generated in state with UIDs in FireStore and generates a new one if they match
   // DOES IT CHECK AGAINST USERS DATA OR WHOLE COLLECTION?
@@ -37,29 +39,32 @@ export default function CreateExpense(props) {
   // }, [data.id]);
 
   // Allows lower case, uppercase, numbers and underscores
-  function titleChecker() {
-    if (data.title !== "")
-      setAddExpenseError(prevError => ({
-        ...prevError,
-        title: !/^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]$/i.test(data.title),
-      }));
-  }
+  // function titleChecker() {
+  //   if (data.title !== "")
+  //     setAddExpenseError(prevError => ({
+  //       ...prevError,
+  //       title: !/^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]$/i.test(data.title),
+  //     }));
+  //     setErrorMessage({name: "" })
+  // }
 
   // Checks the amount is a valid input (requires numbers, thousands separators, two digit fraction, cents/pence optional)
-  function amountChecker() {
-    if (data.amount !== "")
-      setAddExpenseError(prevError => ({
-        ...prevError,
-        amount:
-          !/^[+-]?[0-9]{1,3}(?:[0-9]*(?:[.,][0-9]{2})?|(?:,[0-9]{3})*(?:\.[0-9]{2})?|(?:\.[0-9]{3})*(?:,[0-9]{2})?)$/.test(
-            data.amount
-          ),
-      }));
-  }
+  // function amountChecker() {
+  //   if (data.amount !== "")
+  //     setAddExpenseError(prevError => ({
+  //       ...prevError,
+  //       amount:
+  //         !/^[+-]?[0-9]{1,3}(?:[0-9]*(?:[.,][0-9]{2})?|(?:,[0-9]{3})*(?:\.[0-9]{2})?|(?:\.[0-9]{3})*(?:,[0-9]{2})?)$/.test(
+  //           data.amount
+  //         ),
+  //     }));
+  //     setErrorMessage({amount: "Invalid amount" })
+  // }
 
   useEffect(() => {
-    titleChecker();
-    amountChecker();
+    // titleChecker();
+    // amountChecker();
+    checkForErrors();
   }, [data]);
 
   function handleChange(event) {
@@ -70,30 +75,39 @@ export default function CreateExpense(props) {
     }));
   }
 
-  console.log(addExpenseError);
-
   function handleSubmit(event) {
     event.preventDefault();
     // setAddExpenseError("");
     // const isError = checkForErrors();
-    if (!addExpenseError.title && !addExpenseError.amount) {
-      props.handleClick(data);
-      setData({
-        title: "",
-        company: "",
-        currency: "£",
-        amount: "",
-        category: "",
-        date: "",
-        recurring: false,
-      });
-      handleCreateExpenseModalClose();
+    // if (!addExpenseError.title && !addExpenseError.amount) {
+    const error = checkForErrors();
+    if (!error) props.handleClick(data);
+    setData({
+      title: "",
+      company: "",
+      currency: "£",
+      amount: "",
+      category: "",
+      date: "",
+      recurring: false,
+    });
+    handleCreateExpenseModalClose();
+    // }
+  }
+
+  function checkForErrors() {
+    for (let item in data) {
+      if (data[item] === "") {
+        setDisableSubmit(true);
+        return true;
+      } else {
+        setDisableSubmit(false);
+      }
     }
   }
 
   function handleCreateExpenseModalClose() {
     props.setDisplayCreateExpense(false);
-    navigate("/expenses");
   }
 
   return (
@@ -113,6 +127,7 @@ export default function CreateExpense(props) {
             placeholder="Name of expense"
             maxLength="20"
             onChange={handleChange}
+            required
           ></input>
         </div>
         <div className="form-element span-two">
@@ -123,6 +138,7 @@ export default function CreateExpense(props) {
             placeholder="Company"
             maxLength="20"
             onChange={handleChange}
+            required
           ></input>
         </div>
         <div className="form-element">
@@ -139,7 +155,7 @@ export default function CreateExpense(props) {
         </div>
         <div className="form-element span-two">
           <input
-            type="text"
+            type="number"
             name="amount"
             maxLength="10"
             value={data.amount}
@@ -208,9 +224,15 @@ export default function CreateExpense(props) {
             <input type="file" className="add-image"></input>
           </label> */}
         </label>
-        <button className="add-expense span-two" type="submit">
-          Add
-        </button>
+        {disableSubmit ? (
+          <button className="add-expense span-two disabled" type="submit" disabled>
+            Add Expense
+          </button>
+        ) : (
+          <button className="add-expense span-two" type="submit">
+            Add Expense
+          </button>
+        )}
       </form>
     </section>
   );

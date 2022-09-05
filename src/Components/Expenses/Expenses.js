@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { nanoid } from "nanoid";
 import searchIcon from "../../images/search-icon.svg";
 import createExpenseIcon from "../../images/create-expense-icon.svg";
@@ -108,11 +107,9 @@ export default function Expenses() {
 
   const [displayCreateExpense, setDisplayCreateExpense] = useState(false);
   const [displayFilters, setDisplayFilters] = useState(false);
-  const navigate = useNavigate();
 
   function handleCreateExpenseModal() {
     setDisplayCreateExpense(true);
-    navigate("create-expense");
   }
 
   function handleDisplayFilters() {

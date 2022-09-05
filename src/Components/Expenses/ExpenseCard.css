@@ -324,7 +324,7 @@ input.edit {
   place-items: center;
   justify-content: space-between;
   /* center/space between means overlap to invoice container, but space-evenly it disappears like overflow hidden  */
-  min-width: fit0content%;
+  /* min-width: fit-content; */
 }
 
 .action-button {
@@ -347,4 +347,12 @@ input.edit {
 
 .action-button:active {
   background: #89a22e;
+}
+
+.action-button.disabled {
+  opacity: 0.5;
+}
+
+.action-button.disabled:active {
+  background: #c8ee44;
 }
