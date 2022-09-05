@@ -163,3 +163,27 @@
   height: 52px;
   cursor: pointer;
 }
+
+/* §§§§§§§§§§§§§§§§§§§§§§§ */
+/* §§§§§§ Dark mode §§§§§§ */
+/* §§§§§§§§§§§§§§§§§§§§§§§ */
+
+.create-expense-background.dark .create-expense-form-container {
+  background-color: #282541;
+}
+
+.create-expense-background.dark .form-element input,
+.create-expense-background.dark .form-element select {
+  background-color: #2d2b3e;
+  border: 1px solid #7b798b;
+  color: white;
+}
+
+.create-expense-background.dark .form-element input::placeholder,
+.create-expense-background.dark .checkbox-input-text {
+  color: white;
+}
+
+.create-expense-background.dark {
+  background-color: rgba(69, 68, 68, 0.8);
+}

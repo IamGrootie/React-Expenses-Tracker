@@ -9,7 +9,7 @@ export default function Filters(props) {
   // console.log(sort[1]);
   function handleClick(e) {
     const { name } = e.target;
-    setSort(prevSort => {
+    setSort((prevSort) => {
       return prevSort[0] !== name
         ? [name, "asc"]
         : prevSort[1] === "asc"
@@ -20,7 +20,9 @@ export default function Filters(props) {
 
 console.log(sort)
   return (
-    <div className="input-titles">
+    <div
+      className={props.toggleDarkMode ? "input-titles dark" : "input-titles"}
+    >
       <button
         className={
           props.displayFilters ? "category-btn" : "category-btn hidden"

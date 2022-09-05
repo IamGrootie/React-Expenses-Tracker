@@ -10,17 +10,24 @@ import Signin from "./Components/Signin/Signin";
 import Signup from "./Components/Signup/Signup";
 import CreateExpense from "./Components/Expenses/CreateExpense";
 import Filters from "./Components/Expenses/Filters";
+import ForgotPassword from "./Components/ForgotPassword/ForgotPassword";
 
 export default function App() {
+  const [toggleDarkMode, setToggleDarkMode] = React.useState(false);
+  function handleDark(e) {
+    setToggleDarkMode((prev) => !prev);
+    e.preventDefault();
+  }
+
   return (
     <div className="App">
-      <Navbar />
       <Routes>
         <Route
           path="/"
           element={
             <RequireAuth>
-              <Dashboard />
+              <Navbar handleDark={handleDark} toggleDarkMode={toggleDarkMode} />
+              <Dashboard toggleDarkMode={toggleDarkMode} />
             </RequireAuth>
           }
         />
@@ -30,7 +37,8 @@ export default function App() {
           path="expenses"
           element={
             <RequireAuth>
-              <Expenses />
+              <Navbar handleDark={handleDark} toggleDarkMode={toggleDarkMode} />
+              <Expenses toggleDarkMode={toggleDarkMode} />
             </RequireAuth>
           }
         >
@@ -38,29 +46,42 @@ export default function App() {
             path="create-expense"
             element={
               <RequireAuth>
-                <CreateExpense />
+                <Navbar
+                  handleDark={handleDark}
+                  toggleDarkMode={toggleDarkMode}
+                />
+                <CreateExpense toggleDarkMode={toggleDarkMode} />
+              </RequireAuth>
+            }
+          />
+
+          <Route
+            path="filters"
+            element={
+              <RequireAuth>
+                <Navbar
+                  handleDark={handleDark}
+                  toggleDarkMode={toggleDarkMode}
+                />
+                <Filters toggleDarkMode={toggleDarkMode} />
               </RequireAuth>
             }
           />
         </Route>
-        <Route
-          path="filters"
-          element={
-            <RequireAuth>
-              <Filters />
-            </RequireAuth>
-          }
-        />
+
         <Route
           path="settings"
           element={
             <RequireAuth>
-              <Settings />
+              <Navbar handleDark={handleDark} toggleDarkMode={toggleDarkMode} />
+              <Settings toggleDarkMode={toggleDarkMode} />
             </RequireAuth>
           }
         />
+
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="*" element={<div>Page not found</div>} />
       </Routes>
     </div>

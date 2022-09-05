@@ -97,10 +97,17 @@ export default function CreateExpense(props) {
   }
 
   return (
-    <section className="create-expense-background">
+
+    <section
+      className={
+        props.toggleDarkMode
+          ? "create-expense-background dark"
+          : "create-expense-background"
+      }
+    >
       <form
         className="create-expense-form-container"
-        onSubmit={event => handleSubmit(event)}
+        onSubmit={(event) => handleSubmit(event)}
       >
         <button className="close-btn" onClick={handleCreateExpenseModalClose}>
           X

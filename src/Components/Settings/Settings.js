@@ -8,7 +8,7 @@ import Eye from "../../images/Eye_icon.svg";
 import "./settings.css";
 import Header from "../Header/Header.js";
 
-export default function Settings() {
+export default function Settings(props) {
   const {
     currentUser,
     updateUser,
@@ -92,17 +92,25 @@ export default function Settings() {
   useEffect(() => {}, [data]);
 
   return (
-    <div className="settings-container">
+    <div
+      className={
+        props.toggleDarkMode ? "settings-container dark" : "settings-container"
+      }
+    >
       <Header />
 
-      <div className="main-container">
+      <div
+        className={
+          props.toggleDarkMode ? "main-container dark" : "main-container"
+        }
+      >
         <h2 className="subtitle-acc">Account Information</h2>
         <p className="subtitle-details">Update your account information</p>
 
         <section className="personal-info">
           <h2 className="subtitle-pers">Personal Information</h2>
           <button
-            className="edit-btn"
+            className={props.toggleDarkMode ? "edit-btn dark" : "edit-btn"}
             onClick={e => {
               setEditSettings(prev => !prev);
               e.preventDefault();
@@ -114,7 +122,9 @@ export default function Settings() {
         </section>
 
         <form className="form-info" onSubmit={event => handleSubmit(event)}>
-          <section className="form-wrap">
+          <section
+            className={props.toggleDarkMode ? "form-wrap dark" : "form-wrap"}
+          >
             <div className="form-column">
               <label className="label label-fname">First Name</label>
               <input

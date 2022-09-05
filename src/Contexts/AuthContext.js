@@ -77,13 +77,13 @@ export default function AuthProvider({ children }) {
     });
   }
 
-  //   const forgotPassword = email => {
-  //     return sendPasswordResetEmail(auth, email);
-  //   };
+  const forgotPassword = (email) => {
+    return sendPasswordResetEmail(auth, email);
+  };
 
   useEffect(() => {
     setLoading(true);
-    const unsubscribe = onAuthStateChanged(auth, user => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
       setLoading(false);
     });
@@ -93,7 +93,7 @@ export default function AuthProvider({ children }) {
   useEffect(() => {
     if (currentUser) {
       const docRef = doc(db, "users", currentUser.uid);
-      onSnapshot(docRef, async doc => {
+      onSnapshot(docRef, async (doc) => {
         const info = doc.data();
         setUserDetails(info);
       });
@@ -112,6 +112,7 @@ export default function AuthProvider({ children }) {
     setDisplayName,
     createUserDetails,
     updateUser,
+    forgotPassword,
   };
 
   return (

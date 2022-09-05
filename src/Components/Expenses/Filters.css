@@ -1,10 +1,9 @@
-.filter-form-container {
-}
-
 .input-titles {
   margin-top: 25px;
   display: grid;
+
   grid-template-columns: 1.5fr 1.1fr 0.8fr 0.7fr 0.65fr 1fr;
+
   column-gap: 5px;
   font-size: 12px;
   font-weight: 600;
@@ -49,6 +48,7 @@
 } */
 
 .input-titles img {
+
   transition: transform 0.3s;
   display: block;
   max-width: 100%;
@@ -62,6 +62,7 @@
 .input-titles img.asc {
   transform: rotate(90deg);
   display: block;
+
 }
 
 /* .filter-form {
@@ -88,3 +89,23 @@
 	align-items: center;
 	margin: 0 !important;
 } */
+
+/* §§§§§§§§§§§§§§§§§§§§§§§ */
+/* §§§§§§ Dark mode §§§§§§ */
+/* §§§§§§§§§§§§§§§§§§§§§§§ */
+
+.input-titles.dark .category-btn {
+  background: #c8ee44;
+}
+
+.input-titles.dark .category-btn.hidden {
+  background: #ceed5e;
+}
+
+.input-titles.dark .category-btn {
+  color: #1b212d;
+}
+
+.input-titles.dark .category-btn.hidden {
+  color: #929eae;
+}

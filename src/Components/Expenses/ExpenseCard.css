@@ -189,14 +189,13 @@
 /* WHEN EDIT HAS BEEN CLICKED, SHOW THIS THROUGH COLOUR CHANGE */
 input.edit {
   border: none;
-  background-color: rgba(119, 119, 119, 0.1);
+  background: rgba(119, 119, 119, 0.1);
   border-radius: 5px;
 }
 
 .card-element {
   display: flex;
   align-items: center;
-  background-color: white;
   border: none;
   outline: none;
   gap: 10px;
@@ -228,7 +227,7 @@ input.edit {
   font-size: 14px;
   color: #1b212d;
   margin: 0;
-  background-color: white;
+  background: white;
   border: none;
   flex-wrap: wrap;
 }
@@ -238,7 +237,7 @@ input.edit {
   font-size: 13px;
   color: #78778b;
   margin: 0;
-  background-color: white;
+  background: white;
   border: none;
 }
 
@@ -347,4 +346,24 @@ input.edit {
 
 .action-button:active {
   background: #89a22e;
+}
+
+/* §§§§§§§§§§§§§§§§§§§§§§§ */
+/* §§§§§§ Dark mode §§§§§§ */
+/* §§§§§§§§§§§§§§§§§§§§§§§ */
+
+.expense-card.dark .card-element,
+.expense-card.dark .expense-card-text,
+.expense-card.dark .expense-card-subtext,
+.expense-card.dark .card-element select {
+  background-color: #282541;
+  color: #929eae;
+}
+
+.expense-card.dark .card-element.edit,
+.expense-card.dark .expense-card-text.edit,
+.expense-card.dark .expense-card-subtext.edit,
+.expense-card.dark .card-element select {
+  background-color: #282541;
+  color: white;
 }

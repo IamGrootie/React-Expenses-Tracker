@@ -147,7 +147,9 @@
   display: flex;
   align-items: center;
   margin-bottom: 1.563rem;
+
   column-span: 2;
+
 }
 
 .mail-container {
@@ -232,4 +234,63 @@
 
 .update-btn:active {
   background-color: #1b6448;
+}
+
+/* §§§§§§§§§§§§§§§§§§§§§§§ */
+/* §§§§§§ Dark mode §§§§§§ */
+/* §§§§§§§§§§§§§§§§§§§§§§§ */
+
+.settings-container.dark {
+  color: #ffffff !important;
+}
+
+.main-container.dark {
+  background-color: #201e34;
+  /* margin-right: 50px;
+  margin-bottom: 50px; */
+}
+
+.edit-btn.dark {
+  background-color: #201e34;
+}
+
+.form-wrap.dark .input {
+  background-color: #201e34;
+  border: 1px solid #282541;
+  color: #ffffff;
+}
+.form-wrap.dark .input:disabled {
+  color: #78778b;
+}
+
+.main-container.dark .mail-container,
+.main-container.dark .mail-container-white {
+  background-color: #201e34;
+  border: 1px solid #282541;
+}
+.main-container.dark .mail-input,
+.main-container.dark .mail-input-w {
+  background-color: #201e34;
+  color: #ffffff;
+}
+
+.main-container.dark .mail-input:disabled {
+  background-color: #201e34;
+  color: #78778b;
+}
+
+.main-container.dark .pass-container,
+.main-container.dark .pass-container-white {
+  background-color: #201e34;
+  border: 1px solid #282541;
+}
+
+.main-container.dark .pass-input,
+.main-container.dark .pass-input-w {
+  background-color: #201e34;
+  color: #ffffff;
+}
+
+.main-container.dark .pass-input {
+  color: #78778b;
 }
