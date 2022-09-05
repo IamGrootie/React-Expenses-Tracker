@@ -21,12 +21,12 @@ export default function App() {
 
   return (
     <div className="App">
-      <Navbar handleDark={handleDark} toggleDarkMode={toggleDarkMode} />
       <Routes>
         <Route
           path="/"
           element={
             <RequireAuth>
+              <Navbar handleDark={handleDark} toggleDarkMode={toggleDarkMode} />
               <Dashboard toggleDarkMode={toggleDarkMode} />
             </RequireAuth>
           }
@@ -37,6 +37,7 @@ export default function App() {
           path="expenses"
           element={
             <RequireAuth>
+              <Navbar handleDark={handleDark} toggleDarkMode={toggleDarkMode} />
               <Expenses toggleDarkMode={toggleDarkMode} />
             </RequireAuth>
           }
@@ -45,27 +46,39 @@ export default function App() {
             path="create-expense"
             element={
               <RequireAuth>
+                <Navbar
+                  handleDark={handleDark}
+                  toggleDarkMode={toggleDarkMode}
+                />
                 <CreateExpense toggleDarkMode={toggleDarkMode} />
               </RequireAuth>
             }
           />
+
+          <Route
+            path="filters"
+            element={
+              <RequireAuth>
+                <Navbar
+                  handleDark={handleDark}
+                  toggleDarkMode={toggleDarkMode}
+                />
+                <Filters toggleDarkMode={toggleDarkMode} />
+              </RequireAuth>
+            }
+          />
         </Route>
-        <Route
-          path="filters"
-          element={
-            <RequireAuth>
-              <Filters toggleDarkMode={toggleDarkMode} />
-            </RequireAuth>
-          }
-        />
+
         <Route
           path="settings"
           element={
             <RequireAuth>
+              <Navbar handleDark={handleDark} toggleDarkMode={toggleDarkMode} />
               <Settings toggleDarkMode={toggleDarkMode} />
             </RequireAuth>
           }
         />
+
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
