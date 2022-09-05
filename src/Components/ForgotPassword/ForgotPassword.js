@@ -1,49 +1,94 @@
-import React, { useRef, useState } from "react"
-import { useAuth } from "../Contexts/auth"
-import { Link } from "react-router-dom"
+import React, { useRef, useState } from "react";
+import { useAuth } from "../../Contexts/AuthContext.js";
+import { Link } from "react-router-dom";
+import Logo from "../../images/Logo.svg";
+import Main from "../../images/Intro_img.svg";
+import vector from "../../images/Vector.svg";
+import "./forgotpassword.css";
 
 export default function ForgotPassword() {
-  const emailRef = useRef()
-  const { resetPassword } = useAuth()
-  const [error, setError] = useState("")
-  const [message, setMessage] = useState("")
-  const [loading, setLoading] = useState(false)
+  const emailRef = useRef();
+  const { resetPassword } = useAuth();
+  const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
 
     try {
-      setMessage("")
-      setError("")
-      setLoading(true)
-      await resetPassword(emailRef.current.value)
-      setMessage("Check your inbox for further instructions")
+      setMessage("");
+      setError("");
+      setLoading(true);
+      await resetPassword(emailRef.current.value);
+      setMessage("Check your inbox for further instructions");
     } catch {
-      setError("Failed to reset password")
+      setError("Failed to reset password");
     }
 
-    setLoading(false)
+    setLoading(false);
   }
 
+  const [userLogin, setUserLogin] = React.useState({
+    email: "",
+    password: "",
+  });
+
+  function handleChange(e) {
+    console.log("change");
+    const { type, value } = e.target;
+    setUserLogin((prev) => ({ ...prev, [type]: value }));
+  }
+
+  const { forgotPassword } = useAuth();
+
+  const forgotPasswordHandler = () => {
+    console.log(userLogin.email);
+    const email = userLogin.email;
+    if (email)
+      forgotPassword(email).then(() => {
+        userLogin.email = "";
+      });
+  };
+
   return (
-    <div>
-        <h2 className="text-center mb-4">Password Reset</h2>
-        {error && <Alert variant="danger">{error}</Alert>}
-        {message && <Alert variant="success">{message}</Alert>}
-        <Form onSubmit={handleSubmit}>
-        <Form.Group id="email">
-            <Form.Label>Email</Form.Label>
-            <Form.Control type="email" ref={emailRef} required />
-        </Form.Group>
-        <Button disabled={loading} className="w-100" type="submit">
+    <div className="fpass-container">
+      <div className="form-half">
+        <img src={Logo} className="logo" alt="" />
+        <h1 className="title-fpass">Password Reset</h1>
+
+        <form onSubmit={handleSubmit} className="form-pass-container">
+          <label className="email-label">Email</label>
+          <input
+            className="details-input"
+            type="email"
+            name="email"
+            onChange={handleChange}
+            placeholder="Enter your email address"
+          />
+          <button
+            disabled={loading}
+            type="submit"
+            onClick={forgotPasswordHandler}
+            className="reset-btn"
+          >
             Reset Password
-        </Button>
-        </Form>
-        <div className="w-100 text-center mt-3">
-        <Link to="/login">Login</Link>
+          </button>
+        </form>
+
+        {error && <alert variant="danger">{error}</alert>}
+        {message && <alert variant="success">{message}</alert>}
+
+        <div>
+          <p className="question">
+            Want to return? <Link to="/signin">Signin</Link>
+          </p>
+          <img src={vector} className="vector-pass" alt="" />
         </div>
-        <div className="w-100 text-center mt-2">
-            Don't have an account? <Link to="/signup">Sign Up</Link>
-        </div>
+      </div>
+      <div className="image-half">
+        <img src={Main} alt="" className="landing-image" />
+      </div>
     </div>
-  )}
+  );
+}

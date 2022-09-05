@@ -10,6 +10,7 @@ import Signin from "./Components/Signin/Signin";
 import Signup from "./Components/Signup/Signup";
 import CreateExpense from "./Components/Expenses/CreateExpense";
 import Filters from "./Components/Expenses/Filters";
+import ForgotPassword from "./Components/ForgotPassword/ForgotPassword";
 
 export default function App() {
   const [toggleDarkMode, setToggleDarkMode] = React.useState(false);
@@ -67,6 +68,7 @@ export default function App() {
         />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="*" element={<div>Page not found</div>} />
       </Routes>
     </div>
