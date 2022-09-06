@@ -15,10 +15,12 @@ export default function Settings() {
     updateUsersEmail,
     updateUsersPassword,
     userDetails,
+    upload,
   } = useAuth();
   const [error, setError] = useState("");
 
   const [data, setData] = useState({
+    displayPicture: "",
     firstName: userDetails.firstName,
     lastName: userDetails.lastName,
     dateOfBirth: userDetails.dateOfBirth,
@@ -30,6 +32,7 @@ export default function Settings() {
 
   useEffect(() => {
     setData({
+      displayPicture: userDetails.displayPicture,
       firstName: userDetails.firstName,
       lastName: userDetails.lastName,
       dateOfBirth: userDetails.dateOfBirth,
@@ -91,6 +94,30 @@ export default function Settings() {
 
   useEffect(() => {}, [data]);
 
+  const [photo, setPhoto] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [photoURL, setPhotoURL] = useState(
+    "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+  );
+
+  function handlePicture(e) {
+    if (e.target.files[0]) {
+      setPhoto(e.target.files[0]);
+    }
+  }
+
+  function handleUpload() {
+    upload(photo, currentUser, setLoading);
+  }
+
+  useEffect(() => {
+    if (currentUser?.displayPicture) {
+      setData({displayPicture: currentUser.displayPicture});
+    }
+  }, [currentUser]);
+
+  console.log(photoURL);
+  console.log(photo);
   return (
     <div className="settings-container">
       <Header />
@@ -115,6 +142,33 @@ export default function Settings() {
 
         <form className="form-info" onSubmit={event => handleSubmit(event)}>
           <section className="form-wrap">
+            <div className="form-column span-two">
+              <label className="label label-dp">Profile Picture</label>
+              {editSettings ? (
+                <>
+                  {" "}
+                  <input
+                    disabled={!editSettings}
+                    className="input-dp"
+                    type="file"
+                    name="displayPicture"
+                    placeholder="Upload Image"
+                    onChange={handlePicture}
+                    value={data.displayPicture}
+                  />
+                  <button
+                    onClick={handleUpload}
+                    className="upload-dp-btn"
+                    // value={data.displayPicture}
+                  >
+                    Upload Image
+                  </button>
+                </>
+              ) : (
+                <img src={photo} className="profile-picture" />
+              )}
+            </div>
+
             <div className="form-column">
               <label className="label label-fname">First Name</label>
               <input

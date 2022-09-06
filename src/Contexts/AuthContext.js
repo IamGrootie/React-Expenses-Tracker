@@ -14,8 +14,17 @@ import {
   onAuthStateChanged,
   sendPasswordResetEmail,
 } from "firebase/auth";
+import {
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  getStorage,
+  listAll,
+  list,
+} from "firebase/storage";
 import { auth, db } from "../firebase-config";
 import { getDoc, doc, setDoc, updateDoc, onSnapshot } from "firebase/firestore";
+import { v4 } from "uuid";
 
 const AuthContext = createContext();
 
@@ -69,6 +78,7 @@ export default function AuthProvider({ children }) {
   function createUserDetails(uid, name, email) {
     return setDoc(doc(db, "users", uid), {
       displayName: name,
+      displayPicture: "",
       email: email,
       firstName: name.substring(0, name.indexOf(" ")),
       lastName: name.substring(name.indexOf(" ") + 1),
@@ -76,6 +86,44 @@ export default function AuthProvider({ children }) {
       mobileNumber: "",
     });
   }
+
+ async function upload(file, currentUser, setLoading) {
+    const fileRef = ref(db, "users", currentUser + '.jpeg');
+  
+    setLoading(true);
+    
+    const snapshot = await uploadBytes(fileRef, file);
+    const photoURL = await getDownloadURL(fileRef);
+  
+    updateProfile(currentUser, currentUser.displayPicture, {photoURL});
+    
+    setLoading(false);
+    alert("Uploaded file!");
+  }
+
+  // const [imageUpload, setImageUpload] = useState(null);
+  // const [imageUrls, setImageUrls] = useState([]);
+
+  // const imagesListRef = ref(db, "users", currentUser.uid);
+  // const uploadFile = () => {
+  //   if (imageUpload == null) return;
+  //   const imageRef = ref(db, "users", currentUser.uid, `images/${imageUpload.name}`);
+  //   uploadBytes(imageRef, imageUpload).then(snapshot => {
+  //     getDownloadURL(snapshot.ref).then(url => {
+  //       setImageUrls(prev => [...prev, url]);
+  //     });
+  //   });
+  // };
+
+  // useEffect(() => {
+  //   listAll(imagesListRef).then(response => {
+  //     response.items.forEach(item => {
+  //       getDownloadURL(item).then(url => {
+  //         setImageUrls(prev => [...prev, url]);
+  //       });
+  //     });
+  //   });
+  // }, []);
 
   //   const forgotPassword = email => {
   //     return sendPasswordResetEmail(auth, email);
@@ -112,6 +160,7 @@ export default function AuthProvider({ children }) {
     setDisplayName,
     createUserDetails,
     updateUser,
+    upload
   };
 
   return (
