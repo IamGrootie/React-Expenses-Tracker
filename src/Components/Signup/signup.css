@@ -84,7 +84,7 @@ label {
 }
 
 .errorMessage {
-	color: rgb(243, 99, 99);
+  color: rgb(243, 99, 99);
 }
 
 .su-details-input {
@@ -114,6 +114,11 @@ a {
   width: 400px;
   margin-top: 10px;
   margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.su-sign-btn:active {
+  background: #89a22e;
 }
 
 .su-google-btn {
@@ -128,6 +133,12 @@ a {
   gap: 10px;
   font-weight: 600;
   color: #78778b;
+  transition: all 0.1s ease-in;
+  cursor: pointer;
+}
+
+.su-google-btn:active {
+  opacity: 0.5;
 }
 
 .su-question {
@@ -135,6 +146,12 @@ a {
   color: #929ea3;
   font-size: 0.9rem;
   font-weight: 400;
+  transition: all 0.1s ease-in;
+  cursor: pointer;
+}
+
+.su-question:active {
+  opacity: 0.5;
 }
 
 .su-vector {
