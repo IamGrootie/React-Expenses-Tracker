@@ -1,148 +1,175 @@
 body {
-	font-family: "Kumbh Sans", sans-serif;
+  font-family: "Kumbh Sans", sans-serif;
 }
 
 .title-sign {
-	font-size: 2rem;
-	font-weight: 600;
-	color: #1b212d;
-	line-height: 37px;
-	margin-top: 90px;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #1b212d;
+  line-height: 37px;
+  margin-top: 90px;
 }
 
 .intro-container {
-	display: grid;
-	grid-template-columns: 1.4fr 1fr;
-	min-width: 100%;
-	min-height: 100%;
-	overflow: hidden;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  min-width: 100%;
+  min-height: 100%;
+  overflow: hidden;
 }
 
 .form-half {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	align-items: center;
-	flex-direction: column;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .image-half {
-	object-fit: cover;
-	max-width: 100%;
-	max-height: 100%;
+  object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 @media only screen and (max-width: 600px) {
-	.image-half {
-		display: none;
-	}
-	.intro-container {
-		display: flex;
-		justify-content: center;
-	}
+  .image-half {
+    display: none;
+  }
+  .intro-container {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .form-container {
-	display: flex;
-	flex-direction: column;
-	margin: 40px 15px;
+  display: flex;
+  flex-direction: column;
+  margin: 40px 15px;
 }
 
 .landing-image {
-	float: right;
+  float: right;
 }
 
 .logo {
-	width: 122px;
-	height: 30px;
+  width: 122px;
+  height: 30px;
 }
 
 .details {
-	color: #78778b;
-	font-weight: 400;
-	font-size: 1rem;
-	margin-top: 8px;
-	margin-bottom: 25px;
-	line-height: 20px;
+  color: #78778b;
+  font-weight: 400;
+  font-size: 1rem;
+  margin-top: 8px;
+  margin-bottom: 25px;
+  line-height: 20px;
 }
 
 .form-signup {
-	display: flex;
-	flex-direction: column;
-	color: #1b212d;
-	font-size: 0.9rem;
-	font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  color: #1b212d;
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 
 label {
-	margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .details-input {
-	border: 1px solid #f2f2f2;
-	border-radius: 10px;
-	height: 50px;
-	padding-left: 20px;
-	width: 400px;
-	margin-bottom: 14px;
+  border: 1px solid #f2f2f2;
+  border-radius: 10px;
+  height: 50px;
+  padding-left: 20px;
+  width: 400px;
+  margin-bottom: 14px;
 }
 
 .options-section {
-	display: inline-flex;
-	justify-content: space-between;
-	align-items: center;
-	margin-top: 6px;
-	margin-bottom: 10px;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 6px;
+  margin-bottom: 10px;
 }
 
 .remember-label {
-	margin-left: 9px;
+  margin-left: 9px;
 }
 
 a {
-	text-decoration: none;
-	color: #1b212d;
-	font-weight: 500;
+  text-decoration: none;
+  color: #1b212d;
+  font-weight: 500;
+}
+
+.forgot-password {
+  cursor: pointer;
+  transition: all 0.1s ease-in;
+}
+
+.forgot-password:active {
+  opacity: 0.5;
 }
 
 .sign-btn {
-	background-color: #c8ee44;
-	border: none;
-	border-radius: 10px;
-	color: #1b212d;
-	font-size: 1.2rem;
-	font-weight: 600;
-	font-size: 1rem;
-	height: 48px;
-	width: 400px;
-	margin-top: 10px;
-	margin-bottom: 15px;
+  background-color: #c8ee44;
+  border: none;
+  border-radius: 10px;
+  color: #1b212d;
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-size: 1rem;
+  height: 48px;
+  width: 400px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  transition: all 0.1s ease-in;
+  cursor: pointer;
+}
+
+.sign-btn:active {
+  background: #89a22e;
 }
 
 .google-btn {
-	display: inline-flex;
-	justify-content: center;
-	align-items: center;
-	background-color: white;
-	border: 1px solid #f5f5f5;
-	border-radius: 10px;
-	height: 48px;
-	margin-bottom: 25px;
-	gap: 10px;
-	font-weight: 600;
-	color: #78778b;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border: 1px solid #f5f5f5;
+  border-radius: 10px;
+  height: 48px;
+  margin-bottom: 25px;
+  gap: 10px;
+  font-weight: 600;
+  color: #78778b;
+  cursor: pointer;
+  transition: all 0.1s ease-in;
+}
+
+.google-btn:active {
+  opacity: 0.5;
 }
 
 .question {
-	text-align: center;
-	color: #929ea3;
-	font-size: 0.9rem;
-	font-weight: 400;
+  text-align: center;
+  color: #929ea3;
+  font-size: 0.9rem;
+  font-weight: 400;
+  transition: all 0.1s ease-in;
+  cursor: pointer;
+}
+
+.question:active {
+  opacity: 0.5;
 }
 
 .vector {
-	width: 96px;
-	align-self: flex-end;
-	margin-top: 10px;
-	margin-right: 70px;
+  width: 96px;
+  align-self: flex-end;
+  margin-top: 10px;
+  margin-right: 70px;
 }
