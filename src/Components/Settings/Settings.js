@@ -20,7 +20,7 @@ export default function Settings() {
   const [error, setError] = useState("");
 
   const [data, setData] = useState({
-    displayPicture: "",
+    photoURL: "",
     firstName: userDetails.firstName,
     lastName: userDetails.lastName,
     dateOfBirth: userDetails.dateOfBirth,
@@ -32,7 +32,7 @@ export default function Settings() {
 
   useEffect(() => {
     setData({
-      displayPicture: userDetails.displayPicture,
+      photoURL: userDetails.photoURL,
       firstName: userDetails.firstName,
       lastName: userDetails.lastName,
       dateOfBirth: userDetails.dateOfBirth,
@@ -102,7 +102,7 @@ export default function Settings() {
 
   function handlePicture(e) {
     if (e.target.files[0]) {
-      setPhoto(e.target.files[0]);
+      setPhoto(e.target.files[0])
     }
   }
 
@@ -111,13 +111,14 @@ export default function Settings() {
   }
 
   useEffect(() => {
-    if (currentUser?.displayPicture) {
-      setData({displayPicture: currentUser.displayPicture});
+    if (currentUser?.photoURL) {
+      setPhotoURL(currentUser.photoURL);
     }
-  }, [currentUser]);
+  }, [currentUser])
 
   console.log(photoURL);
   console.log(photo);
+
   return (
     <div className="settings-container">
       <Header />
@@ -154,7 +155,7 @@ export default function Settings() {
                     name="displayPicture"
                     placeholder="Upload Image"
                     onChange={handlePicture}
-                    value={data.displayPicture}
+                    // value={data.photoURL}
                   />
                   <button
                     onClick={handleUpload}
@@ -165,7 +166,7 @@ export default function Settings() {
                   </button>
                 </>
               ) : (
-                <img src={photo} className="profile-picture" />
+                <img src={photoURL} className="profile-picture" />
               )}
             </div>
 

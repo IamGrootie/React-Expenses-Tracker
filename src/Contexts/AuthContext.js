@@ -23,7 +23,14 @@ import {
   list,
 } from "firebase/storage";
 import { auth, db } from "../firebase-config";
-import { getDoc, doc, setDoc, updateDoc, onSnapshot } from "firebase/firestore";
+import {
+  getDoc,
+  getDocs,
+  doc,
+  setDoc,
+  updateDoc,
+  onSnapshot,
+} from "firebase/firestore";
 import { v4 } from "uuid";
 
 const AuthContext = createContext();
@@ -78,7 +85,7 @@ export default function AuthProvider({ children }) {
   function createUserDetails(uid, name, email) {
     return setDoc(doc(db, "users", uid), {
       displayName: name,
-      displayPicture: "",
+      photoURL: "",
       email: email,
       firstName: name.substring(0, name.indexOf(" ")),
       lastName: name.substring(name.indexOf(" ") + 1),
@@ -87,16 +94,18 @@ export default function AuthProvider({ children }) {
     });
   }
 
- async function upload(file, currentUser, setLoading) {
-    const fileRef = ref(db, "users", currentUser + '.jpeg');
-  
+  const storage = getStorage();
+
+  async function upload(file, currentUser, setLoading) {
+    const fileRef = ref(storage, currentUser + '.png');
+
     setLoading(true);
-    
+
     const snapshot = await uploadBytes(fileRef, file);
     const photoURL = await getDownloadURL(fileRef);
-  
-    updateProfile(currentUser, currentUser.displayPicture, {photoURL});
-    
+
+    updateProfile(currentUser, { photoURL });
+
     setLoading(false);
     alert("Uploaded file!");
   }
@@ -160,7 +169,7 @@ export default function AuthProvider({ children }) {
     setDisplayName,
     createUserDetails,
     updateUser,
-    upload
+    upload,
   };
 
   return (
