@@ -39,11 +39,11 @@ export default function Navbar(props) {
             <img src={dashboardIcon} />
             Dashboard
           </NavLink>
-          <NavLink to="expenses" className="navlink-expenses">
+          <NavLink to="/expenses" className="navlink-expenses">
             <img src={expensesIcon} />
             Expenses
           </NavLink>
-          <NavLink to="settings" className="navlink-settings">
+          <NavLink to="/settings" className="navlink-settings">
             <img src={settingsIcon} /> Settings
           </NavLink>
         </div>
