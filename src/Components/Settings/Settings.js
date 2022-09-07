@@ -32,7 +32,7 @@ export default function Settings() {
 
   useEffect(() => {
     setData({
-      photoURL: userDetails.photoURL,
+      photoURL: currentUser.photoURL,
       firstName: userDetails.firstName,
       lastName: userDetails.lastName,
       dateOfBirth: userDetails.dateOfBirth,
@@ -102,19 +102,20 @@ export default function Settings() {
 
   function handlePicture(e) {
     if (e.target.files[0]) {
-      setPhoto(e.target.files[0])
+      setPhoto(e.target.files[0]);
     }
   }
 
-  function handleUpload() {
+  async function handleUpload() {
     upload(photo, currentUser, setLoading);
+  
   }
 
-  useEffect(() => {
-    if (currentUser?.photoURL) {
-      setPhotoURL(currentUser.photoURL);
-    }
-  }, [currentUser])
+  // useEffect(() => {
+  //   if (currentUser?.photoURL) {
+  //     setPhotoURL(currentUser.photoURL);
+  //   }
+  // }, [currentUser]);
 
   console.log(photoURL);
   console.log(photo);
@@ -143,8 +144,8 @@ export default function Settings() {
 
         <form className="form-info" onSubmit={event => handleSubmit(event)}>
           <section className="form-wrap">
-            <div className="form-column span-two">
-              <label className="label label-dp">Profile Picture</label>
+            <label className="label label-dp">Profile Picture</label>
+            <div className="form-column pp-container">
               {editSettings ? (
                 <>
                   {" "}
@@ -166,7 +167,7 @@ export default function Settings() {
                   </button>
                 </>
               ) : (
-                <img src={photoURL} className="profile-picture" />
+                <img src={data.photoURL} className="profile-picture" />
               )}
             </div>
 

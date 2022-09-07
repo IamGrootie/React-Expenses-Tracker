@@ -84,7 +84,7 @@
 }
 
 .edit-btn:active {
-  opacity: 0.2;
+  opacity: 0.5;
 }
 
 .pen-icon {
@@ -127,25 +127,54 @@
   padding-left: 1.6rem;
 }
 
+.label-dp {
+  font-size: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.pp-container {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .profile-picture {
   height: 8rem;
   width: 8rem;
   margin-bottom: 1.25rem;
+  border-radius: 150px;
 }
 
+.pp-container > input {
+  width: 30% !important;
+}
+/* sort out background colours */
 ::-webkit-file-upload-button {
-  background: white;
+  background-color: #c8ee44;
+  border: 1px solid #f1f1f3;
+  color: #1b212d;
+  padding: 1em;
+  border-radius: 0.625rem;
+  margin-bottom: 1.25rem;
+  /* margin-right: 10px; */
+  cursor: pointer;
+}
+
+.upload-dp-btn {
+  background-color: #c8ee44;
   border: 1px solid #f1f1f3;
   color: #1b212d;
   padding: 1em;
   border-radius: 0.625rem;
   margin-bottom: 1.25rem;
   cursor: pointer;
-  column-span: 2;
+  transition: all 0.1s ease-in;
+  /* width: 18%; */
 }
 
-.upload-dp-btn {
-  height: 100%;
+.update-btn:active {
+  background-color: #1b6448;
 }
 
 /* .input-dp {
@@ -228,12 +257,23 @@ input[type="file"] {
   background: white;
 }
 
+.pass-input {
+  background: #f8f8f8;
+}
+
 .pass-input,
 .pass-input-w {
   border: none;
   width: 100% !important;
   padding-left: 1.25rem;
-  background: #f8f8f8;
+}
+
+.pass-input-w {
+  background-color: white;
+}
+
+.pass-input,
+.pass-input-w {
 }
 
 .eye-btn {

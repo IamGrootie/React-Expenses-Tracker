@@ -94,10 +94,11 @@ export default function AuthProvider({ children }) {
     });
   }
 
+  // check to change image name within storage location currently [objectobject].png
   const storage = getStorage();
 
   async function upload(file, currentUser, setLoading) {
-    const fileRef = ref(storage, currentUser + '.png');
+    const fileRef = ref(storage, currentUser + ".png");
 
     setLoading(true);
 
@@ -107,7 +108,9 @@ export default function AuthProvider({ children }) {
     updateProfile(currentUser, { photoURL });
 
     setLoading(false);
-    alert("Uploaded file!");
+    
+    // reloads wepbage with new photoURL being displayed
+    window.location.reload();
   }
 
   // const [imageUpload, setImageUpload] = useState(null);

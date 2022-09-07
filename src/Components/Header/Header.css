@@ -22,4 +22,10 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	gap: 10px;
+}
+
+.display-picture {
+	border-radius: 50px;
+	height: 2.5rem;
 }
