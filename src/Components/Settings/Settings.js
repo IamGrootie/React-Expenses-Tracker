@@ -15,10 +15,12 @@ export default function Settings(props) {
     updateUsersEmail,
     updateUsersPassword,
     userDetails,
+    upload,
   } = useAuth();
   const [error, setError] = useState("");
 
   const [data, setData] = useState({
+    photoURL: "",
     firstName: userDetails.firstName,
     lastName: userDetails.lastName,
     dateOfBirth: userDetails.dateOfBirth,
@@ -30,6 +32,7 @@ export default function Settings(props) {
 
   useEffect(() => {
     setData({
+      photoURL: currentUser.photoURL,
       firstName: userDetails.firstName,
       lastName: userDetails.lastName,
       dateOfBirth: userDetails.dateOfBirth,
@@ -91,6 +94,32 @@ export default function Settings(props) {
 
   useEffect(() => {}, [data]);
 
+  const [photo, setPhoto] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [photoURL, setPhotoURL] = useState(
+    "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+  );
+
+  function handlePicture(e) {
+    if (e.target.files[0]) {
+      setPhoto(e.target.files[0]);
+    }
+  }
+
+  async function handleUpload() {
+    upload(photo, currentUser, setLoading);
+  
+  }
+
+  // useEffect(() => {
+  //   if (currentUser?.photoURL) {
+  //     setPhotoURL(currentUser.photoURL);
+  //   }
+  // }, [currentUser]);
+
+  console.log(photoURL);
+  console.log(photo);
+
   return (
     <div
       className={
@@ -125,6 +154,34 @@ export default function Settings(props) {
           <section
             className={props.toggleDarkMode ? "form-wrap dark" : "form-wrap"}
           >
+         
+            <label className="label label-dp">Profile Picture</label>
+            <div className="form-column pp-container">
+              {editSettings ? (
+                <>
+                  {" "}
+                  <input
+                    disabled={!editSettings}
+                    className="input-dp"
+                    type="file"
+                    name="displayPicture"
+                    placeholder="Upload Image"
+                    onChange={handlePicture}
+                    // value={data.photoURL}
+                  />
+                  <button
+                    onClick={handleUpload}
+                    className="upload-dp-btn"
+                    // value={data.displayPicture}
+                  >
+                    Upload Image
+                  </button>
+                </>
+              ) : (
+                <img src={data.photoURL} className="profile-picture" />
+              )}
+            </div>
+
             <div className="form-column">
               <label className="label label-fname">First Name</label>
               <input

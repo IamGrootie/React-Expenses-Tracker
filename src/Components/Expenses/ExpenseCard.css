@@ -323,7 +323,7 @@ input.edit {
   place-items: center;
   justify-content: space-between;
   /* center/space between means overlap to invoice container, but space-evenly it disappears like overflow hidden  */
-  min-width: fit0content%;
+  /* min-width: fit-content; */
 }
 
 .action-button {
@@ -366,4 +366,12 @@ input.edit {
 .expense-card.dark .card-element select {
   background-color: #282541;
   color: white;
+}
+
+.action-button.disabled {
+  opacity: 0.5;
+}
+
+.action-button.disabled:active {
+  background: #c8ee44;
 }

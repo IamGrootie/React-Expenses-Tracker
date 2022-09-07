@@ -14,12 +14,19 @@
 }
 
 .profile-btn {
-  border-radius: 3rem;
-  background-color: #fafafa;
-  border: none;
-  height: 48px;
-  border: 1px solid black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	border-radius: 3rem;
+	background-color: #fafafa;
+	border: none;
+	height: 48px;
+	border: 1px solid black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
 }
+
+.display-picture {
+	border-radius: 50px;
+	height: 2.5rem;
+}
+

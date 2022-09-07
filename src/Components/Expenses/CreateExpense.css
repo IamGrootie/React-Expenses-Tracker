@@ -162,6 +162,19 @@
   color: #1b212d;
   height: 52px;
   cursor: pointer;
+  transition: all 0.1s ease-in;
+}
+
+.add-expense.disabled {
+  opacity: 0.5;
+}
+
+.add-expense:active {
+  background: #89a22e;
+}
+
+.add-expense.add-expense.disabled:active {
+  background: #c8ee44;
 }
 
 /* §§§§§§§§§§§§§§§§§§§§§§§ */

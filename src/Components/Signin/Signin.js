@@ -1,4 +1,5 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import {
   signInWithEmailAndPassword,
@@ -16,16 +17,17 @@ import Main from "../../images/Intro_img.svg";
 import "./signin.css";
 
 export default function Signin() {
-  const [user, setUser] = React.useState({});
+  const [user, setUser] = useState({});
   const navigate = useNavigate();
 
-  const [userLogin, setUserLogin] = React.useState({
+  const [userLogin, setUserLogin] = useState({
     email: "",
     password: "",
   });
+  const [errorMessage, setErrorMessage] = useState("");
 
-  React.useEffect(() => {
-    onAuthStateChanged(auth, (currentUser) => {
+  useEffect(() => {
+    onAuthStateChanged(auth, currentUser => {
       setUser(currentUser);
     });
   }, []);
@@ -35,22 +37,23 @@ export default function Signin() {
     console.log(userLogin.email, userLogin.password); //Attention change this
 
     signInWithEmailAndPassword(auth, userLogin.email, userLogin.password)
-      .then((cred) => {
+      .then(cred => {
         console.log("user logined:" + cred.user);
         sessionStorage.setItem("Auth Token", auth.currentUser.accessToken);
         sessionStorage.setItem("uid", auth.currentUser.uid);
         sessionStorage.setItem("email", auth.currentUser.email);
         navigate("/");
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
+        setErrorMessage("Details do not match");
       });
   }
 
   function handleChange(e) {
     console.log("change");
     const { type, value } = e.target;
-    setUserLogin((prev) => ({ ...prev, [type]: value }));
+    setUserLogin(prev => ({ ...prev, [type]: value }));
   }
 
   function handlePersistance(e) {
@@ -58,7 +61,7 @@ export default function Signin() {
       .then((email, password) => {
         return signInWithEmailAndPassword(auth, email, password);
       })
-      .catch((error) => {
+      .catch(error => {
         // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;
@@ -69,17 +72,28 @@ export default function Signin() {
     e.preventDefault();
     console.log(userLogin.email, userLogin.password);
     signInWithPopup(auth, provider)
-      .then((cred) => {
+      .then(cred => {
         console.log(cred);
         sessionStorage.setItem("Auth Token", auth.currentUser.accessToken);
         sessionStorage.setItem("uid", auth.currentUser.uid);
         sessionStorage.setItem("email", auth.currentUser.email);
         navigate("/");
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   }
+
+  const { forgotPassword } = useAuth();
+
+  const forgotPasswordHandler = () => {
+    console.log(userLogin.email);
+    const email = userLogin.email;
+    if (email)
+      forgotPassword(email).then(() => {
+        userLogin.email = "";
+      });
+  };
 
   return (
     <div className="intro-container">
@@ -89,7 +103,10 @@ export default function Signin() {
           <h1 className="title-sign">Welcome back!</h1>
           <p className="details">Please enter your details.</p>
           <form className="form-signup">
-            <label className="email-label">Email</label>
+            <div className="label-container">
+              <label className="email-label">Email</label>
+              {errorMessage && <label className="errorMessage">{errorMessage}</label>}
+            </div>
             <input
               className="details-input"
               type="email"

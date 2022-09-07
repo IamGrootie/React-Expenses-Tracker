@@ -24,8 +24,7 @@ export default function Chart(props) {
         label: "Expense",
         fill: true,
         data: monthlyExpenses.map(item => item.amount).reverse(),
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
-        borderColor: "rgb(255, 99, 132)",
+        backgroundColor: "#363a3f",
       },
     ],
   };

@@ -28,7 +28,7 @@ export default function Header(props) {
     <section className="header-container">
       <h2 className="title">{title}</h2>
       <button className="profile-btn">
-        {/* // <img src=PROFILE PIC/>  */}
+        <img src={currentUser.photoURL} className="display-picture"/> 
         <h3>{`${userDetails.firstName} ${userDetails.lastName}`}</h3>
       </button>
     </section>
