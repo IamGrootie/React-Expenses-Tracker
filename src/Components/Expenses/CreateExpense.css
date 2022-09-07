@@ -186,10 +186,14 @@
 }
 
 .create-expense-background.dark .form-element input,
-.create-expense-background.dark .form-element select {
-  background-color: #2d2b3e;
+.create-expense-background.dark .form-element select,
+.create-expense-background.dark .form-element option,
+.create-expense-background.dark > input {
+  /* background-color: #2d2b3e; */
+  background-color: #282541;
   border: 1px solid #7b798b;
   color: white;
+  opacity: 0.8;
 }
 
 .create-expense-background.dark .form-element input::placeholder,
@@ -197,6 +201,29 @@
   color: white;
 }
 
+.create-expense-background.dark .checkbox-input {
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  accent-color: white;
+}
+
+.create-expense-background.dark .checkbox-input-text {
+  font-family: "Roboto";
+  font-size: 14px;
+  font-weight: 500;
+  accent-color: white;
+  opacity: 0.8;
+  gap: 5px;
+}
+
 .create-expense-background.dark {
   background-color: rgba(69, 68, 68, 0.8);
+}
+
+.create-expense-background.dark .close-btn {
+  background-color: #282541;
+  color: #ffffff;
+  border: 1.5px solid #ffffff;
+  opacity: 0.7;
 }
