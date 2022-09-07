@@ -356,7 +356,7 @@ input.edit {
 .expense-card.dark .expense-card-text,
 .expense-card.dark .expense-card-subtext,
 .expense-card.dark .card-element select {
-  background-color: #282541;
+  background-color: #1c1a2e;
   color: #929eae;
 }
 
@@ -364,8 +364,19 @@ input.edit {
 .expense-card.dark .expense-card-text.edit,
 .expense-card.dark .expense-card-subtext.edit,
 .expense-card.dark .card-element select {
-  background-color: #282541;
-  color: white;
+  background-color: #312f3b;
+  /* color: rgb(255, 255, 255); */
+}
+
+.expense-card.dark .business,
+.expense-card.dark .amount,
+.expense-card.dark .date {
+  color: rgb(255, 255, 255);
+}
+
+
+.expense-card.dark ::-webkit-calendar-picker-indicator {
+  color-scheme: dark;
 }
 
 .action-button.disabled {

@@ -135,6 +135,11 @@
 
 .expenses-container.dark {
   color: #ffffff;
+  background: #1c1a2e;
+}
+
+.expenses-container.dark .expense-expenses {
+  background: #1c1a2e;
 }
 
 .expenses-container.dark .search-bar,
@@ -146,12 +151,22 @@
   border: 1px solid #201e34;
 }
 
+
+.expenses-container.dark .search-bar img {
+  filter: brightness(250%);
+}
+
+
 .expenses-container.dark .filter-expenses {
-  background: #c8ee44;
-  color: #1b212d;
-  border: none;
+  background: #1c1a2e;
+  color: white;
+  border: 1px solid white;
+}
+
+.expenses-container.dark .filter-expenses img {
+  filter: brightness(2000%);
 }
 
 .expenses-container.dark .filter-expenses:active {
-  background: #89a22e;
+  background: #3d3b52;
 }

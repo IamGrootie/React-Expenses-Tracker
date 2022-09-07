@@ -48,7 +48,6 @@
 } */
 
 .input-titles img {
-
   transition: transform 0.3s;
   display: block;
   max-width: 100%;
@@ -62,7 +61,6 @@
 .input-titles img.asc {
   transform: rotate(90deg);
   display: block;
-
 }
 
 /* .filter-form {
@@ -95,17 +93,26 @@
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
 
 .input-titles.dark .category-btn {
-  background: #c8ee44;
+  /* background: #c8ee44; */
+  background: #c9ee4471;
+  color: white;
+}
+
+.input-titles.dark img {
+  filter: brightness(200%);
+  /* background: white; */
 }
 
 .input-titles.dark .category-btn.hidden {
-  background: #ceed5e;
+  /* background: #ceed5e; */
+  background: #c9ee4431;
+  color: white;
 }
 
 .input-titles.dark .category-btn {
-  color: #1b212d;
+  /* color: #1b212d; */
 }
 
 .input-titles.dark .category-btn.hidden {
-  color: #929eae;
+  /* color: #929eae; */
 }

@@ -130,11 +130,11 @@ function ExpenseCard(props) {
             <input
               className={
                 !props.editExpense
-                  ? "expense-card-text"
-                  : "expense-card-text edit"
+                  ? "expense-card-text business"
+                  : "expense-card-text edit business"
               }
               disabled={!props.editExpense}
-              name="title"
+              name="business"
               value={data.title}
               maxLength="20"
               placeholder="Name of expense"
@@ -144,8 +144,8 @@ function ExpenseCard(props) {
             <input
               className={
                 !props.editExpense
-                  ? "expense-card-subtext"
-                  : "expense-card-subtext edit"
+                  ? "expense-card-subtext company"
+                  : "expense-card-subtext edit company"
               }
               disabled={!props.editExpense}
               name="company"
