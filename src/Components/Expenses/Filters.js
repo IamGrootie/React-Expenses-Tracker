@@ -9,7 +9,7 @@ export default function Filters(props) {
   // console.log(sort[1]);
   function handleClick(e) {
     const { name } = e.target;
-    setSort((prevSort) => {
+    setSort(prevSort => {
       return prevSort[0] !== name
         ? [name, "asc"]
         : prevSort[1] === "asc"
@@ -18,7 +18,7 @@ export default function Filters(props) {
     });
   }
 
-console.log(sort)
+  console.log(sort);
   return (
     <div
       className={props.toggleDarkMode ? "input-titles dark" : "input-titles"}
@@ -83,31 +83,39 @@ console.log(sort)
           className={sort[1]}
         />
       </button>
-      <button
-        className={
-          props.displayFilters ? "category-btn" : "category-btn hidden"
-        }
-        name="invoice"
-        disabled={!props.displayFilters}
-        onClick={handleClick}
-      >
-        INVOICE ID
-        {props.displayFilters && (
-          <img
-            src={sort[0] === "invoice" ? chevron : null}
-            className={sort[1]}
+      {props.displayAll && (
+        <>
+          
+          <button
+            className={
+              props.displayFilters ? "category-btn" : "category-btn hidden"
+            }
+            name="invoice"
+            disabled={!props.displayFilters}
+            onClick={handleClick}
+          >
+            INVOICE ID
+            {props.displayFilters && (
+              <img
+                src={sort[0] === "invoice" ? chevron : null}
+                className={sort[1]}
+                disabled
+              />
+            )}
+          </button>
+          
+          <button
+            className={
+              props.displayFilters
+                ? "category-btn action"
+                : "category-btn hidden"
+            }
             disabled
-          />
-        )}
-      </button>
-      <button
-        className={
-          props.displayFilters ? "category-btn action" : "category-btn hidden"
-        }
-        disabled
-      >
-        ACTION
-      </button>
+          >
+            ACTION
+          </button>
+        </>
+      )}
     </div>
   );
 }

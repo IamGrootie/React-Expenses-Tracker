@@ -121,7 +121,7 @@ export default function Dashboard(props) {
           : "dashboard-container"
       }
     >
-      <Header />
+        <Header toggleDarkMode={props.toggleDarkMode}/>
 
       <div className="dash-container">
         <div className="resume-container">
@@ -169,7 +169,7 @@ export default function Dashboard(props) {
             </div>
 
             <div className="dashboard-expense-card">
-              {/* <Filters /> */}
+              <Filters />
               {expensesArr}
             </div>
           </section>
@@ -183,6 +183,7 @@ export default function Dashboard(props) {
               <img src={expand} className="expand-icon" alt="" />
             </button>
           </div>
+          
           <div className="recurring-expenses-card">
             {recurringExpensesArr}
             {/* <div className="reccurring-expenses-card-expense">

@@ -14,19 +14,27 @@
 }
 
 .profile-btn {
-	border-radius: 3rem;
-	background-color: #fafafa;
-	border: none;
-	height: 48px;
-	border: 1px solid black;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 10px;
+  border-radius: 3rem;
+  background-color: #f8f8f8;
+  border: none;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 10px;
 }
 
 .display-picture {
-	border-radius: 50px;
-	height: 2.5rem;
+  border-radius: 50px;
+  height: 2.2rem;
 }
 
+.header-container.dark {
+  background: #1c1a2e;
+}
+
+.header-container.dark .profile-btn {
+  background: #282541;
+  color: white;
+}

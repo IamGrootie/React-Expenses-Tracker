@@ -137,7 +137,7 @@ export default function Expenses(props) {
             // handleInput={handleInput}
           />
         )}
-        <Header />
+        <Header toggleDarkMode={props.toggleDarkMode}/>
         <div className="expenses-content">
           <div className="search-container">
             <div className="search-bar">
@@ -173,6 +173,7 @@ export default function Expenses(props) {
             <Filters
               displayFilters={displayFilters}
               toggleDarkMode={props.toggleDarkMode}
+              displayAll
             />
             <div className="expense-cards">{expensesArr}</div>
           </div>

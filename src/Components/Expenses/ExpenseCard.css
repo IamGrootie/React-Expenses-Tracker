@@ -352,28 +352,28 @@ input.edit {
 /* §§§§§§ Dark mode §§§§§§ */
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
 
-.expense-card.dark .card-element,
-.expense-card.dark .expense-card-text,
-.expense-card.dark .expense-card-subtext,
-.expense-card.dark .card-element select {
+.dark .card-element,
+.dark .expense-card-text,
+.dark .expense-card-subtext,
+.dark .card-element select {
   background-color: #1c1a2e;
   color: #929eae;
 }
 
-.expense-card.dark .card-element.edit,
-.expense-card.dark .expense-card-text.edit,
-.expense-card.dark .expense-card-subtext.edit,
-.expense-card.dark .card-element select {
+.dark .card-element.edit,
+.dark .expense-card-text.edit,
+.dark .expense-card-subtext.edit,
+.dark .card-element select {
   background-color: #312f3b;
   /* color: rgb(255, 255, 255); */
 }
 
-.expense-card.dark .business,
-.expense-card.dark .amount,
-.expense-card.dark .date {
+.dark .business,
+.dark .amount,
+.dark .card-element.amount select,
+.dark .date {
   color: rgb(255, 255, 255);
 }
-
 
 .expense-card.dark ::-webkit-calendar-picker-indicator {
   color-scheme: dark;

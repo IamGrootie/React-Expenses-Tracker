@@ -26,7 +26,7 @@
   font-weight: 600;
   font-size: 1.125rem;
   line-height: 1.375rem;
-  
+
   /* margin: 25px ; */
 }
 /* §§§§§§§§§§§§§§§§§§§§§§§§§§ */
@@ -110,7 +110,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  /* align-items: center; */
   /* border: 1px solid green; */
   min-width: 100%;
   height: fit-content;
@@ -187,7 +187,7 @@ td {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  /* align-items: center; */
   min-width: 100%;
   height: fit-content;
 }
@@ -220,7 +220,7 @@ td {
 
 .dashboard-container.dark {
   color: #ffffff;
-  background: #1e1c30;
+  background: #1c1a2e;
 }
 
 .dashboard-container.dark .amount-itm-total {
@@ -234,15 +234,20 @@ td {
 .dashboard-container.dark .graph-container,
 .dashboard-container.dark .dashboard-expense-container {
   border: 1px solid #282541;
-  border-radius: 10px;
+  /* border-radius: 10px; */
 }
 
-.dashboard-container.dark .expense-card-text,
-.dashboard-container.dark .expense-card-subtext,
+/* .dashboard-container.dark .expense-card-text,
+.dashboard-container.dark .expense-card-subtext, */
 .dashboard-container.dark .expand-btn {
   background: #1e1c30;
 }
 
-.dashboard-container.dark .expense-card-text {
-  color: #ffffff;
-}
+/* .dashboard-container.dark .expense-card-text,
+.dashboard-container.dark .expense-card-subtext {
+  background: #1c1a2e;
+} */
+
+/* .dashboard-expense-card.container {
+  background-color: red !important;
+} */
