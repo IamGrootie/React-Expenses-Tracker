@@ -1,30 +1,8 @@
-
-.settings-container{
-    width: 100% !important;
-    color: #1B212D;
-}
-
-/* §§§§§§§§§§§§§§§§§§§§§§§ */
-/* §§§§§§§ NAV BAR §§§§§§§ */
-/* §§§§§§§§§§§§§§§§§§§§§§§ */
-
-.navbar-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 2.38rem 2.5rem;
-}
-
-.title {
-    font-size: 1.56rem;
-    line-height: 1.875rem;
-    font-weight: 600;
-}
-
-.profile-btn {
-    border-radius: 3rem;
-    background-color: #FAFAFA;
-    border: none;
+.settings-container {
+  width: 100%;
+  height: 100%;
+  color: #1b212d;
+  overflow-y: auto;
 }
 
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
@@ -32,50 +10,90 @@
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
 
 .main-container {
-    margin: 4.375rem 10.8rem 9.2rem 5rem;
-    padding-bottom: 2.75rem;
+  /* margin: 0px 10.8rem 9.2rem 5rem; */
+  margin-left: 40px;
+  padding-left: 40px;
+  padding-left: 40px;
+  padding-top: 40px;
+  padding-right: 100px;
+  padding-bottom: 60px;
+  /* padding-bottom: 2.75rem; */
+  /* max-width: 100%; */
+}
+
+@media only screen and (max-width: 1280px) {
+  .main-container {
+    /* min-width: fit-content; */
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+    min-width: 450px;
+    /* justify-content: center;
+	  align-items: center; */
+  }
+  .settings-container {
+    overflow-y: auto;
+    /* min-width: fit-content; */
+  }
+
+  /* .form-wrap {
+    display: flex;
+    flex-direction: column;
+  } */
 }
 
 .subtitle-acc {
-    font-size: 1.25rem;
-    line-height: 1.56rem;
-    font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.56rem;
+  font-weight: 600;
 }
 
 .subtitle-details {
-    font-size: 0.875rem;
-    color: #929EAE;
-    line-height: 1rem;
+  font-size: 0.875rem;
+  color: #929eae;
+  line-height: 1rem;
 }
 
-.personal-info{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 2.5rem;
-    margin-bottom: 2.5rem;
+.personal-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
 }
 
 .subtitle-pers {
-    font-size: 1.125rem;
-    line-height: 1.375rem;
-    font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.375rem;
+  font-weight: 600;
 }
 
 .edit-btn {
-    border: none;
-    background-color: white;
-    color: #29A073;
-    font-size: 1.125rem;
-    font-weight: 600;
-    line-height: 1.375rem;
+  border: none;
+  border-radius: 0.625rem;
+  /* ba: white; */
+  background-color: white;
+  color: #29a073;
+  /* font-size: 1.125rem; */
+  font-weight: 600;
+  line-height: 1.375rem;
+  cursor: pointer;
+  padding: 5px 10px;
+  transition: all 0.1s ease-in;
+  display: flex;
+  justify-content: center;
+}
+
+.edit-btn:active {
+  opacity: 0.2;
 }
 
 .pen-icon {
-    width: 1.25rem;
-    height: 1.25rem;
-    margin-right: 0.625rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0.625rem;
+  cursor: pointer;
 }
 
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
@@ -83,70 +101,119 @@
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
 
 .form-wrap {
-    display: flex;
-    flex-wrap: wrap;
-    column-gap: 2.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* flex-wrap: wrap; */
+  column-gap: 10px;
 }
-.form-column{
-    display: flex;
-    flex-direction: column;
+.form-column {
+  display: flex;
+  flex-direction: column;
+  /* remove width to make 25rem */
+  width: 100%;
 }
+
 .label {
-    font-size: 0.875rem;
-    font-weight: 500;
-    line-height: 1.06rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.06rem;
 }
 
 .input {
-    width: 25rem;
-    border: 1px solid #F5F5F5;
-    height: 3rem;
-    border-radius: 0.625rem;
-    margin-bottom: 1.25rem;
-    padding-left: 1.6rem;
+  /* width: 25rem; */
+
+  border: 1px solid #f5f5f5;
+  height: 3rem;
+  border-radius: 0.625rem;
+  margin-bottom: 1.25rem;
+  padding-left: 1.6rem;
+}
+
+.input-date {
+  cursor: pointer;
 }
 
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
 /* §§§§§§ Mail form §§§§§§ */
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
 
+.mail-container,
+.mail-container-white {
+  /* width: 100%; */
+  border: 1px solid #f1f1f3;
+  height: 2.75rem;
+  border-radius: 0.625rem;
+  padding: 0.75rem 1.563rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.563rem;
+
+  column-span: 2;
+
+}
+
 .mail-container {
-    width: 52.5rem;
-    border: 1px solid #F1F1F3;
-    height: 2.75rem;
-    border-radius: 0.625rem;
-    padding: 0.75rem 1.563rem;
-    display: flex;
-    align-items: center;
-    margin-bottom: 1.563rem;
+  background: #f8f8f8;
+}
+.mail-container-white {
+  background: white;
+}
+.mail-input {
+  border: none;
+  width: 100% !important;
+  padding-left: 1.25rem;
+  background: #f8f8f8;
 }
 
-.input-mail {
-    border: none;
-    width: 100% !important;
-    padding-left: 1.25rem;
-
+.mail-input-w {
+  border: none;
+  width: 100% !important;
+  padding-left: 1.25rem;
+  background: white;
 }
-
 
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
 /* §§§§§§ Pass form §§§§§§ */
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
 
-.pass-container {
-    width: 25rem;
-    border: 1px solid #F1F1F3;
-    height: 2.75rem;
-    border-radius: 0.625rem;
-    display: flex;
-    align-items: center;
-    padding: 0.75rem 1.563rem;
+.pass-container,
+.pass-container-white {
+  /* width: 100%; */
+  border: 1px solid #f1f1f3;
+  height: 2.75rem;
+  border-radius: 0.625rem;
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.563rem;
 }
 
-.pass-input {
-    border: none;
-    width: 100% !important;
-    padding-left: 1.25rem;
+.pass-container {
+  background: #f8f8f8;
+}
+
+.pass-container-white {
+  background: white;
+}
+
+.pass-input, .pass-input-w {
+  border: none;
+  width: 100% !important;
+  padding-left: 1.25rem;
+  background: #f8f8f8;
+}
+
+.eye-btn {
+  border: none;
+  background-color: rgba(250, 250, 250, 0);
+  transition: all 0.1s ease-in;
+  cursor: pointer;
+  display: grid;
+  place-content: center;
+  place-items: center;
+}
+
+.eye-btn:active {
+  opacity: 0.2;
 }
 
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
@@ -154,12 +221,76 @@
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
 
 .update-btn {
-    color: #fff;
-    height: 3.25rem;
-    width: 11.875rem;
-    border: none;
-    border-radius: 0.625rem;
-    background-color: #29A073;
-    margin-top: 2.5rem;
+  color: #fff;
+  height: 3.25rem;
+  width: 11.875rem;
+  border: none;
+  border-radius: 0.625rem;
+  background-color: #29a073;
+  margin-top: 2.5rem;
+  cursor: pointer;
+  transition: all 0.1s ease-in;
 }
 
+.update-btn:active {
+  background-color: #1b6448;
+}
+
+/* §§§§§§§§§§§§§§§§§§§§§§§ */
+/* §§§§§§ Dark mode §§§§§§ */
+/* §§§§§§§§§§§§§§§§§§§§§§§ */
+
+.settings-container.dark {
+  color: #ffffff !important;
+}
+
+.main-container.dark {
+  background-color: #201e34;
+  /* margin-right: 50px;
+  margin-bottom: 50px; */
+}
+
+.edit-btn.dark {
+  background-color: #201e34;
+}
+
+.form-wrap.dark .input {
+  background-color: #201e34;
+  border: 1px solid #282541;
+  color: #ffffff;
+}
+.form-wrap.dark .input:disabled {
+  color: #78778b;
+}
+
+.main-container.dark .mail-container,
+.main-container.dark .mail-container-white {
+  background-color: #201e34;
+  border: 1px solid #282541;
+}
+.main-container.dark .mail-input,
+.main-container.dark .mail-input-w {
+  background-color: #201e34;
+  color: #ffffff;
+}
+
+.main-container.dark .mail-input:disabled {
+  background-color: #201e34;
+  color: #78778b;
+}
+
+.main-container.dark .pass-container,
+.main-container.dark .pass-container-white {
+  background-color: #201e34;
+  border: 1px solid #282541;
+}
+
+.main-container.dark .pass-input,
+.main-container.dark .pass-input-w {
+  background-color: #201e34;
+  color: #ffffff;
+}
+
+.main-container.dark .pass-input {
+  color: #78778b;
+}

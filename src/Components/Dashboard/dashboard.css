@@ -1,8 +1,9 @@
 .dashboard-container {
-    display: flex;
-    flex-direction: column;
-    width: 100% !important;
-    margin: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
 }
 
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
@@ -10,65 +11,68 @@
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
 
 .dash-container {
-    display: grid;
-    grid-template-columns: 1fr .5fr;
-    gap: 2.5rem;
-    padding-bottom: 2.75rem; 
+  display: grid;
+  grid-template-columns: 1fr 0.5fr;
+  gap: 2.5rem;
+  padding-bottom: 2.75rem;
+  margin-right: 40px;
 }
 
-.resume-container{
-    margin-left: 2.5rem;
+.resume-container {
+  margin-left: 2.5rem;
 }
 
-.section-title{
-    font-weight: 600;
-    font-size: 1.125rem;
-    line-height: 1.375rem;
+.section-title {
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.375rem;
+  /* margin: 25px ; */
 }
 /* §§§§§§§§§§§§§§§§§§§§§§§§§§ */
 /* §§§§§ Amount Resume §§§§§§ */
 /* §§§§§§§§§§§§§§§§§§§§§§§§§§ */
 
 .amounts-tab {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 .amount-itm-total,
 .amount-itm {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.938rem;
-    padding: 0 1.25rem;
-    width: 13.875rem;
-    height: 6.563rem;
-    border-radius: 0.625rem;
-    margin-bottom: 1.875rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.938rem;
+  padding: 0 1.25rem;
+  width: 13.875rem;
+  height: 6.563rem;
+  border-radius: 0.625rem;
+  margin-bottom: 1.875rem;
+  overflow: hidden;
 }
 
-.amount-itm-total{
-    background: #363A3F;
-    color: #fff;
+.amount-itm-total {
+  background: #363a3f;
+  color: #fff;
 }
 
 .amount-itm {
-    background: #F8F8F8;
-    
+  background: #f8f8f8;
 }
 
 .amount-title {
-    font-size: 0.875rem;
-    line-height: 0.875rem;
-    font-weight: 400;
-    color: #929EAE;
+  font-size: 0.875rem;
+  line-height: 0.875rem;
+  font-weight: 400;
+  color: #929eae;
 }
 
-.amount-value{
-    font-size: 1.5rem;
-    line-height: 0.875rem;
-    font-weight: 700;
+.amount-value {
+  font-size: 1.5rem;
+  line-height: 0.875rem;
+  font-weight: 700;
 }
 
 /* §§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§ */
@@ -76,62 +80,75 @@
 /* §§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§ */
 
 .graph-container {
-    border: 1px solid #F5F5F5;
-    border-radius: 0.625rem;
-    height: 18.125rem;
-    margin-bottom: 1.875rem;
+  border: 1px solid #f5f5f5;
+  border-radius: 0.625rem;
+  padding: 0px 25px;
+  margin-bottom: 1.875rem;
 }
 
 /* §§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§ */
 /* §§§§§§§ Recent Expenses Section §§§§§§§§§ */
 /* §§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§ */
 
-.table-container {
-    border: 1px solid #F5F5F5;
-    border-radius: 0.625rem;
+.dashboard-expense-container {
+  border: 1px solid #f5f5f5;
+  border-radius: 0.625rem;
 }
 
-.table-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 1.25rem 1.563rem;
+.dashboard-expense-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px 25px;
+}
+
+.dashboard-expense-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 1px solid green; */
+  min-width: 100%;
+  height: fit-content;
 }
 
 .expand-btn {
-    border: none;
-    background-color: white;
-    padding: 0px 0px;
-    color: #29A073;
-    font-weight: 600;
-    font-size: 0.875rem;
-    text-align: center;
+  border: none;
+  background-color: white;
+  padding: 0px 0px;
+  color: #29a073;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  height: fit-content;
 }
 
-table{
-    width: 45rem;
-    margin: 0 1.188rem 1.25rem 1.563rem;
+table {
+  width: 45rem;
+  margin: 0 1.188rem 1.25rem 1.563rem;
 }
 
 th {
-    font-size: 0.75rem;
-    color: #929EAE;
-    font-weight: 600;
-    border-bottom: 1px solid #F5F5F5;
+  font-size: 0.75rem;
+  color: #929eae;
+  font-weight: 600;
+  border-bottom: 1px solid #f5f5f5;
 }
 
 td {
-    border-bottom: 1px solid #F5F5F5;
-    height: 3.313rem;
-    text-align: center;
+  border-bottom: 1px solid #f5f5f5;
+  height: 3.313rem;
+  text-align: center;
 }
 
-.left{
-    text-align: left;
-}
-
-.last-line {
-    border-bottom: none;
+.expense-dashboard > .card-element > .selected-currency {
+  display: inline-flex;
+  justify-content: flex-end;
 }
 
 /* §§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§ */
@@ -139,11 +156,89 @@ td {
 /* §§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§ */
 
 .recurring-expenses-container {
-    margin-right: 2.5rem;
+  /* margin-right: 40px; */
+  min-width: 315px;
 }
 
 .title-recurring-expenses {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  margin-right: 40px;
+}
+
+.recurring-expenses-card {
+  /* gap: 20px;
+	display: flex;
+	flex-direction: column;
+	width: 100%; */
+
+  /* display: grid;
+	gap: 20px;
+	height: fit-content;
+	*/
+  /* width: 100%; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 100%;
+  height: fit-content;
+}
+
+.expense-dashboard-recurring > .card-element > .selected-currency {
+  display: inline-flex;
+  justify-content: flex-end;
+}
+
+/* TRYING TO SORT OUT EXPENSE CARD RENDERING INTO DASHBOARD WITHOUT MESSING UP IN EXPENS */
+@media only screen and (max-width: 1280px) {
+  .dash-container {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    /* justify-content: center;
+    align-items: center; */
+  }
+  .recurring-expenses-container {
+    /* width: 100%; */
+    margin-left: 2.5rem;
+    border: 1px solid #f5f5f5;
+    border-radius: 0.625rem;
+    padding: 0px 25px;
+  }
+}
+
+/* §§§§§§§§§§§§§§§§§§§§§§§ */
+/* §§§§§§ Dark mode §§§§§§ */
+/* §§§§§§§§§§§§§§§§§§§§§§§ */
+
+.dashboard-container.dark {
+  color: #ffffff;
+  background: #1e1c30;
+}
+
+.dashboard-container.dark .amount-itm-total {
+  background: #282541;
+}
+
+.dashboard-container.dark .amount-itm {
+  background: #201e34;
+}
+
+.dashboard-container.dark .graph-container,
+.dashboard-container.dark .dashboard-expense-container {
+  border: 1px solid #282541;
+  border-radius: 10px;
+}
+
+.dashboard-container.dark .expense-card-text,
+.dashboard-container.dark .expense-card-subtext,
+.dashboard-container.dark .expand-btn {
+  background: #1e1c30;
+}
+
+.dashboard-container.dark .expense-card-text {
+  color: #ffffff;
 }

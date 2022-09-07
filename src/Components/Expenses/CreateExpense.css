@@ -1,23 +1,24 @@
 .create-expense-background {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: fixed;
-  background-color: rgba(200, 200, 200, 0.3);
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 100;
 }
 
 .create-expense-form-container {
+  position: fixed;
+  left: 50%;
+  right: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   width: 580px !important;
-  
   border-radius: 20px;
-  padding: 82px 40px 27px;
-  box-shadow: 3px -5px 35px rgba(205, 205, 212, 1);
+  padding: 27px 40px 27px;
+  box-shadow: 3px -5px 35px rgba(205, 205, 212, 0.5);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;
-  margin: 20px;
+  margin: 10px;
   background-color: white;
 }
 
@@ -34,7 +35,6 @@
   font-family: "Roboto";
   font-weight: 500;
   opacity: 0.6;
-
 }
 
 .close-btn {
@@ -44,11 +44,12 @@
   place-items: center;
   color: #4e5d78;
   border-radius: 50px;
+  background-color: white;
   border: 1.5px solid rgba(78, 93, 120, 0.2);
   font-weight: 600;
   position: relative;
-  left: 524px;
-  top: -91px;
+  left: 504px;
+  top: -15px;
   cursor: pointer;
 }
 .span-two {
@@ -67,7 +68,8 @@
   padding: 15px 21px;
 }
 
-.form-element input:focus-visible {
+.form-element input:focus-visible,
+.form-element select:focus-visible {
   border: 1.5px solid rgba(78, 93, 120, 0.2);
   outline: none;
 }
@@ -160,4 +162,28 @@
   color: #1b212d;
   height: 52px;
   cursor: pointer;
+}
+
+/* §§§§§§§§§§§§§§§§§§§§§§§ */
+/* §§§§§§ Dark mode §§§§§§ */
+/* §§§§§§§§§§§§§§§§§§§§§§§ */
+
+.create-expense-background.dark .create-expense-form-container {
+  background-color: #282541;
+}
+
+.create-expense-background.dark .form-element input,
+.create-expense-background.dark .form-element select {
+  background-color: #2d2b3e;
+  border: 1px solid #7b798b;
+  color: white;
+}
+
+.create-expense-background.dark .form-element input::placeholder,
+.create-expense-background.dark .checkbox-input-text {
+  color: white;
+}
+
+.create-expense-background.dark {
+  background-color: rgba(69, 68, 68, 0.8);
 }

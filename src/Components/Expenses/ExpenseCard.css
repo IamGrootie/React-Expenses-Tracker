@@ -1,82 +1,335 @@
-.expense-card-container {
+/* Overall div */
+.expense-card {
+  place-items: left;
+  font-family: "Kumbh Sans";
+  /* display: flex;
+	justify-content: space-between;
+	align-items: center; */
+}
+
+/* Expenses shown on Expenses Page */
+.expense-expenses {
   margin-top: 15px;
   display: grid;
-  grid-template-columns: 1.5fr 1.5fr 1fr 1fr 1fr 0.5fr;
+  grid-template-columns: 1.5fr 1.1fr 0.8fr 0.7fr 0.65fr 1fr;
   column-gap: 5px;
-  grid-template-rows: 40px;
-  min-width: 100%;
-  padding-bottom: 15px;
+  padding-bottom: 20px;
   border-bottom: 1px solid #f5f5f5;
 }
 
-/* resolve responsiveness so inline with input titles from Expense component */
-.card-element {
-  min-width: 125px;
-  min-height: 40px;
+.expense-dashboard {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr 1fr 0.5fr;
+  min-width: fit-content !important;
+  margin: 0px 25px;
+  padding-bottom: 10px !important;
+  padding-top: 10px !important;
+  /* border: 1px solid black; */
+  gap: 10px;
+  border-top: 1px solid rgba(119, 119, 119, 0.1);
+}
+
+.expense-dashboard > .card-element {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  width: 100%;
+  margin: 0px !important;
+  padding: 0px !important;
+  height: 50px;
   /* border: 1px solid black; */
 }
 
+.expense-dashboard > .card-element,
+.expense-dashboard > .card-element > input {
+  /* border: 1px solid black; */
+}
+
+.expense-dashboard > .card-element > select {
+  /* border: 1px solid black; */
+}
+
+.expense-dashboard > .card-element.name-business-container {
+  gap: 0px !important;
+  max-width: 20ch;
+  /* border: 1px solid black; */
+}
+
+.expense-dashboard > .category {
+  max-width: fit-content;
+  /* border: 1px solid black; */
+}
+
+.expense-dashboard > .category > .category-image-container {
+  min-width: 50px;
+  /* border: 1px solid black; */
+}
+
+.expense-dashboard > .category > p {
+  /* border: 1px solid black; */
+  min-width: fit-content !important;
+}
+
+.expense-dashboard > .card-element.amount {
+  place-items: right;
+
+  display: flex !important;
+  justify-content: flex-end !important;
+  /* border: 1px solid black; */
+}
+
+.expense-dashboard > .card-element > .selected-currency,
+.expense-dashboard > .card-element > .input {
+  padding-right: 0px !important;
+
+  /* border: 1px solid black; */
+  margin: 0px !important;
+  padding: 0px !important;
+  min-width: fit-content !important;
+}
+
+.expense-dashboard > .card-element > .expense-card-text,
+.expense-dashboard > .card-element > .expense-card-subtext {
+  /* min-width: 100% !important; */
+  padding-left: 0px !important;
+}
+
+.expense-dashboard > .card-element.date-container {
+  min-width: fit-content;
+  cursor: pointer;
+}
+
+/*  */
+/*  */
+/* Reccuring expenses shown on Dashboard Page */
+.expense-dashboard-recurring {
+  display: grid;
+  grid-template-columns: 1.25fr 0.5fr 1fr;
+  min-width: fit-content !important;
+  /* margin: 0px 25px; */
+  padding-bottom: 10px !important;
+  padding-top: 10px !important;
+  /* border: 1px solid black; */
+  gap: 10px;
+  border-top: 1px solid rgba(119, 119, 119, 0.1);
+
+  /* flex-wrap: wrap; */
+}
+
+.expense-dashboard-recurring > .card-element {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  width: 100%;
+  margin: 0px !important;
+  padding: 0px !important;
+  height: 50px;
+}
+
+.expense-dashboard-recurring > .card-element,
+.expense-dashboard-recurring > .card-element > input {
+}
+
+.expense-dashboard-recurring > .card-element > select {
+  /* background: #1b212d; */
+  /* width: 50% !important; */
+}
+
+.expense-dashboard-recurring > .card-element.name-business-container {
+  /* background-color: bisque; */
+  gap: 0px !important;
+  max-width: 20ch;
+  /* width: 15ch !important; */
+  /* border: 1px solid red; */
+}
+
+.expense-dashboard-recurring > .category {
+  max-width: fit-content;
+}
+
+.expense-dashboard-recurring > .category > .category-image-container {
+  /* min-height: 100%; */
+  min-width: 50px;
+}
+.expense-dashboard-recurring > .category > p {
+  display: none;
+}
+
+.expense-dashboard-recurring > .card-element.amount {
+  /* width: 50% !important; */
+  /* border: 1px solid blue; */
+  /* width: 100px; */
+}
+
+.expense-dashboard > .card-element > .selected-currency,
+.expense-dashboard > .card-element > .input {
+  padding-right: 0px !important;
+  /* display: flex !important;
+	justify-content: flex-end !important; */
+
+  /* border: 1px solid black; */
+  margin: 0px !important;
+  padding: 0px !important;
+  min-width: fit-content !important;
+}
+
+.expense-dashboard-recurring > .card-element > .expense-card-text,
+.expense-dashboard-recurring > .card-element > .expense-card-subtext {
+  /* min-width: 100% !important; */
+  padding-left: 0px !important;
+}
+
+.expense-dashboard-recurring > .card-element > .expense-card-text.amount {
+  display: flex !important;
+  justify-content: flex-end !;
+}
+
+/* WHEN EDIT HAS BEEN CLICKED, SHOW THIS THROUGH COLOUR CHANGE */
+input.edit {
+  border: none;
+  background: rgba(119, 119, 119, 0.1);
+  border-radius: 5px;
+}
+
+.card-element {
+  display: flex;
+  align-items: center;
+  border: none;
+  outline: none;
+  gap: 10px;
+  height: 40px;
+  min-width: 100%;
+}
+
+.card-element > input {
+  width: 100%;
+  height: 100%;
+}
+
+.card-element select {
+  cursor: pointer;
+  border-radius: 5px;
+  background: rgba(119, 119, 119, 0.1);
+  width: 100%;
+  height: 100%;
+  border: none;
+  font-size: 14px !important;
+}
+
+.card-element select option {
+  font-size: 14px !important;
+}
+
 .expense-card-text {
-  font-family: "Kumbh Sans";
   font-weight: 500;
   font-size: 14px;
   color: #1b212d;
   margin: 0;
+  background: white;
+  border: none;
+  flex-wrap: wrap;
 }
 
 .expense-card-subtext {
-  font-family: "Kumbh Sans";
   font-weight: 400;
   font-size: 13px;
   color: #78778b;
   margin: 0;
+  background: white;
+  border: none;
 }
 
+.expense-card-text,
+.expense-card-subtext {
+  padding-left: 10px;
+}
 .name-business-container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  gap: 5px;
 }
 
-.type,
+.category,
 .invoice {
   color: #78778b;
+  font-size: 14px;
+  font-weight: 500;
 }
 
-.type,
+.category,
 .amount,
 .invoice {
   align-items: center;
+  width: 100%;
 }
 
-.type {
-  gap: 10px;
+.category p {
+  padding-left: 14px;
+  min-width: 100%;
 }
 
-.type-image-container {
+.selected-currency {
+  padding-left: 5px;
+}
+
+.category-image-container {
   background: linear-gradient(
     180deg,
     rgba(119, 119, 119, 0.4) 0%,
     rgba(35, 35, 35, 0.1) 100%
   );
-  border-radius: 5px;
-  height: 35px !important;
-  width: 35px !important;
+  border-radius: 150px;
+  min-height: 100%;
+  min-width: 41px;
   display: grid;
   place-items: center;
 }
 
-.amount {
-  font-weight: 600;
+.card-element.amount {
+  display: flex;
+  justify-content: space-evenly;
 }
 
-.edit-button {
+.currency-select {
+  width: 50px !important;
+  padding: 3px;
+  font-size: 14px;
+}
+
+.selected-currency {
+  width: 50px !important;
+  padding: 7px !important;
+  font-size: 14px;
+}
+
+.amount {
+  font-weight: 600;
+  width: 100%;
+  padding: 0px !important;
+}
+
+.edit.amount {
+  padding: 2px !important;
+}
+
+.date {
+  cursor: pointer;
+}
+
+.card-element.button-container {
+  place-items: center;
+  justify-content: space-between;
+  /* center/space between means overlap to invoice container, but space-evenly it disappears like overflow hidden  */
+  min-width: fit0content%;
+}
+
+.action-button {
   background: #c8ee44;
   height: 38px;
-  width: 67px;
+  max-width: 100%;
   border: none;
   text-decoration: none;
   border-radius: 0.625rem;
@@ -87,6 +340,30 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
   cursor: pointer;
+  transition: all 0.1s ease-in;
+}
+
+.action-button:active {
+  background: #89a22e;
+}
+
+/* §§§§§§§§§§§§§§§§§§§§§§§ */
+/* §§§§§§ Dark mode §§§§§§ */
+/* §§§§§§§§§§§§§§§§§§§§§§§ */
+
+.expense-card.dark .card-element,
+.expense-card.dark .expense-card-text,
+.expense-card.dark .expense-card-subtext,
+.expense-card.dark .card-element select {
+  background-color: #282541;
+  color: #929eae;
+}
+
+.expense-card.dark .card-element.edit,
+.expense-card.dark .expense-card-text.edit,
+.expense-card.dark .expense-card-subtext.edit,
+.expense-card.dark .card-element select {
+  background-color: #282541;
+  color: white;
 }
