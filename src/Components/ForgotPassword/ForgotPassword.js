@@ -29,7 +29,7 @@ export default function ForgotPassword() {
     setLoading(false);
   }
 
-  const [userLogin, setUserLogin] = React.useState({
+  const [userLogin, setUserLogin] = useState({
     email: "",
     password: "",
   });
