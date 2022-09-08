@@ -21,13 +21,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
   padding: 5px 10px;
 }
 
 .display-picture {
   border-radius: 50px;
   height: 2.2rem;
+  width: 2.2rem;
+  object-fit: cover;
 }
 
 .header-container.dark {
