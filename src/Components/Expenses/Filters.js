@@ -21,7 +21,15 @@ export default function Filters(props) {
   console.log(sort);
   return (
     <div
-      className={props.toggleDarkMode ? "input-titles dark" : "input-titles"}
+      className={
+        props.toggleDarkMode && props.displayAll
+          ? "input-titles-expenses dark"
+          : props.displayAll
+          ? "input-titles-expenses"
+          : props.toggleDarkMode
+          ? "input-titles dark"
+          : "input-titles"
+      }
     >
       <button
         className={
@@ -85,7 +93,6 @@ export default function Filters(props) {
       </button>
       {props.displayAll && (
         <>
-          
           <button
             className={
               props.displayFilters ? "category-btn" : "category-btn hidden"
@@ -103,7 +110,7 @@ export default function Filters(props) {
               />
             )}
           </button>
-          
+
           <button
             className={
               props.displayFilters
