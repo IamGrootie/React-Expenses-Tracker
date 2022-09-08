@@ -75,8 +75,8 @@ export default function Dashboard(props) {
   );
 
   const recurringExpensesArr = expenses
-    .filter((item) => item.recurring === true)
-    .map((expense) => (
+    .filter(item => item.recurring === true)
+    .map(expense => (
       <ExpenseCard
         key={expense.invoice}
         title={expense.title}
@@ -97,7 +97,7 @@ export default function Dashboard(props) {
 
   const expensesArr = expenses
     .slice(0, 3)
-    .map((expense) => (
+    .map(expense => (
       <ExpenseCard
         key={expense.invoice}
         title={expense.title}
@@ -121,7 +121,7 @@ export default function Dashboard(props) {
           : "dashboard-container"
       }
     >
-        <Header toggleDarkMode={props.toggleDarkMode}/>
+      <Header toggleDarkMode={props.toggleDarkMode} />
 
       <div className="dash-container">
         <div className="resume-container">
@@ -167,11 +167,10 @@ export default function Dashboard(props) {
                 <img src={expand} className="expand-icon" alt="" />
               </button>
             </div>
-
-            <div className="dashboard-expense-card">
-              <Filters />
-              {expensesArr}
+            <div className="filters-container">
+              <Filters toggleDarkMode={props.toggleDarkMode} />
             </div>
+            <div className="dashboard-expense-card">{expensesArr}</div>
           </section>
         </div>
 
@@ -183,7 +182,7 @@ export default function Dashboard(props) {
               <img src={expand} className="expand-icon" alt="" />
             </button>
           </div>
-          
+
           <div className="recurring-expenses-card">
             {recurringExpensesArr}
             {/* <div className="reccurring-expenses-card-expense">

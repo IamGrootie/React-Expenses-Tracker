@@ -19,13 +19,13 @@
 
 .expense-dashboard {
   display: grid;
-  grid-template-columns: 1.25fr 1fr 1fr 0.5fr;
+  grid-template-columns: 1.6fr 1.3fr 1.3fr 0.7fr;
   min-width: fit-content !important;
   margin: 0px 25px;
   padding-bottom: 10px !important;
   padding-top: 10px !important;
   /* border: 1px solid black; */
-  gap: 10px;
+  gap: 5px;
   border-top: 1px solid rgba(119, 119, 119, 0.1);
 }
 

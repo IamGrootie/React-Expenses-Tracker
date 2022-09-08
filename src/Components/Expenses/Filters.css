@@ -1,10 +1,16 @@
 .input-titles {
   display: grid;
-  grid-template-columns: 1.5fr 1.1fr 0.8fr 0.7fr;
-  min-width: 100%;
+  grid-template-columns: 1.6fr 1.5fr 1.1fr 0.75fr;
+  /* display: flex;
+  justify-content: space-between; */
+  /* min-width: 100%; */
+  width: 100%;
   column-gap: 5px;
   font-size: 12px;
   font-weight: 600;
+  margin: 0px 20px;
+  
+ 
 }
 
 .input-titles-expenses {
@@ -18,13 +24,15 @@
 .input-titles,
 .input-titles.dark,
 .input-titles-expenses,
-.input-titles-expenses.dark, {
-  
+.input-titles-expenses.dark {
   /* background: #ffffff 0; */
   column-gap: 5px;
   gap: 5px;
 }
 
+.input-titles.dark {
+  background: #1c1a2e;
+}
 
 .category-btn.hidden {
   background: #c9ee4431;
