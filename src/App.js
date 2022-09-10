@@ -17,8 +17,14 @@ export default function App() {
   const [toggleDarkMode, setToggleDarkMode] = React.useState(false);
   function handleDark(e) {
     setToggleDarkMode((prev) => !prev);
+    localStorage.setItem("mode", toggleDarkMode ? "light" : "dark");
     e.preventDefault();
   }
+  React.useEffect(() => {
+    if (localStorage.getItem("mode")) {
+      setToggleDarkMode(localStorage.getItem("mode"));
+    }
+  }, []);
 
   return (
     <div className="App">
