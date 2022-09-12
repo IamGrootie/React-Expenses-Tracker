@@ -195,7 +195,7 @@ function ExpenseCard(props) {
             )}
           </div>
         )}
-        {props.amount && props.recurringExpense ? (
+        {props.amount && props.recurringExpenses ? (
           <div className="card-element amount recurring">
             <p className="selected-currency">
               {props.currency} {props.amount}
