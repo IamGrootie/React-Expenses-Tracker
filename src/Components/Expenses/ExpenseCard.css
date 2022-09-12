@@ -19,13 +19,13 @@
 
 .expense-dashboard {
   display: grid;
-  grid-template-columns: 1.25fr 1fr 1fr 0.5fr;
-  min-width: fit-content !important;
+  grid-template-columns: 1.6fr 1.5fr 1.1fr 0.75fr;
+  /* min-width: fit-content !important; */
   margin: 0px 25px;
   padding-bottom: 10px !important;
   padding-top: 10px !important;
   /* border: 1px solid black; */
-  gap: 10px;
+  column-gap: 5px;
   border-top: 1px solid rgba(119, 119, 119, 0.1);
 }
 
@@ -67,7 +67,7 @@
 
 .expense-dashboard > .category > p {
   /* border: 1px solid black; */
-  min-width: fit-content !important;
+  /* min-width: fit-content !important; */
 }
 
 .expense-dashboard > .card-element.amount {
@@ -81,7 +81,8 @@
   /* border: 1px solid black; */
   margin: 0px !important;
   padding: 0px !important;
-  min-width: fit-content !important;
+  /* min-width: fit-content !important; */
+  width: none !important;
 }
 
 .expense-dashboard > .card-element > .expense-card-text,
@@ -155,13 +156,9 @@
 .expense-dashboard > .card-element > .selected-currency,
 .expense-dashboard > .card-element > .input {
   padding-right: 0px !important;
-  /* display: flex !important;
-	justify-content: flex-end !important; */
-
-  /* border: 1px solid black; */
   margin: 0px !important;
-  padding: 0px !important;
   min-width: fit-content !important;
+  margin-left: 1rem !important;
 }
 
 .expense-dashboard-recurring > .card-element > .expense-card-text,
@@ -234,6 +231,7 @@ input.edit {
 .expense-card-subtext {
   padding-left: 10px;
 }
+
 .name-business-container {
   display: flex;
   flex-direction: column;
@@ -250,7 +248,7 @@ input.edit {
 
 .category p {
   padding-left: 14px;
-  min-width: 100%;
+  /* min-width: 100%; */
 }
 
 .selected-currency {
@@ -316,20 +314,31 @@ input.edit {
 /* §§§§§§ Dark mode §§§§§§ */
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
 
-.expense-card.dark .card-element,
-.expense-card.dark .expense-card-text,
-.expense-card.dark .expense-card-subtext,
-.expense-card.dark .card-element select {
-  background-color: #282541;
+.dark .card-element,
+.dark .expense-card-text,
+.dark .expense-card-subtext,
+.dark .card-element select {
+  background-color: #1c1a2e;
   color: #929eae;
 }
 
-.expense-card.dark .card-element.edit,
-.expense-card.dark .expense-card-text.edit,
-.expense-card.dark .expense-card-subtext.edit,
-.expense-card.dark .card-element select {
-  background-color: #282541;
-  color: white;
+.dark .card-element.edit,
+.dark .expense-card-text.edit,
+.dark .expense-card-subtext.edit,
+.dark .card-element select {
+  background-color: #312f3b;
+  /* color: rgb(255, 255, 255); */
+}
+
+.dark .business,
+.dark .amount,
+.dark .card-element.amount select,
+.dark .date {
+  color: rgb(255, 255, 255);
+}
+
+.expense-card.dark ::-webkit-calendar-picker-indicator {
+  color-scheme: dark;
 }
 
 .action-button.disabled {

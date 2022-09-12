@@ -162,9 +162,9 @@
 }
 
 .upload-dp-btn {
-  background-color: #c8ee44;
+  background-color: #29a073;
   border: 1px solid #f1f1f3;
-  color: #1b212d;
+  color: white;
   padding: 1em;
   border-radius: 0.625rem;
   margin-bottom: 1.25rem;
@@ -211,7 +211,6 @@ input[type="file"] {
   margin-bottom: 1.563rem;
 
   column-span: 2;
-
 }
 
 .mail-container {
@@ -272,10 +271,6 @@ input[type="file"] {
 
 .pass-input-w {
   background-color: white;
-}
-
-.pass-input,
-.pass-input-w {
 }
 
 .eye-btn {

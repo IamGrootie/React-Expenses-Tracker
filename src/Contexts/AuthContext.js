@@ -2,6 +2,7 @@ import React, { createContext } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useContext } from "react";
+import { nanoid } from "nanoid";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -91,6 +92,7 @@ export default function AuthProvider({ children }) {
       lastName: name.substring(name.indexOf(" ") + 1),
       dateOfBirth: "",
       mobileNumber: "",
+      currency: "£"
     });
   }
 
@@ -101,7 +103,7 @@ export default function AuthProvider({ children }) {
   const storage = getStorage();
 
   async function upload(file, currentUser, setLoading) {
-    const fileRef = ref(storage, currentUser + ".png");
+    const fileRef = ref(storage, currentUser + nanoid() + ".png");
 
     setLoading(true);
 
@@ -111,7 +113,7 @@ export default function AuthProvider({ children }) {
     updateProfile(currentUser, { photoURL });
 
     setLoading(false);
-    
+
     // reloads wepbage with new photoURL being displayed
     window.location.reload();
   }

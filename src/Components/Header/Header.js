@@ -25,10 +25,14 @@ export default function Header(props) {
   }
 
   return (
-    <section className="header-container">
+    <section
+      className={
+        props.toggleDarkMode ? "header-container dark" : "header-container"
+      }
+    >
       <h2 className="title">{title}</h2>
       <button className="profile-btn">
-        <img src={currentUser.photoURL} className="display-picture"/> 
+        <img src={currentUser.photoURL} className="display-picture" />
         <h3>{`${userDetails.firstName} ${userDetails.lastName}`}</h3>
       </button>
     </section>

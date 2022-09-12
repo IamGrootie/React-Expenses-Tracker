@@ -108,7 +108,6 @@ export default function Settings(props) {
 
   async function handleUpload() {
     upload(photo, currentUser, setLoading);
-  
   }
 
   // useEffect(() => {
@@ -126,7 +125,7 @@ export default function Settings(props) {
         props.toggleDarkMode ? "settings-container dark" : "settings-container"
       }
     >
-      <Header />
+      <Header toggleDarkMode={props.toggleDarkMode} />
 
       <div
         className={
@@ -154,7 +153,6 @@ export default function Settings(props) {
           <section
             className={props.toggleDarkMode ? "form-wrap dark" : "form-wrap"}
           >
-         
             <label className="label label-dp">Profile Picture</label>
             <div className="form-column pp-container">
               {editSettings ? (
@@ -321,5 +319,5 @@ export default function Settings(props) {
         </form>
       </div>
     </div>
-  )
+  );
 }

@@ -9,7 +9,7 @@ export default function CreateExpense(props) {
   const [data, setData] = useState({
     title: "",
     company: "",
-    currency: "£",
+    // currency: "£",
     amount: "",
     category: "",
     date: "",
@@ -84,7 +84,7 @@ export default function CreateExpense(props) {
     setData({
       title: "",
       company: "",
-      currency: "£",
+      // currency: "£",
       amount: "",
       category: "",
       date: "",
@@ -147,7 +147,7 @@ export default function CreateExpense(props) {
             required
           ></input>
         </div>
-        <div className="form-element">
+        {/* <div className="form-element">
           <select
             className="select-currency"
             name="currency"
@@ -158,7 +158,7 @@ export default function CreateExpense(props) {
             <option>$</option>
             <option>€</option>
           </select>
-        </div>
+        </div> */}
         <div className="form-element span-two">
           <input
             type="number"

@@ -11,13 +11,22 @@ import Signup from "./Components/Signup/Signup";
 import CreateExpense from "./Components/Expenses/CreateExpense";
 import Filters from "./Components/Expenses/Filters";
 import ForgotPassword from "./Components/ForgotPassword/ForgotPassword";
+import Header from "./Components/Header/Header";
 
 export default function App() {
   const [toggleDarkMode, setToggleDarkMode] = React.useState(false);
   function handleDark(e) {
     setToggleDarkMode((prev) => !prev);
+    localStorage.setItem("mode", toggleDarkMode ? "light" : "dark");
     e.preventDefault();
   }
+  React.useEffect(() => {
+    if (localStorage.getItem("mode") === "light") {
+      setToggleDarkMode(false);
+    } else {
+      setToggleDarkMode(true);
+    }
+  }, []);
 
   return (
     <div className="App">

@@ -12,6 +12,7 @@ import Filters from "../Expenses/Filters";
 import { useNavigate } from "react-router-dom";
 import Header from "../Header/Header";
 import Chart from "../Chart/Chart.js";
+import { useAuth } from "../../Contexts/AuthContext";
 
 export default function Dashboard(props) {
   const {
@@ -22,6 +23,7 @@ export default function Dashboard(props) {
     timePeriod,
     setSort,
   } = useExpenses();
+  const { userDetails } = useAuth();
 
   // const totalSpending = expensesThroughTime.reduce(
   //   (total, item) => total - item.amount,
@@ -75,14 +77,14 @@ export default function Dashboard(props) {
   );
 
   const recurringExpensesArr = expenses
-    .filter((item) => item.recurring === true)
-    .map((expense) => (
+    .filter(item => item.recurring === true)
+    .map(expense => (
       <ExpenseCard
         key={expense.invoice}
         title={expense.title}
         company={expense.company}
         category={expense.category}
-        currency={expense.currency}
+        currency={userDetails.currency}
         amount={expense.amount}
         class="expense-dashboard-recurring"
       />
@@ -97,13 +99,13 @@ export default function Dashboard(props) {
 
   const expensesArr = expenses
     .slice(0, 3)
-    .map((expense) => (
+    .map(expense => (
       <ExpenseCard
         key={expense.invoice}
         title={expense.title}
         company={expense.company}
         category={expense.category}
-        currency={expense.currency}
+        currency={userDetails.currency}
         amount={expense.amount}
         date={expense.date}
         class="expense-dashboard"
@@ -121,7 +123,7 @@ export default function Dashboard(props) {
           : "dashboard-container"
       }
     >
-      <Header />
+      <Header toggleDarkMode={props.toggleDarkMode} />
 
       <div className="dash-container">
         <div className="resume-container">
@@ -130,7 +132,7 @@ export default function Dashboard(props) {
               <img src={greenWallet} alt="" />
               <div>
                 <p className="amount-title">Total Spending</p>
-                <h2 className="amount-value">{`£${totalSpending}`}</h2>
+                <h2 className="amount-value">{`${userDetails.currency}${totalSpending}`}</h2>
               </div>
             </div>
 
@@ -138,7 +140,7 @@ export default function Dashboard(props) {
               <img src={wallet} alt="" />
               <div>
                 <p className="amount-title">Monthly Spending</p>
-                <h2 className="amount-value">{`£${monthlySpending}`}</h2>
+                <h2 className="amount-value">{`${userDetails.currency}${monthlySpending}`}</h2>
               </div>
             </div>
 
@@ -146,7 +148,7 @@ export default function Dashboard(props) {
               <img src={dailyWallet} alt="" />
               <div>
                 <p className="amount-title">Weekly Spending</p>
-                <h2 className="amount-value">{`£${weeklySpending}`}</h2>
+                <h2 className="amount-value">{`${userDetails.currency}${weeklySpending}`}</h2>
               </div>
             </div>
           </section>
@@ -167,11 +169,10 @@ export default function Dashboard(props) {
                 <img src={expand} className="expand-icon" alt="" />
               </button>
             </div>
-
-            <div className="dashboard-expense-card">
-              {/* <Filters /> */}
-              {expensesArr}
+            <div className="filters-container">
+              <Filters toggleDarkMode={props.toggleDarkMode} />
             </div>
+            <div className="dashboard-expense-card">{expensesArr}</div>
           </section>
         </div>
 
@@ -183,6 +184,7 @@ export default function Dashboard(props) {
               <img src={expand} className="expand-icon" alt="" />
             </button>
           </div>
+
           <div className="recurring-expenses-card">
             {recurringExpensesArr}
             {/* <div className="reccurring-expenses-card-expense">
