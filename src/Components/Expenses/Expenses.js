@@ -61,6 +61,8 @@ export default function Expenses(props) {
       currency={userDetails.currency}
       amount={expense.amount}
       date={expense.date}
+      recurring={expense.recurring}
+      recurringExpense
       invoice={expense.invoice}
       edit={edit}
       currentExpense={currentExpense}

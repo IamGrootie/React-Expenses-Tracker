@@ -87,6 +87,7 @@ export default function Dashboard(props) {
         currency={userDetails.currency}
         amount={expense.amount}
         class="expense-dashboard-recurring"
+        recurringExpense
       />
     ));
 

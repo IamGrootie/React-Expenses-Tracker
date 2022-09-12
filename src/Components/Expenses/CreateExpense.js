@@ -147,21 +147,9 @@ export default function CreateExpense(props) {
             required
           ></input>
         </div>
-        {/* <div className="form-element">
-          <select
-            className="select-currency"
-            name="currency"
-            value={data.currency}
-            onChange={handleChange}
-          >
-            <option>£</option>
-            <option>$</option>
-            <option>€</option>
-          </select>
-        </div> */}
         <div className="form-element span-two">
           <input
-            type="number"
+            type="tel"
             name="amount"
             maxLength="10"
             value={data.amount}

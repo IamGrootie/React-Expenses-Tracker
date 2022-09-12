@@ -91,8 +91,24 @@ export default function Filters(props) {
           className={sort[1]}
         />
       </button>
+
       {props.displayAll && (
         <>
+          <button
+            className={
+              props.displayFilters ? "category-btn" : "category-btn hidden"
+            }
+            name="recurring"
+            disabled={!props.displayFilters}
+            onClick={handleClick}
+          >
+            RECURRING
+            <img
+              src={sort[0] === "recurring" ? chevron : null}
+              onClick={handleClick}
+              className={sort[1]}
+            />
+          </button>
           <button
             className={
               props.displayFilters ? "category-btn" : "category-btn hidden"

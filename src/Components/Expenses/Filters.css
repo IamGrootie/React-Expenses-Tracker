@@ -9,13 +9,12 @@
   font-size: 12px;
   font-weight: 600;
   margin: 0px 20px;
-  
 }
 
 .input-titles-expenses {
   margin-top: 25px;
   display: grid;
-  grid-template-columns: 1.5fr 1.1fr 0.8fr 0.7fr 0.65fr 1fr;
+  grid-template-columns: 1.5fr 1.1fr 0.8fr 0.7fr 0.55fr 0.65fr 1fr;
   color: #929eae;
   column-gap: 5px;
 }
