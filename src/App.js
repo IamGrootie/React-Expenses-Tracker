@@ -21,8 +21,10 @@ export default function App() {
     e.preventDefault();
   }
   React.useEffect(() => {
-    if (localStorage.getItem("mode")) {
-      setToggleDarkMode(localStorage.getItem("mode"));
+    if (localStorage.getItem("mode") === "light") {
+      setToggleDarkMode(false);
+    } else {
+      setToggleDarkMode(true);
     }
   }, []);
 

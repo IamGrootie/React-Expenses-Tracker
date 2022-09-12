@@ -200,6 +200,7 @@ td {
 .expense-dashboard-recurring > .card-element > .selected-currency {
   display: inline-flex;
   justify-content: flex-end;
+  padding-left: 1.5rem;
 }
 
 /* TRYING TO SORT OUT EXPENSE CARD RENDERING INTO DASHBOARD WITHOUT MESSING UP IN EXPENS */
@@ -247,7 +248,6 @@ td {
 .dashboard-container.dark .expand-btn {
   background: #1c1a2e;
 }
-
 
 /* .dashboard-container.dark .expense-card-text,
 .dashboard-container.dark .expense-card-subtext {
