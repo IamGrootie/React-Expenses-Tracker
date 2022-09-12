@@ -12,7 +12,7 @@
 
 .dash-container {
   display: grid;
-  grid-template-columns: 1fr 0.5fr;
+  grid-template-columns: 1fr 1fr;
   gap: 2.5rem;
   padding-bottom: 2.75rem;
   margin-right: 40px;
@@ -167,6 +167,7 @@ td {
 .recurring-expenses-container {
   /* margin-right: 40px; */
   min-width: 315px;
+  
 }
 
 .title-recurring-expenses {
@@ -174,7 +175,6 @@ td {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-
   margin-right: 40px;
 }
 
