@@ -45,8 +45,6 @@ function ExpenseCard(props) {
     const { name, value, checked, type } = event.target;
 
     setData(prev => ({
-
-
       ...prev,
       [name]: type === "checkbox" ? checked : value,
     }));
@@ -199,21 +197,8 @@ function ExpenseCard(props) {
           </div>
         )}
         {props.amount && (
-          <div className="card-element amount">
-            {!props.editExpense ? (
-              <p className="selected-currency">{data.currency}</p>
-            ) : (
-              <select
-                className="currency-select"
-                name="currency"
-                value={data.currency}
-                onChange={handleChange}
-              >
-                <option>£</option>
-                <option>$</option>
-                <option>€</option>
-              </select>
-            )}
+          <div className="card-element amount">       
+              <span className="selected-currency">{props.currency}</span>
             <input
               className={
                 !props.editExpense
@@ -222,10 +207,8 @@ function ExpenseCard(props) {
               }
               disabled={!props.editExpense}
               name="amount"
-
               maxLength="10"
-
-              value={data.amount}
+              defaultValue={data.amount}
               placeholder="Amount"
               onChange={handleChange}
               required
@@ -237,10 +220,8 @@ function ExpenseCard(props) {
             <input
               className={
                 !props.editExpense
-
                   ? "expense-card-text date"
                   : "expense-card-text edit date"
-
               }
               disabled={!props.editExpense}
               name="date"

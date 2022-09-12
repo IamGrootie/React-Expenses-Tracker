@@ -12,7 +12,7 @@ import { useAuth } from "../../Contexts/AuthContext";
 import Header from "../Header/Header";
 
 export default function Expenses(props) {
-  const { currentUser } = useAuth();
+  const { currentUser, updateUser, userDetails } = useAuth();
   const { expenses, createExpense, updateExpense, deleteExpense, setSort } =
     useExpenses();
   const [editExpense, setEditExpense] = useState(false);
@@ -25,23 +25,40 @@ export default function Expenses(props) {
     const { value } = event.target;
     setSearch(value);
     if (value) {
-      setFilteredExpenses(
-        expenses.filter((item) => item.title.includes(value))
-      );
+      setFilteredExpenses(expenses.filter(item => item.title.includes(value)));
     } else setFilteredExpenses(expenses);
   }
+
+  const [data, setData] = useState({
+    currency: userDetails.currency,
+  });
+
+  useEffect(() => {
+    setData({
+      currency: userDetails.currency,
+    });
+  }, [userDetails]);
+
+  function handleChange(event) {
+    const { name, value, checked, type } = event.target;
+    setData(prev => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  }
+  const [error, setError] = "";
 
   useEffect(() => {
     setFilteredExpenses(expenses);
   }, [expenses]);
 
-  const expensesArr = filteredExpenses.map((expense) => (
+  const expensesArr = filteredExpenses.map(expense => (
     <ExpenseCard
       category={expense.category}
       key={expense.invoice}
       title={expense.title}
       company={expense.company}
-      currency={expense.currency}
+      currency={userDetails.currency}
       amount={expense.amount}
       date={expense.date}
       invoice={expense.invoice}
@@ -61,7 +78,7 @@ export default function Expenses(props) {
   async function edit(event, id) {
     event.stopPropagation();
     setCurrentExpenseId(id);
-    setCurrentExpense(expenses.find((expense) => expense.invoice === id));
+    setCurrentExpense(expenses.find(expense => expense.invoice === id));
     // console.log(currentExpenseId);
     setEditExpense(true);
   }
@@ -69,6 +86,23 @@ export default function Expenses(props) {
   // console.log(currentExpenseId);
 
   // SORT OUT REGEX FOR EDITING
+  console.log(`user details ${userDetails.currency}`);
+  console.log(data.currency);
+
+  async function handleCurrencyUpdate(e) {
+    // handleChange(e);
+    e.preventDefault();
+    const { currency } = data;
+    if (currency) {
+      try {
+        await updateUser({
+          currency,
+        });
+      } catch (err) {
+        setError("error");
+      }
+    }
+  }
 
   async function handleSubmit(data) {
     console.log("working");
@@ -76,16 +110,26 @@ export default function Expenses(props) {
     const invoice = {
       invoice: id,
     };
-
     const expenseData = {
       title: data.title,
       company: data.company,
-      currency: data.currency,
+      // currency: data.currency,
       amount: data.amount,
       category: data.category,
       date: data.date,
       recurring: data.recurring,
     };
+    const { currency } = data;
+    if (currency) {
+      try {
+        await updateUser({
+          currency,
+        });
+      } catch (err) {
+        setError("error");
+      }
+    }
+
     console.log(expenseData);
     if (!currentExpenseId) {
       await createExpense(id, { ...expenseData, ...invoice });
@@ -116,7 +160,7 @@ export default function Expenses(props) {
   }
 
   function handleDisplayFilters() {
-    setDisplayFilters((displayFilters) => !displayFilters);
+    setDisplayFilters(displayFilters => !displayFilters);
     // navigate("filters")
   }
 
@@ -137,7 +181,7 @@ export default function Expenses(props) {
             // handleInput={handleInput}
           />
         )}
-        <Header toggleDarkMode={props.toggleDarkMode}/>
+        <Header toggleDarkMode={props.toggleDarkMode} />
         <div className="expenses-content">
           <div className="search-container">
             <div className="search-bar">
@@ -166,6 +210,23 @@ export default function Expenses(props) {
               >
                 <img src={filterIcon} />
                 Filters
+              </button>
+
+              <button
+                className="update-currency"
+                onClick={e => handleCurrencyUpdate(e)}
+              >
+                <select
+                  className="currency-select"
+                  name="currency"
+                  value={data.currency}
+                  onChange={handleChange}
+                >
+                  ><option>£</option>
+                  <option>$</option>
+                  <option>€</option>
+                </select>
+                Currency
               </button>
             </div>
           </div>

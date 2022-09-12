@@ -19,13 +19,13 @@
 
 .expense-dashboard {
   display: grid;
-  grid-template-columns: 1.6fr 1.3fr 1.3fr 0.7fr;
-  min-width: fit-content !important;
+  grid-template-columns: 1.6fr 1.5fr 1.1fr 0.75fr;
+  /* min-width: fit-content !important; */
   margin: 0px 25px;
   padding-bottom: 10px !important;
   padding-top: 10px !important;
   /* border: 1px solid black; */
-  gap: 5px;
+  column-gap: 5px;
   border-top: 1px solid rgba(119, 119, 119, 0.1);
 }
 
@@ -68,14 +68,16 @@
 
 .expense-dashboard > .category > p {
   /* border: 1px solid black; */
-  min-width: fit-content !important;
+  /* min-width: fit-content !important; */
 }
 
 .expense-dashboard > .card-element.amount {
-  place-items: right;
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
 
-  display: flex !important;
-  justify-content: flex-end !important;
+  /* display: flex !important;
+  justify-content: flex-end !important; */
   /* border: 1px solid black; */
 }
 
@@ -86,7 +88,8 @@
   /* border: 1px solid black; */
   margin: 0px !important;
   padding: 0px !important;
-  min-width: fit-content !important;
+  /* min-width: fit-content !important; */
+  width: none !important;
 }
 
 .expense-dashboard > .card-element > .expense-card-text,
@@ -245,6 +248,7 @@ input.edit {
 .expense-card-subtext {
   padding-left: 10px;
 }
+
 .name-business-container {
   display: flex;
   flex-direction: column;
@@ -262,13 +266,13 @@ input.edit {
 .category,
 .amount,
 .invoice {
-  align-items: center;
-  width: 100%;
+  /* align-items: center;
+  width: 100%; */
 }
 
 .category p {
   padding-left: 14px;
-  min-width: 100%;
+  /* min-width: 100%; */
 }
 
 .selected-currency {
@@ -290,29 +294,31 @@ input.edit {
 
 .card-element.amount {
   display: flex;
-  justify-content: space-evenly;
-}
-
-.currency-select {
-  width: 50px !important;
-  padding: 3px;
-  font-size: 14px;
-}
-
-.selected-currency {
-  width: 50px !important;
-  padding: 7px !important;
-  font-size: 14px;
+  justify-content: flex-end;
+  justify-content: end;
+  width: none !important;
+  justify-content: center;
+  display: inline-flex;
+  justify-content: flex-end;
+  
 }
 
 .amount {
   font-weight: 600;
-  width: 100%;
-  padding: 0px !important;
+  width: none !important;
+  display: flex;
+  justify-content: end;
+  justify-content: flex-end;
+  justify-content: center;
+  display: grid;
+  place-items: right;
+  place-content: right;
+  /* width: 100%; */
+  /* padding: 0px !important; */
 }
 
 .edit.amount {
-  padding: 2px !important;
+  /* padding: 2px !important; */
 }
 
 .date {

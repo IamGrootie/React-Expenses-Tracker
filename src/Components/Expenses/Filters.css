@@ -10,7 +10,6 @@
   font-weight: 600;
   margin: 0px 20px;
   
- 
 }
 
 .input-titles-expenses {
@@ -27,7 +26,7 @@
 .input-titles-expenses.dark {
   /* background: #ffffff 0; */
   column-gap: 5px;
-  gap: 5px;
+  
 }
 
 .input-titles.dark {

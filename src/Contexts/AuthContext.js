@@ -92,6 +92,7 @@ export default function AuthProvider({ children }) {
       lastName: name.substring(name.indexOf(" ") + 1),
       dateOfBirth: "",
       mobileNumber: "",
+      currency: "£"
     });
   }
 

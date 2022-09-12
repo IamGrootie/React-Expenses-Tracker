@@ -12,6 +12,7 @@ import Filters from "../Expenses/Filters";
 import { useNavigate } from "react-router-dom";
 import Header from "../Header/Header";
 import Chart from "../Chart/Chart.js";
+import { useAuth } from "../../Contexts/AuthContext";
 
 export default function Dashboard(props) {
   const {
@@ -22,6 +23,7 @@ export default function Dashboard(props) {
     timePeriod,
     setSort,
   } = useExpenses();
+  const { userDetails } = useAuth();
 
   // const totalSpending = expensesThroughTime.reduce(
   //   (total, item) => total - item.amount,
@@ -82,7 +84,7 @@ export default function Dashboard(props) {
         title={expense.title}
         company={expense.company}
         category={expense.category}
-        currency={expense.currency}
+        currency={userDetails.currency}
         amount={expense.amount}
         class="expense-dashboard-recurring"
       />
@@ -103,7 +105,7 @@ export default function Dashboard(props) {
         title={expense.title}
         company={expense.company}
         category={expense.category}
-        currency={expense.currency}
+        currency={userDetails.currency}
         amount={expense.amount}
         date={expense.date}
         class="expense-dashboard"
