@@ -32,7 +32,14 @@ export default function Header(props) {
     >
       <h2 className="title">{title}</h2>
       <button className="profile-btn">
-        <img src={currentUser.photoURL} className="display-picture" />
+        <img
+          src={
+            !currentUser.photoURL
+              ? "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+              : currentUser.photoURL
+          }
+          className="display-picture"
+        />
         <h3>{`${userDetails.firstName} ${userDetails.lastName}`}</h3>
       </button>
     </section>

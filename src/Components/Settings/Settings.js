@@ -110,15 +110,15 @@ export default function Settings(props) {
     upload(photo, currentUser, setLoading);
   }
 
-  // useEffect(() => {
-  //   if (currentUser?.photoURL) {
-  //     setPhotoURL(currentUser.photoURL);
-  //   }
-  // }, [currentUser]);
+  useEffect(() => {
+    if (currentUser?.photoURL) {
+      setPhotoURL(currentUser.photoURL);
+    }
+  }, [currentUser]);
 
-  console.log(photoURL);
-  console.log(photo);
+  // console.log(data.photoURL);
 
+console.log(currentUser.photoURL)
   return (
     <div
       className={
@@ -176,7 +176,7 @@ export default function Settings(props) {
                   </button>
                 </>
               ) : (
-                <img src={data.photoURL} className="profile-picture" />
+                <img src={!data.photoURL ? photoURL : data.photoURL} className="profile-picture" />
               )}
             </div>
 
