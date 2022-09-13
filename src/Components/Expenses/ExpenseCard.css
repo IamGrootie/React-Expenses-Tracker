@@ -41,15 +41,6 @@
   /* border: 1px solid black; */
 }
 
-.expense-dashboard > .card-element,
-.expense-dashboard > .card-element > input {
-  /* border: 1px solid black; */
-}
-
-.expense-dashboard > .card-element > select {
-  /* border: 1px solid black; */
-}
-
 .expense-dashboard > .card-element.name-business-container {
   gap: 0px !important;
   max-width: 20ch;
@@ -64,11 +55,6 @@
 .expense-dashboard > .category > .category-image-container {
   min-width: 50px;
   /* border: 1px solid black; */
-}
-
-.expense-dashboard > .category > p {
-  /* border: 1px solid black; */
-  /* min-width: fit-content !important; */
 }
 
 .expense-dashboard > .card-element.amount {

@@ -77,8 +77,8 @@ export default function Dashboard(props) {
   );
 
   const recurringExpensesArr = expenses
-    .filter(item => item.recurring === true)
-    .map(expense => (
+    .filter((item) => item.recurring === true)
+    .map((expense) => (
       <ExpenseCard
         key={expense.invoice}
         title={expense.title}
@@ -100,7 +100,7 @@ export default function Dashboard(props) {
 
   const expensesArr = expenses
     .slice(0, 3)
-    .map(expense => (
+    .map((expense) => (
       <ExpenseCard
         key={expense.invoice}
         title={expense.title}
@@ -186,18 +186,7 @@ export default function Dashboard(props) {
             </button>
           </div>
 
-          <div className="recurring-expenses-card">
-            {recurringExpensesArr}
-            {/* <div className="reccurring-expenses-card-expense">
-							<img src={wallet} />
-							<div className="reccurring-expenses-card-expense-text">
-							recurringExpensesArr
-								<p className="expense-card-text">Netlfix Subscription</p>
-								<p className="expense-card-subtext">Netlfix</p>
-							</div>
-						</div>
-						<p className="expense-card-text amount">£10</p> */}
-          </div>
+          <div className="recurring-expenses-card">{recurringExpensesArr}</div>
         </div>
       </div>
     </div>

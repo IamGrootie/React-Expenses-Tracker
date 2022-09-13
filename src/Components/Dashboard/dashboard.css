@@ -11,14 +11,14 @@
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
 
 .dash-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: inline-flex;
   gap: 2.5rem;
   padding-bottom: 2.75rem;
   margin-right: 40px;
 }
 
 .resume-container {
+  max-width: 75%;
   margin-left: 2.5rem;
 }
 
@@ -167,7 +167,6 @@ td {
 .recurring-expenses-container {
   /* margin-right: 40px; */
   min-width: 315px;
-  
 }
 
 .title-recurring-expenses {
@@ -203,23 +202,6 @@ td {
   padding-left: 1.5rem;
 }
 
-/* TRYING TO SORT OUT EXPENSE CARD RENDERING INTO DASHBOARD WITHOUT MESSING UP IN EXPENS */
-@media only screen and (max-width: 1280px) {
-  .dash-container {
-    display: flex;
-    flex-direction: column;
-    /* justify-content: center;
-    align-items: center; */
-  }
-  .recurring-expenses-container {
-    /* width: 100%; */
-    margin-left: 2.5rem;
-    border: 1px solid #f5f5f5;
-    border-radius: 0.625rem;
-    padding: 0px 25px;
-  }
-}
-
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
 /* §§§§§§ Dark mode §§§§§§ */
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
@@ -249,11 +231,44 @@ td {
   background: #1c1a2e;
 }
 
-/* .dashboard-container.dark .expense-card-text,
-.dashboard-container.dark .expense-card-subtext {
-  background: #1c1a2e;
-} */
+/* §§§§§§§§§§§§§§§§§§§§§§§§§§§§ */
+/* §§§§§§ Media  Queries §§§§§§ */
+/* §§§§§§§§§§§§§§§§§§§§§§§§§§§§ */
 
-/* .dashboard-expense-card.container {
-  background-color: red !important;
-} */
+@media only screen and (max-width: 1280px) {
+  .dash-container {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center;
+    align-items: center; */
+  }
+  .resume-container {
+    max-width: 100%;
+  }
+  .recurring-expenses-container {
+    /* width: 100%; */
+    margin-left: 2.5rem;
+    border: 1px solid #f5f5f5;
+    border-radius: 0.625rem;
+    padding: 0px 25px;
+  }
+}
+
+@media only screen and (max-width: 860px) {
+  .resume-container {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .amounts-tab {
+    display: flex;
+    flex-direction: column;
+  }
+  .graph-container {
+    visibility: hidden;
+  }
+
+  p.expense-card-text.category {
+    display: none;
+  }
+}
