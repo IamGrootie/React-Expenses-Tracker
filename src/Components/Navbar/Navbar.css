@@ -108,7 +108,7 @@
   }
   .mobile {
     display: block;
-    margin-left: 1.5rem;
+    margin: 0 1.5rem;
   }
   .nav-container {
     display: flex;
