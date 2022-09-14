@@ -9,7 +9,7 @@ import "./forgotpassword.css";
 export default function ForgotPassword() {
   const emailRef = useRef();
   const { resetPassword } = useAuth();
-  const [error, setError] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -18,12 +18,12 @@ export default function ForgotPassword() {
 
     try {
       setMessage("");
-      setError("");
+      setErrorMessage("");
       setLoading(true);
       await resetPassword(emailRef.current.value);
       setMessage("Check your inbox for further instructions");
     } catch {
-      setError("Failed to reset password");
+      setErrorMessage("Failed to reset password");
     }
 
     setLoading(false);
@@ -60,7 +60,17 @@ export default function ForgotPassword() {
           <p className="details">Please enter your details.</p>
 
           <form onSubmit={handleSubmit} className="form-pass-container">
-            <label className="email-label">Email</label>
+            <div className="label-container">
+              <label className="email-label">Email</label>
+              {errorMessage && (
+                <label className="errorMessage">{errorMessage}</label>
+              )}
+              {message && (
+                <label className="errorMessage" style={{ color: "green" }}>
+                  {message}
+                </label>
+              )}
+            </div>
             <input
               className="details-input"
               type="email"
@@ -77,15 +87,13 @@ export default function ForgotPassword() {
               Reset Password
             </button>
             <p className="question">
-            Want to return? <Link to="/signin">Sign in</Link>
-          </p>
-          <img src={vector} className="vector-pass" alt="" />
+              Want to return? <Link to="/signin">Sign in</Link>
+            </p>
+            <img src={vector} className="vector-pass" alt="" />
           </form>
 
-          {error && <alert variant="danger">{error}</alert>}
+          {errorMessage && <alert variant="danger">{errorMessage}</alert>}
           {message && <alert variant="success">{message}</alert>}
-
-       
         </div>
       </div>
       <div className="image-half">
