@@ -25,7 +25,9 @@ export default function Expenses(props) {
     const { value } = event.target;
     setSearch(value);
     if (value) {
-      setFilteredExpenses(expenses.filter(item => item.title.includes(value)));
+      setFilteredExpenses(
+        expenses.filter((item) => item.title.includes(value))
+      );
     } else setFilteredExpenses(expenses);
   }
 
@@ -41,7 +43,7 @@ export default function Expenses(props) {
 
   function handleChange(event) {
     const { name, value, checked, type } = event.target;
-    setData(prev => ({
+    setData((prev) => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,
     }));
@@ -52,7 +54,7 @@ export default function Expenses(props) {
     setFilteredExpenses(expenses);
   }, [expenses]);
 
-  const expensesArr = filteredExpenses.map(expense => (
+  const expensesArr = filteredExpenses.map((expense) => (
     <ExpenseCard
       category={expense.category}
       key={expense.invoice}
@@ -80,7 +82,7 @@ export default function Expenses(props) {
   async function edit(event, id) {
     event.stopPropagation();
     setCurrentExpenseId(id);
-    setCurrentExpense(expenses.find(expense => expense.invoice === id));
+    setCurrentExpense(expenses.find((expense) => expense.invoice === id));
     // console.log(currentExpenseId);
     setEditExpense(true);
   }
@@ -162,7 +164,7 @@ export default function Expenses(props) {
   }
 
   function handleDisplayFilters() {
-    setDisplayFilters(displayFilters => !displayFilters);
+    setDisplayFilters((displayFilters) => !displayFilters);
     // navigate("filters")
   }
 
@@ -216,7 +218,7 @@ export default function Expenses(props) {
 
               <button
                 className="update-currency"
-                onClick={e => handleCurrencyUpdate(e)}
+                onClick={(e) => handleCurrencyUpdate(e)}
               >
                 <select
                   className="currency-select"
@@ -224,7 +226,7 @@ export default function Expenses(props) {
                   value={data.currency}
                   onChange={handleChange}
                 >
-                  ><option>£</option>
+                  <option>£</option>
                   <option>$</option>
                   <option>€</option>
                 </select>
