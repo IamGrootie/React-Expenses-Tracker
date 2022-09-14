@@ -161,7 +161,6 @@
 .expense-expenses {
   margin-top: 15px;
   display: grid;
-  /* grid-template-columns: 1.5fr 1fr 0.8fr 0.7fr 0.3fr 0.65fr 1fr; */
   grid-template-columns: 1.5fr 1.1fr 0.8fr 0.7fr 0.55fr 0.65fr 1fr;
   column-gap: 5px;
   padding-bottom: 20px;
@@ -219,4 +218,44 @@
 
 .expenses-container.dark .filter-expenses:active {
   background: #3d3b52;
+}
+
+/* §§§§§§§§§§§§§§§§§§§§§§§§§§§§ */
+/* §§§§§§ Media  Queries §§§§§§ */
+/* §§§§§§§§§§§§§§§§§§§§§§§§§§§§ */
+
+@media only screen and (max-width: 1280px) {
+  .card-element.invoice,
+  .category-btn.invoice {
+    display: none;
+  }
+  .expense-expenses,
+  .expenses-container .input-titles-expenses {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr 0.7fr 0.8fr 0.7fr 0.9fr;
+    column-gap: 5px;
+    flex-shrink: 1;
+  }
+
+  .card-element.button-container {
+    padding-left: 10px;
+  }
+
+  .expense-card-text.category {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 860px) {
+  .expense-expenses,
+  .expenses-container .input-titles-expenses {
+    display: grid;
+    grid-template-columns: 1fr 0.7fr 0.7fr 0.7fr 0.55fr 1fr;
+    column-gap: 5px;
+    flex-shrink: 1;
+  }
+
+  .expense-card-text.category {
+    display: none;
+  }
 }

@@ -40,3 +40,13 @@
   background: #282541;
   color: white;
 }
+
+/* §§§§§§§§§§§§§§§§§§§§§§§§§§§§ */
+/* §§§§§§ Media  Queries §§§§§§ */
+/* §§§§§§§§§§§§§§§§§§§§§§§§§§§§ */
+
+@media only screen and (max-width: 860px) {
+  .header-container {
+    display: none;
+  }
+}

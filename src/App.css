@@ -9,8 +9,6 @@ body {
 }
 
 .App {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
   display: flex;
   height: 100vh;
   width: 100vw;
@@ -20,6 +18,21 @@ input {
   outline: none;
 }
 
+/* §§§§§§§§§§§§§§§§§§§§§§§ */
+/* §§§§§§ Dark mode §§§§§§ */
+/* §§§§§§§§§§§§§§§§§§§§§§§ */
+
 .dark ::-webkit-calendar-picker-indicator {
   color-scheme: dark;
+}
+
+/* §§§§§§§§§§§§§§§§§§§§§§§§§§§§ */
+/* §§§§§§ Media  Queries §§§§§§ */
+/* §§§§§§§§§§§§§§§§§§§§§§§§§§§§ */
+
+@media only screen and (max-width: 860px) {
+  .App {
+    display: flex;
+    flex-direction: column;
+  }
 }

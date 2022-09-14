@@ -1,9 +1,6 @@
 .input-titles {
   display: grid;
   grid-template-columns: 1.6fr 1.5fr 1.1fr 0.75fr;
-  /* display: flex;
-  justify-content: space-between; */
-  /* min-width: 100%; */
   width: 100%;
   column-gap: 5px;
   font-size: 12px;
@@ -13,17 +10,18 @@
 
 .input-titles-expenses {
   margin-top: 25px;
+  color: #929eae;
+}
+
+.expenses-container .input-titles-expenses {
   display: grid;
   grid-template-columns: 1.5fr 1.1fr 0.8fr 0.7fr 0.55fr 0.65fr 1fr;
-  color: #929eae;
-  column-gap: 5px;
 }
 
 .input-titles,
 .input-titles.dark,
 .input-titles-expenses,
 .input-titles-expenses.dark {
-  /* background: #ffffff 0; */
   column-gap: 5px;
 }
 
@@ -43,8 +41,7 @@
   text-decoration: none;
   height: 30px;
   font-weight: 500;
-  display: grid;
-  grid-template-columns: 1.6fr 1.5fr 1.1fr 0.75fr;
+  display: flex;
   column-gap: 20px;
   align-items: center;
   background: #c9ee4471;
@@ -82,7 +79,6 @@
 
 .input-titles.dark .category-btn,
 .input-titles-expenses.dark .category-btn {
-  /* background: #c8ee44; */
   background: #c9ee4471;
   color: white;
 }
@@ -90,20 +86,10 @@
 .input-titles.dark img,
 .input-titles-expenses.dark img {
   filter: brightness(200%);
-  /* background: white; */
 }
 
 .input-titles.dark .category-btn.hidden,
 .input-titles-expenses.dark .category-btn.hidden {
-  /* background: #ceed5e; */
   background: #c9ee4431;
   color: white;
-}
-
-.input-titles.dark .category-btn {
-  /* color: #1b212d; */
-}
-
-.input-titles.dark .category-btn.hidden {
-  /* color: #929eae; */
 }
