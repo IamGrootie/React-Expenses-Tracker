@@ -237,9 +237,9 @@
   .dashboard-container.dark .recurring-expenses-container {
     border: 1px solid #282541;
   }
-  .expense-dashboard {
+  /* .expense-dashboard {
     padding-left: 1rem;
-  }
+  } */
 }
 
 @media only screen and (max-width: 1090px) {
@@ -263,5 +263,11 @@
   }
   p.expense-card-text.category {
     display: none;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .expense-dashboard > .card-element.category {
+    padding-left: 1rem !important;
   }
 }

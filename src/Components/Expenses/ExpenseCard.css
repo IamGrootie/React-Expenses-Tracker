@@ -23,6 +23,7 @@
 
 .expense-dashboard > .category {
   max-width: fit-content;
+  gap: 10px;
 }
 
 .expense-dashboard > .category > .category-image-container {
