@@ -10,7 +10,8 @@ import LogoDarkM from "../../images/Logo-white.svg";
 import logoutIcon from "../../images/logout-icon.svg";
 import lightMode from "../../images/lightMode.svg";
 import darkMode from "../../images/darkMode.svg";
-import burger from "../../images/burgerMenu.svg";
+import menuDark from "../../images/menuDark.svg";
+import menuLight from "../../images/menuLight.svg";
 import "./Navbar.css";
 
 export default function Navbar(props) {
@@ -80,12 +81,16 @@ export default function Navbar(props) {
             />
           </button>
         </nav>
+        <button className="logout-button" onClick={handleLogout}>
+          <img src={logoutIcon} />
+          Log out
+        </button>
       </div>
 
       <div className="mobile">
         <section className="mobile-header">
           <button className="expand-icon" onClick={handleShow}>
-            <img src={burger} />
+            <img src={props.toggleDarkMode ? menuDark : menuLight} />
           </button>
           <h2 className="title">{title}</h2>
         </section>
@@ -110,10 +115,18 @@ export default function Navbar(props) {
             <img src={settingsIcon} />
             Settings
           </NavLink>
-          <button className="logout-button" onClick={handleLogout}>
-            <img src={logoutIcon} />
-            Log out
-          </button>
+          <section className="nav-footer">
+            <button className="logout-button" onClick={handleLogout}>
+              <img src={logoutIcon} />
+              Log out
+            </button>
+            <button onClick={props.handleDark} className="dark-btn">
+              <img
+                src={props.toggleDarkMode ? darkMode : lightMode}
+                className="toggle"
+              />
+            </button>
+          </section>
         </div>
       </div>
     </div>
