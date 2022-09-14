@@ -128,7 +128,7 @@ export default function Signin() {
                 />
                 <label className="remember-label">Remember for 30 Days</label>
               </div>
-              <Link to="/forgotpassword">Forgot password</Link>
+              <Link to="/forgot-password">Forgot password</Link>
             </section>
             <button onClick={handleSubmit} className="sign-btn">
               Sign in
