@@ -1,4 +1,4 @@
-.nav-container {
+.desktop-version {
   display: flex;
   flex-direction: column;
   width: 250px;
@@ -85,12 +85,17 @@
 /* §§§§§§ Dark mode §§§§§§ */
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
 
-.dark {
+.dark,
+.dark .desktop-version {
   background: #201e34;
 }
 
 .logout-button .dark {
   background: #201e34;
+}
+
+.dark .title {
+  color: white;
 }
 
 /* §§§§§§§§§§§§§§§§§§§§§§§§§§§§ */
@@ -103,6 +108,7 @@
   }
   .mobile {
     display: block;
+    margin-left: 1.5rem;
   }
   .nav-container {
     display: flex;
@@ -121,13 +127,13 @@
   }
   .expand-icon {
     border: none;
-    background-color: white;
-    height: 0.8rem;
-    width: 0.8rem;
+    background: none;
+    height: 1.5rem;
+    width: 1.5rem;
   }
   .expand-icon img {
-    height: 0.8rem;
-    width: 0.8rem;
+    height: 1.5rem;
+    width: 1.5rem;
   }
   .mobile-nav {
     display: flex;
@@ -140,10 +146,20 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+    color: #929eae;
+  }
+  .nav-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
   }
   .logout-button {
     padding: 0;
-    margin-left: 0;
-    margin-bottom: 1rem;
+    margin: 0;
+  }
+  .dark-btn {
+    margin: 0;
   }
 }
