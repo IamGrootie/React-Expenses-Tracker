@@ -94,7 +94,7 @@ export default function Signin() {
     <div className="intro-container">
       <div className="form-half">
         <div className="form-container">
-          <img src={Logo} className="logo" alt="" />
+          <img src={Logo} className="su-logo" alt="" />
           <h1 className="title-sign">Welcome back!</h1>
           <p className="details">Please enter your details.</p>
           <form className="form-signup">
