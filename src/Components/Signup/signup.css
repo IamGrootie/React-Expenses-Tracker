@@ -1,7 +1,3 @@
-body {
-  font-family: "Kumbh Sans", sans-serif;
-}
-
 .su-title-sign {
   font-size: 2rem;
   font-weight: 600;
@@ -28,8 +24,14 @@ body {
 
 .su-image-half {
   object-fit: cover;
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  min-height: 100%;
+
+}
+
+.su-landing-image {
+  float: right;
+  height: 100%;
 }
 
 @media only screen and (max-width: 600px) {
@@ -46,10 +48,6 @@ body {
   display: flex;
   flex-direction: column;
   margin: 40px 15px;
-}
-
-.su-landing-image {
-  float: right;
 }
 
 .su-logo {
