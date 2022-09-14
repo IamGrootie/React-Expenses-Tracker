@@ -159,7 +159,7 @@ function ExpenseCard(props) {
         {props.amount && props.recurringExpenses ? (
           <div className="card-element amount recurring">
             <p className="selected-currency">
-              {props.currency} {props.amount}
+              {props.currency}{props.amount}
             </p>
           </div>
         ) : props.amount ? (
@@ -168,7 +168,7 @@ function ExpenseCard(props) {
             <input
               className={
                 !props.editExpense
-                  ? "expense-card-text amount"
+                  ? "expense-card-text amount" 
                   : "expense-card-text edit amount"
               }
               disabled={!props.editExpense}
