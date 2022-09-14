@@ -19,3 +19,7 @@ body {
 input {
   outline: none;
 }
+
+.dark ::-webkit-calendar-picker-indicator {
+  color-scheme: dark;
+}

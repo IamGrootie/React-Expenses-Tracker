@@ -279,9 +279,6 @@ input.edit {
   color: rgb(255, 255, 255);
 }
 
-.expense-card.dark ::-webkit-calendar-picker-indicator {
-  color-scheme: dark;
-}
 
 .action-button.disabled {
   opacity: 0.5;

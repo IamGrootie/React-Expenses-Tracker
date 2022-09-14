@@ -60,7 +60,8 @@
 }
 
 .create-expense,
-.filter-expenses {
+.filter-expenses,
+.update-currency {
   border: none;
   text-decoration: none;
   border-radius: 0.625rem;
@@ -126,18 +127,10 @@
 .update-currency {
   background: white;
   border: 1px solid #f5f5f5;
-  width: 110px;
-  transition: all 0.1s ease-in;
-
   min-width: fit-content;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #1b212d;
-  border-radius: 0.625rem;
   padding: 10px 20px;
 }
 
@@ -211,7 +204,10 @@
   filter: brightness(250%);
 }
 
-.expenses-container.dark .filter-expenses {
+.expenses-container.dark .filter-expenses,
+.expenses-container.dark .update-currency,
+.expenses-container.dark .update-currency select,
+.expenses-container.dark .update-currency option {
   background: #1c1a2e;
   color: white;
   border: 1px solid white;

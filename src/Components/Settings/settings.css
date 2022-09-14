@@ -152,8 +152,10 @@
 /* sort out background colours */
 ::-webkit-file-upload-button {
   background-color: #c8ee44;
-  border: 1px solid #f1f1f3;
+  border: none;
   color: #1b212d;
+  font-size: 14px;
+  font-weight: 600;
   padding: 1em;
   border-radius: 0.625rem;
   margin-bottom: 1.25rem;
@@ -162,9 +164,11 @@
 }
 
 .upload-dp-btn {
-  background-color: #29a073;
-  border: 1px solid #f1f1f3;
-  color: white;
+  background-color: #c8ee44;
+  border: none;
+  color: #1b212d;
+  font-size: 14px;
+  font-weight: 600;
   padding: 1em;
   border-radius: 0.625rem;
   margin-bottom: 1.25rem;
@@ -298,6 +302,8 @@ input[type="file"] {
   border: none;
   border-radius: 0.625rem;
   background-color: #29a073;
+  font-size: 14px;
+  font-weight: 600;
   margin-top: 2.5rem;
   cursor: pointer;
   transition: all 0.1s ease-in;
@@ -313,16 +319,21 @@ input[type="file"] {
 
 .settings-container.dark {
   color: #ffffff !important;
+  background: #1c1a2e;
 }
 
 .main-container.dark {
-  background-color: #201e34;
+  background: #1c1a2e;
   /* margin-right: 50px;
   margin-bottom: 50px; */
 }
 
 .edit-btn.dark {
-  background-color: #201e34;
+  background: #1c1a2e;
+}
+
+.form-wrap.dark {
+  background: #1c1a2e;
 }
 
 .form-wrap.dark .input {
@@ -330,6 +341,9 @@ input[type="file"] {
   border: 1px solid #282541;
   color: #ffffff;
 }
+
+
+
 .form-wrap.dark .input:disabled {
   color: #78778b;
 }
