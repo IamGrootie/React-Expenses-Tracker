@@ -220,7 +220,7 @@ function ExpenseCard(props) {
           </div>
         )}
         {props.invoice && (
-          <div className="card-element">
+          <div className="card-element invoice">
             <p className="expense-card-text invoice">{data.invoice}</p>
           </div>
         )}

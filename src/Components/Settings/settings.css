@@ -339,3 +339,17 @@
 .main-container.dark .pass-input {
   color: #78778b;
 }
+
+/* §§§§§§§§§§§§§§§§§§§§§§§§§§§§ */
+/* §§§§§§ Media  Queries §§§§§§ */
+/* §§§§§§§§§§§§§§§§§§§§§§§§§§§§ */
+
+@media only screen and (max-width: 480px) {
+  .pp-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .pp-container > input {
+    width: fit-content !important;
+  }
+}

@@ -114,7 +114,7 @@ input.edit {
   align-items: center;
   border: none;
   outline: none;
-  gap: 10px;
+  /* gap: 10px; */
   height: 40px;
   min-width: 100%;
 }
@@ -271,7 +271,6 @@ input.edit {
 .dark .date {
   color: rgb(255, 255, 255);
 }
-
 
 .action-button.disabled {
   opacity: 0.5;

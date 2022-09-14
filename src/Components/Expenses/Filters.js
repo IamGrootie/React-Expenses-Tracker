@@ -9,7 +9,7 @@ export default function Filters(props) {
   // console.log(sort[1]);
   function handleClick(e) {
     const { name } = e.target;
-    setSort(prevSort => {
+    setSort((prevSort) => {
       return prevSort[0] !== name
         ? [name, "asc"]
         : prevSort[1] === "asc"
@@ -111,7 +111,9 @@ export default function Filters(props) {
           </button>
           <button
             className={
-              props.displayFilters ? "category-btn" : "category-btn hidden"
+              props.displayFilters
+                ? "category-btn invoice"
+                : "category-btn invoice hidden"
             }
             name="invoice"
             disabled={!props.displayFilters}

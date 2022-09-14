@@ -77,6 +77,10 @@
   cursor: pointer;
 }
 
+.mobile {
+  display: none;
+}
+
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
 /* §§§§§§ Dark mode §§§§§§ */
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
@@ -87,4 +91,59 @@
 
 .logout-button .dark {
   background: #201e34;
+}
+
+/* §§§§§§§§§§§§§§§§§§§§§§§§§§§§ */
+/* §§§§§§ Media  Queries §§§§§§ */
+/* §§§§§§§§§§§§§§§§§§§§§§§§§§§§ */
+
+@media only screen and (max-width: 860px) {
+  .desktop-version {
+    display: none;
+  }
+  .mobile {
+    display: block;
+  }
+  .nav-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+  }
+  .mobile-nav-hidden {
+    display: none;
+  }
+  .mobile-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .expand-icon {
+    border: none;
+    background-color: white;
+    height: 0.8rem;
+    width: 0.8rem;
+  }
+  .expand-icon img {
+    height: 0.8rem;
+    width: 0.8rem;
+  }
+  .mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+  .navlink-dashboard,
+  .navlink-expenses,
+  .navlink-settings {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .logout-button {
+    padding: 0;
+    margin-left: 0;
+    margin-bottom: 1rem;
+  }
 }
