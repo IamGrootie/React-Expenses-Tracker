@@ -20,19 +20,16 @@ import {
   uploadBytes,
   getDownloadURL,
   getStorage,
-  listAll,
-  list,
+
 } from "firebase/storage";
 import { auth, db } from "../firebase-config";
 import {
   getDoc,
-  getDocs,
   doc,
   setDoc,
   updateDoc,
   onSnapshot,
 } from "firebase/firestore";
-import { v4 } from "uuid";
 
 const AuthContext = createContext();
 
@@ -49,9 +46,11 @@ export default function AuthProvider({ children }) {
   function signup(email, password) {
     return createUserWithEmailAndPassword(auth, email, password);
   }
+
   function login(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
   }
+
   async function signInGoogle(setLoading, navigate, setErrors) {
     try {
       const { user } = await signInWithPopup(auth, provider);
@@ -66,23 +65,29 @@ export default function AuthProvider({ children }) {
     }
     setLoading(false);
   }
+
   function logout() {
     return signOut(auth);
   }
+
   function setDisplayName(user, name) {
     return updateProfile(user, {
       displayName: name,
     });
   }
+
   function updateUsersEmail(email) {
     return updateEmail(currentUser, email);
   }
+
   function updateUsersPassword(password) {
     return updatePassword(currentUser, password);
   }
+
   function updateUser(update) {
     return updateDoc(doc(db, "users", currentUser.uid), update);
   }
+
   function createUserDetails(uid, name, email) {
     return setDoc(doc(db, "users", uid), {
       displayName: name,
@@ -99,7 +104,7 @@ export default function AuthProvider({ children }) {
   const forgotPassword = (email) => {
     return sendPasswordResetEmail(auth, email);
   };
-  // check to change image name within storage location currently [objectobject].png
+
   const storage = getStorage();
 
   async function upload(file, currentUser, setLoading) {
@@ -117,34 +122,6 @@ export default function AuthProvider({ children }) {
     // reloads wepbage with new photoURL being displayed
     window.location.reload();
   }
-
-  // const [imageUpload, setImageUpload] = useState(null);
-  // const [imageUrls, setImageUrls] = useState([]);
-
-  // const imagesListRef = ref(db, "users", currentUser.uid);
-  // const uploadFile = () => {
-  //   if (imageUpload == null) return;
-  //   const imageRef = ref(db, "users", currentUser.uid, `images/${imageUpload.name}`);
-  //   uploadBytes(imageRef, imageUpload).then(snapshot => {
-  //     getDownloadURL(snapshot.ref).then(url => {
-  //       setImageUrls(prev => [...prev, url]);
-  //     });
-  //   });
-  // };
-
-  // useEffect(() => {
-  //   listAll(imagesListRef).then(response => {
-  //     response.items.forEach(item => {
-  //       getDownloadURL(item).then(url => {
-  //         setImageUrls(prev => [...prev, url]);
-  //       });
-  //     });
-  //   });
-  // }, []);
-
-  //   const forgotPassword = email => {
-  //     return sendPasswordResetEmail(auth, email);
-  //   };
 
   useEffect(() => {
     setLoading(true);

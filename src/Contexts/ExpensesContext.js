@@ -2,14 +2,11 @@ import {
   collection,
   doc,
   getDocs,
-  addDoc,
   updateDoc,
   deleteDoc,
   setDoc,
   onSnapshot,
   query,
-  orderBy,
-  getDoc,
 } from "firebase/firestore";
 import { subDays } from "date-fns";
 
@@ -71,29 +68,6 @@ export default function ExpensesProvider({ children }) {
       });
   }
 
-  // function sortExpenses(value, order) {
-  //   if (value === "amount") {
-  //     // const incomePart = income.sort((a, b) => a.amount - b.amount);
-  //     const expensePart = expenses.sort((a, b) => a.amount - b.amount);
-  //     setExpenses(
-  //       order === "asc"
-  //         ? [...expensePart.reverse()]
-  //         : [...expensePart].reverse()
-  //     );
-  //   } else
-  //     return expenses.sort((a, b) => {
-  //       const itemA = a[value];
-  //       const itemB = b[value];
-  //       if (itemA < itemB) {
-  //         return order === "asc" ? 1 : -1;
-  //       }
-  //       if (itemA > itemB) {
-  //         return order === "asc" ? -1 : 1;
-  //       }
-  //       return 0;
-  //     });
-  // }
-
   useEffect(() => {
     if (expenses) {
       sortExpenses(sort[0], sort[1]);
@@ -119,12 +93,14 @@ export default function ExpensesProvider({ children }) {
     .map((item, index) =>
       subDays(new Date(), index).toISOString().substring(0, 10)
     );
+
   const monthlyTimePeriod = 31;
   const monthlyDateArray = Array(monthlyTimePeriod)
     .fill()
     .map((item, index) =>
       subDays(new Date(), index).toISOString().substring(0, 10)
     );
+    
   const totalTimePeriod = 365;
   const totalDateArray = Array(totalTimePeriod)
     .fill()

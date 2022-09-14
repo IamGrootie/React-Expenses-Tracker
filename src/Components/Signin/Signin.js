@@ -34,8 +34,6 @@ export default function Signin() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(userLogin.email, userLogin.password); //Attention change this
-
     signInWithEmailAndPassword(auth, userLogin.email, userLogin.password)
       .then(cred => {
         console.log("user logined:" + cred.user);
@@ -62,7 +60,6 @@ export default function Signin() {
         return signInWithEmailAndPassword(auth, email, password);
       })
       .catch(error => {
-        // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;
       });
@@ -70,10 +67,8 @@ export default function Signin() {
 
   function handleGoogle(e) {
     e.preventDefault();
-    console.log(userLogin.email, userLogin.password);
     signInWithPopup(auth, provider)
       .then(cred => {
-        console.log(cred);
         sessionStorage.setItem("Auth Token", auth.currentUser.accessToken);
         sessionStorage.setItem("uid", auth.currentUser.uid);
         sessionStorage.setItem("email", auth.currentUser.email);
@@ -105,7 +100,9 @@ export default function Signin() {
           <form className="form-signup">
             <div className="label-container">
               <label className="email-label">Email</label>
-              {errorMessage && <label className="errorMessage">{errorMessage}</label>}
+              {errorMessage && (
+                <label className="errorMessage">{errorMessage}</label>
+              )}
             </div>
             <input
               className="details-input"

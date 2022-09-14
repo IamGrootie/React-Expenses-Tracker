@@ -13,7 +13,7 @@ import Header from "../Header/Header";
 
 export default function Expenses(props) {
   const { currentUser, updateUser, userDetails } = useAuth();
-  const { expenses, createExpense, updateExpense, deleteExpense, setSort } =
+  const { expenses, createExpense, updateExpense, deleteExpense, sort, setSort } =
     useExpenses();
   const [editExpense, setEditExpense] = useState(false);
   const [search, setSearch] = useState();
@@ -25,15 +25,15 @@ export default function Expenses(props) {
     const { value } = event.target;
     setSearch(value);
     if (value) {
-      setFilteredExpenses(
-        expenses.filter((item) => item.title.includes(value))
-      );
+      setFilteredExpenses(expenses.filter(item => item.title.includes(value)));
     } else setFilteredExpenses(expenses);
   }
 
   const [data, setData] = useState({
     currency: userDetails.currency,
   });
+
+
 
   useEffect(() => {
     setData({
@@ -43,7 +43,7 @@ export default function Expenses(props) {
 
   function handleChange(event) {
     const { name, value, checked, type } = event.target;
-    setData((prev) => ({
+    setData(prev => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,
     }));
@@ -54,7 +54,11 @@ export default function Expenses(props) {
     setFilteredExpenses(expenses);
   }, [expenses]);
 
-  const expensesArr = filteredExpenses.map((expense) => (
+  useEffect(() => {
+    setSort(["date", "asc"]);
+  }, [data])
+
+  const expensesArr = filteredExpenses.map(expense => (
     <ExpenseCard
       category={expense.category}
       key={expense.invoice}
@@ -82,19 +86,11 @@ export default function Expenses(props) {
   async function edit(event, id) {
     event.stopPropagation();
     setCurrentExpenseId(id);
-    setCurrentExpense(expenses.find((expense) => expense.invoice === id));
-    // console.log(currentExpenseId);
+    setCurrentExpense(expenses.find(expense => expense.invoice === id));
     setEditExpense(true);
   }
-  // console.log(editExpense);
-  // console.log(currentExpenseId);
-
-  // SORT OUT REGEX FOR EDITING
-  console.log(`user details ${userDetails.currency}`);
-  console.log(data.currency);
 
   async function handleCurrencyUpdate(e) {
-    // handleChange(e);
     e.preventDefault();
     const { currency } = data;
     if (currency) {
@@ -109,7 +105,6 @@ export default function Expenses(props) {
   }
 
   async function handleSubmit(data) {
-    console.log("working");
     const id = `MGL${nanoid(7)}`;
     const invoice = {
       invoice: id,
@@ -134,14 +129,10 @@ export default function Expenses(props) {
       }
     }
 
-    console.log(expenseData);
     if (!currentExpenseId) {
       await createExpense(id, { ...expenseData, ...invoice });
-      console.log("made new expense");
     } else {
-      console.log("updating");
       updateExpense(currentExpenseId, expenseData);
-      console.log("updated");
       setCurrentExpense("");
       setCurrentExpenseId("");
       setEditExpense(false);
@@ -164,8 +155,7 @@ export default function Expenses(props) {
   }
 
   function handleDisplayFilters() {
-    setDisplayFilters((displayFilters) => !displayFilters);
-    // navigate("filters")
+    setDisplayFilters(displayFilters => !displayFilters);
   }
 
   return (
@@ -182,7 +172,6 @@ export default function Expenses(props) {
             handleClick={handleSubmit}
             setDisplayCreateExpense={setDisplayCreateExpense}
             toggleDarkMode={props.toggleDarkMode}
-            // handleInput={handleInput}
           />
         )}
         <Header toggleDarkMode={props.toggleDarkMode} />
@@ -199,7 +188,6 @@ export default function Expenses(props) {
               ></input>
             </div>
             <div className="expense-buttons">
-              {/* ADD FUNCTIONALITY SO ON CLICK IT OPENS CREATE EXPENSE*/}
               <button
                 className="create-expense"
                 onClick={handleCreateExpenseModal}
@@ -207,7 +195,7 @@ export default function Expenses(props) {
                 <img src={createExpenseIcon} />
                 Create Expense
               </button>
-              {/* ADD FUNCTIONALITY SO IT COMES UP WITH FILTERS */}
+
               <button
                 className="filter-expenses"
                 onClick={handleDisplayFilters}
@@ -218,7 +206,7 @@ export default function Expenses(props) {
 
               <button
                 className="update-currency"
-                onClick={(e) => handleCurrencyUpdate(e)}
+                onClick={e => handleCurrencyUpdate(e)}
               >
                 <select
                   className="currency-select"

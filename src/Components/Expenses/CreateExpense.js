@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./CreateExpense.css";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { serverTimestamp } from "firebase/firestore";
 import CategoryImage from "./CategoryImage";
 
 export default function CreateExpense(props) {
@@ -16,36 +16,9 @@ export default function CreateExpense(props) {
     createdAt: serverTimestamp(),
     recurring: false,
   });
-  //FIGURE AT CREATED AT TIME & DATE THEN ORGANISE ORDERBY
 
-  // const [addExpenseError, setAddExpenseError] = useState({
-  //   title: false,
-  //   amount: false,
-  // });
 
   const [disableSubmit, setDisableSubmit] = useState(false);
-
-  // Compares UID being generated in state with UIDs in FireStore and generates a new one if they match
-  // DOES IT CHECK AGAINST USERS DATA OR WHOLE COLLECTION?
-  // useEffect(() => {
-  //   props.expense.map(expense => {
-  //     if (expense.id === data.id) {
-  //       data.id = `MGL${nanoid(7)}`;
-  //       // console.log("Duplicate ID")
-  //       // console.log(data.id)
-  //     }
-  //   });
-  // }, [data.id]);
-
-  // Allows lower case, uppercase, numbers and underscores
-  // function titleChecker() {
-  //   if (data.title !== "")
-  //     setAddExpenseError(prevError => ({
-  //       ...prevError,
-  //       title: !/^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]$/i.test(data.title),
-  //     }));
-  //     setErrorMessage({name: "" })
-  // }
 
   // Checks the amount is a valid input (requires numbers, thousands separators, two digit fraction, cents/pence optional)
   // function amountChecker() {
@@ -61,7 +34,6 @@ export default function CreateExpense(props) {
   // }
 
   useEffect(() => {
-    // titleChecker();
     // amountChecker();
     checkForErrors();
   }, [data]);
@@ -212,11 +184,6 @@ export default function CreateExpense(props) {
         </div>
         <label className="add-image-container">
           <CategoryImage key={data.id} expenseCategory={data.category} />
-          {/* KEEP BELOW FOR USE TO UPLOAD THEIR OWN IMAGE(s) TO FIREBASE AND PULL FROM THERE  */}
-          {/* <label className="add-image-container">
-            <img src={addImage} />
-            <input type="file" className="add-image"></input>
-          </label> */}
         </label>
         {disableSubmit ? (
           <button className="add-expense span-two disabled" type="submit" disabled>
