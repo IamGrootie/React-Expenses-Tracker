@@ -37,7 +37,7 @@ export default function ForgotPassword() {
   function handleChange(e) {
     console.log("change");
     const { type, value } = e.target;
-    setUserLogin((prev) => ({ ...prev, [type]: value }));
+    setUserLogin(prev => ({ ...prev, [type]: value }));
   }
 
   const { forgotPassword } = useAuth();
@@ -54,36 +54,38 @@ export default function ForgotPassword() {
   return (
     <div className="fpass-container">
       <div className="form-half">
-        <img src={Logo} className="logo" alt="" />
-        <h1 className="title-fpass">Password Reset</h1>
+        <div className="form-fcontainer">
+          <img src={Logo} className="su-logo" alt="" />
+          <h1 className="title-fpass">Password Reset</h1>
+          <p className="details">Please enter your details.</p>
 
-        <form onSubmit={handleSubmit} className="form-pass-container">
-          <label className="email-label">Email</label>
-          <input
-            className="details-input"
-            type="email"
-            name="email"
-            onChange={handleChange}
-            placeholder="Enter your email address"
-          />
-          <button
-            disabled={loading}
-            type="submit"
-            onClick={forgotPasswordHandler}
-            className="reset-btn"
-          >
-            Reset Password
-          </button>
-        </form>
-
-        {error && <alert variant="danger">{error}</alert>}
-        {message && <alert variant="success">{message}</alert>}
-
-        <div>
-          <p className="question">
-            Want to return? <Link to="/signin">Signin</Link>
+          <form onSubmit={handleSubmit} className="form-pass-container">
+            <label className="email-label">Email</label>
+            <input
+              className="details-input"
+              type="email"
+              name="email"
+              onChange={handleChange}
+              placeholder="Enter your email address"
+            />
+            <button
+              disabled={loading}
+              type="submit"
+              onClick={forgotPasswordHandler}
+              className="reset-btn"
+            >
+              Reset Password
+            </button>
+            <p className="question">
+            Want to return? <Link to="/signin">Sign in</Link>
           </p>
           <img src={vector} className="vector-pass" alt="" />
+          </form>
+
+          {error && <alert variant="danger">{error}</alert>}
+          {message && <alert variant="success">{message}</alert>}
+
+       
         </div>
       </div>
       <div className="image-half">
