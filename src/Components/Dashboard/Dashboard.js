@@ -1,12 +1,11 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./dashboard.css";
 import wallet from "../Images/wallet_icon.svg";
 import greenWallet from "../../images/green_wallet_icon.svg";
 import dailyWallet from "../../images/daily_wallet_icon.svg";
 import expand from "../../images/expand_icon.svg";
 import { useExpenses } from "../../Contexts/ExpensesContext";
-import { Transaction } from "firebase/firestore";
 import ExpenseCard from "../Expenses/ExpenseCard";
 import Filters from "../Expenses/Filters";
 import { useNavigate } from "react-router-dom";
@@ -15,51 +14,9 @@ import Chart from "../Chart/Chart.js";
 import { useAuth } from "../../Contexts/AuthContext";
 
 export default function Dashboard(props) {
-  const {
-    expenses,
-    weeklyExpenses,
-    monthlyExpenses,
-    totalExpenses,
-    timePeriod,
-    setSort,
-  } = useExpenses();
+  const { expenses, weeklyExpenses, monthlyExpenses, totalExpenses, setSort } =
+    useExpenses();
   const { userDetails } = useAuth();
-
-  // const totalSpending = expensesThroughTime.reduce(
-  //   (total, item) => total - item.amount,
-  //   0
-  // );
-  // const [totalSpending, setTotalSpending] = useState("")
-
-  //   function calculateTotalSpending() {
-  //     const totalSpendingNum = expensesThroughTime.reduce(
-  //       (total, item) => total - item.amount,
-  //       0
-  //     );
-  //     setTimePeriod(365)
-  //   }
-
-  //   function calculateMonthlySpending() {
-  //     const totalSpendingNum = expensesThroughTime.reduce(
-  //       (total, item) => total - item.amount,
-  //       0
-  //     );
-  //     setTimePeriod(31)
-  //   }
-
-  //   function calculateWeeklySpending() {
-  //     const totalSpendingNum = expensesThroughTime.reduce(
-  //       (total, item) => total - item.amount,
-  //       0
-  //     );
-  //     setTimePeriod(7)
-  //   }
-
-  // useEffect(() => {
-  //   calculateTotalSpending();
-  //   calculateMonthlySpending();
-  //   calculateWeeklySpending();
-  // }, )
 
   const totalSpending = totalExpenses.reduce(
     (total, item) => total + +item.amount,
@@ -77,8 +34,8 @@ export default function Dashboard(props) {
   );
 
   const recurringExpensesArr = expenses
-    .filter((item) => item.recurring === true)
-    .map((expense) => (
+    .filter(item => item.recurring === true)
+    .map(expense => (
       <ExpenseCard
         key={expense.invoice}
         title={expense.title}
@@ -93,14 +50,13 @@ export default function Dashboard(props) {
 
   const navigate = useNavigate();
 
-  //Sort by recent transactions on load
   useEffect(() => {
     setSort(["date", "asc"]);
   }, [setSort]);
 
   const expensesArr = expenses
     .slice(0, 3)
-    .map((expense) => (
+    .map(expense => (
       <ExpenseCard
         key={expense.invoice}
         title={expense.title}
@@ -112,7 +68,6 @@ export default function Dashboard(props) {
         class="expense-dashboard"
       />
     ));
-  // figure a way to render these in automatically rather than just through choosing timeframes
 
   const date = new Date().toISOString().substring(0, 10);
 

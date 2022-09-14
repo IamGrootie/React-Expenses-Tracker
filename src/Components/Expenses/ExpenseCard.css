@@ -103,7 +103,6 @@
   padding-left: 0px !important;
 }
 
-/* WHEN EDIT HAS BEEN CLICKED, SHOW THIS THROUGH COLOUR CHANGE */
 input.edit {
   border: none;
   background: rgba(119, 119, 119, 0.1);
@@ -179,7 +178,6 @@ input.edit {
 
 .category p {
   padding-left: 14px;
-  /* min-width: 100%; */
 }
 
 .selected-currency {
@@ -204,7 +202,6 @@ input.edit {
 }
 
 .edit.amount {
-  /* padding: 2px !important; */
   font-weight: 600;
 }
 
@@ -213,7 +210,6 @@ input.edit {
 }
 
 .card-element.checkbox {
-  /* height: 50%; */
   display: flex;
   align-items: center;
 }
@@ -226,8 +222,6 @@ input.edit {
 .card-element.button-container {
   place-items: center;
   justify-content: space-between;
-  /* center/space between means overlap to invoice container, but space-evenly it disappears like overflow hidden  */
-  /* min-width: fit-content; */
 }
 
 .action-button {
@@ -269,7 +263,6 @@ input.edit {
 .dark .expense-card-subtext.edit,
 .dark .card-element select {
   background-color: #312f3b;
-  /* color: rgb(255, 255, 255); */
 }
 
 .dark .business,

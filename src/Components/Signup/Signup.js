@@ -76,15 +76,16 @@ export default function Signup() {
     }
   }, [data]);
 
-  // function handleGoogle(e){
-  //     e.preventDefault();
-  //             console.log(userSign.email,userSign.password)
-  //     signInWithPopup(auth, provider)
-  //     .then((cred)=>{
-  //         console.log(cred);
-  //     })
-  //     .catch((err) => { console.log(err) })
-  // }
+  function handleGoogle(e) {
+    e.preventDefault();
+    signInWithPopup(auth, provider)
+      .then(cred => {
+        console.log(cred);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
 
   return (
     <div className="su-intro-container">
@@ -144,7 +145,7 @@ export default function Signup() {
             <button onClick={handleSubmit} className="su-sign-btn">
               Sign up
             </button>
-            <button className="su-google-btn">
+            <button className="su-google-btn" onClick={handleGoogle}>
               <img src={google} alt="" />
               Sign up with google
             </button>

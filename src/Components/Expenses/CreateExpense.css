@@ -22,10 +22,6 @@
   background-color: white;
 }
 
-/* .form-element {
- 
-} */
-
 .form-element input,
 .form-element select {
   border: 1.5px solid rgba(78, 93, 120, 0.2);
@@ -74,9 +70,6 @@
   outline: none;
 }
 
-/* .form-date-input {
-} */
-
 .select-currency {
   cursor: pointer;
   padding-left: 15px;
@@ -99,12 +92,6 @@
   cursor: pointer;
   border-radius: 15px !important;
 }
-
-/* TARGETS OPTION BOX BUT DOESN'T LET STYLE FULLY
-#root > div > div.create-expense-container > form > div > div:nth-child(3) > select > option {
-  background-color: rgb(33, 88, 26);
-
-} */
 
 .checkbox {
   display: flex;
@@ -189,7 +176,6 @@
 .create-expense-background.dark .form-element select,
 .create-expense-background.dark .form-element option,
 .create-expense-background.dark > input {
-  /* background-color: #2d2b3e; */
   background-color: #282541;
   border: 1px solid #7b798b;
   color: white;

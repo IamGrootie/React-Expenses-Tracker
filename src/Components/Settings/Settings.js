@@ -116,9 +116,6 @@ export default function Settings(props) {
     }
   }, [currentUser]);
 
-  // console.log(data.photoURL);
-
-console.log(currentUser.photoURL)
   return (
     <div
       className={
@@ -157,7 +154,6 @@ console.log(currentUser.photoURL)
             <div className="form-column pp-container">
               {editSettings ? (
                 <>
-                  {" "}
                   <input
                     disabled={!editSettings}
                     className="input-dp"
@@ -165,18 +161,16 @@ console.log(currentUser.photoURL)
                     name="displayPicture"
                     placeholder="Upload Image"
                     onChange={handlePicture}
-                    // value={data.photoURL}
                   />
-                  <button
-                    onClick={handleUpload}
-                    className="upload-dp-btn"
-                    // value={data.displayPicture}
-                  >
+                  <button onClick={handleUpload} className="upload-dp-btn">
                     Upload Image
                   </button>
                 </>
               ) : (
-                <img src={!data.photoURL ? photoURL : data.photoURL} className="profile-picture" />
+                <img
+                  src={!data.photoURL ? photoURL : data.photoURL}
+                  className="profile-picture"
+                />
               )}
             </div>
 
