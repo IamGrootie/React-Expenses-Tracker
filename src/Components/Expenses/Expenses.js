@@ -158,6 +158,8 @@ export default function Expenses(props) {
 
   function handleCreateExpenseModalClose() {
     setDisplayCreateExpense(false);
+    setCurrentExpense("");
+    setCurrentExpenseId("");
   }
 
   function handleDisplayFilters() {
