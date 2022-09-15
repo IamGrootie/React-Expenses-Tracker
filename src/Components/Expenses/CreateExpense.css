@@ -25,12 +25,14 @@
 .create-expense-header-container {
   grid-column: span 2;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
   margin: 0;
 }
 
 .create-expense-header {
-  margin: 1rem;
+  margin-top: 1rem;
 }
 
 .form-element input,
@@ -54,9 +56,9 @@
   background-color: white;
   border: 1.5px solid rgba(78, 93, 120, 0.2);
   font-weight: 600;
-  position: relative;
+  /* position: relative;
   left: 504px;
-  top: -15px;
+  top: -15px; */
   cursor: pointer;
 }
 
