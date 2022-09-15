@@ -135,7 +135,7 @@
 
 .expense-dashboard {
   display: grid;
-  grid-template-columns: 1.6fr 1.5fr 1.1fr 0.75fr;
+  grid-template-columns: 1.4fr 1.2fr 1.1fr 0.75fr;
   margin: 0px 25px;
   padding-bottom: 10px !important;
   padding-top: 10px !important;
