@@ -22,6 +22,19 @@
   background-color: white;
 }
 
+.create-expense-header-container {
+  grid-column: span 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  margin: 0;
+}
+
+.create-expense-header {
+  margin-top: 1rem;
+}
+
 .form-element input,
 .form-element select {
   border: 1.5px solid rgba(78, 93, 120, 0.2);
@@ -43,11 +56,12 @@
   background-color: white;
   border: 1.5px solid rgba(78, 93, 120, 0.2);
   font-weight: 600;
-  position: relative;
+  /* position: relative;
   left: 504px;
-  top: -15px;
+  top: -15px; */
   cursor: pointer;
 }
+
 .span-two {
   grid-column: span 2;
 }
@@ -68,11 +82,6 @@
 .form-element select:focus-visible {
   border: 1.5px solid rgba(78, 93, 120, 0.2);
   outline: none;
-}
-
-.select-currency {
-  cursor: pointer;
-  padding-left: 15px;
 }
 
 .select-type {
@@ -137,10 +146,20 @@
 .add-image {
   width: 22px;
   height: 22px;
+  
 }
 
 .add-expense {
   background: #c8ee44;
+}
+
+.delete-expense {
+  background: #ee4444;
+}
+
+.add-expense,
+.delete-expense {
+  
   border-radius: 10px;
   border: none;
   font-family: Roboto;

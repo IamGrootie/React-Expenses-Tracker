@@ -25,9 +25,7 @@ export default function Expenses(props) {
     const { value } = event.target;
     setSearch(value);
     if (value) {
-      setFilteredExpenses(
-        expenses.filter((item) => item.title.includes(value))
-      );
+      setFilteredExpenses(expenses.filter(item => item.title.includes(value)));
     } else setFilteredExpenses(expenses);
   }
 
@@ -43,7 +41,7 @@ export default function Expenses(props) {
 
   function handleChange(event) {
     const { name, value, checked, type } = event.target;
-    setData((prev) => ({
+    setData(prev => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,
     }));
@@ -58,7 +56,7 @@ export default function Expenses(props) {
     setSort(["date", "asc"]);
   }, [data]);
 
-  const expensesArr = filteredExpenses.map((expense) => (
+  const expensesArr = filteredExpenses.map(expense => (
     <ExpenseCard
       category={expense.category}
       key={expense.invoice}
@@ -86,8 +84,10 @@ export default function Expenses(props) {
   async function edit(event, id) {
     event.stopPropagation();
     setCurrentExpenseId(id);
-    setCurrentExpense(expenses.find((expense) => expense.invoice === id));
+    setCurrentExpense(expenses.find(expense => expense.invoice === id));
     setEditExpense(true);
+    handleCreateExpenseModal();
+    setSort(["date", "asc"]);
   }
 
   async function handleCurrencyUpdate(e) {
@@ -136,6 +136,7 @@ export default function Expenses(props) {
       setCurrentExpense("");
       setCurrentExpenseId("");
       setEditExpense(false);
+      setSort(["date", "asc"]);
     }
   }
 
@@ -144,6 +145,7 @@ export default function Expenses(props) {
     setCurrentExpense("");
     setCurrentExpenseId("");
     setEditExpense(false);
+    handleCreateExpenseModalClose();
     setSort(["date", "asc"]);
   }
 
@@ -154,8 +156,14 @@ export default function Expenses(props) {
     setDisplayCreateExpense(true);
   }
 
+  function handleCreateExpenseModalClose() {
+    setDisplayCreateExpense(false);
+    setCurrentExpense("");
+    setCurrentExpenseId("");
+  }
+
   function handleDisplayFilters() {
-    setDisplayFilters((displayFilters) => !displayFilters);
+    setDisplayFilters(displayFilters => !displayFilters);
   }
 
   return (
@@ -170,7 +178,11 @@ export default function Expenses(props) {
         {displayCreateExpense && (
           <CreateExpense
             handleClick={handleSubmit}
-            setDisplayCreateExpense={setDisplayCreateExpense}
+            handleCreateExpenseModal={setDisplayCreateExpense}
+            handleCreateExpenseModalClose={handleCreateExpenseModalClose}
+            currentExpense={currentExpense}
+            currentExpenseId={currentExpenseId}
+            handleDelete={handleDelete}
             toggleDarkMode={props.toggleDarkMode}
           />
         )}
@@ -206,7 +218,7 @@ export default function Expenses(props) {
 
               <button
                 className="update-currency"
-                onClick={(e) => handleCurrencyUpdate(e)}
+                onClick={e => handleCurrencyUpdate(e)}
               >
                 <select
                   className="currency-select"

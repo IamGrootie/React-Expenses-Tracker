@@ -5,238 +5,120 @@ import "./CreateExpense.css";
 import { serverTimestamp } from "firebase/firestore";
 
 function ExpenseCard(props) {
-  const currentDate = new Date().toISOString().substring(0, 10);
+  // const currentDate = new Date().toISOString().substring(0, 10);
 
-  const [data, setData] = useState({
-    title: props.title || "",
-    company: props.company || "",
-    currency: props.currency || "",
-    amount: props.amount || "",
-    category: props.category || "",
-    date: props.date || currentDate,
-    invoice: props.invoice,
-    createdAt: serverTimestamp(),
-    recurring: props.recurring || false,
-  });
+  // const [data, setData] = useState({
+  //   title: props.title || "",
+  //   company: props.company || "",
+  //   currency: props.currency || "",
+  //   amount: props.amount || "",
+  //   category: props.category || "",
+  //   date: props.date || currentDate,
+  //   invoice: props.invoice,
+  //   createdAt: serverTimestamp(),
+  //   recurring: props.recurring || false,
+  // });
 
-  const [disableSubmit, setDisableSubmit] = useState(false);
+  // const [disableSubmit, setDisableSubmit] = useState(false);
 
-  function handleChange(event) {
-    const { name, value, checked, type } = event.target;
+  // function handleChange(event) {
+  //   const { name, value, checked, type } = event.target;
 
-    setData(prev => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }));
-  }
+  //   setData(prev => ({
+  //     ...prev,
+  //     [name]: type === "checkbox" ? checked : value,
+  //   }));
+  // }
 
-  useEffect(() => {
-    checkForErrors();
-  }, [data]);
+  // useEffect(() => {
+  //   checkForErrors();
+  // }, [data]);
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    const error = checkForErrors();
-    if (!error) props.handleClick(data);
-  }
+  // function handleSubmit(event) {
+  //   event.preventDefault();
+  //   const error = checkForErrors();
+  //   if (!error) props.handleClick(data);
+  // }
 
-  function checkForErrors() {
-    for (let item in data) {
-      if (data[item] === "") {
-        setDisableSubmit(true);
-        return true;
-      } else {
-        setDisableSubmit(false);
-      }
-    }
-  }
+  // function checkForErrors() {
+  //   for (let item in data) {
+  //     if (data[item] === "") {
+  //       setDisableSubmit(true);
+  //       return true;
+  //     } else {
+  //       setDisableSubmit(false);
+  //     }
+  //   }
+  // }
 
   return (
     <div
       className={props.toggleDarkMode ? "expense-card dark" : "expense-card"}
     >
-      <form
-        className={props.class}
-        onSubmit={event => props.handleClick(event)}
-      >
+      <div className={props.class}>
         {props.title && (
           <div className="card-element name-business-container">
-            <input
-              className={
-                !props.editExpense
-                  ? "expense-card-text business"
-                  : "expense-card-text edit business"
-              }
-              disabled={!props.editExpense}
-              name="title"
-              value={data.title}
-              maxLength="20"
-              placeholder="Name of expense"
-              onChange={handleChange}
-              required
-            ></input>
-            <input
-              className={
-                !props.editExpense
-                  ? "expense-card-subtext company"
-                  : "expense-card-subtext edit company"
-              }
-              disabled={!props.editExpense}
-              name="company"
-              value={data.company}
-              maxLength="20"
-              placeholder="Business"
-              onChange={handleChange}
-              required
-            ></input>
+            <p className="expense-card-text business">{props.title}</p>
+            <p className="expense-card-subtext company">{props.company}</p>
           </div>
         )}
         {props.category && (
           <div className="card-element category">
             <div className="category-image-container">
-              <CategoryImage key={props.id} expenseCategory={data.category} />
+              <CategoryImage key={props.id} expenseCategory={props.category} />
             </div>
-            {!props.editExpense ? (
-              <p className="expense-card-text category">{data.category}</p>
-            ) : (
-              <select
-                className={
-                  !props.editExpense
-                    ? "expense-card-text category"
-                    : "expense-card-text edit category"
-                }
-                disabled={!props.editExpense}
-                name="category"
-                defaultValue={data.category}
-                onChange={handleChange}
-              >
-                <option defaultValue="" hidden>
-                  Category
-                </option>
-                <option>Entertainment</option>
-                <option>Food</option>
-                <option>General</option>
-                <option>Healthcare</option>
-                <option>Household</option>
-                <option>Housing</option>
-                <option>Insurance</option>
-                <option>Investing</option>
-                <option>Mobile</option>
-                <option>Payment</option>
-                <option>Personal</option>
-                <option>Savings</option>
-                <option>Subscriptions</option>
-                <option>Transport</option>
-                <option>Withdraw</option>
-              </select>
-            )}
+            <p className="expense-card-text category">{props.category}</p>
           </div>
         )}
         {props.amount && props.recurringExpenses ? (
           <div className="card-element amount recurring">
             <p className="selected-currency">
               {props.currency}
+              <span className="selected-currency-span"></span>
               {props.amount}
             </p>
           </div>
         ) : props.amount ? (
           <div className="card-element amount">
             <span className="selected-currency">{props.currency}</span>
-            <input
-              className={
-                !props.editExpense
-                  ? "expense-card-text amount"
-                  : "expense-card-text edit amount"
-              }
-              disabled={!props.editExpense}
-              name="amount"
-              type="number"
-              defaultValue={data.amount}
-              placeholder="Amount"
-              onChange={handleChange}
-              required
-            ></input>
+            <p className="expense-card-text amount">{props.amount}</p>
           </div>
         ) : (
           ""
         )}
         {props.date && (
           <div className="card-element date-container">
-            <input
-              className={
-                !props.editExpense
-                  ? "expense-card-text date"
-                  : "expense-card-text edit date"
-              }
-              disabled={!props.editExpense}
-              name="date"
-              type="date"
-              value={data.date}
-              min="2021-01-01"
-              max="2023-01-01"
-              onChange={handleChange}
-              required
-            ></input>
+            <p className="expense-card-text date">{props.date}</p>
           </div>
         )}
         {props.recurringExpense && (
           <div className="card-element checkbox">
             <input
-              className={
-                !props.editExpense
-                  ? "expense-card-text checkbox-input"
-                  : "expense-card-text edit checkbox-input"
-              }
-              disabled={!props.editExpense}
+              className="expense-card-text checkbox-input"
+              disabled
               type="checkbox"
               name="recurring"
-              checked={data.recurring}
-              onChange={handleChange}
+              checked={props.recurring}
             ></input>
           </div>
         )}
         {props.invoice && (
           <div className="card-element invoice">
-            <p className="expense-card-text invoice">{data.invoice}</p>
+            <p className="expense-card-text invoice">{props.invoice}</p>
           </div>
         )}
         {props.edit && (
           <div className="card-element button-container">
-            {!props.editExpense && (
-              <button
-                type="button"
-                className="action-button"
-                onClick={event => props.edit(event, data.invoice)}
-              >
-                Edit
-              </button>
-            )}
-
-            {props.editExpense && !disableSubmit ? (
-              <button className="action-button" onClick={handleSubmit}>
-                Submit
-              </button>
-            ) : props.editExpense && disableSubmit ? (
-              <button className="action-button disabled" onClick={handleSubmit}>
-                Submit
-              </button>
-            ) : null}
-
-            {props.editExpense && (
-              <button
-                className="action-button"
-                value="Delete"
-                onClick={e => {
-                  e.preventDefault();
-                  props.handleDelete();
-                }}
-              >
-                Delete
-              </button>
-            )}
+            <button
+              type="button"
+              className="action-button"
+              onClick={(event) => props.edit(event, props.invoice)}
+            >
+              Edit
+            </button>
           </div>
         )}
-      </form>
+      </div>
     </div>
   );
 }

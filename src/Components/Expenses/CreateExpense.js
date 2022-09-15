@@ -4,15 +4,17 @@ import { serverTimestamp } from "firebase/firestore";
 import CategoryImage from "./CategoryImage";
 
 export default function CreateExpense(props) {
+  const { title, company, amount, category, date, recurring } =
+    props.currentExpense;
+
   const [data, setData] = useState({
-    title: "",
-    company: "",
-    // currency: "£",
-    amount: "",
-    category: "",
-    date: "",
+    title: title || "",
+    company: company || "",
+    amount: amount || "",
+    category: category || "",
+    date: date || "",
     createdAt: serverTimestamp(),
-    recurring: false,
+    recurring: recurring || false,
   });
 
   const [disableSubmit, setDisableSubmit] = useState(false);
@@ -36,13 +38,12 @@ export default function CreateExpense(props) {
     setData({
       title: "",
       company: "",
-      // currency: "£",
       amount: "",
       category: "",
       date: "",
       recurring: false,
     });
-    handleCreateExpenseModalClose();
+    props.handleCreateExpenseModalClose();
   }
 
   function checkForErrors() {
@@ -54,10 +55,6 @@ export default function CreateExpense(props) {
         setDisableSubmit(false);
       }
     }
-  }
-
-  function handleCreateExpenseModalClose() {
-    props.setDisplayCreateExpense(false);
   }
 
   return (
@@ -72,9 +69,17 @@ export default function CreateExpense(props) {
         className="create-expense-form-container"
         onSubmit={event => handleSubmit(event)}
       >
-        <button className="close-btn" onClick={handleCreateExpenseModalClose}>
-          X
-        </button>
+        <div className="create-expense-header-container">
+          <h3 className="create-expense-header">
+            {props.currentExpense ? "Edit Expense" : "Create New Expense"}
+          </h3>
+          <button
+            className="close-btn"
+            onClick={props.handleCreateExpenseModalClose}
+          >
+            X
+          </button>
+        </div>
         <div className="form-element span-two">
           <input
             type="text"
@@ -159,23 +164,29 @@ export default function CreateExpense(props) {
             Recurring
           </label>
         </div>
-        <label className="add-image-container">
+        <label className="add-image-container span-two">
           <CategoryImage key={data.id} expenseCategory={data.category} />
         </label>
 
         {disableSubmit ? (
-          <button
-            className="add-expense span-two disabled"
-            type="submit"
-            disabled
-          >
+          <button className="add-expense disabled" type="submit" disabled>
             Add Expense
           </button>
         ) : (
-          <button className="add-expense span-two" type="submit">
+          <button className="add-expense" type="submit">
             Add Expense
           </button>
         )}
+        <button
+          className="delete-expense"
+          type="submit"
+          onClick={e => {
+            e.preventDefault();
+            props.handleDelete();
+          }}
+        >
+          Delete Expense
+        </button>
       </form>
     </section>
   );
