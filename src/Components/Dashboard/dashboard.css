@@ -212,7 +212,6 @@
 
 .dashboard-container.dark .expense-card-subtext,
 .dashboard-container.dark .expand-btn {
-  background: #1c1a2e;
 }
 
 /* §§§§§§§§§§§§§§§§§§§§§§§§§§§§ */
@@ -252,17 +251,27 @@
   .resume-container {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    padding-top: 1.6rem;
   }
   .amounts-tab {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
   }
   .graph-container {
     display: none;
   }
   p.expense-card-text.category {
     display: none;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .amounts-tab {
+    display: flex;
+    justify-content: center;
   }
 }
 

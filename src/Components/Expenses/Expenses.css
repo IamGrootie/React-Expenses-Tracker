@@ -255,6 +255,10 @@
 }
 
 @media only screen and (max-width: 860px) {
+  .expenses-container {
+    padding-top: 1rem;
+  }
+
   .expense-expenses,
   .expenses-container .input-titles-expenses {
     display: grid;
