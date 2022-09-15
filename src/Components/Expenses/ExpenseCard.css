@@ -49,7 +49,7 @@
 
 .expense-dashboard > .card-element.date-container {
   min-width: fit-content;
-  cursor: pointer;
+ 
 }
 
 /* Reccuring expenses shown on Dashboard Page */
@@ -121,7 +121,6 @@
 .card-element {
   width: 100%;
   height: 100%;
-  
 }
 
 .expense-card-text {
@@ -186,14 +185,14 @@
 }
 
 
-.date {
-  cursor: pointer;
-}
 
 .card-element.checkbox {
   display: flex;
   align-items: center;
+  justify-content: center;
+  /* sort out cursor */
 }
+
 .expense-card-text.checkbox-input {
   height: 50%;
   opacity: 0.6;
@@ -201,7 +200,7 @@
 
 .card-element.button-container {
   place-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .action-button {
