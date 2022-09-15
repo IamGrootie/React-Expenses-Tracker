@@ -58,15 +58,7 @@ function ExpenseCard(props) {
       <div className={props.class}>
         {props.title && (
           <div className="card-element name-business-container">
-            <p
-              className={
-                !props.editExpense
-                  ? "expense-card-text business"
-                  : "expense-card-text edit business"
-              }
-            >
-              {data.title}
-            </p>
+            <p className="expense-card-text business">{data.title}</p>
             <p className="expense-card-subtext company">{data.company}</p>
           </div>
         )}
@@ -100,12 +92,13 @@ function ExpenseCard(props) {
         )}
         {props.recurringExpense && (
           <div className="card-element checkbox">
-            <p
-              className="
-                  expense-card-text checkbox-input"
-            >
-              {data.recurring}
-            </p>
+            <input
+              className="expense-card-text checkbox-input"
+              disabled
+              type="checkbox"
+              name="recurring"
+              checked={data.recurring}
+            ></input>
           </div>
         )}
         {props.invoice && (
