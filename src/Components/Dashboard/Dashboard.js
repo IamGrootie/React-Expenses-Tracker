@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./dashboard.css";
-import wallet from "../Images/wallet_icon.svg";
+import wallet from "../../images/wallet_icon.svg";
 import greenWallet from "../../images/green_wallet_icon.svg";
 import dailyWallet from "../../images/daily_wallet_icon.svg";
 import expand from "../../images/expand_icon.svg";
