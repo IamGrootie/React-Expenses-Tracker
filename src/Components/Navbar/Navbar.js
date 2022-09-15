@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../Contexts/AuthContext";
@@ -19,7 +19,7 @@ export default function Navbar(props) {
 
   const { currentUser, logout } = useAuth();
 
-  const [error, setError] = React.useState("");
+  const [error, setError] = useState("");
 
   const handleLogout = async () => {
     try {
@@ -33,7 +33,7 @@ export default function Navbar(props) {
   const [title, setTitle] = React.useState("");
   const location = useLocation();
 
-  React.useEffect(() => {
+  useEffect(() => {
     setTitle(updateTitle());
   }, [location]);
 
@@ -48,9 +48,9 @@ export default function Navbar(props) {
     }
   }
 
-  const [showNav, setShowNav] = React.useState(false);
+  const [showNav, setShowNav] = useState(false);
   function handleShow(e) {
-    setShowNav((prev) => !prev);
+    setShowNav(prev => !prev);
   }
 
   return (
@@ -94,7 +94,7 @@ export default function Navbar(props) {
           </button>
           <h2 className="title">{title}</h2>
         </section>
-        <div className={showNav ? "mobile-nav" : "mobile-nav-hidden"}>
+        <div className={showNav ? "nav-links mobile-nav" : "mobile-nav-hidden"}>
           <NavLink to="/" className="navlink-dashboard" onClick={handleShow}>
             <img src={dashboardIcon} />
             Dashboard

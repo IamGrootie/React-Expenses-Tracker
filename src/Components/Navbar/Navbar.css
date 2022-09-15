@@ -86,7 +86,8 @@
 /* §§§§§§§§§§§§§§§§§§§§§§§ */
 
 .dark,
-.dark .desktop-version {
+.dark .desktop-version,
+.nav-container.dark > .mobile {
   background: #201e34;
 }
 
@@ -97,6 +98,7 @@
 .dark .title {
   color: white;
 }
+
 
 /* §§§§§§§§§§§§§§§§§§§§§§§§§§§§ */
 /* §§§§§§ Media  Queries §§§§§§ */
@@ -109,12 +111,14 @@
   .mobile {
     display: block;
     margin: 0 1.5rem;
+    
   }
   .nav-container {
     display: flex;
     flex-direction: column;
     width: 100%;
     height: fit-content;
+    /* background-color: #fafafa; */
   }
   .mobile-nav-hidden {
     display: none;
@@ -135,17 +139,21 @@
     height: 1.5rem;
     width: 1.5rem;
   }
-  .mobile-nav {
+  .nav-links.mobile-nav {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 0.5rem;
+    /* background-color: #fafafa; */
+    margin-top: 0;
+    
   }
   .navlink-dashboard,
   .navlink-expenses,
   .navlink-settings {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    /* gap: 1rem; */
+    /* padding: 0.969rem !important; */
     color: #929eae;
   }
   .nav-footer {
@@ -154,12 +162,17 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
+    
   }
   .logout-button {
-    padding: 0;
+    padding: 0.969rem;
     margin: 0;
+    font-size: 0.875rem;
+    font-weight: 500;
   }
   .dark-btn {
     margin: 0;
+    padding: 0;
+
   }
 }
