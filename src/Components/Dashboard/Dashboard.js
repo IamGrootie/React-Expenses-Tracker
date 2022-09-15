@@ -87,7 +87,7 @@ export default function Dashboard(props) {
               <img src={greenWallet} alt="" />
               <div>
                 <p className="amount-title">Total Spending</p>
-                <h2 className="amount-value">{`${userDetails.currency}${totalSpending}`}</h2>
+                <h2 className="amount-value">{`${userDetails.currency}  ${totalSpending}`}</h2>
               </div>
             </div>
 
@@ -95,7 +95,7 @@ export default function Dashboard(props) {
               <img src={wallet} alt="" />
               <div>
                 <p className="amount-title">Monthly Spending</p>
-                <h2 className="amount-value">{`${userDetails.currency}${monthlySpending}`}</h2>
+                <h2 className="amount-value">{`${userDetails.currency}  ${monthlySpending}`}</h2>
               </div>
             </div>
 
@@ -103,7 +103,7 @@ export default function Dashboard(props) {
               <img src={dailyWallet} alt="" />
               <div>
                 <p className="amount-title">Weekly Spending</p>
-                <h2 className="amount-value">{`${userDetails.currency}${weeklySpending}`}</h2>
+                <h2 className="amount-value">{`${userDetails.currency}  ${weeklySpending}`}</h2>
               </div>
             </div>
           </section>
