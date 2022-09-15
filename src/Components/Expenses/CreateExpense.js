@@ -4,15 +4,17 @@ import { serverTimestamp } from "firebase/firestore";
 import CategoryImage from "./CategoryImage";
 
 export default function CreateExpense(props) {
+  const { title, company, amount, category, date, recurring } =
+    props.currentExpense;
+
   const [data, setData] = useState({
-    title: "",
-    company: "",
-    // currency: "£",
-    amount: "",
-    category: "",
-    date: "",
+    title: title || "",
+    company: company || "",
+    amount: amount || "",
+    category: category || "",
+    date: date || "",
     createdAt: serverTimestamp(),
-    recurring: false,
+    recurring: recurring || false,
   });
 
   const [disableSubmit, setDisableSubmit] = useState(false);
@@ -36,7 +38,6 @@ export default function CreateExpense(props) {
     setData({
       title: "",
       company: "",
-      // currency: "£",
       amount: "",
       category: "",
       date: "",
@@ -75,6 +76,11 @@ export default function CreateExpense(props) {
         <button className="close-btn" onClick={handleCreateExpenseModalClose}>
           X
         </button>
+        <div className="create-expense-header-container">
+          <h3 className="create-expense-header">
+            {props.currentExpense ? "Edit Expense" : "Create New Expense"}
+          </h3>
+        </div>
         <div className="form-element span-two">
           <input
             type="text"
