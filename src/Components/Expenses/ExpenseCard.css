@@ -74,6 +74,10 @@
   height: 50px;
 }
 
+.selected-currency-span {
+  width: 10px;
+}
+
 .expense-dashboard-recurring > .card-element.name-business-container {
   gap: 0px !important;
   width: 20ch;

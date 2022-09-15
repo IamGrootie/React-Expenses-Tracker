@@ -74,6 +74,7 @@ function ExpenseCard(props) {
           <div className="card-element amount recurring">
             <p className="selected-currency">
               {props.currency}
+              <span className="selected-currency-span"></span>
               {props.amount}
             </p>
           </div>
@@ -111,7 +112,7 @@ function ExpenseCard(props) {
             <button
               type="button"
               className="action-button"
-              onClick={event => props.edit(event, props.invoice)}
+              onClick={(event) => props.edit(event, props.invoice)}
             >
               Edit
             </button>
