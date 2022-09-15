@@ -146,10 +146,20 @@
 .add-image {
   width: 22px;
   height: 22px;
+  
 }
 
 .add-expense {
   background: #c8ee44;
+}
+
+.delete-expense {
+  background: #ee4444;
+}
+
+.add-expense,
+.delete-expense {
+  
   border-radius: 10px;
   border: none;
   font-family: Roboto;
