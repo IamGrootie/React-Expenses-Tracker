@@ -73,13 +73,11 @@ export default function CreateExpense(props) {
         className="create-expense-form-container"
         onSubmit={event => handleSubmit(event)}
       >
-        <button className="close-btn" onClick={handleCreateExpenseModalClose}>
-          X
-        </button>
         <div className="create-expense-header-container">
           <h3 className="create-expense-header">
             {props.currentExpense ? "Edit Expense" : "Create New Expense"}
           </h3>
+          
         </div>
         <div className="form-element span-two">
           <input

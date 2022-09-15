@@ -22,6 +22,17 @@
   background-color: white;
 }
 
+.create-expense-header-container {
+  grid-column: span 2;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+
+.create-expense-header {
+  margin: 1rem;
+}
+
 .form-element input,
 .form-element select {
   border: 1.5px solid rgba(78, 93, 120, 0.2);
@@ -48,6 +59,7 @@
   top: -15px;
   cursor: pointer;
 }
+
 .span-two {
   grid-column: span 2;
 }
@@ -68,11 +80,6 @@
 .form-element select:focus-visible {
   border: 1.5px solid rgba(78, 93, 120, 0.2);
   outline: none;
-}
-
-.select-currency {
-  cursor: pointer;
-  padding-left: 15px;
 }
 
 .select-type {
