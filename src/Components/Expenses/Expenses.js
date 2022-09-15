@@ -13,14 +13,8 @@ import Header from "../Header/Header";
 
 export default function Expenses(props) {
   const { currentUser, updateUser, userDetails } = useAuth();
-  const {
-    expenses,
-    createExpense,
-    updateExpense,
-    deleteExpense,
-    sort,
-    setSort,
-  } = useExpenses();
+  const { expenses, createExpense, updateExpense, deleteExpense, setSort } =
+    useExpenses();
   const [editExpense, setEditExpense] = useState(false);
   const [search, setSearch] = useState();
   const [currentExpenseId, setCurrentExpenseId] = useState("");
@@ -118,7 +112,6 @@ export default function Expenses(props) {
     const expenseData = {
       title: data.title,
       company: data.company,
-      // currency: data.currency,
       amount: data.amount,
       category: data.category,
       date: data.date,

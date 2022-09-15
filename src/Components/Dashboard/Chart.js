@@ -1,8 +1,7 @@
-import "./Chart.css";
 import { useExpenses } from "../../Contexts/ExpensesContext";
 import React from "react";
-import { Chart as ChartJS } from "chart.js/auto";
 import { Bar } from "react-chartjs-2";
+import { Chart as ChartJS } from "chart.js/auto";
 
 export default function Chart(props) {
   const { monthlyExpenses, monthlyDateArray } = useExpenses();
@@ -23,7 +22,7 @@ export default function Chart(props) {
       {
         label: "Expense",
         fill: true,
-        data: monthlyExpenses.map(item => item.amount).reverse(),
+        data: monthlyExpenses.map((item) => item.amount).reverse(),
         backgroundColor: "#363a3f",
       },
     ],

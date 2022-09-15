@@ -52,8 +52,6 @@
   cursor: pointer;
 }
 
-/*  */
-/*  */
 /* Reccuring expenses shown on Dashboard Page */
 .expense-dashboard-recurring {
   display: grid;
@@ -217,7 +215,6 @@ input.edit {
 .expense-card-text.checkbox-input {
   height: 50%;
   opacity: 0.6;
-  /* accent-color: #4e5d78; */
 }
 
 .card-element.button-container {

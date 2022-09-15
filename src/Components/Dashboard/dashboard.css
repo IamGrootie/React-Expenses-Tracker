@@ -210,10 +210,6 @@
   border: 1px solid #282541;
 }
 
-.dashboard-container.dark .expense-card-subtext,
-.dashboard-container.dark .expand-btn {
-}
-
 /* §§§§§§§§§§§§§§§§§§§§§§§§§§§§ */
 /* §§§§§§ Media  Queries §§§§§§ */
 /* §§§§§§§§§§§§§§§§§§§§§§§§§§§§ */
@@ -236,9 +232,6 @@
   .dashboard-container.dark .recurring-expenses-container {
     border: 1px solid #282541;
   }
-  /* .expense-dashboard {
-    padding-left: 1rem;
-  } */
 }
 
 @media only screen and (max-width: 1090px) {
@@ -275,7 +268,7 @@
   }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 480px) {
   .expense-dashboard > .card-element.category {
     padding-left: 0.5rem !important;
   }

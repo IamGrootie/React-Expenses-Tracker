@@ -33,16 +33,6 @@
   height: 100%;
 }
 
-@media only screen and (max-width: 600px) {
-  .image-half {
-    display: none;
-  }
-  .intro-container {
-    display: flex;
-    justify-content: center;
-  }
-}
-
 .form-container {
   display: flex;
   flex-direction: column;
@@ -67,10 +57,6 @@
   font-weight: 500;
 }
 
-label {
-  margin-bottom: 10px;
-}
-
 .details-input {
   border: 1px solid #f2f2f2;
   border-radius: 10px;
@@ -90,12 +76,6 @@ label {
 
 .remember-label {
   margin-left: 9px;
-}
-
-a {
-  text-decoration: none;
-  color: #1b212d;
-  font-weight: 500;
 }
 
 .forgot-password {
@@ -165,4 +145,18 @@ a {
   align-self: flex-end;
   margin-top: 10px;
   margin-right: 70px;
+}
+
+/* §§§§§§§§§§§§§§§§§§§§§§§§§§§§ */
+/* §§§§§§ Media  Queries §§§§§§ */
+/* §§§§§§§§§§§§§§§§§§§§§§§§§§§§ */
+
+@media only screen and (max-width: 600px) {
+  .image-half {
+    display: none;
+  }
+  .intro-container {
+    display: flex;
+    justify-content: center;
+  }
 }

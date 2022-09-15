@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { createUserWithEmailAndPassword } from "firebase/auth";
 import { signInWithPopup } from "firebase/auth";
-import { auth, provider, db } from "../../firebase-config";
-import { collection, addDoc } from "firebase/firestore";
-import { nanoid } from "nanoid";
+import { auth, provider } from "../../firebase-config";
 import { useAuth } from "../../Contexts/AuthContext.js";
 import Logo from "../../images/Logo.svg";
 import google from "../../images/Google.svg";
@@ -13,7 +10,7 @@ import Main from "../../images/Intro_img.svg";
 import "./signup.css";
 
 export default function Signup() {
-  const { signup, setDisplayName, signInGoogle, createUserDetails } = useAuth();
+  const { signup, setDisplayName, createUserDetails } = useAuth();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({
@@ -27,16 +24,16 @@ export default function Signup() {
     password: "",
   });
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    setData(prev => ({
+    setData((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
   //Create a user, set a display name, create user details
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (Object.keys(errorMessage).length === 0) {
       try {
@@ -56,19 +53,19 @@ export default function Signup() {
   useEffect(() => {
     setErrorMessage({});
     if (data.password.length < 6 && data.password !== "") {
-      setErrorMessage(prev => ({
+      setErrorMessage((prev) => ({
         ...prev,
         password: "Password is too short",
       }));
     }
     if (!/.+@.+\..+/.test(data.email) && data.email !== "") {
-      setErrorMessage(prev => ({
+      setErrorMessage((prev) => ({
         ...prev,
         email: "Email is incorrect",
       }));
     }
     if (!/^[a-zA-Z\s]+$/g.test(data.name) && data.name !== "") {
-      setErrorMessage(prev => ({
+      setErrorMessage((prev) => ({
         ...prev,
         name: "Name can contain only letters",
       }));
@@ -78,10 +75,10 @@ export default function Signup() {
   function handleGoogle(e) {
     e.preventDefault();
     signInWithPopup(auth, provider)
-      .then(cred => {
+      .then((cred) => {
         console.log(cred);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }

@@ -6,7 +6,6 @@ import {
   deleteDoc,
   setDoc,
   onSnapshot,
-  query,
 } from "firebase/firestore";
 import { subDays } from "date-fns";
 
@@ -27,15 +26,13 @@ export default function ExpensesProvider({ children }) {
   const uid = currentUser && currentUser.uid;
   const [expenses, setExpenses] = useState([]);
   const expensesRef = currentUser && collection(db, "users", uid, "expense");
-  //   const displayQ = query(expensesRef, orderBy("date", "desc"));
   const [sort, setSort] = useState(["date", "asc"]);
-  const [timePeriod, setTimePeriod] = useState(7);
 
   useEffect(() => {
     if (currentUser) {
       onSnapshot(expensesRef, async () => {
         const data = await getDocs(expensesRef);
-        const expensesArray = data.docs.map(doc => doc.data());
+        const expensesArray = data.docs.map((doc) => doc.data());
         setExpenses(expensesArray);
       });
     }
@@ -44,7 +41,7 @@ export default function ExpensesProvider({ children }) {
   useEffect(() => {
     if (expenses) {
       sortExpenses(sort[0], sort[1]);
-      setExpenses(prevExpenses => [...prevExpenses]);
+      setExpenses((prevExpenses) => [...prevExpenses]);
     }
   }, [sort]);
 
@@ -71,7 +68,7 @@ export default function ExpensesProvider({ children }) {
   useEffect(() => {
     if (expenses) {
       sortExpenses(sort[0], sort[1]);
-      setExpenses(prevExpenses => [...prevExpenses]);
+      setExpenses((prevExpenses) => [...prevExpenses]);
     }
   }, [sort]);
 
@@ -100,7 +97,7 @@ export default function ExpensesProvider({ children }) {
     .map((item, index) =>
       subDays(new Date(), index).toISOString().substring(0, 10)
     );
-    
+
   const totalTimePeriod = 365;
   const totalDateArray = Array(totalTimePeriod)
     .fill()
@@ -114,8 +111,8 @@ export default function ExpensesProvider({ children }) {
 
   function fillAmount(dates, expenses) {
     return dates.reduce((array, date) => {
-      expenses.forEach(item => {
-        const sameDate = array.find(newObj => newObj.date === item.date);
+      expenses.forEach((item) => {
+        const sameDate = array.find((newObj) => newObj.date === item.date);
         if (item.date === date) {
           if (sameDate) {
             sameDate.amount += item.amount;
@@ -126,7 +123,7 @@ export default function ExpensesProvider({ children }) {
             });
         }
       });
-      const sameDate = array.find(newObj => newObj.date === date);
+      const sameDate = array.find((newObj) => newObj.date === date);
       if (!sameDate) {
         array.push({
           date: date,

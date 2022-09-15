@@ -11,7 +11,6 @@ import Signup from "./Components/Signup/Signup";
 import CreateExpense from "./Components/Expenses/CreateExpense";
 import Filters from "./Components/Expenses/Filters";
 import ForgotPassword from "./Components/ForgotPassword/ForgotPassword";
-import Header from "./Components/Header/Header";
 
 export default function App() {
   const [toggleDarkMode, setToggleDarkMode] = React.useState(false);
@@ -41,7 +40,6 @@ export default function App() {
           }
         />
 
-        {/* add ternary to hide Expense if create-expense = true and nest inside*/}
         <Route
           path="expenses"
           element={

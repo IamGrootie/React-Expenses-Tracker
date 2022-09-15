@@ -9,7 +9,7 @@ import ExpenseCard from "../Expenses/ExpenseCard";
 import Filters from "../Expenses/Filters";
 import { useNavigate } from "react-router-dom";
 import Header from "../Header/Header";
-import Chart from "../Chart/Chart.js";
+import Chart from "./Chart.js";
 import { useAuth } from "../../Contexts/AuthContext";
 
 export default function Dashboard(props) {
@@ -33,8 +33,8 @@ export default function Dashboard(props) {
   );
 
   const recurringExpensesArr = expenses
-    .filter(item => item.recurring === true)
-    .map(expense => (
+    .filter((item) => item.recurring === true)
+    .map((expense) => (
       <ExpenseCard
         key={expense.invoice}
         title={expense.title}
@@ -55,7 +55,7 @@ export default function Dashboard(props) {
 
   const expensesArr = expenses
     .slice(0, 3)
-    .map(expense => (
+    .map((expense) => (
       <ExpenseCard
         key={expense.invoice}
         title={expense.title}

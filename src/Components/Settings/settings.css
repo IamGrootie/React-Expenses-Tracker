@@ -17,18 +17,6 @@
   padding-bottom: 60px;
 }
 
-@media only screen and (max-width: 1280px) {
-  .main-container {
-    display: flex;
-    flex-direction: column;
-    margin: 0px;
-    min-width: 450px;
-  }
-  .settings-container {
-    overflow-y: auto;
-  }
-}
-
 .subtitle-acc {
   font-size: 1.25rem;
   line-height: 1.56rem;
@@ -351,5 +339,17 @@
   }
   .pp-container > input {
     width: fit-content !important;
+  }
+}
+
+@media only screen and (max-width: 1280px) {
+  .main-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+    min-width: 450px;
+  }
+  .settings-container {
+    overflow-y: auto;
   }
 }

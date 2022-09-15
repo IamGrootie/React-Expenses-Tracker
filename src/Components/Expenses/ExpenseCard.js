@@ -19,47 +19,25 @@ function ExpenseCard(props) {
     recurring: props.recurring || false,
   });
 
-  // const [addExpenseError, setAddExpenseError] = useState({
-  //   title: false,
-  //   amount: false,
-  // });
-
   const [disableSubmit, setDisableSubmit] = useState(false);
 
   function handleChange(event) {
     const { name, value, checked, type } = event.target;
 
-    setData(prev => ({
+    setData((prev) => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,
     }));
   }
 
-  // Checks the amount is a valid input (requires numbers, thousands separators, two digit fraction, cents/pence optional)
-  // function amountChecker() {
-  //   if (data.amount !== "")
-  //     setAddExpenseError(prevError => ({
-  //       ...prevError,
-  //       amount:
-  //         !/^[+-]?[0-9]{1,3}(?:[0-9]*(?:[.,][0-9]{2})?|(?:,[0-9]{3})*(?:\.[0-9]{2})?|(?:\.[0-9]{3})*(?:,[0-9]{2})?)$/.test(
-  //           data.amount
-  //         ),
-  //     }));
-  // }
-
   useEffect(() => {
     checkForErrors();
-    //   amountChecker();
   }, [data]);
-
-  // useEffect(() => {}, [data]);
 
   function handleSubmit(event) {
     event.preventDefault();
-    // if (!addExpenseError.title && !addExpenseError.amount) {
     const error = checkForErrors();
     if (!error) props.handleClick(data);
-    // props.setSort([...props.prevSort]);
   }
 
   function checkForErrors() {
@@ -79,7 +57,7 @@ function ExpenseCard(props) {
     >
       <form
         className={props.class}
-        onSubmit={event => props.handleClick(event)}
+        onSubmit={(event) => props.handleClick(event)}
       >
         {props.title && (
           <div className="card-element name-business-container">
@@ -229,7 +207,7 @@ function ExpenseCard(props) {
               <button
                 type="button"
                 className="action-button"
-                onClick={event => props.edit(event, data.invoice)}
+                onClick={(event) => props.edit(event, data.invoice)}
               >
                 Edit
               </button>
@@ -249,7 +227,7 @@ function ExpenseCard(props) {
               <button
                 className="action-button"
                 value="Delete"
-                onClick={e => {
+                onClick={(e) => {
                   e.preventDefault();
                   props.handleDelete();
                 }}

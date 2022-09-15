@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import "./CreateExpense.css";
 import { serverTimestamp } from "firebase/firestore";
 import CategoryImage from "./CategoryImage";
 
 export default function CreateExpense(props) {
-  const navigate = useNavigate();
   const [data, setData] = useState({
     title: "",
     company: "",
@@ -17,30 +15,15 @@ export default function CreateExpense(props) {
     recurring: false,
   });
 
-
   const [disableSubmit, setDisableSubmit] = useState(false);
 
-  // Checks the amount is a valid input (requires numbers, thousands separators, two digit fraction, cents/pence optional)
-  // function amountChecker() {
-  //   if (data.amount !== "")
-  //     setAddExpenseError(prevError => ({
-  //       ...prevError,
-  //       amount:
-  //         !/^[+-]?[0-9]{1,3}(?:[0-9]*(?:[.,][0-9]{2})?|(?:,[0-9]{3})*(?:\.[0-9]{2})?|(?:\.[0-9]{3})*(?:,[0-9]{2})?)$/.test(
-  //           data.amount
-  //         ),
-  //     }));
-  //     setErrorMessage({amount: "Invalid amount" })
-  // }
-
   useEffect(() => {
-    // amountChecker();
     checkForErrors();
   }, [data]);
 
   function handleChange(event) {
     const { name, value, type, checked } = event.target;
-    setData(prevData => ({
+    setData((prevData) => ({
       ...prevData,
       [name]: type === "checkbox" ? checked : value,
     }));
@@ -48,9 +31,6 @@ export default function CreateExpense(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    // setAddExpenseError("");
-    // const isError = checkForErrors();
-    // if (!addExpenseError.title && !addExpenseError.amount) {
     const error = checkForErrors();
     if (!error) props.handleClick(data);
     setData({
@@ -63,7 +43,6 @@ export default function CreateExpense(props) {
       recurring: false,
     });
     handleCreateExpenseModalClose();
-    // }
   }
 
   function checkForErrors() {
@@ -82,7 +61,6 @@ export default function CreateExpense(props) {
   }
 
   return (
-
     <section
       className={
         props.toggleDarkMode
@@ -186,7 +164,11 @@ export default function CreateExpense(props) {
           <CategoryImage key={data.id} expenseCategory={data.category} />
         </label>
         {disableSubmit ? (
-          <button className="add-expense span-two disabled" type="submit" disabled>
+          <button
+            className="add-expense span-two disabled"
+            type="submit"
+            disabled
+          >
             Add Expense
           </button>
         ) : (
