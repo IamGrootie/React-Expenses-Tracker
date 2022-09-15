@@ -122,6 +122,7 @@ export default function Expenses(props) {
       amount: data.amount,
       category: data.category,
       date: data.date,
+      createdAt: data.createdAt,
       recurring: data.recurring,
     };
     const { currency } = data;

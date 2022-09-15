@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth } from "../../Contexts/AuthContext.js";
 import Pen from "../../images/Edit_icon.svg";
 import Mail from "../../images/Email_icon.svg";

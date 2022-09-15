@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./ExpenseCard.css";
 import CategoryImage from "./CategoryImage";
 import "./CreateExpense.css";
-import { db } from "../../firebase-config";
-
-import { collection, serverTimestamp } from "firebase/firestore";
+import { serverTimestamp } from "firebase/firestore";
 
 function ExpenseCard(props) {
   const currentDate = new Date().toISOString().substring(0, 10);
@@ -159,7 +157,8 @@ function ExpenseCard(props) {
         {props.amount && props.recurringExpenses ? (
           <div className="card-element amount recurring">
             <p className="selected-currency">
-              {props.currency}{props.amount}
+              {props.currency}
+              {props.amount}
             </p>
           </div>
         ) : props.amount ? (
@@ -168,7 +167,7 @@ function ExpenseCard(props) {
             <input
               className={
                 !props.editExpense
-                  ? "expense-card-text amount" 
+                  ? "expense-card-text amount"
                   : "expense-card-text edit amount"
               }
               disabled={!props.editExpense}
