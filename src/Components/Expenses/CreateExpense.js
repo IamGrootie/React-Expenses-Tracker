@@ -43,7 +43,7 @@ export default function CreateExpense(props) {
       date: "",
       recurring: false,
     });
-    handleCreateExpenseModalClose();
+    props.handleCreateExpenseModalClose();
   }
 
   function checkForErrors() {
@@ -55,10 +55,6 @@ export default function CreateExpense(props) {
         setDisableSubmit(false);
       }
     }
-  }
-
-  function handleCreateExpenseModalClose() {
-    props.setDisplayCreateExpense(false);
   }
 
   return (
@@ -77,7 +73,10 @@ export default function CreateExpense(props) {
           <h3 className="create-expense-header">
             {props.currentExpense ? "Edit Expense" : "Create New Expense"}
           </h3>
-          <button className="close-btn" onClick={handleCreateExpenseModalClose}>
+          <button
+            className="close-btn"
+            onClick={props.handleCreateExpenseModalClose}
+          >
             X
           </button>
         </div>
@@ -174,11 +173,18 @@ export default function CreateExpense(props) {
             Add Expense
           </button>
         ) : (
-          <button className="add-expense span-two" type="submit">
+          <button className="add-expense" type="submit">
             Add Expense
           </button>
         )}
-        <button className="delete-expense" type="submit">
+        <button
+          className="delete-expense"
+          type="submit"
+          onClick={e => {
+            e.preventDefault();
+            props.handleDelete();
+          }}
+        >
           Delete Expense
         </button>
       </form>

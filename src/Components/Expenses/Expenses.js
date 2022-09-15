@@ -145,6 +145,7 @@ export default function Expenses(props) {
     setCurrentExpense("");
     setCurrentExpenseId("");
     setEditExpense(false);
+    handleCreateExpenseModalClose();
     setSort(["date", "asc"]);
   }
 
@@ -153,6 +154,10 @@ export default function Expenses(props) {
 
   function handleCreateExpenseModal() {
     setDisplayCreateExpense(true);
+  }
+
+  function handleCreateExpenseModalClose() {
+    setDisplayCreateExpense(false);
   }
 
   function handleDisplayFilters() {
@@ -171,7 +176,8 @@ export default function Expenses(props) {
         {displayCreateExpense && (
           <CreateExpense
             handleClick={handleSubmit}
-            setDisplayCreateExpense={setDisplayCreateExpense}
+            handleCreateExpenseModal={setDisplayCreateExpense}
+            handleCreateExpenseModalClose={handleCreateExpenseModalClose}
             currentExpense={currentExpense}
             currentExpenseId={currentExpenseId}
             handleDelete={handleDelete}
