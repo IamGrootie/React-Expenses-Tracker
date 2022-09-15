@@ -210,6 +210,11 @@
   border: 1px solid #282541;
 }
 
+.dashboard-container.dark .expense-card-subtext,
+.dashboard-container.dark .expand-btn {
+  background: #1c1a2e;
+}
+
 /* §§§§§§§§§§§§§§§§§§§§§§§§§§§§ */
 /* §§§§§§ Media  Queries §§§§§§ */
 /* §§§§§§§§§§§§§§§§§§§§§§§§§§§§ */
