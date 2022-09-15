@@ -24,7 +24,7 @@ function ExpenseCard(props) {
   function handleChange(event) {
     const { name, value, checked, type } = event.target;
 
-    setData((prev) => ({
+    setData(prev => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,
     }));
@@ -57,7 +57,7 @@ function ExpenseCard(props) {
     >
       <form
         className={props.class}
-        onSubmit={(event) => props.handleClick(event)}
+        onSubmit={event => props.handleClick(event)}
       >
         {props.title && (
           <div className="card-element name-business-container">
@@ -150,8 +150,7 @@ function ExpenseCard(props) {
               }
               disabled={!props.editExpense}
               name="amount"
-              type="tel"
-              maxlength="10"
+              type="number"
               defaultValue={data.amount}
               placeholder="Amount"
               onChange={handleChange}
@@ -207,7 +206,7 @@ function ExpenseCard(props) {
               <button
                 type="button"
                 className="action-button"
-                onClick={(event) => props.edit(event, data.invoice)}
+                onClick={event => props.edit(event, data.invoice)}
               >
                 Edit
               </button>
@@ -227,7 +226,7 @@ function ExpenseCard(props) {
               <button
                 className="action-button"
                 value="Delete"
-                onClick={(e) => {
+                onClick={e => {
                   e.preventDefault();
                   props.handleDelete();
                 }}

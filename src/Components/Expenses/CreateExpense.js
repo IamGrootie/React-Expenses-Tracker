@@ -23,7 +23,7 @@ export default function CreateExpense(props) {
 
   function handleChange(event) {
     const { name, value, type, checked } = event.target;
-    setData((prevData) => ({
+    setData(prevData => ({
       ...prevData,
       [name]: type === "checkbox" ? checked : value,
     }));
@@ -70,7 +70,7 @@ export default function CreateExpense(props) {
     >
       <form
         className="create-expense-form-container"
-        onSubmit={(event) => handleSubmit(event)}
+        onSubmit={event => handleSubmit(event)}
       >
         <button className="close-btn" onClick={handleCreateExpenseModalClose}>
           X
@@ -99,9 +99,8 @@ export default function CreateExpense(props) {
         </div>
         <div className="form-element span-two">
           <input
-            type="tel"
             name="amount"
-            maxLength="10"
+            type="number"
             value={data.amount}
             placeholder="Amount"
             onChange={handleChange}
@@ -163,6 +162,7 @@ export default function CreateExpense(props) {
         <label className="add-image-container">
           <CategoryImage key={data.id} expenseCategory={data.category} />
         </label>
+
         {disableSubmit ? (
           <button
             className="add-expense span-two disabled"
