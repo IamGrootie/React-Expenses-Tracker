@@ -18,6 +18,8 @@
 .expense-dashboard > .card-element.name-business-container {
   gap: 0px !important;
   max-width: 20ch;
+  display: flex;
+  justify-content: center;
 }
 
 .expense-dashboard > .category {
