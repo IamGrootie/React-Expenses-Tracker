@@ -58,7 +58,6 @@
 .input-titles-expenses img {
   transition: transform 0.3s;
   display: block;
-  max-width: 100%;
 }
 
 .input-titles img.desc,
