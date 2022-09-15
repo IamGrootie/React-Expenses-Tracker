@@ -78,9 +78,8 @@ export default function CreateExpense(props) {
             {props.currentExpense ? "Edit Expense" : "Create New Expense"}
           </h3>
           <button className="close-btn" onClick={handleCreateExpenseModalClose}>
-          X
-        </button>
-          
+            X
+          </button>
         </div>
         <div className="form-element span-two">
           <input
@@ -166,16 +165,12 @@ export default function CreateExpense(props) {
             Recurring
           </label>
         </div>
-        <label className="add-image-container">
+        <label className="add-image-container span-two">
           <CategoryImage key={data.id} expenseCategory={data.category} />
         </label>
 
         {disableSubmit ? (
-          <button
-            className="add-expense span-two disabled"
-            type="submit"
-            disabled
-          >
+          <button className="add-expense disabled" type="submit" disabled>
             Add Expense
           </button>
         ) : (
@@ -183,6 +178,9 @@ export default function CreateExpense(props) {
             Add Expense
           </button>
         )}
+        <button className="delete-expense" type="submit">
+          Delete Expense
+        </button>
       </form>
     </section>
   );
