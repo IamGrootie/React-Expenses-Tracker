@@ -148,6 +148,11 @@
   height: 22px;
 }
 
+.ce-button-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
 .add-expense {
   background: #8ab106;
 }
@@ -167,6 +172,7 @@
   height: 52px;
   cursor: pointer;
   transition: all 0.1s ease-in;
+  width: 100%;
 }
 
 .add-expense.disabled {

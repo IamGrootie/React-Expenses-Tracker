@@ -86,7 +86,7 @@ export default function Expenses(props) {
     setCurrentExpenseId(id);
     setCurrentExpense(expenses.find(expense => expense.invoice === id));
     setEditExpense(true);
-    handleCreateExpenseModal();
+    handleCreateExpenseModalOpen();
     setSort(["date", "asc"]);
   }
 
@@ -152,7 +152,7 @@ export default function Expenses(props) {
   const [displayCreateExpense, setDisplayCreateExpense] = useState(false);
   const [displayFilters, setDisplayFilters] = useState(false);
 
-  function handleCreateExpenseModal() {
+  function handleCreateExpenseModalOpen() {
     setDisplayCreateExpense(true);
   }
 
@@ -202,7 +202,7 @@ export default function Expenses(props) {
             <div className="expense-buttons">
               <button
                 className="create-expense"
-                onClick={handleCreateExpenseModal}
+                onClick={handleCreateExpenseModalOpen}
               >
                 <img src={createExpenseIcon} />
                 <p>Create Expense</p>

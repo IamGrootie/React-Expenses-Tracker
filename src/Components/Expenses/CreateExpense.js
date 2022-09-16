@@ -56,7 +56,7 @@ export default function CreateExpense(props) {
       }
     }
   }
-
+console.log(props.currentExpense)
   return (
     <section
       className={
@@ -168,6 +168,7 @@ export default function CreateExpense(props) {
           <CategoryImage key={data.id} expenseCategory={data.category} />
         </label>
 
+<div className="ce-button-container span-two">
         {disableSubmit ? (
           <button className="add-expense disabled" type="submit" disabled>
             Add Expense
@@ -177,16 +178,19 @@ export default function CreateExpense(props) {
             Add Expense
           </button>
         )}
-        <button
-          className="delete-expense"
-          type="submit"
-          onClick={e => {
-            e.preventDefault();
-            props.handleDelete();
-          }}
-        >
-          Delete Expense
-        </button>
+        {props.currentExpense && (
+          <button
+            className="delete-expense"
+            type="submit"
+            onClick={e => {
+              e.preventDefault();
+              props.handleDelete();
+            }}
+          >
+            Delete Expense
+          </button>
+        )}
+        </div>
       </form>
     </section>
   );
