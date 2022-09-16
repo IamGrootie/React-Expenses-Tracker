@@ -1,56 +1,8 @@
-import React, { useState, useEffect } from "react";
 import "./ExpenseCard.css";
 import CategoryImage from "./CategoryImage";
 import "./CreateExpense.css";
-import { serverTimestamp } from "firebase/firestore";
 
 function ExpenseCard(props) {
-  // const currentDate = new Date().toISOString().substring(0, 10);
-
-  // const [data, setData] = useState({
-  //   title: props.title || "",
-  //   company: props.company || "",
-  //   currency: props.currency || "",
-  //   amount: props.amount || "",
-  //   category: props.category || "",
-  //   date: props.date || currentDate,
-  //   invoice: props.invoice,
-  //   createdAt: serverTimestamp(),
-  //   recurring: props.recurring || false,
-  // });
-
-  // const [disableSubmit, setDisableSubmit] = useState(false);
-
-  // function handleChange(event) {
-  //   const { name, value, checked, type } = event.target;
-
-  //   setData(prev => ({
-  //     ...prev,
-  //     [name]: type === "checkbox" ? checked : value,
-  //   }));
-  // }
-
-  // useEffect(() => {
-  //   checkForErrors();
-  // }, [data]);
-
-  // function handleSubmit(event) {
-  //   event.preventDefault();
-  //   const error = checkForErrors();
-  //   if (!error) props.handleClick(data);
-  // }
-
-  // function checkForErrors() {
-  //   for (let item in data) {
-  //     if (data[item] === "") {
-  //       setDisableSubmit(true);
-  //       return true;
-  //     } else {
-  //       setDisableSubmit(false);
-  //     }
-  //   }
-  // }
-
   return (
     <div
       className={props.toggleDarkMode ? "expense-card dark" : "expense-card"}
