@@ -7,7 +7,8 @@ import Logo from "../../images/Logo.svg";
 import google from "../../images/Google.svg";
 import vector from "../../images/Vector.svg";
 import Main from "../../images/Intro_img.svg";
-import "./signup.css";
+import "../../Components/Signin/signin.css"
+
 
 export default function Signup() {
   const { signup, setDisplayName, createUserDetails } = useAuth();
@@ -84,21 +85,21 @@ export default function Signup() {
   }
 
   return (
-    <div className="su-intro-container">
-      <div className="su-form-half">
-        <div className="su-form-container">
+    <div className="intro-container">
+      <div className="form-half">
+        <div className="form-container">
           <img src={Logo} className="su-logo" alt="" />
-          <h1 className="su-title-sign">Create a new account.</h1>
-          <p className="su-details">Please enter your details.</p>
-          <form className="su-form-signup" onSubmit={handleSubmit}>
+          <h1 className="title-sign">Create a new account.</h1>
+          <p className="details">Please enter your details.</p>
+          <form className="form-signup" onSubmit={handleSubmit}>
             <div className="label-container">
-              <label className="su-name-label">Full Name</label>
+              <label className="name-label">Full Name</label>
               {errorMessage.name && (
                 <label className="errorMessage name">{errorMessage.name}</label>
               )}
             </div>
             <input
-              className="su-details-input"
+              className="details-input"
               type="text"
               name="name"
               onChange={handleChange}
@@ -106,7 +107,7 @@ export default function Signup() {
               placeholder="Enter your full name"
             />
             <div className="label-container">
-              <label className="su-email-label">Email</label>
+              <label className="email-label">Email</label>
               {errorMessage.email && (
                 <label className="errorMessage email">
                   {errorMessage.email}
@@ -114,7 +115,7 @@ export default function Signup() {
               )}
             </div>
             <input
-              className="su-details-input"
+              className="details-input"
               type="email"
               name="email"
               onChange={handleChange}
@@ -122,7 +123,7 @@ export default function Signup() {
               placeholder="Enter your email address"
             />
             <div className="label-container">
-              <label className="su-password-label">Password</label>
+              <label className="password-label">Password</label>
               {errorMessage.password && (
                 <label className="errorMessage password">
                   {errorMessage.password}
@@ -131,17 +132,17 @@ export default function Signup() {
             </div>
 
             <input
-              className="su-details-input"
+              className="details-input"
               type="password"
               name="password"
               onChange={handleChange}
               value={data.password}
               placeholder="·······"
             />
-            <button onClick={handleSubmit} className="su-sign-btn">
+            <button onClick={handleSubmit} className="sign-btn">
               Sign up
             </button>
-            <button className="su-google-btn" onClick={handleGoogle}>
+            <button className="google-btn" onClick={handleGoogle}>
               <img src={google} alt="" />
               Sign up with google
             </button>
@@ -152,8 +153,8 @@ export default function Signup() {
           </form>
         </div>
       </div>
-      <div className="su-image-half">
-        <img src={Main} alt="" className="su-landing-image" />
+      <div className="image-half">
+        <img src={Main} alt="" className="landing-image" />
       </div>
     </div>
   );

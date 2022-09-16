@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Logo from "../../images/Logo.svg";
 import Main from "../../images/Intro_img.svg";
 import vector from "../../images/Vector.svg";
-import "./forgotpassword.css";
+import "../../Components/Signin/signin.css"
 
 export default function ForgotPassword() {
   const emailRef = useRef();
@@ -52,14 +52,14 @@ export default function ForgotPassword() {
   };
 
   return (
-    <div className="fpass-container">
+    <div className="intro-container">
       <div className="form-half">
-        <div className="form-fcontainer">
+        <div className="form-container">
           <img src={Logo} className="su-logo" alt="" />
-          <h1 className="title-fpass">Password Reset</h1>
+          <h1 className="title-sign">Password Reset</h1>
           <p className="details">Please enter your details.</p>
 
-          <form onSubmit={handleSubmit} className="form-pass-container">
+          <form onSubmit={handleSubmit} className="form-signup">
             <div className="label-container">
               <label className="email-label">Email</label>
               {errorMessage && (
@@ -82,14 +82,14 @@ export default function ForgotPassword() {
               disabled={loading}
               type="submit"
               onClick={forgotPasswordHandler}
-              className="reset-btn"
+              className="sign-btn"
             >
               Reset Password
             </button>
             <p className="question">
               Want to return? <Link to="/signin">Sign in</Link>
             </p>
-            <img src={vector} className="vector-pass" alt="" />
+            <img src={vector} className="fp-vector" alt="" />
           </form>
 
           {errorMessage && <alert variant="danger">{errorMessage}</alert>}

@@ -119,7 +119,7 @@ export default function Signin() {
               placeholder="·······"
             />
             <section className="options-section">
-              <div>
+              <div className="options-checkbox">
                 <input
                   className="remember-input"
                   type="checkbox"
@@ -139,7 +139,7 @@ export default function Signin() {
             <p className="question">
               Don't have an account? <Link to="/signup">Sign up for free</Link>
             </p>
-            <img src={vector} className="vector" alt="" />
+            <img src={vector} className="su-vector" alt="" />
           </form>
         </div>
       </div>
