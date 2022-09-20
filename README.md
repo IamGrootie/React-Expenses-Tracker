@@ -88,3 +88,9 @@ The view on a mobile device (the example as the dimensions of the Iphone XR)
 <p align="center">
   <img src="./imagesPresentation/iphoneXR.png" align="center"/>
 </p>
+
+
+## Contributors 
+This project was develop by:
+-(Jack Edmondson)[https://github.com/Edmndsn] 
+-(Lígia Monteiro)[https://github.com/IamGrootie]
