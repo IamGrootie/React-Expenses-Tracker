@@ -234,7 +234,7 @@
 /* §§§§§§§§§§§§§§§§§§§§§§§§§§§§ */
 
 @media only screen and (max-width: 860px) {
-  .expense-form-container {
+  .create-expense-form-container {
     width: fit-content;
   }
   .add-expense,
@@ -244,7 +244,7 @@
 }
 
 @media only screen and (max-width: 480px) {
-  .expense-form-container {
+  .create-expense-form-container {
     padding: 1rem;
   }
   .add-image-container {
