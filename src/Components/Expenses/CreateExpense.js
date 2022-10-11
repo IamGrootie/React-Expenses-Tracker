@@ -25,7 +25,7 @@ export default function CreateExpense(props) {
 
   function handleChange(event) {
     const { name, value, type, checked } = event.target;
-    setData(prevData => ({
+    setData((prevData) => ({
       ...prevData,
       [name]: type === "checkbox" ? checked : value,
     }));
@@ -56,7 +56,7 @@ export default function CreateExpense(props) {
       }
     }
   }
-console.log(props.currentExpense)
+  console.log(props.currentExpense);
   return (
     <section
       className={
@@ -67,9 +67,9 @@ console.log(props.currentExpense)
     >
       <form
         className="create-expense-form-container"
-        onSubmit={event => handleSubmit(event)}
+        onSubmit={(event) => handleSubmit(event)}
       >
-        <div className="create-expense-header-container">
+        <div className="create-expense-form">
           <h3 className="create-expense-header">
             {props.currentExpense ? "Edit Expense" : "Create New Expense"}
           </h3>
@@ -168,28 +168,28 @@ console.log(props.currentExpense)
           <CategoryImage key={data.id} expenseCategory={data.category} />
         </label>
 
-<div className="ce-button-container span-two">
-        {disableSubmit ? (
-          <button className="add-expense disabled" type="submit" disabled>
-            Add Expense
-          </button>
-        ) : (
-          <button className="add-expense" type="submit">
-            Add Expense
-          </button>
-        )}
-        {props.currentExpense && (
-          <button
-            className="delete-expense"
-            type="submit"
-            onClick={e => {
-              e.preventDefault();
-              props.handleDelete();
-            }}
-          >
-            Delete Expense
-          </button>
-        )}
+        <div className="ce-button-container span-two">
+          {disableSubmit ? (
+            <button className="add-expense disabled" type="submit" disabled>
+              Add Expense
+            </button>
+          ) : (
+            <button className="add-expense" type="submit">
+              Add Expense
+            </button>
+          )}
+          {props.currentExpense && (
+            <button
+              className="delete-expense"
+              type="submit"
+              onClick={(e) => {
+                e.preventDefault();
+                props.handleDelete();
+              }}
+            >
+              Delete Expense
+            </button>
+          )}
         </div>
       </form>
     </section>

@@ -3,6 +3,9 @@
   inset: 0;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 100;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
 }
 
 .create-expense-form-container {
@@ -11,28 +14,24 @@
   right: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 580px !important;
+  width: 40%;
   border-radius: 20px;
   padding: 27px 40px 27px;
   box-shadow: 3px -5px 35px rgba(205, 205, 212, 0.5);
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  margin: 10px;
+  /* grid-template-columns: 1fr 1fr;
+  
+  margin: 10px; */
   background-color: white;
+  gap: 0.5rem;
 }
 
-.create-expense-header-container {
+.create-expense-form {
   grid-column: span 2;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 2rem;
-  margin: 0;
-}
-
-.create-expense-header {
-  margin-top: 1rem;
 }
 
 .form-element input,
@@ -56,9 +55,6 @@
   background-color: white;
   border: 1.5px solid rgba(78, 93, 120, 0.2);
   font-weight: 600;
-  /* position: relative;
-  left: 504px;
-  top: -15px; */
   cursor: pointer;
 }
 
@@ -231,4 +227,27 @@
   color: #ffffff;
   border: 1.5px solid #ffffff;
   opacity: 0.7;
+}
+
+/* §§§§§§§§§§§§§§§§§§§§§§§§§§§§ */
+/* §§§§§§ Media  Queries §§§§§§ */
+/* §§§§§§§§§§§§§§§§§§§§§§§§§§§§ */
+
+@media only screen and (max-width: 860px) {
+  .expense-form-container {
+    width: fit-content;
+  }
+  .add-expense,
+  .delete-expense {
+    font-size: 0.8rem;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .expense-form-container {
+    padding: 1rem;
+  }
+  .add-image-container {
+    margin: 0;
+  }
 }
