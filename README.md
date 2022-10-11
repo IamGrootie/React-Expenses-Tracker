@@ -1,8 +1,8 @@
 # Expenses Tracker App
 
-This project is a expense tracker application fully built with React. The account and database information was built with Firebase from Google and was also developed the option of sign in with Google beside of classic e-mail/password authentication.
+This project is a expense tracker application fully built with React. The account and database information was built with Firebase from Google, which enabled us to provide users with the ability to sign in with Google alongside classic e-mail/password authentication.
 
-The Website is divided into three pages:
+The Website is divided into three main pages:
 
 -The Dashboard (Homepage)[Dashboard](#dashboard-page)
 
@@ -10,17 +10,17 @@ The Website is divided into three pages:
 
 -The Settings Page [Settings](#settings-page)
 
-It was developed a dark theme to the full website [DarkMode](#dark-mode) and it's fully responsive [responsiveness](#responsiveness)
+Both a light and dark theme were also integrated into the design of the app, enabling users to select their preferred colour schemes, [DarkMode](#dark-mode). The app is also fully responsive to cater to different user devices, [responsiveness](#responsiveness).
 
 ## Sign in and Sign up
 
-The sign in and sign up page are mostly similar in terms of design. In the next image is presented the sign in page with functionalities such as remembering the user for 30 days or requesting a new password (it will send an e-mail to procceed to new changes)
+The sign in and sign up page are relatively similar in terms of design. Below is the sign in page which includes functionalities such as remembering user details for 30 days or resetting a new password – this will send an email to the user with the ability to update their current password.
 
 <p align="center">
   <img src="./imagesPresentation/SignPage.png" align="center"/>
 </p>
 
-The Google sign page will automatically pop-up a new page to follow the login instructions:
+The Google sign up button will prompt a pop-up with log in instructions.
 
 <p align="center">
   <img src="./imagesPresentation/PopupGoogle.png" align="center"/>
@@ -28,7 +28,7 @@ The Google sign page will automatically pop-up a new page to follow the login in
 
 ## Dashboard Page
 
-The Dashboard component allows the user to see the resume of expenses. Besides of showing the amounts spent (total, monthly and weekly) it also shows a graph with the expenses of the last month and a table with the most recent expenses and the other with recurring expenses (such as subscriptions).
+The Dashboard page provides a general oversight of a collection of user imported expenses, highlighting the variety of amounts spent (total, monthly and weekly), as well as illustrating daily spends over the course of the past month within a bar-chart graph. There are also recent expenses and recurring expenses highlighted within two separate tables.
 
 <p align="center">
   <img src="./imagesPresentation/Dashboard.png" align="center"/>
@@ -36,22 +36,23 @@ The Dashboard component allows the user to see the resume of expenses. Besides o
 
 ## Expenses Page
 
-In this component is possible to see all of the expense information as also create new ones.
-There is the option to change the currency of all the expenses, as well as choose how to filter the expenses based on the date of the expense or other options as preferred.
-It is always possible to edit any expense information.
-It is also possible to search the expense through the name on the SearchBar
+This page allows the user to view all the details within each individual expense in a simple and easy to read table.
+The table can be altered in two ways, either through the filters button which provides multiple filtering options, or through the search bar, allowing the user to navigate through their expenses as they wish.
+Alongside the ability to create expenses, users can also edit or delete existing ones.
+
+There is also an option to change the base currency for all expenses in a simple drop-down menu.
 
 <p align="center">
   <img src="./imagesPresentation/Expenses.png" align="center"/>
 </p>
 
-To create a new expense it will open a new window where the user can fill the information
+A form will open upon click of the create expense button, allowing users to input all the relevant information to generate a new expense.
 
 <p align="center">
   <img src="./imagesPresentation/CreateExpense.png" align="center"/>
 </p>
 
-To edit the details of a expense, it will open a new window (similar to the previous with the information filled in).
+To edit the details of an existing expense, a form with the relevant existing expense details will appear where these can be changed or deleted.
 
 <p align="center">
   <img src="./imagesPresentation/EditExpenses.png" align="center"/>
@@ -59,7 +60,7 @@ To edit the details of a expense, it will open a new window (similar to the prev
 
 ## Settings Page
 
-The settings page contains the user information and allows the change of any information that is needed.
+The settings page contains the user information, whereby first name, last name and email are filled in based on the inputted sign up information. Users can also opt to add additional information in their date of birth, mobile number and even upload their own profile picture.
 
 <p align="center">
   <img src="./imagesPresentation/Settings.png" align="center"/>
@@ -67,7 +68,7 @@ The settings page contains the user information and allows the change of any inf
 
 ### Dark Mode
 
-At the navbar we can change the theme mode of the website from light to dark.
+At the navbar there is a button that allows the users to switch between light or dark theme styling choices within the navigation bar.
 
 <p align="center">
   <img src="./imagesPresentation/darkMode.png" align="center"/>
@@ -75,7 +76,7 @@ At the navbar we can change the theme mode of the website from light to dark.
 
 ### Responsiveness
 
-The website can be responsive to fit Tablets and also phones.
+The website is also responsive to different device viewport sizes.
 
 The view on a tablet:
 
@@ -89,8 +90,8 @@ The view on a mobile device (the example as the dimensions of the Iphone XR)
   <img src="./imagesPresentation/iphoneXR.png" align="center"/>
 </p>
 
+## Contributors
 
-## Contributors 
 This project was develop by:
 
 -[Jack Edmondson](https://github.com/Edmndsn)
